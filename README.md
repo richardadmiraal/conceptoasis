@@ -1,7 +1,10 @@
 # ConceptOasis.com
 Birds of a Feather
 
+<link rel="icon" href="/favicon.png" type="image/png">
+
 ![ConceptOasis Logo](/public/images/coco-logo.png){:width="320px" style="display:block;margin:0 auto 40px;"}
+
 
 ## About
 
