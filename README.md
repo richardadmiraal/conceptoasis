@@ -1,3 +1,6 @@
+/public/favicon.png 
+
+
 # ConceptOasis.com
 Birds of a Feather
 
