@@ -3,6 +3,8 @@ Birds of a Feather
 
 ![ConceptOasis Logo](/public/images/coco-logo.png)
 
+![ConceptOasis Logo](/public/images/coco-logo.png){:width="300px" style="display:block;margin:0 auto;"}
+
 ## About
 
 ConceptOasis is a small studio of writers, marketers, and builders using advanced AI tools to create apps that solve real problems with creativity and care.
