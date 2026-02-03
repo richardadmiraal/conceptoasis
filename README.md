@@ -1,12 +1,7 @@
-/public/favicon.png 
-
-
 # ConceptOasis.com
 Birds of a Feather
 
-![ConceptOasis Logo](/public/images/coco-logo.png)
-
-![ConceptOasis Logo](/public/images/coco-logo.png){:width="300px" style="display:block;margin:0 auto;"}
+![ConceptOasis Logo](/public/images/coco-logo.png){:width="320px" style="display:block;margin:0 auto 40px;"}
 
 ## About
 
@@ -35,23 +30,17 @@ All that said, we’re not waiting to be fully utilized by clients. We are an um
 
 - **Recomemo.com**  
   Always leave a message for your friends.  
-  
-  Basically a new, sharp, and useful profile page on the internet: sign in, expand into other apps, dress it up, add links. Start with 4 recommendations (examples: your music playlist, your favorite plumber, etc.) — update or rotate as you go.  
-
+  Basically a new, sharp and useful profile page on the internet: sign in, expand into other apps, dress it up, add links. Start with 4 recommendations (examples: your music playlist, your favorite plumber, etc.) — update or rotate as you go.  
   We’ll be launching this in the real world; users of this first application will be spreading the word by “seeing the people.” Imagine old-school boots-on-the-street agents merging with new tech. This will be just the start.
 
 - **SharedPromoPage.com**  
   The things we do together are important.  
-
   A collaborative marketing and promotions platform powered by our group management software.
 
 - **Strataverse.ai**  
   All around the Strataverse.  
-
   AI-assisted governance and web portals for boards.  
-
   A board table interface with a strategically trained and, of course, very ethical AI Executive Officer (AI-EO) that drafts minutes, tracks action items, answers inquiries, and more.  
-  
   Property management companies have shown interest — the time is now to 10x productivity for property managers.
 
 ## Contact
