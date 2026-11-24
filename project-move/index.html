@@ -1,0 +1,439 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Project Move · Strategic planning that ends with your website | ConceptOasis</title>
+<meta name="description" content="Project Move: a co|co form that takes you from your board table to a front-facing consumer website. Seat your board, show us how orders come in, tell your story, and watch your website build live.">
+<link rel="icon" href="../favicon.png" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Inter+Tight:wght@500;600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/site.css">
+<style>
+body{background:#f6f7fa}
+.pm-hero{background:#fff;border-bottom:1px solid var(--line);position:relative;overflow:hidden}
+.pm-hero .wrap{padding-block:34px 0;display:grid;grid-template-columns:1.15fr .85fr;gap:30px;align-items:start}
+@media(max-width:900px){.pm-hero .wrap{grid-template-columns:1fr}}
+.pm-hero h1{font-size:clamp(30px,4vw,46px);margin:4px 0 10px}
+.pm-story{font-size:15.5px;color:var(--char2);line-height:1.7;max-width:62ch}
+.pm-story p{margin:0 0 10px}
+.pm-q{font:650 22px "Inter Tight",Inter,sans-serif;color:var(--ink);margin-top:6px}
+.pm-sign{font:500 12px var(--mono);color:var(--char2);margin-top:6px}
+.pm-path{border:1px solid var(--line);border-radius:16px;padding:16px 18px;background:#fbfcfe}
+.pm-path b{font:600 11px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--char2)}
+.pm-path ol{margin:10px 0 0;padding-left:20px;font-size:14px;line-height:1.9}
+.tabs{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;margin-top:22px}
+.tabs::-webkit-scrollbar{display:none}
+.tabs button{flex:none;border:0;background:none;padding:12px 13px 13px;font:600 13.5px Inter,sans-serif;color:var(--mute);border-bottom:3px solid transparent;cursor:pointer}
+.tabs button b{display:inline-grid;place-items:center;width:22px;height:22px;margin-right:6px;border-radius:50%;background:#e6e9ef;color:var(--char2);font:600 11px var(--mono)}
+.tabs button.on{color:var(--ink);border-bottom-color:var(--f-teal)}
+.tabs button.on b,.tabs button.past b{background:var(--f-teal);color:#fff}
+.lay{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,480px);gap:26px;align-items:start;padding-block:26px 110px}
+@media(max-width:1000px){.lay{grid-template-columns:1fr}}
+.step{display:none;background:#fff;border:1px solid var(--line);border-radius:18px;padding:24px}
+.step.on{display:block;animation:fin .25s ease}
+@keyframes fin{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.step h2{font-size:23px;margin-bottom:4px}
+.step>p.mute{margin:0 0 16px}
+.q{margin:18px 0 8px;font:600 14px Inter,sans-serif;color:var(--char)}
+.q span{font-weight:400;color:var(--mute)}
+.fl{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px 16px}
+@media(max-width:620px){.fl{grid-template-columns:1fr}}
+.fl .full{grid-column:1/-1}
+.fl label{display:block;font:600 13px Inter,sans-serif;color:var(--char)}
+.fl label span{font-weight:400;color:var(--mute)}
+.fl input,.fl select,.fl textarea,.seat-ed input,.seat-ed select{display:block;width:100%;margin-top:6px;padding:10px 12px;border:1px solid #cdd3dd;border-radius:10px;font:400 15px Inter,sans-serif;color:var(--ink);background:#fff;box-sizing:border-box}
+input:focus,select:focus,textarea:focus{outline:0;border-color:var(--f-teal);box-shadow:0 0 0 3px rgba(22,163,166,.15)}
+.pills{display:flex;flex-wrap:wrap;gap:8px}
+.pills button{padding:7px 13px;border-radius:999px;border:1px solid #d3d8e0;background:#fff;font:500 13.5px Inter,sans-serif;color:var(--char);cursor:pointer}
+.pills button.on{background:#e8f6f6;border-color:var(--f-teal);color:#0c6a6c;font-weight:600}
+.pills button.on:before{content:"\2713  ";font-weight:800}
+.tog{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 14px;border:1px solid var(--line);border-radius:12px;margin-top:10px}
+.tog b{font-size:14.5px;color:var(--ink)}.tog small{display:block;color:var(--mute);font-size:12.5px}
+.sw{position:relative;width:46px;height:26px;flex:none}
+.sw input{opacity:0;width:0;height:0}
+.sw i{position:absolute;inset:0;border-radius:99px;background:#d7dbe3;transition:.2s;cursor:pointer}
+.sw i:after{content:"";position:absolute;left:3px;top:3px;width:20px;height:20px;border-radius:50%;background:#fff;transition:.2s;box-shadow:0 1px 3px rgba(0,0,0,.2)}
+.sw input:checked+i{background:var(--f-teal)}
+.sw input:checked+i:after{transform:translateX(20px)}
+.nav2{display:flex;justify-content:space-between;gap:10px;margin-top:22px}
+.err{color:#b0124f;font-weight:600;font-size:14px;min-height:1.2em;margin-top:10px}
+.tip{display:flex;gap:10px;align-items:flex-start;margin-top:16px;padding:12px 14px;border-radius:12px;background:#f2fbfb;border:1px solid #bfe6e6;font-size:14px;color:#0f5f5f}
+
+/* board table */
+.boardwrap{position:relative;width:100%;max-width:560px;aspect-ratio:1.45;margin:6px auto 0}
+.table{position:absolute;left:17%;right:17%;top:24%;bottom:24%;border-radius:999px;background:radial-gradient(ellipse at 50% 40%,#1c2a55,#0f1733 70%);box-shadow:inset 0 0 0 6px #2b3a6b,0 18px 34px rgba(15,23,51,.25);display:flex;flex-direction:column;align-items:center;justify-content:center;color:#cfe9e4;text-align:center}
+.table b{font:650 15px "Inter Tight",Inter,sans-serif;color:#fff}
+.table small{font:500 10.5px var(--mono);letter-spacing:.06em;opacity:.85}
+.table .cards{display:flex;gap:6px;margin-top:8px}
+.table .cards i{width:16px;height:22px;border-radius:3px;background:#fff;opacity:.9;box-shadow:0 1px 0 #9fdcd6}
+.seat{position:absolute;transform:translate(-50%,-50%);width:58px;text-align:center;cursor:pointer;background:none;border:0;padding:0}
+.seat .av{display:grid;place-items:center;width:42px;height:42px;margin:0 auto;border-radius:50%;background:#fff;border:2px solid #cdd3dd;font:600 13px Inter,sans-serif;color:var(--ink);transition:.15s}
+.seat .lb{display:block;margin-top:3px;font:600 9.5px var(--mono);color:var(--char2);line-height:1.15;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.seat.filled .av{border-color:var(--c,var(--f-teal));background:color-mix(in srgb,var(--c,var(--f-teal)) 14%,#fff)}
+.seat.pres .av{border-color:var(--f-orange);background:#fff3e8}
+.seat.sel .av{box-shadow:0 0 0 3px rgba(22,163,166,.35)}
+.seat:hover .av{transform:scale(1.07)}
+@media(max-width:560px){.boardwrap{aspect-ratio:1.05}.table{left:20%;right:20%;top:22%;bottom:22%}.table b{font-size:12px}.table small{font-size:9px}.seat{width:46px}.seat .av{width:32px;height:32px;font-size:11px}.seat .lb{font-size:8px}}
+.seat-ed{display:grid;grid-template-columns:1fr 1fr auto;gap:10px;align-items:end;margin-top:14px;padding:12px;border:1px dashed #b9c1ce;border-radius:12px}
+@media(max-width:620px){.seat-ed{grid-template-columns:1fr}}
+.seat-ed label{font:600 12.5px Inter,sans-serif}
+.rr{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin-top:14px}
+.rr span{padding:5px 10px;border-radius:999px;border:1px solid var(--line);background:#fff;font:600 12px var(--mono)}
+.rr i{font-style:normal;color:var(--mute)}
+.files{list-style:none;margin:8px 0 0;padding:0;display:grid;gap:6px}
+.files li{display:flex;gap:8px;align-items:center;padding:7px 10px;border:1px solid var(--line);border-radius:10px;font-size:13.5px}
+.files li span{font:600 10px var(--mono);padding:2px 6px;border-radius:6px;background:#fdeef5;color:#a3245f}
+.files li b{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:500}
+.files li button{border:0;background:none;font-size:18px;color:var(--mute);cursor:pointer}
+.hellos{display:grid;gap:8px}
+.hellos button{text-align:left;padding:12px 14px;border:1px solid var(--line);border-radius:12px;background:#fff;font:500 14.5px Inter,sans-serif;color:var(--ink);cursor:pointer}
+.hellos button.on{border-color:var(--f-teal);background:#f2fbfb}
+.upl{display:grid;gap:8px}
+.upl label{display:flex;gap:10px;align-items:flex-start;padding:12px 14px;border:1px solid var(--line);border-radius:12px;cursor:pointer}
+.upl input{width:18px;height:18px;margin-top:2px;accent-color:var(--f-teal);flex:none}
+.upl b{display:block;font-size:14.5px;color:var(--ink)}.upl small{color:var(--mute)}
+
+/* website preview */
+.pv{position:sticky;top:84px}
+@media(max-width:1000px){.pv{position:static}}
+.pvl{display:flex;justify-content:space-between;margin:0 4px 8px;font:600 11px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--char2)}
+.pvl i{font-style:normal;color:var(--f-teal)}
+.site{background:#fff;border:1px solid #d5dae3;border-radius:16px;overflow:hidden;box-shadow:0 22px 50px rgba(15,23,51,.14)}
+.site .bar{display:flex;gap:6px;align-items:center;padding:9px 12px;background:#eef0f4}
+.site .bar i{width:9px;height:9px;border-radius:50%;background:#c9ced8}
+.site .bar span{margin-left:8px;flex:1;min-width:0;padding:2px 10px;border-radius:8px;background:#fff;font:500 11.5px var(--mono);color:var(--mute);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.site .body{max-height:calc(100vh - 210px);overflow:auto}
+@media(max-width:1000px){.site .body{max-height:none}}
+.s-nav{display:flex;justify-content:space-between;align-items:center;padding:12px 16px;border-bottom:1px solid #eef0f4}
+.s-nav b{font:650 15px "Inter Tight",Inter,sans-serif;color:var(--ink)}
+.s-nav span{display:flex;gap:10px;font-size:11.5px;color:var(--char2)}
+.s-hero{padding:22px 18px;background:linear-gradient(135deg,color-mix(in srgb,var(--brand) 14%,#fff),#fff 70%)}
+.s-hero h3{font-size:22px;margin:0 0 6px;letter-spacing:-.02em}
+.s-hero p{margin:0;font-size:13.5px;color:var(--char2)}
+.s-hero .s-btn{display:inline-block;margin-top:12px;padding:8px 14px;border-radius:999px;background:var(--brand);color:#fff;font:600 12.5px Inter,sans-serif}
+.s-sec{padding:14px 18px;border-top:1px solid #f0f1f4}
+.s-sec h4{margin:0 0 6px;font:600 10.5px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--brand)}
+.s-sec p{margin:0;font-size:13px;color:var(--char)}
+.s-chips{display:flex;flex-wrap:wrap;gap:5px;margin-top:6px}
+.s-chips span{padding:3px 9px;border-radius:999px;background:#f3f4f7;font-size:11.5px}
+.s-form{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.s-form div{padding:7px 9px;border:1px solid #dde1e8;border-radius:8px;font-size:11.5px;color:#8a92a3;background:#fff}
+.s-form .wide{grid-column:1/-1}
+.s-form .pay{grid-column:1/-1;text-align:center;background:var(--brand);color:#fff;border-color:transparent;font-weight:600}
+.s-form .cpn{border-style:dashed}
+.s-em{color:#aab1bf;font-style:italic}
+.s-foot{padding:12px 18px;background:#0f1733;color:#cfd6e6;font-size:11px;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.bar2{position:fixed;left:0;right:0;bottom:0;z-index:20;background:rgba(255,255,255,.96);backdrop-filter:blur(8px);border-top:1px solid var(--line);padding-bottom:env(safe-area-inset-bottom,0px)}
+.bar2 .wrap{display:flex;align-items:center;gap:14px;padding-block:12px}
+.bar2 .pg{flex:1;min-width:0}
+.bar2 .pg small{display:block;font:600 11px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--mute)}
+.bar2 .meter{height:6px;border-radius:99px;background:#e6e9ef;margin-top:6px;overflow:hidden}
+.bar2 .meter i{display:block;height:100%;width:0;background:var(--feather);transition:width .3s}
+.done{display:none;text-align:center;padding:24px 8px}
+.ckl{display:flex;gap:10px;align-items:flex-start;font-size:14px;margin-top:12px}
+.ckl input{width:18px;height:18px;margin-top:2px;flex:none;accent-color:var(--f-teal)}
+</style>
+</head>
+<body>
+
+<header class="nav"><div class="wrap">
+  <a class="brand" href="../"><img src="../assets/img/coco-logo.webp" alt="" width="34" height="34">ConceptOasis</a>
+  <nav>
+    <a href="../#services">Services</a>
+    <a href="../#portfolio">Portfolio</a>
+    <a href="../#projects">Projects</a>
+    <a class="btn btn-dark" href="../start/">Get your report</a>
+  </nav>
+</div></header>
+
+<section class="pm-hero"><div class="wrap">
+  <div>
+    <span class="kick">co | co form &middot; Project Move</span>
+    <h1>Every project is a move.</h1>
+    <div class="pm-story">
+      <p>Every home has a story to tell and a result to accomplish. Every property is a project move.</p>
+      <p>As a listing agent, the question is always the same: where do we sell it? In the MLS&reg; system, where active listings are traded, compared and turned into sold data. There&rsquo;s no better place to find fair market value than where every property is out in the open and measured against the rest. The cooperation inside that system is idealistic, and organized real estate has worked hard to keep it transparent and open.</p>
+    </div>
+    <div class="pm-q">Is your project as complicated? Let&rsquo;s plan it, and build it.</div>
+    <div class="pm-sign">Richard Admiraal &middot; Founder, ConceptOasis</div>
+  </div>
+  <div class="pm-path">
+    <b>Strategic planning that ends with your website</b>
+    <ol>
+      <li>Seat your board</li>
+      <li>Show us how your orders come in</li>
+      <li>Make your order form consumer-facing</li>
+      <li>Tell your story</li>
+      <li>Name your target customer</li>
+      <li>Choose how to say hello</li>
+      <li>Watch your website come together</li>
+    </ol>
+  </div>
+</div>
+<div class="wrap"><div class="tabs" id="tabs">
+  <button class="on"><b>1</b>Your board</button><button><b>2</b>Your orders</button><button><b>3</b>Order form</button><button><b>4</b>Your story</button><button><b>5</b>Target customer</button><button><b>6</b>Say hello</button><button><b>7</b>Your website</button>
+</div></div></section>
+
+<div class="wrap lay">
+  <div>
+    <!-- 1 BOARD -->
+    <div class="step on">
+      <h2>Seat your board</h2>
+      <p class="mute">Twelve seats, positions set. The President holds two seats, so two votes. Tap a seat to put a name to it.</p>
+      <div class="boardwrap" id="board">
+        <div class="table"><b id="tblName">Your board table</b><small>meetings run by Robert&rsquo;s Rules</small><div class="cards"><i></i><i></i><i></i></div></div>
+      </div>
+      <div class="seat-ed" id="seatEd">
+        <label>Seat<select id="seatRole"></select></label>
+        <label>Name<input id="seatName" placeholder="Who sits here?"></label>
+        <button class="btn btn-dark" type="button" id="seatSave">Seat them</button>
+      </div>
+      <div class="rr"><span>motion</span><i>&rarr;</i><span>second</span><i>&rarr;</i><span>discussion</span><i>&rarr;</i><span>vote</span><i>&rarr;</i><span>minutes</span></div>
+      <div class="tip">No board or roles assigned yet? Use ours: Strataverse, all across the Strataverse, comes with the seats, the agenda, Robert&rsquo;s Rules prompts and xo-ai taking the minutes. Notepads and devices are the cards on the table.</div>
+      <div class="nav2"><span></span><button class="btn btn-dark" data-next>Next: Your orders &rarr;</button></div>
+    </div>
+
+    <!-- 2 ORDERS -->
+    <div class="step">
+      <h2>How do your orders come in?</h2>
+      <p class="mute">Show us the paperwork you already use. A sales invoice and a delivery receipt tell us more than a meeting.</p>
+      <div class="fl">
+        <label>Company<input id="co" placeholder="e.g. Valley Coffee Roasters"></label>
+        <label>Your current website<input id="web" inputmode="url" placeholder="https://"></label>
+        <label class="full">Upload your sales invoice and delivery receipt <span>(PDF or image)</span><input type="file" id="docs" multiple accept=".pdf,.png,.jpg,.jpeg,.doc,.docx"></label>
+      </div>
+      <ul class="files" id="flist"></ul>
+      <div class="q">Orders come in by <span>(pick any)</span></div>
+      <div class="pills" data-k="via"></div>
+      <div class="fl" style="margin-top:14px"><label class="full">Describe it <span>(from first hello to paid and delivered)</span><textarea id="desc" rows="3" placeholder="e.g. Customers call or email, we write up an invoice, they pay by e-transfer, we deliver on Fridays"></textarea></label></div>
+      <div class="nav2"><button class="btn btn-line" data-prev>&larr; Back</button><button class="btn btn-dark" data-next>Next: Order form &rarr;</button></div>
+    </div>
+
+    <!-- 3 ORDER FORM -->
+    <div class="step">
+      <h2>Let&rsquo;s make your order form consumer-facing</h2>
+      <p class="mute">Your customers order on your website, any time, and it lands with your team ready to fill.</p>
+      <div class="fl"><label class="full">What do customers order?<input id="what" placeholder="e.g. Fresh roasted coffee, subscriptions, gift boxes"></label></div>
+      <div class="q">What should the form ask?</div>
+      <div class="pills" data-k="fields"></div>
+      <label class="tog"><span><b>Accept payment online</b><small>Ecommerce: take the sale on the internet, card or online payment</small></span><span class="sw"><input type="checkbox" id="pay" checked><i></i></span></label>
+      <label class="tog"><span><b>Accept coupons</b><small>A coupon code box for promotions and partners</small></span><span class="sw"><input type="checkbox" id="cpn"><i></i></span></label>
+      <label class="tog"><span><b>Email a delivery receipt</b><small>Customers get a receipt the moment it ships or is picked up</small></span><span class="sw"><input type="checkbox" id="rcpt" checked><i></i></span></label>
+      <div class="nav2"><button class="btn btn-line" data-prev>&larr; Back</button><button class="btn btn-dark" data-next>Next: Your story &rarr;</button></div>
+    </div>
+
+    <!-- 4 STORY -->
+    <div class="step">
+      <h2>Your story</h2>
+      <p class="mute">Who you are and what you do. Plain words work best; Sailz can polish them later.</p>
+      <div class="fl">
+        <label class="full">Who you are<textarea id="who" rows="2" placeholder="e.g. A family roastery in Chilliwack since 2009"></textarea></label>
+        <label class="full">What you do<textarea id="doo" rows="2" placeholder="e.g. We roast small batches every week and deliver across the Fraser Valley"></textarea></label>
+        <label>Brand colour<input id="brand" type="color" value="#16a3a6" style="height:44px;padding:4px"></label>
+        <label>Where you serve<input id="where" placeholder="e.g. Fraser Valley"></label>
+      </div>
+      <div class="nav2"><button class="btn btn-line" data-prev>&larr; Back</button><button class="btn btn-dark" data-next>Next: Target customer &rarr;</button></div>
+    </div>
+
+    <!-- 5 TARGET -->
+    <div class="step">
+      <h2>Your target customer</h2>
+      <p class="mute">Who are they? The clearer the picture, the better your website speaks to them.</p>
+      <div class="fl"><label class="full">Describe them<input id="tgt" placeholder="e.g. Busy local families and offices who love good coffee"></label></div>
+      <div class="q">They are</div>
+      <div class="pills" data-k="are"></div>
+      <div class="q">They care most about</div>
+      <div class="pills" data-k="care"></div>
+      <div class="nav2"><button class="btn btn-line" data-prev>&larr; Back</button><button class="btn btn-dark" data-next>Next: Say hello &rarr;</button></div>
+    </div>
+
+    <!-- 6 HELLO -->
+    <div class="step">
+      <h2>How best to say hello?</h2>
+      <p class="mute">The first words on your website. Pick one to start from, or write your own.</p>
+      <div class="hellos" id="hellos"></div>
+      <div class="fl" style="margin-top:12px"><label class="full">Or write your own<input id="hello" placeholder="Your hello"></label></div>
+      <div class="nav2"><button class="btn btn-line" data-prev>&larr; Back</button><button class="btn btn-dark" data-next>Next: Your website &rarr;</button></div>
+    </div>
+
+    <!-- 7 WEBSITE -->
+    <div class="step">
+      <div id="sendBox">
+        <h2>Your website, and what comes with it</h2>
+        <p class="mute">Your front-facing website is beside you. Add what you&rsquo;d like us to build with it, and send it over. We&rsquo;ll reply with your Workflow Report and next steps.</p>
+        <div class="upl" id="upl"></div>
+        <div class="fl" style="margin-top:16px">
+          <label>Your name<input id="nm" autocomplete="name"></label>
+          <label>Email<input id="em" type="email" autocomplete="email"></label>
+          <label>Position<input id="pos" autocomplete="organization-title"></label>
+          <label>Phone <span>(optional)</span><input id="ph" type="tel" autocomplete="tel"></label>
+        </div>
+        <label class="ckl"><input type="checkbox" id="ok"> <span>I agree that ConceptOasis may contact me about this project. We keep your details private and use them only for this request.</span></label>
+        <div class="err" id="err"></div>
+        <div class="nav2"><button class="btn btn-line" data-prev>&larr; Back</button><button class="btn btn-pink" id="send">Send my Project Move &rarr;</button></div>
+      </div>
+      <div class="done" id="done"><h2>Your Project Move is in!</h2><p class="mute" id="doneTxt">We&rsquo;ll review it and reply with your Workflow Report and next steps.</p></div>
+    </div>
+  </div>
+
+  <aside class="pv">
+    <div class="pvl"><span>Your website</span><i>Building live</i></div>
+    <div class="site" id="site"></div>
+  </aside>
+</div>
+
+<div class="bar2"><div class="wrap">
+  <div class="pg"><small id="pgt">Step 1 of 7 · Your board</small><div class="meter"><i id="pgm"></i></div></div>
+  <button class="btn btn-dark" id="next">Next &rarr;</button>
+</div></div>
+
+<script>
+(function(){
+  var ENDPOINT=''; var TO='info@conceptoasis.com';
+  var NAMES=['Your board','Your orders','Order form','Your story','Target customer','Say hello','Your website'], LAST=NAMES.length-1;
+  // 12 seats around the table. The President holds two (seats 0 and 1), so two votes.
+  var ROLES=['President','President','Vice President','Secretary','Treasurer','Director','Director','Director','Director','Director','Director','Director'];
+  var COLORS={'President':'var(--f-orange)','Vice President':'var(--f-blue)','Secretary':'var(--f-teal)','Treasurer':'var(--f-lime)','Director':'var(--f-pink)'};
+  var OPT={
+    via:['Phone','Email','Walk-in','Website form','Online store','Sales reps','Social media','Marketplace (Etsy, Amazon)','Purchase orders'],
+    fields:['Name','Email','Phone','Address','Quantity','Date needed','Delivery or pickup','Notes','Company name'],
+    are:['Locals','Families','Businesses','Homeowners','Seniors','Visitors','Contractors','Online shoppers'],
+    care:['Price','Speed','Quality','Trust','Convenience','Local','Service','Choice']
+  };
+  var UPS=[
+    ['board','Strataverse board platform','Twelve seats, Robert’s Rules prompts, agendas, and xo-ai taking the minutes'],
+    ['promo','A group of 12 on SharedPromoPage','Shared promotions with eleven partner businesses'],
+    ['store','Online store setup','Products, payment and delivery receipts, ready to sell'],
+    ['coupons','Coupons and promo codes','Codes for promotions, partners and loyal customers'],
+    ['xo','An xo-ai assistant','Answers customer questions and helps your team, with a person in charge'],
+    ['sailz','Sailz writes your website','Your story and pages, written in your voice']
+  ];
+  var S={seats:{},sel:{via:[],fields:['Name','Email','Phone','Quantity','Delivery or pickup'],are:[],care:[]},hello:'',helloPick:-1,ups:['store'],files:[],seat:2,step:0};
+  var $=function(id){return document.getElementById(id)};
+  function esc(t){var d=document.createElement('div');d.textContent=t==null?'':t;return d.innerHTML}
+  function val(id){return ($(id).value||'').trim()}
+  var steps=[].slice.call(document.querySelectorAll('.step')), tabs=[].slice.call(document.querySelectorAll('#tabs button'));
+
+  // ---- board ----
+  function seatPos(i){ // ellipse positions, seat 0 and 1 at the head (top centre)
+    var a=-Math.PI/2+(-0.5+i)*(2*Math.PI/12);
+    return {x:50+43*Math.cos(a), y:50+41*Math.sin(a)};
+  }
+  function drawBoard(){
+    var b=$('board'); [].forEach.call(b.querySelectorAll('.seat'),function(x){x.remove()});
+    ROLES.forEach(function(r,i){
+      var p=seatPos(i), nm=S.seats[i]||(i===1?S.seats[0]:''), btn=document.createElement('button');
+      btn.type='button'; btn.className='seat'+(nm?' filled':'')+(r==='President'?' pres':'')+(S.seat===i||(S.seat===0&&i===1)?' sel':'');
+      btn.style.left=p.x+'%'; btn.style.top=p.y+'%'; btn.style.setProperty('--c',COLORS[r]);
+      var ini=nm?nm.split(/\s+/).map(function(w){return w.charAt(0)}).join('').slice(0,2).toUpperCase():(r==='President'?'P':r.charAt(0));
+      btn.innerHTML='<span class="av">'+esc(ini)+'</span><span class="lb">'+esc(r==='President'?'Pres · '+(i+1):(r==='Vice President'?'Vice Pres':r))+'</span>';
+      btn.setAttribute('aria-label',r+(nm?': '+nm:': open seat'));
+      btn.onclick=function(){S.seat=(i===1?0:i);drawBoard();fillEd();$('seatName').focus()};
+      b.appendChild(btn);
+    });
+  }
+  function fillEd(){
+    var sel=$('seatRole'); sel.innerHTML=ROLES.map(function(r,i){ if(i===1) return ''; return '<option value="'+i+'"'+(i===S.seat?' selected':'')+'>'+(i===0?'President (two seats, two votes)':r+' · seat '+(i+1))+'</option>'}).join('');
+    $('seatName').value=S.seats[S.seat]||'';
+  }
+  $('seatRole').onchange=function(){S.seat=+this.value;drawBoard();fillEd()};
+  function seatSave(){S.seats[S.seat]=val('seatName'); var n=S.seat+1; if(n===1)n=2; S.seat=n<12?n:S.seat; drawBoard(); fillEd(); upd()}
+  $('seatSave').onclick=seatSave; $('seatName').onkeydown=function(e){if(e.key==='Enter'){e.preventDefault();seatSave()}};
+
+  // ---- pills ----
+  function drawPills(){
+    [].forEach.call(document.querySelectorAll('.pills[data-k]'),function(box){
+      var k=box.getAttribute('data-k');
+      box.innerHTML=OPT[k].map(function(t){return '<button type="button" class="'+(S.sel[k].indexOf(t)>-1?'on':'')+'">'+esc(t)+'</button>'}).join('');
+      [].forEach.call(box.children,function(b,i){b.onclick=function(){var t=OPT[k][i],a=S.sel[k],j=a.indexOf(t);if(j>-1)a.splice(j,1);else a.push(t);drawPills();upd()}});
+    });
+  }
+  // ---- files (names shown; sent with the form when a file service is connected) ----
+  $('docs').addEventListener('change',function(){[].forEach.call(this.files,function(f){if(f.size<=10*1024*1024&&!S.files.some(function(x){return x.name===f.name}))S.files.push(f)});this.value='';drawFiles();upd()});
+  function drawFiles(){$('flist').innerHTML=S.files.map(function(f,i){return '<li><span>'+(/\.pdf$/i.test(f.name)?'PDF':'FILE')+'</span><b>'+esc(f.name)+'</b><button type="button" data-i="'+i+'" aria-label="Remove">&times;</button></li>'}).join('');
+    [].forEach.call($('flist').querySelectorAll('button'),function(b){b.onclick=function(){S.files.splice(+b.getAttribute('data-i'),1);drawFiles()}})}
+  // ---- hellos ----
+  function hellos(){
+    var co=val('co')||'us', what=val('what')||val('doo')||'what we do best', where=val('where'), tgt=(S.sel.are[0]||'neighbours').toLowerCase();
+    var place=where.replace(/^the\s+/i,''); return ['Hello'+(place?', '+place:'')+'! Welcome to '+co+'.',
+            'Good to see you. We’re '+co+(where?', proudly serving '+where:'')+'.',
+            'Hi there. Looking for '+what.toLowerCase().replace(/\.$/,'')+'? You’re in the right place.',
+            'Welcome, '+tgt+'! Order online in a minute, and we’ll take it from there.'];
+  }
+  function drawHellos(){var h=hellos();$('hellos').innerHTML=h.map(function(t,i){return '<button type="button" class="'+(S.helloPick===i&&!val('hello')?'on':'')+'">'+esc(t)+'</button>'}).join('');
+    [].forEach.call($('hellos').children,function(b,i){b.onclick=function(){S.helloPick=i;$('hello').value='';drawHellos();upd()}})}
+  function hello(){return val('hello')||(S.helloPick>-1?hellos()[S.helloPick]:'')}
+  // ---- upsells ----
+  function drawUps(){$('upl').innerHTML=UPS.map(function(u){return '<label><input type="checkbox" data-u="'+u[0]+'"'+(S.ups.indexOf(u[0])>-1?' checked':'')+'><span><b>'+esc(u[1])+'</b><small>'+esc(u[2])+'</small></span></label>'}).join('');
+    [].forEach.call($('upl').querySelectorAll('input'),function(c){c.onchange=function(){var u=c.getAttribute('data-u'),j=S.ups.indexOf(u);if(c.checked&&j<0)S.ups.push(u);if(!c.checked&&j>-1)S.ups.splice(j,1);upd()}})}
+
+  // ---- live website ----
+  function site(){
+    var co=val('co')||'Your business', em='<span class="s-em">', ee='</span>';
+    var domain=(val('web')||co.toLowerCase().replace(/[^a-z0-9]+/g,'')+'.com').replace(/^https?:\/\//,'').replace(/\/$/,'');
+    document.documentElement.style.setProperty('--brand',$('brand').value||'#16a3a6');
+    var h='<div class="bar"><i></i><i></i><i></i><span>'+esc(domain)+'</span></div><div class="body">';
+    h+='<div class="s-nav"><b>'+esc(co)+'</b><span>About &middot; Order &middot; Contact</span></div>';
+    h+='<div class="s-hero"><h3>'+(hello()?esc(hello()):em+'Your hello goes here'+ee)+'</h3><p>'+(val('doo')?esc(val('doo')):em+'What you do, in a sentence'+ee)+'</p><span class="s-btn">Order now</span></div>';
+    h+='<div class="s-sec"><h4>Our story</h4><p>'+(val('who')?esc(val('who')):em+'Who you are'+ee)+'</p></div>';
+    var who=[val('tgt')].filter(Boolean);
+    h+='<div class="s-sec"><h4>Made for</h4><p>'+(who.length?esc(who[0]):em+'Your target customer'+ee)+'</p>'+((S.sel.are.length||S.sel.care.length)?'<div class="s-chips">'+S.sel.are.concat(S.sel.care).map(function(t){return '<span>'+esc(t)+'</span>'}).join('')+'</div>':'')+'</div>';
+    var f=S.sel.fields;
+    h+='<div class="s-sec"><h4>Order online</h4><p style="margin-bottom:8px">'+(val('what')?esc(val('what')):em+'What customers order'+ee)+'</p><div class="s-form">'+f.map(function(x,i){return '<div class="'+((x==='Notes'||x==='Address')?'wide':'')+'">'+esc(x)+'</div>'}).join('')+($('cpn').checked?'<div class="wide cpn">Coupon code</div>':'')+'<div class="pay">'+($('pay').checked?'Pay &amp; place order':'Place order')+'</div></div>'+($('rcpt').checked?'<p style="margin-top:8px;font-size:11.5px;color:#666">A delivery receipt is emailed when your order ships or is ready.</p>':'')+'</div>';
+    var seated=Object.keys(S.seats).filter(function(k){return S.seats[k]}).length;
+    if(seated) h+='<div class="s-sec"><h4>Our leadership</h4><div class="s-chips">'+ROLES.map(function(r,i){return (i!==1&&S.seats[i])?'<span>'+esc(S.seats[i])+' &middot; '+esc(r)+'</span>':''}).join('')+'</div></div>';
+    if(S.ups.length) h+='<div class="s-sec"><h4>Built in</h4><div class="s-chips">'+S.ups.map(function(u){var x=UPS.filter(function(y){return y[0]===u})[0];return '<span>'+esc(x[1])+'</span>'}).join('')+'</div></div>';
+    h+='<div class="s-foot"><span>&copy; '+esc(co)+(val('where')?' &middot; '+esc(val('where')):'')+'</span><span>Built with co | co forms</span></div></div>';
+    $('site').innerHTML=h;
+    $('tblName').textContent=val('co')?val('co')+' board':'Your board table';
+  }
+  function upd(){ if(S.step===5) drawHellos(); site(); save(); }
+
+  function go(n){
+    S.step=Math.max(0,Math.min(LAST,n));
+    if(S.step===5) drawHellos(); if(S.step===6) drawUps();
+    steps.forEach(function(s,i){s.classList.toggle('on',i===S.step)});
+    tabs.forEach(function(t,i){t.classList.toggle('on',i===S.step);t.classList.toggle('past',i<S.step)});
+    $('pgt').textContent='Step '+(S.step+1)+' of '+NAMES.length+' · '+NAMES[S.step];$('pgm').style.width=((S.step+1)/NAMES.length*100)+'%';
+    $('next').textContent=S.step<LAST?'Next →':'Send my Project Move →';
+    var t=document.querySelector('.tabs');var top=t.getBoundingClientRect().top+window.scrollY-70;if(window.scrollY>top)window.scrollTo({top:top,behavior:'smooth'});
+    save();
+  }
+  function send(){
+    var e=$('err'); e.textContent='';
+    if(!val('nm')){e.textContent='Please add your name.';return}
+    if(!/^\S+@\S+\.\S+$/.test(val('em'))){e.textContent='Please add your email.';return}
+    if(!$('ok').checked){e.textContent='Please tick the consent box.';return}
+    var d={name:val('nm'),email:val('em'),position:val('pos'),phone:val('ph'),company:val('co'),website:val('web'),
+      board:ROLES.map(function(r,i){return i===1?null:(r+(i===0?' (2 seats, 2 votes)':'')+': '+(S.seats[i]||'open'))}).filter(Boolean).join('; '),
+      orders_via:S.sel.via.join('; '),orders_described:val('desc'),documents:S.files.map(function(f){return f.name}).join('; ')||'None uploaded',
+      customers_order:val('what'),form_fields:S.sel.fields.join('; '),online_payment:$('pay').checked?'Yes':'No',coupons:$('cpn').checked?'Yes':'No',delivery_receipt:$('rcpt').checked?'Yes':'No',
+      who_we_are:val('who'),what_we_do:val('doo'),where:val('where'),brand_colour:$('brand').value,target_customer:val('tgt'),they_are:S.sel.are.join('; '),they_care_about:S.sel.care.join('; '),hello:hello(),
+      add_ons:S.ups.map(function(u){return UPS.filter(function(y){return y[0]===u})[0][1]}).join('; ')};
+    d._subject='Project Move: '+(d.company||d.name);
+    function done(note){$('sendBox').style.display='none';$('done').style.display='block';if(note)$('doneTxt').textContent=note}
+    if(ENDPOINT){var fd=new FormData();Object.keys(d).forEach(function(k){fd.append(k,d[k])});S.files.forEach(function(f){fd.append('upload',f,f.name)});
+      fetch(ENDPOINT,{method:'POST',headers:{'Accept':'application/json'},body:fd}).then(function(r){if(!r.ok)throw 0;done()}).catch(function(){e.textContent='That did not go through. Please email '+TO+'.'});return}
+    var body=Object.keys(d).filter(function(k){return k!=='_subject'}).map(function(k){return k+': '+d[k]}).join('\n');
+    if(S.files.length)body+='\n\nPlease attach these documents to this email before sending:\n- '+S.files.map(function(f){return f.name}).join('\n- ');
+    location.href='mailto:'+TO+'?subject='+encodeURIComponent(d._subject)+'&body='+encodeURIComponent(body);
+    done(S.files.length?'One more step: please attach your invoice and receipt to the email that just opened, then send it. We’ll reply with your Workflow Report and next steps.':null);
+  }
+  var F=['co','web','desc','what','who','doo','brand','where','tgt','hello','nm','em','pos','ph'];
+  function save(){try{var o={S:{seats:S.seats,sel:S.sel,helloPick:S.helloPick,ups:S.ups,seat:S.seat,step:S.step},f:{},t:{pay:$('pay').checked,cpn:$('cpn').checked,rcpt:$('rcpt').checked}};F.forEach(function(id){o.f[id]=$(id).value});localStorage.setItem('coco_pm',JSON.stringify(o))}catch(x){}}
+  function restore(){try{var o=JSON.parse(localStorage.getItem('coco_pm')||'null');if(!o)return;F.forEach(function(id){if(o.f&&o.f[id]!=null)$(id).value=o.f[id]});if(o.S){for(var k in o.S)S[k]=o.S[k]}if(o.t){$('pay').checked=o.t.pay;$('cpn').checked=o.t.cpn;$('rcpt').checked=o.t.rcpt}if(S.step>LAST)S.step=0}catch(x){}}
+
+  restore();
+  F.forEach(function(id){$(id).addEventListener('input',upd);$(id).addEventListener('change',upd)});
+  ['pay','cpn','rcpt'].forEach(function(id){$(id).addEventListener('change',upd)});
+  [].forEach.call(document.querySelectorAll('[data-next]'),function(b){b.onclick=function(){go(S.step+1)}});
+  [].forEach.call(document.querySelectorAll('[data-prev]'),function(b){b.onclick=function(){go(S.step-1)}});
+  tabs.forEach(function(t,i){t.onclick=function(){go(i)}});
+  $('next').onclick=function(){S.step<LAST?go(S.step+1):send()};
+  $('send').onclick=send;
+  drawBoard();fillEd();drawPills();drawFiles();upd();go(S.step||0);
+})();
+</script>
+</body>
+</html>
