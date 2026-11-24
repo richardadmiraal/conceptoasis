@@ -7,7 +7,7 @@
 <meta name="description" content="Build and price your CMA Report with the Live Comp Report, like a car configurator: pick your plan, add your details, brand and areas, and watch it come together live.">
 <link rel="icon" href="../favicon.png" type="image/png">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Inter+Tight:wght@500;600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../assets/site.css">
 <style>
 :root{--brand:#127881}
@@ -42,7 +42,7 @@ body{background:#f4f5f7}
 .opt .ot{flex:1;min-width:0}
 .opt h3{font-size:17px;margin:0 0 2px}
 .opt p{margin:0;font-size:14.5px;color:var(--char2)}
-.opt .pr{flex:none;text-align:right;font:800 16px "Plus Jakarta Sans",Inter,sans-serif;color:var(--ink);white-space:nowrap}
+.opt .pr{flex:none;text-align:right;font:650 16px "Inter Tight",Inter,sans-serif;color:var(--ink);white-space:nowrap}
 .opt .pr small{display:block;font:600 12px Inter,sans-serif;color:var(--mute)}
 .opt .tagf{display:inline-block;margin-left:6px;padding:2px 8px;border-radius:999px;background:#fdecf3;color:#b0124f;font:800 10.5px Inter,sans-serif;letter-spacing:.05em;text-transform:uppercase;vertical-align:middle}
 .fl{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px 16px}
@@ -59,7 +59,7 @@ body{background:#f4f5f7}
 .sw input[type=color]{width:44px;height:44px;padding:0;border:0;border-radius:50%;background:none;cursor:pointer}
 .slider{margin-top:6px}
 .slider input{width:100%;accent-color:var(--brand)}
-.slider output{font:800 22px "Plus Jakarta Sans",Inter,sans-serif;color:var(--ink)}
+.slider output{font:650 22px "Inter Tight",Inter,sans-serif;color:var(--ink)}
 .nav2{display:flex;justify-content:space-between;gap:10px;margin-top:22px}
 .err{color:#b0124f;font-weight:600;font-size:14px;min-height:1.2em;margin-top:10px}
 /* preview */
@@ -71,16 +71,16 @@ body{background:#f4f5f7}
 .dev .bar i{width:10px;height:10px;border-radius:50%;background:#c9ced8}
 .dev .bar span{margin-left:8px;flex:1;min-width:0;padding:2px 10px;border-radius:8px;background:#fff;font:500 12px Inter,sans-serif;color:var(--mute);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .fh{display:flex;align-items:center;gap:12px;padding:16px 18px;border-bottom:1px solid #eef0f4}
-.fh .lg{flex:none;width:46px;height:46px;border-radius:12px;background:var(--brand);color:#fff;display:grid;place-items:center;font:800 18px "Plus Jakarta Sans",Inter,sans-serif;overflow:hidden}
+.fh .lg{flex:none;width:46px;height:46px;border-radius:12px;background:var(--brand);color:#fff;display:grid;place-items:center;font:650 18px "Inter Tight",Inter,sans-serif;overflow:hidden}
 .fh .lg img{width:100%;height:100%;object-fit:contain;background:#fff}
-.fh b{display:block;color:var(--ink);font:800 16px "Plus Jakarta Sans",Inter,sans-serif;line-height:1.2}
+.fh b{display:block;color:var(--ink);font:650 16px "Inter Tight",Inter,sans-serif;line-height:1.2}
 .fh small{color:var(--mute)}
 .fbtn{margin:14px 18px 0;padding:12px 14px;border-radius:14px;background:var(--brand);color:#fff;font:800 15px Inter,sans-serif;display:flex;justify-content:space-between;align-items:center}
 .fbtn small{display:block;font:500 12px Inter,sans-serif;opacity:.85}
 .rp{margin:14px 18px 18px;border:1.5px solid #e3e6ec;border-radius:16px;overflow:hidden}
 .rp .rh{padding:12px 14px;background:linear-gradient(135deg,#2c3341,color-mix(in srgb,var(--brand) 60%,#161e4a));color:#fff}
 .rp .rh small{display:block;font:700 11px Inter,sans-serif;letter-spacing:.1em;text-transform:uppercase;opacity:.8}
-.rp .rh b{display:block;font:800 18px "Plus Jakarta Sans",Inter,sans-serif}
+.rp .rh b{display:block;font:650 18px "Inter Tight",Inter,sans-serif}
 .rp .rh span{font-size:12.5px;opacity:.85}
 .rp .rb{padding:12px 14px}
 .rp .ag{padding:9px 12px;border:1.5px solid #dfe3ea;border-radius:10px;font:600 13.5px Inter,sans-serif;color:var(--ink)}
@@ -94,20 +94,20 @@ body{background:#f4f5f7}
 .pbar .wrap{display:flex;align-items:center;gap:16px;padding-block:12px}
 .pbar .sum{flex:1;min-width:0}
 .pbar .sum small{display:block;font:700 11.5px Inter,sans-serif;letter-spacing:.08em;text-transform:uppercase;color:var(--mute)}
-.pbar .sum b{font:800 22px "Plus Jakarta Sans",Inter,sans-serif;color:var(--ink)}
+.pbar .sum b{font:650 22px "Inter Tight",Inter,sans-serif;color:var(--ink)}
 .pbar .sum span{margin-left:8px;font-size:14px;color:var(--char2)}
 .pbar .btn{flex:none}
 @media(max-width:560px){.pbar .sum b{font-size:18px}.pbar .sum span{display:block;margin:0;font-size:12.5px}}
 .sumt{width:100%;border-collapse:collapse;margin:6px 0 14px}
 .sumt td{padding:9px 0;border-bottom:1px solid #eef0f4;vertical-align:top}
 .sumt td:last-child{text-align:right;font-weight:700;color:var(--ink);white-space:nowrap;padding-left:10px}
-.sumt tr.tot td{border-bottom:0;font:800 17px "Plus Jakarta Sans",Inter,sans-serif;color:var(--ink);padding-top:12px}
+.sumt tr.tot td{border-bottom:0;font:650 17px "Inter Tight",Inter,sans-serif;color:var(--ink);padding-top:12px}
 .cfgl{display:grid;grid-template-columns:auto 1fr;gap:4px 14px;font-size:14.5px;margin:0 0 16px}
 .cfgl dt{color:var(--mute)}.cfgl dd{margin:0;color:var(--ink);font-weight:600;min-width:0;overflow-wrap:anywhere}
 .ckl{display:flex;gap:10px;align-items:flex-start;font-size:14.5px}
 .ckl input{width:20px;height:20px;margin-top:2px;flex:none;accent-color:var(--brand)}
 .done{display:none;text-align:center;padding:30px 10px}
-.done .code{display:inline-block;margin:10px 0;padding:8px 16px;border-radius:12px;background:#f2fbf9;border:1.5px dashed var(--teal2);font:800 20px "Plus Jakarta Sans",Inter,sans-serif;color:var(--teal);letter-spacing:.06em}
+.done .code{display:inline-block;margin:10px 0;padding:8px 16px;border-radius:12px;background:#f2fbf9;border:1.5px dashed var(--teal2);font:650 20px "Inter Tight",Inter,sans-serif;color:var(--teal);letter-spacing:.06em}
 </style>
 </head>
 <body>
