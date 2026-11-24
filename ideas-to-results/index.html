@@ -68,6 +68,33 @@ input:focus,select:focus,textarea:focus{outline:0;border-color:var(--teal);box-s
 .gl label{font:700 13px Inter,sans-serif;color:var(--char2)}
 .nav2{display:flex;justify-content:space-between;gap:10px;margin-top:22px}
 .err{color:#b0124f;font-weight:600;font-size:14px;min-height:1.2em;margin-top:10px}
+/* scorecard + swot */
+.score{display:grid;gap:8px}
+.sc{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 12px;border:1px solid var(--line);border-radius:12px}
+.sc span{font-weight:600;color:var(--ink);font-size:14.5px}
+.seg{display:flex;gap:4px;flex:none}
+.seg button{width:34px;height:32px;border-radius:8px;border:1px solid #d3d8e0;background:#fff;font:600 13px var(--mono);color:var(--char2);cursor:pointer}
+.seg button.on{background:var(--f-teal);border-color:var(--f-teal);color:#fff}
+.sc:nth-child(2) .seg button.on{background:var(--f-blue);border-color:var(--f-blue)}
+.sc:nth-child(3) .seg button.on{background:var(--f-lime);border-color:var(--f-lime)}
+.sc:nth-child(4) .seg button.on{background:var(--f-orange);border-color:var(--f-orange)}
+.sc:nth-child(5) .seg button.on{background:var(--f-pink);border-color:var(--f-pink)}
+.sc:nth-child(6) .seg button.on{background:var(--f-violet);border-color:var(--f-violet)}
+@media(max-width:520px){.sc{flex-direction:column;align-items:flex-start}}
+.swot{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:8px}
+@media(max-width:620px){.swot{grid-template-columns:1fr}}
+.swot label{display:block;font:600 13px Inter,sans-serif;padding:10px 12px;border-radius:12px;border:1px solid var(--line)}
+.swot textarea{display:block;width:100%;margin-top:6px;border:0;background:transparent;font:400 14.5px Inter,sans-serif;color:var(--ink);resize:vertical;outline:0;box-shadow:none}
+.swot .sw1{background:#effaf0;color:#2f6b1c}.swot .sw2{background:#fff3ec;color:#9a4a12}.swot .sw3{background:#eef4fe;color:#1d3f9a}.swot .sw4{background:#fdeff5;color:#a3245f}
+.doc .dsc{display:grid;gap:5px}
+.doc .dsc div{display:grid;grid-template-columns:140px 1fr 18px;gap:8px;align-items:center;font-size:12.5px}
+.doc .dsc i{height:6px;border-radius:6px;background:#eef0f4;overflow:hidden}
+.doc .dsc i b{display:block;height:100%;background:var(--feather)}
+.doc .dsc em{font:600 11px var(--mono);font-style:normal;color:var(--char2)}
+.doc .dsw{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.doc .dsw div{padding:8px;border-radius:10px;font-size:12.5px}
+.doc .dsw b{display:block;font-size:11.5px;margin-bottom:2px}
+.doc .dsw .a{background:#effaf0}.doc .dsw .b{background:#fff3ec}.doc .dsw .c{background:#eef4fe}.doc .dsw .d{background:#fdeff5}
 /* plan doc */
 .pv{position:sticky;top:84px}
 @media(max-width:980px){.pv{position:static}}
@@ -127,10 +154,12 @@ input:focus,select:focus,textarea:focus{outline:0;border-color:var(--teal);box-s
   <div class="tabs" id="tabs">
     <button data-s="0" class="on"><b>1</b>Company</button>
     <button data-s="1"><b>2</b>Where you are</button>
-    <button data-s="2"><b>3</b>The two questions</button>
-    <button data-s="3"><b>4</b>Priorities</button>
-    <button data-s="4"><b>5</b>Goals &amp; owners</button>
-    <button data-s="5"><b>6</b>Your plan</button>
+    <button data-s="2"><b>3</b>Scorecard &amp; SWOT</button>
+    <button data-s="3"><b>4</b>Vision</button>
+    <button data-s="4"><b>5</b>The two questions</button>
+    <button data-s="5"><b>6</b>Priorities</button>
+    <button data-s="6"><b>7</b>Goals &amp; first steps</button>
+    <button data-s="7"><b>8</b>Your plan</button>
   </div>
 </div></section>
 
@@ -160,6 +189,34 @@ input:focus,select:focus,textarea:focus{outline:0;border-color:var(--teal);box-s
       <div class="q">What's slowing you down? <span>(pick any)</span></div>
       <div class="pills" data-k="slow"></div>
       <div class="own" data-own="slow"><input placeholder="Add your own"><button type="button">Add</button></div>
+      <div class="nav2"><button class="btn btn-line" data-prev>&larr; Back</button><button class="btn btn-dark" data-next>Next: Scorecard &amp; SWOT &rarr;</button></div>
+    </div>
+    <!-- 2b scorecard + swot -->
+    <div class="step">
+      <h2>Scorecard &amp; SWOT</h2>
+      <p class="mute">Rate where you are today, 1 (needs work) to 5 (excellent). Be honest: this is just for your leadership team.</p>
+      <div class="score" id="score"></div>
+      <div class="q" style="margin-top:22px">SWOT <span>(a few words each is plenty)</span></div>
+      <div class="swot">
+        <label class="sw1">Strengths<textarea id="sw_s" rows="3" placeholder="What do clients love about us? What do we do better than anyone?"></textarea></label>
+        <label class="sw2">Weaknesses<textarea id="sw_w" rows="3" placeholder="Where do we lose time, money or clients?"></textarea></label>
+        <label class="sw3">Opportunities<textarea id="sw_o" rows="3" placeholder="What's changing in our market that we could use?"></textarea></label>
+        <label class="sw4">Threats<textarea id="sw_t" rows="3" placeholder="What could hurt us if we do nothing?"></textarea></label>
+      </div>
+      <div class="tip"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 4.5 14 12h-4z"/></svg><span>Do it yourself: have each person in the room rate the scorecard on their own first, then compare. The gaps between answers are where the best conversations start.</span></div>
+      <div class="nav2"><button class="btn btn-line" data-prev>&larr; Back</button><button class="btn btn-dark" data-next>Next: Vision &rarr;</button></div>
+    </div>
+    <!-- 2c vision -->
+    <div class="step">
+      <h2>Vision &amp; mission</h2>
+      <p class="mute">Where you're headed, in plain words. Fill in the blanks, then make it yours.</p>
+      <div class="fl">
+        <label class="full">Our mission: we help<input id="m_who" placeholder="who (e.g. homeowners across the Fraser Valley)"></label>
+        <label class="full">to<input id="m_do" placeholder="do what (e.g. stay comfortable all year, without the hassle)"></label>
+        <label class="full">Three years from now, we are<textarea id="vision" rows="3" placeholder="e.g. the first call for heating and cooling in our region, with clients who refer us and a team that loves working here"></textarea></label>
+      </div>
+      <div class="q">Our values <span>(pick up to 4)</span></div>
+      <div class="pills" data-k="values"></div>
       <div class="nav2"><button class="btn btn-line" data-prev>&larr; Back</button><button class="btn btn-dark" data-next>Next: The two questions &rarr;</button></div>
     </div>
     <!-- 3 -->
@@ -183,8 +240,8 @@ input:focus,select:focus,textarea:focus{outline:0;border-color:var(--teal);box-s
     </div>
     <!-- 5 -->
     <div class="step">
-      <h2>Goals, owners and measures</h2>
-      <p class="mute">Every priority gets a goal, a person and a date. We've suggested a starting point for each; make them yours.</p>
+      <h2>Goals, owners and first steps</h2>
+      <p class="mute">Every priority gets a goal, a person, a date and a first step someone can take this week. We've suggested a starting point for each; make them yours.</p>
       <div class="gl" id="gl"></div>
       <div class="nav2"><button class="btn btn-line" data-prev>&larr; Back</button><button class="btn btn-dark" data-next>Next: Your plan &rarr;</button></div>
     </div>
@@ -214,7 +271,7 @@ input:focus,select:focus,textarea:focus{outline:0;border-color:var(--teal);box-s
 </div>
 
 <div class="bar"><div class="wrap">
-  <div class="pg"><small id="pgt">Step 1 of 6 · Company</small><div class="meter"><i id="pgm"></i></div></div>
+  <div class="pg"><small id="pgt">Step 1 of 8 · Company</small><div class="meter"><i id="pgm"></i></div></div>
   <button class="btn btn-dark" id="next">Next &rarr;</button>
 </div></div>
 
@@ -225,6 +282,7 @@ input:focus,select:focus,textarea:focus{outline:0;border-color:var(--teal);box-s
     room:['Board of directors','CEO / president','Executive director','Sales lead','Operations lead','Client service lead','Marketing lead','Finance lead'],
     find:['Referrals','Repeat clients','Website','Search','Social media','Events','Partners','Advertising'],
     slow:['Slow follow-up','Paper or PDF forms','Quotes take too long','Clients chase us for updates','Data in too many places','Approvals bottleneck','Hard to measure results','Website doesn’t convert'],
+    values:['Client first','Honest','Creative','Reliable','Local','Fast','Fair','Innovative','Teamwork','Quality'],
     serve:['Faster responses','A client portal with status','Regular check-ins','Self-serve documents','A smoother onboarding','Referral and loyalty program','Clear reports for clients'],
     grow:['A configurator (build and price)','Instant quotes online','A free report that brings in leads','Partner referrals','A better website intake','Automatic follow-up','Showcase our work']
   };
@@ -250,24 +308,30 @@ input:focus,select:focus,textarea:focus{outline:0;border-color:var(--teal);box-s
     1:'Nice mix. A plan with ideas on both sides tends to grow steadily, not in bursts.',
     2:'Tip: pick ideas your team could test within 90 days. Momentum beats perfection.'
   };
-  var S={sel:{room:['Board of directors','CEO / president'],find:[],slow:[],serve:[],grow:[]},extra:{slow:[],serve:[],grow:[]},pri:[],goals:{},step:0};
+  var AREAS=['Client service','Sales & new business','Operations','Website & technology','Team & culture','Finances & growth'];
+  var S={sel:{room:['Board of directors','CEO / president'],find:[],slow:[],serve:[],grow:[],values:[]},extra:{slow:[],serve:[],grow:[]},pri:[],goals:{},score:{},step:0};
   var $=function(id){return document.getElementById(id)};
   function esc(t){var d=document.createElement('div');d.textContent=t==null?'':t;return d.innerHTML}
   function val(id){return ($(id).value||'').trim()}
   var steps=[].slice.call(document.querySelectorAll('.step')), tabs=[].slice.call(document.querySelectorAll('#tabs button'));
-  var NAMES=['Company','Where you are','The two questions','Priorities','Goals & owners','Your plan'];
+  var NAMES=['Company','Where you are','Scorecard & SWOT','Vision','The two questions','Priorities','Goals & first steps','Your plan'];var LAST=NAMES.length-1;
 
   function drawPills(){
     [].forEach.call(document.querySelectorAll('.pills[data-k]'),function(box){
       var k=box.getAttribute('data-k'), list=OPT[k].concat(S.extra[k]||[]);
       box.innerHTML=list.map(function(t){return '<button type="button" class="'+(S.sel[k].indexOf(t)>-1?'on':'')+'">'+esc(t)+'</button>'}).join('');
-      [].forEach.call(box.children,function(b,i){b.onclick=function(){var t=list[i],a=S.sel[k],j=a.indexOf(t);if(j>-1)a.splice(j,1);else a.push(t);if(k==='serve'||k==='grow')S.pri=S.pri.filter(ideaOk);drawPills();upd()}});
+      [].forEach.call(box.children,function(b,i){b.onclick=function(){var t=list[i],a=S.sel[k],j=a.indexOf(t);if(j>-1)a.splice(j,1);else{if(k==='values'&&a.length>=4)return;a.push(t);}if(k==='serve'||k==='grow')S.pri=S.pri.filter(ideaOk);drawPills();upd()}});
     });
   }
   [].forEach.call(document.querySelectorAll('.own'),function(o){var k=o.getAttribute('data-own'),inp=o.querySelector('input');
     function add(){var t=inp.value.trim();if(!t)return;if(OPT[k].indexOf(t)<0&&S.extra[k].indexOf(t)<0)S.extra[k].push(t);if(S.sel[k].indexOf(t)<0)S.sel[k].push(t);inp.value='';drawPills();upd()}
     o.querySelector('button').onclick=add;inp.onkeydown=function(e){if(e.key==='Enter'){e.preventDefault();add()}}});
 
+  function drawScore(){
+    var box=$('score');
+    box.innerHTML=AREAS.map(function(a,i){var v=S.score[a]||0;return '<div class="sc"><span>'+esc(a)+'</span><div class="seg">'+[1,2,3,4,5].map(function(n){return '<button type="button" data-a="'+i+'" data-v="'+n+'" class="'+(n<=v?'on':'')+'" aria-label="'+esc(a)+' '+n+' of 5">'+n+'</button>'}).join('')+'</div></div>'}).join('');
+    [].forEach.call(box.querySelectorAll('button'),function(b){b.onclick=function(){S.score[AREAS[+b.getAttribute('data-a')]]=+b.getAttribute('data-v');drawScore();upd()}});
+  }
   function ideas(){
     var a=S.sel.serve.map(function(t){return {t:t,side:'Serve clients',c:'sv'}}).concat(S.sel.grow.map(function(t){return {t:t,side:'New business',c:'gr'}}));
     var w={'Slow follow-up':'Automatic follow-up','Quotes take too long':'Instant quotes online','Clients chase us for updates':'A client portal with status','Paper or PDF forms':'A better website intake','Website doesn’t convert':'A better website intake'};
@@ -282,11 +346,11 @@ input:focus,select:focus,textarea:focus{outline:0;border-color:var(--teal);box-s
     [].forEach.call(box.children,function(b,i){b.onclick=function(){var t=list[i].t,j=S.pri.indexOf(t);if(j>-1)S.pri.splice(j,1);else if(S.pri.length<3)S.pri.push(t);else{$('err4').textContent='Three is the limit. Tap one to remove it first.';return}$('err4').textContent='';drawPri();upd()}});
   }
   function goal(t){var m=MAP[t]||['Make real progress on: '+t.toLowerCase(),'Agreed measure','Custom workflow'];
-    if(!S.goals[t])S.goals[t]={goal:m[0],owner:'',when:'90 days',measure:m[1]};return S.goals[t]}
+    if(!S.goals[t])S.goals[t]={goal:m[0],owner:'',when:'90 days',measure:m[1],first:''};if(S.goals[t].first==null)S.goals[t].first='';return S.goals[t]}
   function drawGoals(){
     var box=$('gl');
     if(!S.pri.length){box.innerHTML='<p class="mute">Choose your priorities in step 4 first.</p>';return}
-    box.innerHTML=S.pri.map(function(t,i){var g=goal(t);return '<div class="g"><h3>'+(i+1)+'. '+esc(t)+'</h3><div class="row"><label>Goal<input data-t="'+i+'" data-f="goal" value="'+esc(g.goal)+'"></label><label>Owner<input data-t="'+i+'" data-f="owner" placeholder="Name or role" value="'+esc(g.owner)+'"></label><label>By<select data-t="'+i+'" data-f="when">'+['30 days','90 days','6 months','12 months'].map(function(o){return '<option'+(o===g.when?' selected':'')+'>'+o+'</option>'}).join('')+'</select></label></div><label style="display:block;margin-top:8px">Measure<input data-t="'+i+'" data-f="measure" value="'+esc(g.measure)+'"></label></div>'}).join('');
+    box.innerHTML=S.pri.map(function(t,i){var g=goal(t);return '<div class="g"><h3>'+(i+1)+'. '+esc(t)+'</h3><div class="row"><label>Goal<input data-t="'+i+'" data-f="goal" value="'+esc(g.goal)+'"></label><label>Owner<input data-t="'+i+'" data-f="owner" placeholder="Name or role" value="'+esc(g.owner)+'"></label><label>By<select data-t="'+i+'" data-f="when">'+['30 days','90 days','6 months','12 months'].map(function(o){return '<option'+(o===g.when?' selected':'')+'>'+o+'</option>'}).join('')+'</select></label></div><div class="row" style="grid-template-columns:1fr 1fr;margin-top:8px"><label>Measure<input data-t="'+i+'" data-f="measure" value="'+esc(g.measure)+'"></label><label>First step this week<input data-t="'+i+'" data-f="first" placeholder="e.g. List our 10 most common questions" value="'+esc(g.first)+'"></label></div></div>'}).join('');
     [].forEach.call(box.querySelectorAll('[data-f]'),function(el){el.addEventListener('input',function(){S.goals[S.pri[+el.getAttribute('data-t')]][el.getAttribute('data-f')]=el.value;doc();save()})});
   }
   function modules(){var m=[];S.pri.forEach(function(t){var x=(MAP[t]||[0,0,'Custom workflow'])[2];if(m.indexOf(x)<0)m.push(x)});if(S.pri.length)['Leadership dashboard','xo-ai assistant'].forEach(function(x){if(m.indexOf(x)<0)m.push(x)});return m}
@@ -298,11 +362,18 @@ input:focus,select:focus,textarea:focus{outline:0;border-color:var(--teal);box-s
     h+='<h4>Where we are now</h4>'+(val('core')?'<p>'+esc(val('core'))+'</p>':em+'Your core services and products'+ee);
     if(S.sel.find.length)h+='<p style="margin-top:6px"><b>Clients find us through:</b> '+esc(S.sel.find.join(', '))+'</p>';
     if(S.sel.slow.length)h+='<p style="margin-top:6px"><b>What slows us down:</b> '+esc(S.sel.slow.join(', ').toLowerCase())+'</p>';
+    var sc=AREAS.filter(function(a){return S.score[a]});
+    h+='<h4>Scorecard</h4>'+(sc.length?'<div class="dsc">'+AREAS.map(function(a){var v=S.score[a]||0;return '<div><span>'+esc(a)+'</span><i><b style="width:'+(v*20)+'%"></b></i><em>'+(v||'-')+'</em></div>'}).join('')+'</div>':em+'Rate six areas from 1 to 5'+ee);
+    var sw=[['Strengths',val('sw_s'),'a'],['Weaknesses',val('sw_w'),'b'],['Opportunities',val('sw_o'),'c'],['Threats',val('sw_t'),'d']];
+    if(sw.some(function(x){return x[1]}))h+='<h4>SWOT</h4><div class="dsw">'+sw.map(function(x){return '<div class="'+x[2]+'"><b>'+x[0]+'</b>'+(x[1]?esc(x[1]):'<span class="em">-</span>')+'</div>'}).join('')+'</div>';
+    var mis=(val('m_who')||val('m_do'))?'We help '+(val('m_who')||'...')+' to '+(val('m_do')||'...')+'.':'';
+    h+='<h4>Mission &amp; vision</h4>'+(mis?'<p><b>Mission:</b> '+esc(mis)+'</p>':'')+(val('vision')?'<p style="margin-top:4px"><b>In three years:</b> '+esc(val('vision'))+'</p>':'')+(S.sel.values.length?'<p style="margin-top:4px"><b>Values:</b> '+esc(S.sel.values.join(' · '))+'</p>':'')+(!mis&&!val('vision')&&!S.sel.values.length?em+'Where you are headed'+ee:'');
     h+='<h4>The two questions</h4><div class="tq"><div class="a"><b>Serve existing clients</b>'+(S.sel.serve.length?esc(S.sel.serve.join(' · ')):'<span class="em">Your ideas</span>')+'</div><div class="b"><b>Get new business</b>'+(S.sel.grow.length?esc(S.sel.grow.join(' · ')):'<span class="em">Your ideas</span>')+'</div></div>';
     h+='<h4>Our top priorities</h4>';
-    h+=S.pri.length?S.pri.map(function(t,i){var g=goal(t);return '<div class="pr"><b>'+(i+1)+'. '+esc(t)+'</b><span>Goal: '+esc(g.goal)+'</span><span>Owner: '+esc(g.owner||'to be named')+' · By: '+esc(g.when)+' · Measure: '+esc(g.measure)+'</span></div>'}).join(''):em+'Your top 3 priorities'+ee;
+    h+=S.pri.length?S.pri.map(function(t,i){var g=goal(t);return '<div class="pr"><b>'+(i+1)+'. '+esc(t)+'</b><span>Goal: '+esc(g.goal)+'</span><span>Owner: '+esc(g.owner||'to be named')+' · By: '+esc(g.when)+' · Measure: '+esc(g.measure)+'</span>'+(g.first?'<span>First step: '+esc(g.first)+'</span>':'')+'</div>'}).join(''):em+'Your top 3 priorities'+ee;
     var m=modules();
     h+='<h4>The platform this plan calls for</h4>'+(m.length?'<div class="plat"><b>One web-based platform, built in stages:</b><div>'+m.map(function(x){return '<span>'+esc(x)+'</span>'}).join('')+'</div></div>':em+'Appears when you choose priorities'+ee);
+    if(S.pri.length)h+='<h4>Keeping it alive</h4><p>Review this plan every quarter. Next check-in: '+esc(new Date(Date.now()+91*864e5).toLocaleDateString('en-CA',{year:'numeric',month:'long',day:'numeric'}))+'.</p>';
     h+='<div class="foot">Prepared with Ideas to Results by ConceptOasis. A starting point for discussion, not professional advice. Goals and measures are suggestions to adapt.</div></div>';
     $('doc').innerHTML=h;
   }
@@ -312,12 +383,12 @@ input:focus,select:focus,textarea:focus{outline:0;border-color:var(--teal);box-s
     doc();save();
   }
   function go(n){
-    S.step=Math.max(0,Math.min(5,n));
-    if(S.step===3)drawPri(); if(S.step===4)drawGoals();
+    S.step=Math.max(0,Math.min(LAST,n));
+    if(S.step===5)drawPri(); if(S.step===6)drawGoals();
     steps.forEach(function(s,i){s.classList.toggle('on',i===S.step)});
     tabs.forEach(function(t,i){t.classList.toggle('on',i===S.step);t.classList.toggle('past',i<S.step)});
-    $('pgt').textContent='Step '+(S.step+1)+' of 6 · '+NAMES[S.step];$('pgm').style.width=((S.step+1)/6*100)+'%';
-    $('next').textContent=S.step<5?'Next →':'Send my plan →';
+    $('pgt').textContent='Step '+(S.step+1)+' of '+NAMES.length+' · '+NAMES[S.step];$('pgm').style.width=((S.step+1)/NAMES.length*100)+'%';
+    $('next').textContent=S.step<LAST?'Next →':'Send my plan →';
     var t=document.querySelector('.hd');if(window.scrollY>t.offsetTop+t.offsetHeight-60)window.scrollTo({top:t.offsetTop+t.offsetHeight-70,behavior:'smooth'});
     save();
   }
@@ -327,24 +398,25 @@ input:focus,select:focus,textarea:focus{outline:0;border-color:var(--teal);box-s
     if(!/^\S+@\S+\.\S+$/.test(val('em'))){e.textContent='Please add your email.';return}
     if(!$('ok').checked){e.textContent='Please tick the consent box.';return}
     var d={name:val('nm'),email:val('em'),position:val('pos'),website:val('web'),company:val('co'),industry:val('ind'),size:val('size'),horizon:val('horizon'),room:S.sel.room.join('; '),core:val('core'),find:S.sel.find.join('; '),slow:S.sel.slow.join('; '),serve:S.sel.serve.join('; '),grow:S.sel.grow.join('; '),
-      priorities:S.pri.map(function(t,i){var g=goal(t);return (i+1)+'. '+t+' | Goal: '+g.goal+' | Owner: '+(g.owner||'-')+' | By: '+g.when+' | Measure: '+g.measure}).join('\n'),platform:modules().join('; ')};
+      scorecard:AREAS.map(function(a){return a+': '+(S.score[a]||'-')}).join('; '),strengths:val('sw_s'),weaknesses:val('sw_w'),opportunities:val('sw_o'),threats:val('sw_t'),mission:'We help '+val('m_who')+' to '+val('m_do'),vision:val('vision'),values:S.sel.values.join('; '),
+      priorities:S.pri.map(function(t,i){var g=goal(t);return (i+1)+'. '+t+' | Goal: '+g.goal+' | Owner: '+(g.owner||'-')+' | By: '+g.when+' | Measure: '+g.measure+' | First step: '+(g.first||'-')}).join('\n'),platform:modules().join('; ')};
     d._subject='Ideas to Results plan: '+(d.company||d.name);
     function done(){$('sendBox').style.display='none';$('done').style.display='block'}
     if(ENDPOINT){fetch(ENDPOINT,{method:'POST',headers:{'Accept':'application/json','Content-Type':'application/json'},body:JSON.stringify(d)}).then(function(r){if(!r.ok)throw 0;done()}).catch(function(){e.textContent='That did not go through. Please email '+TO+'.'});return}
     var body=Object.keys(d).filter(function(k){return k!=='_subject'}).map(function(k){return k+': '+d[k]}).join('\n');
     location.href='mailto:'+TO+'?subject='+encodeURIComponent(d._subject)+'&body='+encodeURIComponent(body);done();
   }
-  var F=['co','ind','size','horizon','core','nm','em','pos','web'];
+  var F=['co','ind','size','horizon','core','sw_s','sw_w','sw_o','sw_t','m_who','m_do','vision','nm','em','pos','web'];
   function save(){try{var o={S:S,f:{}};F.forEach(function(id){o.f[id]=$(id).value});localStorage.setItem('coco_i2r',JSON.stringify(o))}catch(x){}}
-  function restore(){try{var o=JSON.parse(localStorage.getItem('coco_i2r')||'null');if(!o)return;F.forEach(function(id){if(o.f[id]!=null)$(id).value=o.f[id]});if(o.S)S=o.S}catch(x){}}
+  function restore(){try{var o=JSON.parse(localStorage.getItem('coco_i2r')||'null');if(!o)return;F.forEach(function(id){if(o.f[id]!=null)$(id).value=o.f[id]});if(o.S){var d=S;S=o.S;S.sel=Object.assign({},d.sel,S.sel||{});S.extra=Object.assign({},d.extra,S.extra||{});S.score=S.score||{};S.goals=S.goals||{};S.pri=S.pri||[];if(S.step>LAST)S.step=0}}catch(x){}}
   restore();
-  ['co','ind','size','horizon','core'].forEach(function(id){$(id).addEventListener('input',upd);$(id).addEventListener('change',upd)});
+  ['co','ind','size','horizon','core','sw_s','sw_w','sw_o','sw_t','m_who','m_do','vision'].forEach(function(id){$(id).addEventListener('input',upd);$(id).addEventListener('change',upd)});
   [].forEach.call(document.querySelectorAll('[data-next]'),function(b){b.onclick=function(){go(S.step+1)}});
   [].forEach.call(document.querySelectorAll('[data-prev]'),function(b){b.onclick=function(){go(S.step-1)}});
   tabs.forEach(function(t,i){t.onclick=function(){go(i)}});
-  $('next').onclick=function(){S.step<5?go(S.step+1):send()};
+  $('next').onclick=function(){S.step<LAST?go(S.step+1):send()};
   $('send').onclick=send; $('print').onclick=function(){window.print()};
-  drawPills();upd();go(S.step||0);
+  drawPills();drawScore();upd();go(S.step||0);
 })();
 </script>
 </body>
