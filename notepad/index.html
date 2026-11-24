@@ -99,7 +99,8 @@ label.f input:focus,label.f select:focus,label.f textarea:focus{outline:0;border
       </div>
 
       <div class="card">
-        <h2>coupon.recomemo &middot; your coupons</h2>
+        <h2>coupon.recomemo &middot; your coupon pills</h2>
+        <p class="hint" style="margin:-4px 0 8px">Make as many as you like. They stay private, in this browser, until you place one.</p>
         <div class="lib" id="lib"></div>
         <p class="hint">Drag a coupon onto the page, or tap an empty spot and then tap a coupon.</p>
         <details style="margin-top:10px">
@@ -122,7 +123,10 @@ label.f input:focus,label.f select:focus,label.f textarea:focus{outline:0;border
           <label class="f">Coupon pages<select id="pCoup"><option>1</option><option>2</option><option>3</option><option>4</option></select></label>
           <label class="f">Pages in the pad<select id="pTotal"><option>10</option><option selected>20</option><option>30</option><option>40</option></select></label>
         </div>
-        <p class="hint">Each coupon page holds nine coupons. The other pages are lined, with the organizer at the top.</p>
+        <p class="hint">Each coupon page holds nine coupons. The other pages are lined note pages.</p>
+        <label class="f">Header on the note pages<select id="hMode"><option value="org">The organizer</option><option value="text">A custom header</option><option value="coupon">A coupon</option></select></label>
+        <label class="f" id="hTextL" hidden>Custom header<input id="hText" maxlength="80" placeholder="e.g. Notes from your Sardis neighbourhood agent"></label>
+        <label class="f" id="hCouponL" hidden>Coupon for the header<select id="hCoupon"></select></label>
       </div>
     </div>
 
@@ -155,7 +159,7 @@ label.f input:focus,label.f select:focus,label.f textarea:focus{outline:0;border
       {id:'s2',mer:'Your corner barber',off:'$10 off a haircut',det:'Sample coupon. One per visit.',use:'twice',exp:'',col:'#e0458f',code:code(),sample:true},
       {id:'s3',mer:'Your skate shop',off:'$2 off skate sharpening',det:'Sample coupon. Every time you come in.',use:'again',exp:'',col:'#16a3a6',code:code(),sample:true}
     ],
-    pages:1, total:20, slots:{1:[]}, cur:1, sel:null
+    pages:1, total:20, slots:{1:[]}, cur:1, sel:null, hdr:{mode:'org',text:'',coupon:''}
   };
   try{ var saved=JSON.parse(localStorage.getItem(KEY)||'null'); if(saved&&saved.coupons) S=Object.assign(S,saved); }catch(e){}
   function save(){ try{ localStorage.setItem(KEY, JSON.stringify(S)); }catch(e){} }
@@ -172,11 +176,19 @@ label.f input:focus,label.f select:focus,label.f textarea:focus{outline:0;border
   [['oName','name'],['oBrok','brok'],['oPhone','phone'],['oSite','site'],['oTag','tag']].forEach(function(p){
     var el=$(p[0]); el.value=S.org[p[1]]||''; el.addEventListener('input',function(){ S.org[p[1]]=el.value; save(); drawSheet(); });
   });
+  S.hdr=S.hdr||{mode:'org',text:'',coupon:''};
+  function hdrUI(){ $('hTextL').hidden=S.hdr.mode!=='text'; $('hCouponL').hidden=S.hdr.mode!=='coupon';
+    $('hCoupon').innerHTML=S.coupons.map(function(c){return '<option value="'+c.id+'"'+(S.hdr.coupon===c.id?' selected':'')+'>'+esc(c.off)+' ('+esc(c.mer)+')</option>'}).join('');
+    if(S.hdr.mode==='coupon'&&!byId(S.hdr.coupon)&&S.coupons[0]) S.hdr.coupon=S.coupons[0].id; }
+  $('hMode').value=S.hdr.mode; $('hText').value=S.hdr.text||'';
+  $('hMode').onchange=function(){ S.hdr.mode=this.value; hdrUI(); save(); S.cur=0; drawTabs(); drawSheet(); };
+  $('hText').oninput=function(){ S.hdr.text=this.value; save(); drawSheet(); };
+  $('hCoupon').onchange=function(){ S.hdr.coupon=this.value; save(); drawSheet(); };
   $('pCoup').value=String(S.pages); $('pTotal').value=String(S.total);
   $('pCoup').onchange=function(){ S.pages=+this.value; if(S.cur>S.pages) S.cur=S.pages; save(); drawTabs(); drawSheet(); };
   $('pTotal').onchange=function(){ S.total=+this.value; save(); drawTabs(); };
 
-  function drawLib(){
+  function drawLib(){ try{hdrUI()}catch(e){}
     $('lib').innerHTML=S.coupons.map(function(c){
       return '<div class="cp'+(S.picked===c.id?' picked':'')+'" draggable="true" data-id="'+c.id+'" style="--c:'+c.col+'" tabindex="0" role="button" aria-label="Coupon: '+esc(c.off)+'"><i></i><div><small>'+esc(c.mer)+(c.sample?' · sample':'')+'</small><b>'+esc(c.off)+'</b><em>'+esc(useLabel(c.use))+(c.exp?' · until '+esc(c.exp):'')+'</em></div><button class="x" type="button" data-del="'+c.id+'" aria-label="Delete coupon">&times;</button></div>';
     }).join('') || '<p class="hint">No coupons yet. Make one below.</p>';
@@ -206,9 +218,15 @@ label.f input:focus,label.f select:focus,label.f textarea:focus{outline:0;border
     var o=S.org, ini=(o.name||'?').split(' ').map(function(w){return w[0]||''}).join('').slice(0,2).toUpperCase();
     return '<div class="org"><span class="av">'+esc(ini)+'</span><div><b>'+esc(o.name||'Your name')+'</b><span>'+esc(o.brok||'Your brokerage')+(o.phone?' · '+esc(o.phone):'')+(o.site?' · '+esc(o.site):'')+'</span></div><span class="tg">'+esc(o.tag||'notepad.recomemo')+'</span></div>';
   }
+  function noteHead(){
+    if(S.hdr.mode==='text') return '<div class="org"><b style="font-size:2.6cqw">'+esc(S.hdr.text||'Your custom header')+'</b><span class="tg">'+esc(S.org.brok||'Your brokerage')+'</span></div>';
+    var c=S.hdr.mode==='coupon'?byId(S.hdr.coupon):null;
+    if(c) return '<div class="org" style="flex-basis:17%;border-bottom:0;padding:0"><div class="sc" style="--c:'+c.col+';flex:1;height:100%;border:1.5px dashed var(--ink)"><i></i><div class="t"><small>'+esc(c.mer)+'</small><b>'+esc(c.off)+'</b><span class="u">'+esc(useLabel(c.use))+'</span></div><div class="q" style="width:5cqw">'+qrSvg(qrUrl(c))+'<span>'+c.code+'</span></div></div></div>';
+    return orgHtml();
+  }
   function drawSheet(){
     var sh=$('sheet');
-    if(S.cur===0){ sh.innerHTML=orgHtml()+'<div class="lines"></div><div class="foot">notepad.recomemo.com</div>'; $('clearPage').disabled=true; return; }
+    if(S.cur===0){ sh.innerHTML=noteHead()+'<div class="lines"></div><div class="foot">'+(S.hdr.mode==='org'?'notepad.recomemo.com':esc([S.org.name,S.org.brok,'notepad.recomemo.com'].filter(Boolean).join(' · ')))+'</div>'; $('clearPage').disabled=true; return; }
     $('clearPage').disabled=false;
     var arr=S.slots[S.cur]||[], h='';
     for(var i=0;i<PER;i++){
@@ -287,9 +305,15 @@ label.f input:focus,label.f select:focus,label.f textarea:focus{outline:0;border
           for(var i=0;i<PER;i++){ var col=i%3,row=Math.floor(i/3), x=m+col*(cw+gap), y=bottom-(row+1)*ch-row*gap, c=arr[i]?byId(arr[i]):null;
             if(c) coupon(pg,c,x,y,cw,ch); else pg.drawRectangle({x:x,y:y,width:cw,height:ch,borderColor:faint,borderWidth:.8,borderDashArray:[3,3]}); }
         } else {
-          var b2=header(pg,true)-6;
+          var b2;
+          var hc=S.hdr.mode==='coupon'?byId(S.hdr.coupon):null;
+          if(hc){ var chh=92; coupon(pg,hc,m,H-m-chh,W-2*m,chh); b2=H-m-chh-8; }
+          else if(S.hdr.mode==='text'){ var ht=clean(S.hdr.text||'Notes'); pg.drawText(ht,{x:m,y:H-m-22,size:16,font:B,color:ink});
+            var hb=clean(S.org.brok||''); if(hb) pg.drawText(hb,{x:W-m-F.widthOfTextAtSize(hb,8.5),y:H-m-20,size:8.5,font:F,color:mute});
+            pg.drawLine({start:{x:m,y:H-m-34},end:{x:W-m,y:H-m-34},thickness:1.6,color:ink}); b2=H-m-40; }
+          else b2=header(pg,true)-6;
           for(var ly=b2-24;ly>m+18;ly-=23) pg.drawLine({start:{x:m,y:ly},end:{x:W-m,y:ly},thickness:.5,color:faint});
-          var ft='notepad.recomemo.com'; pg.drawText(ft,{x:W/2-M.widthOfTextAtSize(ft,7.5)/2,y:m-6,size:7.5,font:M,color:mute});
+          var ft=S.hdr.mode==='org'?'notepad.recomemo.com':clean([S.org.name,S.org.brok,'notepad.recomemo.com'].filter(Boolean).join('  ·  ')); pg.drawText(ft,{x:W/2-M.widthOfTextAtSize(ft,7.5)/2,y:m-6,size:7.5,font:M,color:mute});
         }
       }
       var bytes=await doc.save(), blob=new Blob([bytes],{type:'application/pdf'}), a=document.createElement('a');
