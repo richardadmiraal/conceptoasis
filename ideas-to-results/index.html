@@ -1,0 +1,423 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Ideas to Results · A strategic plan that ends with a platform | ConceptOasis</title>
+<meta name="description" content="Ideas to Results: a guided strategic planning session for directors and executives. Answer two questions, how to best serve existing clients and how to get new business, and watch a one-page plan build live, ending with the platform it calls for.">
+<link rel="icon" href="../favicon.png" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Inter+Tight:wght@500;600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/site.css">
+<style>
+body{background:#f4f5f7}
+.hd{background:#fff;border-bottom:1px solid var(--line)}
+.hd .wrap{padding-block:26px 0}
+.hd h1{font-size:clamp(28px,4vw,42px);margin:4px 0 6px}
+.hd p{margin:0 0 16px;color:var(--char2);max-width:64ch}
+.tabs{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}
+.tabs button{flex:none;border:0;background:none;padding:12px 14px 13px;font:700 14px Inter,sans-serif;color:var(--mute);border-bottom:3px solid transparent;cursor:pointer}
+.tabs button b{display:inline-grid;place-items:center;width:22px;height:22px;margin-right:6px;border-radius:50%;background:#e6e9ef;color:var(--char2);font-size:12px}
+.tabs button.on{color:var(--ink);border-bottom-color:var(--teal)}
+.tabs button.on b,.tabs button.past b{background:var(--teal);color:#fff}
+.lay{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,460px);gap:26px;align-items:start;padding-block:26px 120px}
+@media(max-width:980px){.lay{grid-template-columns:1fr}}
+.step{display:none;background:#fff;border:1.5px solid var(--line);border-radius:20px;padding:24px}
+.step.on{display:block;animation:fin .25s ease}
+@keyframes fin{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.step h2{font-size:24px;margin-bottom:4px}
+.step>p.mute{margin:0 0 16px}
+.q{margin:18px 0 6px;font:700 15px Inter,sans-serif;color:var(--char)}
+.q span{font-weight:400;color:var(--mute)}
+.fl{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px 16px}
+@media(max-width:620px){.fl{grid-template-columns:1fr}}
+.fl .full{grid-column:1/-1}
+.fl label,.lbl{display:block;font:700 14px Inter,sans-serif;color:var(--char)}
+.fl input,.fl select,.fl textarea,.gl input,.gl select{display:block;width:100%;margin-top:6px;padding:11px 13px;border:1.5px solid #c3c9d3;border-radius:12px;font:400 16px Inter,sans-serif;color:var(--ink);background:#fff;box-sizing:border-box}
+input:focus,select:focus,textarea:focus{outline:0;border-color:var(--teal);box-shadow:0 0 0 3px rgba(18,120,129,.15)}
+.pills{display:flex;flex-wrap:wrap;gap:8px}
+.pills button{padding:8px 14px;border-radius:999px;border:1.5px solid #d3d8e0;background:#fff;font:600 14px Inter,sans-serif;color:var(--char);cursor:pointer;transition:all .15s}
+.pills button:hover{border-color:#9aa3b2}
+.pills button.on{background:#e8f6f3;border-color:var(--teal);color:#0d5c63}
+.pills button.on:before{content:"\2713  ";font-weight:800}
+.pills.serve button.on{background:#eef1fb;border-color:#3b4fb0;color:#25327a}
+.pills.grow button.on{background:#fdeef4;border-color:#d61e6e;color:#9b1450}
+.own{display:flex;gap:8px;margin-top:10px}
+.own input{flex:1;min-width:0;padding:9px 12px;border:1.5px dashed #c3c9d3;border-radius:999px;font:500 14px Inter,sans-serif}
+.own button{padding:8px 14px;border-radius:999px;border:0;background:var(--ink);color:#fff;font:700 13px Inter,sans-serif;cursor:pointer}
+.twoq{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:760px){.twoq{grid-template-columns:1fr}}
+.twoq>div{padding:16px;border-radius:16px;border:1.5px solid var(--line)}
+.twoq .s1{background:#f7f8fd}.twoq .s2{background:#fff7fa}
+.twoq h3{font-size:17px;margin-bottom:10px}
+.tip{display:flex;gap:10px;align-items:flex-start;margin-top:16px;padding:12px 14px;border-radius:14px;background:#f2fbf9;border:1.5px solid #bfe8df;font-size:14.5px;color:#0f5f54}
+.tip svg{flex:none;width:22px;height:22px;fill:none;stroke:var(--teal);stroke-width:2}
+.pri{display:grid;gap:8px}
+.pri button{display:flex;align-items:center;gap:12px;width:100%;text-align:left;padding:12px 14px;border-radius:14px;border:1.5px solid var(--line);background:#fff;font:600 15px Inter,sans-serif;color:var(--ink);cursor:pointer}
+.pri button i{flex:none;display:grid;place-items:center;width:26px;height:26px;border-radius:50%;background:#eef0f4;color:var(--mute);font:800 13px Inter,sans-serif;font-style:normal}
+.pri button small{margin-left:auto;font-weight:700;font-size:11.5px;letter-spacing:.05em;text-transform:uppercase}
+.pri button small.sv{color:#3b4fb0}.pri button small.gr{color:#d61e6e}.pri button small.wk{color:#127881}
+.pri button.on{border-color:var(--teal);background:#f2fbf9}
+.pri button.on i{background:var(--teal);color:#fff}
+.gl{display:grid;gap:14px}
+.gl .g{padding:14px 16px;border-radius:16px;border:1.5px solid var(--line)}
+.gl .g h3{font-size:16px;margin:0 0 8px}
+.gl .row{display:grid;grid-template-columns:2fr 1fr 1fr;gap:10px}
+@media(max-width:620px){.gl .row{grid-template-columns:1fr}}
+.gl label{font:700 13px Inter,sans-serif;color:var(--char2)}
+.nav2{display:flex;justify-content:space-between;gap:10px;margin-top:22px}
+.err{color:#b0124f;font-weight:600;font-size:14px;min-height:1.2em;margin-top:10px}
+/* scorecard + swot */
+.score{display:grid;gap:8px}
+.sc{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 12px;border:1px solid var(--line);border-radius:12px}
+.sc span{font-weight:600;color:var(--ink);font-size:14.5px}
+.seg{display:flex;gap:4px;flex:none}
+.seg button{width:34px;height:32px;border-radius:8px;border:1px solid #d3d8e0;background:#fff;font:600 13px var(--mono);color:var(--char2);cursor:pointer}
+.seg button.on{background:var(--f-teal);border-color:var(--f-teal);color:#fff}
+.sc:nth-child(2) .seg button.on{background:var(--f-blue);border-color:var(--f-blue)}
+.sc:nth-child(3) .seg button.on{background:var(--f-lime);border-color:var(--f-lime)}
+.sc:nth-child(4) .seg button.on{background:var(--f-orange);border-color:var(--f-orange)}
+.sc:nth-child(5) .seg button.on{background:var(--f-pink);border-color:var(--f-pink)}
+.sc:nth-child(6) .seg button.on{background:var(--f-violet);border-color:var(--f-violet)}
+@media(max-width:520px){.sc{flex-direction:column;align-items:flex-start}}
+.swot{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:8px}
+@media(max-width:620px){.swot{grid-template-columns:1fr}}
+.swot label{display:block;font:600 13px Inter,sans-serif;padding:10px 12px;border-radius:12px;border:1px solid var(--line)}
+.swot textarea{display:block;width:100%;margin-top:6px;border:0;background:transparent;font:400 14.5px Inter,sans-serif;color:var(--ink);resize:vertical;outline:0;box-shadow:none}
+.swot .sw1{background:#effaf0;color:#2f6b1c}.swot .sw2{background:#fff3ec;color:#9a4a12}.swot .sw3{background:#eef4fe;color:#1d3f9a}.swot .sw4{background:#fdeff5;color:#a3245f}
+.doc .dsc{display:grid;gap:5px}
+.doc .dsc div{display:grid;grid-template-columns:140px 1fr 18px;gap:8px;align-items:center;font-size:12.5px}
+.doc .dsc i{height:6px;border-radius:6px;background:#eef0f4;overflow:hidden}
+.doc .dsc i b{display:block;height:100%;background:var(--feather)}
+.doc .dsc em{font:600 11px var(--mono);font-style:normal;color:var(--char2)}
+.doc .dsw{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.doc .dsw div{padding:8px;border-radius:10px;font-size:12.5px}
+.doc .dsw b{display:block;font-size:11.5px;margin-bottom:2px}
+.doc .dsw .a{background:#effaf0}.doc .dsw .b{background:#fff3ec}.doc .dsw .c{background:#eef4fe}.doc .dsw .d{background:#fdeff5}
+/* plan doc */
+.pv{position:sticky;top:84px}
+@media(max-width:980px){.pv{position:static}}
+.pvl{display:flex;justify-content:space-between;margin:0 4px 8px;font:800 12px Inter,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--mute)}
+.pvl i{font-style:normal;color:var(--teal)}
+.doc{background:#fff;border:1.5px solid var(--line);border-radius:18px;box-shadow:0 18px 40px rgba(22,30,74,.12);overflow:hidden}
+.doc .dh{padding:18px 20px;background:linear-gradient(135deg,#2c3341,#161e4a);color:#fff}
+.doc .dh small{display:block;font:800 11px Inter,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#7fd8c8}
+.doc .dh b{display:block;font:650 21px "Inter Tight",Inter,sans-serif;margin:2px 0}
+.doc .dh span{font-size:13px;color:#cfd6e6}
+.doc .db{padding:6px 20px 18px;max-height:calc(100vh - 230px);overflow:auto}
+@media(max-width:980px){.doc .db{max-height:none}}
+.doc h4{margin:14px 0 6px;font:800 11.5px Inter,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:var(--teal)}
+.doc p{margin:0;font-size:14px;color:var(--char)}
+.doc .em{color:#a3abb9;font-style:italic}
+.doc ul{margin:0;padding-left:18px;font-size:14px}
+.doc .tq{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.doc .tq div{padding:10px;border-radius:12px;font-size:13px}
+.doc .tq .a{background:#f7f8fd;border:1px solid #dfe3f5}.doc .tq .b{background:#fff7fa;border:1px solid #f6d9e5}
+.doc .tq b{display:block;font-size:12px;margin-bottom:4px;color:var(--ink)}
+.doc .pr{padding:10px 12px;margin-bottom:8px;border-radius:12px;border:1px solid #e6e9ef}
+.doc .pr b{display:block;font-size:14.5px;color:var(--ink)}
+.doc .pr span{display:block;font-size:12.5px;color:var(--char2)}
+.doc .plat{margin-top:6px;padding:12px;border-radius:14px;background:#f2fbf9;border:1.5px solid #bfe8df}
+.doc .plat b{display:block;color:#0f5f54;font-size:14px;margin-bottom:6px}
+.doc .plat div{display:flex;flex-wrap:wrap;gap:6px}
+.doc .plat span{padding:4px 10px;border-radius:999px;background:#fff;border:1.5px solid #9bd8cb;font:700 12.5px Inter,sans-serif;color:#0d5c63}
+.doc .foot{margin-top:14px;font-size:11.5px;color:var(--mute)}
+.ckl{display:flex;gap:10px;align-items:flex-start;font-size:14.5px;margin-top:12px}
+.ckl input{width:20px;height:20px;margin-top:2px;flex:none;accent-color:var(--teal)}
+.done{display:none;text-align:center;padding:24px 8px}
+.bar{position:fixed;left:0;right:0;bottom:0;z-index:20;background:rgba(255,255,255,.96);backdrop-filter:blur(8px);border-top:1px solid var(--line);padding-bottom:env(safe-area-inset-bottom,0px)}
+.bar .wrap{display:flex;align-items:center;gap:14px;padding-block:12px}
+.bar .pg{flex:1;min-width:0}
+.bar .pg small{display:block;font:700 11.5px Inter,sans-serif;letter-spacing:.08em;text-transform:uppercase;color:var(--mute)}
+.bar .meter{height:8px;border-radius:99px;background:#e6e9ef;margin-top:6px;overflow:hidden}
+.bar .meter i{display:block;height:100%;width:0;background:linear-gradient(90deg,#22b8a0,#127881);transition:width .3s}
+@media print{.nav,.hd,.bar,.lay>div:first-child,.pvl,footer{display:none!important}.lay{display:block;padding:0}.doc{box-shadow:none;border:0}.doc .db{max-height:none;overflow:visible}body{background:#fff}}
+</style>
+</head>
+<body>
+
+<header class="nav"><div class="wrap">
+  <a class="brand" href="../"><img src="../assets/img/coco-logo.webp" alt="" width="34" height="34">ConceptOasis</a>
+  <nav>
+    <a href="../#services">Services</a>
+    <a href="../#portfolio">Portfolio</a>
+    <a href="../#projects">Projects</a>
+    <a class="btn btn-dark" href="../start/">Get your report</a>
+  </nav>
+</div></header>
+
+<section class="hd"><div class="wrap">
+  <span class="kick">Free tool · Ideas to Results</span>
+  <h1>A strategic plan that ends with a platform</h1>
+  <p>A guided session for directors and executives. Start with the two questions that matter most, how to best serve existing clients and how to get new business, and watch a one-page plan build beside you. It ends with the platform your plan calls for, not a binder.</p>
+  <div class="tabs" id="tabs">
+    <button data-s="0" class="on"><b>1</b>Company</button>
+    <button data-s="1"><b>2</b>Where you are</button>
+    <button data-s="2"><b>3</b>Scorecard &amp; SWOT</button>
+    <button data-s="3"><b>4</b>Vision</button>
+    <button data-s="4"><b>5</b>The two questions</button>
+    <button data-s="5"><b>6</b>Priorities</button>
+    <button data-s="6"><b>7</b>Goals &amp; first steps</button>
+    <button data-s="7"><b>8</b>Your plan</button>
+  </div>
+</div></section>
+
+<div class="wrap lay">
+  <div>
+    <!-- 1 -->
+    <div class="step on">
+      <h2>Your company</h2>
+      <p class="mute">Who's planning, and who's in the room.</p>
+      <div class="fl">
+        <label>Company<input id="co" placeholder="e.g. Fraser Valley Mechanical"></label>
+        <label>Industry<select id="ind"><option>Professional services</option><option>Real estate</option><option>Construction &amp; trades</option><option>Retail &amp; e-commerce</option><option>Healthcare &amp; wellness</option><option>Association or nonprofit</option><option>Manufacturing &amp; distribution</option><option>Hospitality &amp; tourism</option><option>Other</option></select></label>
+        <label>Team size<select id="size"><option>1 to 10</option><option>11 to 50</option><option>51 to 250</option><option>251 to 1,000</option><option>More than 1,000</option></select></label>
+        <label>Planning for<select id="horizon"><option>The next 12 months</option><option>The next 3 years</option><option>The next 5 years</option></select></label>
+      </div>
+      <div class="q">Who's in the room? <span>(directors and executives)</span></div>
+      <div class="pills" data-k="room"></div>
+      <div class="nav2"><span></span><button class="btn btn-dark" data-next>Next: Where you are &rarr;</button></div>
+    </div>
+    <!-- 2 -->
+    <div class="step">
+      <h2>Where you are now</h2>
+      <p class="mute">An honest starting point: what you sell, how clients find you, and what slows you down.</p>
+      <div class="fl"><label class="full">Core services and products<textarea id="core" rows="2" placeholder="What you offer, and who buys it"></textarea></label></div>
+      <div class="q">How do new clients find you today?</div>
+      <div class="pills" data-k="find"></div>
+      <div class="q">What's slowing you down? <span>(pick any)</span></div>
+      <div class="pills" data-k="slow"></div>
+      <div class="own" data-own="slow"><input placeholder="Add your own"><button type="button">Add</button></div>
+      <div class="nav2"><button class="btn btn-line" data-prev>&larr; Back</button><button class="btn btn-dark" data-next>Next: Scorecard &amp; SWOT &rarr;</button></div>
+    </div>
+    <!-- 2b scorecard + swot -->
+    <div class="step">
+      <h2>Scorecard &amp; SWOT</h2>
+      <p class="mute">Rate where you are today, 1 (needs work) to 5 (excellent). Be honest: this is just for your leadership team.</p>
+      <div class="score" id="score"></div>
+      <div class="q" style="margin-top:22px">SWOT <span>(a few words each is plenty)</span></div>
+      <div class="swot">
+        <label class="sw1">Strengths<textarea id="sw_s" rows="3" placeholder="What do clients love about us? What do we do better than anyone?"></textarea></label>
+        <label class="sw2">Weaknesses<textarea id="sw_w" rows="3" placeholder="Where do we lose time, money or clients?"></textarea></label>
+        <label class="sw3">Opportunities<textarea id="sw_o" rows="3" placeholder="What's changing in our market that we could use?"></textarea></label>
+        <label class="sw4">Threats<textarea id="sw_t" rows="3" placeholder="What could hurt us if we do nothing?"></textarea></label>
+      </div>
+      <div class="tip"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 4.5 14 12h-4z"/></svg><span>Do it yourself: have each person in the room rate the scorecard on their own first, then compare. The gaps between answers are where the best conversations start.</span></div>
+      <div class="nav2"><button class="btn btn-line" data-prev>&larr; Back</button><button class="btn btn-dark" data-next>Next: Vision &rarr;</button></div>
+    </div>
+    <!-- 2c vision -->
+    <div class="step">
+      <h2>Vision &amp; mission</h2>
+      <p class="mute">Where you're headed, in plain words. Fill in the blanks, then make it yours.</p>
+      <div class="fl">
+        <label class="full">Our mission: we help<input id="m_who" placeholder="who (e.g. homeowners across the Fraser Valley)"></label>
+        <label class="full">to<input id="m_do" placeholder="do what (e.g. stay comfortable all year, without the hassle)"></label>
+        <label class="full">Three years from now, we are<textarea id="vision" rows="3" placeholder="e.g. the first call for heating and cooling in our region, with clients who refer us and a team that loves working here"></textarea></label>
+      </div>
+      <div class="q">Our values <span>(pick up to 4)</span></div>
+      <div class="pills" data-k="values"></div>
+      <div class="nav2"><button class="btn btn-line" data-prev>&larr; Back</button><button class="btn btn-dark" data-next>Next: The two questions &rarr;</button></div>
+    </div>
+    <!-- 3 -->
+    <div class="step">
+      <h2>The two questions</h2>
+      <p class="mute">Where every good plan starts. Pick the ideas your leadership believes in, or add your own.</p>
+      <div class="twoq">
+        <div class="s1"><h3>How do we best serve existing clients?</h3><div class="pills serve" data-k="serve"></div><div class="own" data-own="serve"><input placeholder="Your idea"><button type="button">Add</button></div></div>
+        <div class="s2"><h3>How do we get new business?</h3><div class="pills grow" data-k="grow"></div><div class="own" data-own="grow"><input placeholder="Your idea"><button type="button">Add</button></div></div>
+      </div>
+      <div class="tip" id="tip3"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 4.5 14 12h-4z"/></svg><span></span></div>
+      <div class="nav2"><button class="btn btn-line" data-prev>&larr; Back</button><button class="btn btn-dark" data-next>Next: Priorities &rarr;</button></div>
+    </div>
+    <!-- 4 -->
+    <div class="step">
+      <h2>Choose your top 3 priorities</h2>
+      <p class="mute">Tap in order of importance. Fewer, better priorities are what make a plan work.</p>
+      <div class="pri" id="pri"></div>
+      <div class="err" id="err4"></div>
+      <div class="nav2"><button class="btn btn-line" data-prev>&larr; Back</button><button class="btn btn-dark" data-next>Next: Goals &amp; owners &rarr;</button></div>
+    </div>
+    <!-- 5 -->
+    <div class="step">
+      <h2>Goals, owners and first steps</h2>
+      <p class="mute">Every priority gets a goal, a person, a date and a first step someone can take this week. We've suggested a starting point for each; make them yours.</p>
+      <div class="gl" id="gl"></div>
+      <div class="nav2"><button class="btn btn-line" data-prev>&larr; Back</button><button class="btn btn-dark" data-next>Next: Your plan &rarr;</button></div>
+    </div>
+    <!-- 6 -->
+    <div class="step">
+      <div id="sendBox">
+        <h2>Your plan, and the platform it calls for</h2>
+        <p class="mute">Your one-page plan is beside you. Send it to us and we'll turn it into a Workflow Report: what to build first, and what it could look like.</p>
+        <div class="fl">
+          <label>Your name<input id="nm" autocomplete="name"></label>
+          <label>Email<input id="em" type="email" autocomplete="email"></label>
+          <label>Position<input id="pos" autocomplete="organization-title"></label>
+          <label>Website<input id="web" inputmode="url" placeholder="https://"></label>
+        </div>
+        <label class="ckl"><input type="checkbox" id="ok"> <span>I agree that ConceptOasis may contact me about this plan. We keep your details private and use them only for this request.</span></label>
+        <div class="err" id="err6"></div>
+        <div class="nav2"><button class="btn btn-line" id="print">Print or save as PDF</button><button class="btn btn-pink" id="send">Send my plan &rarr;</button></div>
+      </div>
+      <div class="done" id="done"><h2>Your plan is in!</h2><p class="mute">We'll review it and reply with your Workflow Report and next steps. Questions? <a href="mailto:info@conceptoasis.com">info@conceptoasis.com</a></p></div>
+    </div>
+  </div>
+
+  <aside class="pv">
+    <div class="pvl"><span>Your one-page plan</span><i>Building live</i></div>
+    <div class="doc" id="doc"></div>
+  </aside>
+</div>
+
+<div class="bar"><div class="wrap">
+  <div class="pg"><small id="pgt">Step 1 of 8 · Company</small><div class="meter"><i id="pgm"></i></div></div>
+  <button class="btn btn-dark" id="next">Next &rarr;</button>
+</div></div>
+
+<script>
+(function(){
+  var ENDPOINT=''; var TO='info@conceptoasis.com';
+  var OPT={
+    room:['Board of directors','CEO / president','Executive director','Sales lead','Operations lead','Client service lead','Marketing lead','Finance lead'],
+    find:['Referrals','Repeat clients','Website','Search','Social media','Events','Partners','Advertising'],
+    slow:['Slow follow-up','Paper or PDF forms','Quotes take too long','Clients chase us for updates','Data in too many places','Approvals bottleneck','Hard to measure results','Website doesn’t convert'],
+    values:['Client first','Honest','Creative','Reliable','Local','Fast','Fair','Innovative','Teamwork','Quality'],
+    serve:['Faster responses','A client portal with status','Regular check-ins','Self-serve documents','A smoother onboarding','Referral and loyalty program','Clear reports for clients'],
+    grow:['A configurator (build and price)','Instant quotes online','A free report that brings in leads','Partner referrals','A better website intake','Automatic follow-up','Showcase our work']
+  };
+  // idea -> goal, measure, platform module
+  var MAP={
+    'Faster responses':['Reply to every client request within one business day','Average response time','Request intake & routing'],
+    'A client portal with status':['Give every client a live status page','Clients using the portal','Client portal'],
+    'Regular check-ins':['Check in with every active client each quarter','Check-ins completed','Client check-in reminders'],
+    'Self-serve documents':['Let clients find their documents without asking','Document requests to staff','Client portal'],
+    'A smoother onboarding':['Onboard new clients in half the time','Days to onboard','Guided onboarding form'],
+    'Referral and loyalty program':['Turn happy clients into referrals','Referrals per quarter','Referral program page'],
+    'Clear reports for clients':['Send every client a clear report on their results','Reports sent','Branded client reports'],
+    'A configurator (build and price)':['Let buyers build and price online, any time','Configurator leads per month','Configurator'],
+    'Instant quotes online':['Quote in minutes, not days','Time to quote','Instant quote form'],
+    'A free report that brings in leads':['Offer a free report that brings in qualified leads','Report requests per month','Lead report (like the Live Comp Report)'],
+    'Partner referrals':['Build a steady stream of partner referrals','Partner leads per quarter','Partner referral platform'],
+    'A better website intake':['Turn website visitors into qualified enquiries','Website enquiry rate','Guided sales intake'],
+    'Automatic follow-up':['Follow up with every lead, every time','Leads followed up within 24 hours','Follow-up automation'],
+    'Showcase our work':['Show proof of our work where buyers look','Portfolio views to enquiries','Portfolio & case studies']
+  };
+  var TIPS={
+    0:'Start with the clients you already have. Serving them better is usually the fastest growth there is.',
+    1:'Nice mix. A plan with ideas on both sides tends to grow steadily, not in bursts.',
+    2:'Tip: pick ideas your team could test within 90 days. Momentum beats perfection.'
+  };
+  var AREAS=['Client service','Sales & new business','Operations','Website & technology','Team & culture','Finances & growth'];
+  var S={sel:{room:['Board of directors','CEO / president'],find:[],slow:[],serve:[],grow:[],values:[]},extra:{slow:[],serve:[],grow:[]},pri:[],goals:{},score:{},step:0};
+  var $=function(id){return document.getElementById(id)};
+  function esc(t){var d=document.createElement('div');d.textContent=t==null?'':t;return d.innerHTML}
+  function val(id){return ($(id).value||'').trim()}
+  var steps=[].slice.call(document.querySelectorAll('.step')), tabs=[].slice.call(document.querySelectorAll('#tabs button'));
+  var NAMES=['Company','Where you are','Scorecard & SWOT','Vision','The two questions','Priorities','Goals & first steps','Your plan'];var LAST=NAMES.length-1;
+
+  function drawPills(){
+    [].forEach.call(document.querySelectorAll('.pills[data-k]'),function(box){
+      var k=box.getAttribute('data-k'), list=OPT[k].concat(S.extra[k]||[]);
+      box.innerHTML=list.map(function(t){return '<button type="button" class="'+(S.sel[k].indexOf(t)>-1?'on':'')+'">'+esc(t)+'</button>'}).join('');
+      [].forEach.call(box.children,function(b,i){b.onclick=function(){var t=list[i],a=S.sel[k],j=a.indexOf(t);if(j>-1)a.splice(j,1);else{if(k==='values'&&a.length>=4)return;a.push(t);}if(k==='serve'||k==='grow')S.pri=S.pri.filter(ideaOk);drawPills();upd()}});
+    });
+  }
+  [].forEach.call(document.querySelectorAll('.own'),function(o){var k=o.getAttribute('data-own'),inp=o.querySelector('input');
+    function add(){var t=inp.value.trim();if(!t)return;if(OPT[k].indexOf(t)<0&&S.extra[k].indexOf(t)<0)S.extra[k].push(t);if(S.sel[k].indexOf(t)<0)S.sel[k].push(t);inp.value='';drawPills();upd()}
+    o.querySelector('button').onclick=add;inp.onkeydown=function(e){if(e.key==='Enter'){e.preventDefault();add()}}});
+
+  function drawScore(){
+    var box=$('score');
+    box.innerHTML=AREAS.map(function(a,i){var v=S.score[a]||0;return '<div class="sc"><span>'+esc(a)+'</span><div class="seg">'+[1,2,3,4,5].map(function(n){return '<button type="button" data-a="'+i+'" data-v="'+n+'" class="'+(n<=v?'on':'')+'" aria-label="'+esc(a)+' '+n+' of 5">'+n+'</button>'}).join('')+'</div></div>'}).join('');
+    [].forEach.call(box.querySelectorAll('button'),function(b){b.onclick=function(){S.score[AREAS[+b.getAttribute('data-a')]]=+b.getAttribute('data-v');drawScore();upd()}});
+  }
+  function ideas(){
+    var a=S.sel.serve.map(function(t){return {t:t,side:'Serve clients',c:'sv'}}).concat(S.sel.grow.map(function(t){return {t:t,side:'New business',c:'gr'}}));
+    var w={'Slow follow-up':'Automatic follow-up','Quotes take too long':'Instant quotes online','Clients chase us for updates':'A client portal with status','Paper or PDF forms':'A better website intake','Website doesn’t convert':'A better website intake'};
+    S.sel.slow.forEach(function(s){var t=w[s];if(t&&!a.some(function(x){return x.t===t}))a.push({t:t,side:'Fixes: '+s.toLowerCase(),c:'wk'})});
+    return a;
+  }
+  function ideaOk(t){return ideas().some(function(x){return x.t===t})}
+  function drawPri(){
+    var list=ideas(), box=$('pri');
+    if(!list.length){box.innerHTML='<p class="mute">Pick a few ideas in step 3 first.</p>';return}
+    box.innerHTML=list.map(function(x){var n=S.pri.indexOf(x.t);return '<button type="button" class="'+(n>-1?'on':'')+'"><i>'+(n>-1?n+1:'')+'</i>'+esc(x.t)+'<small class="'+x.c+'">'+esc(x.side)+'</small></button>'}).join('');
+    [].forEach.call(box.children,function(b,i){b.onclick=function(){var t=list[i].t,j=S.pri.indexOf(t);if(j>-1)S.pri.splice(j,1);else if(S.pri.length<3)S.pri.push(t);else{$('err4').textContent='Three is the limit. Tap one to remove it first.';return}$('err4').textContent='';drawPri();upd()}});
+  }
+  function goal(t){var m=MAP[t]||['Make real progress on: '+t.toLowerCase(),'Agreed measure','Custom workflow'];
+    if(!S.goals[t])S.goals[t]={goal:m[0],owner:'',when:'90 days',measure:m[1],first:''};if(S.goals[t].first==null)S.goals[t].first='';return S.goals[t]}
+  function drawGoals(){
+    var box=$('gl');
+    if(!S.pri.length){box.innerHTML='<p class="mute">Choose your priorities in step 4 first.</p>';return}
+    box.innerHTML=S.pri.map(function(t,i){var g=goal(t);return '<div class="g"><h3>'+(i+1)+'. '+esc(t)+'</h3><div class="row"><label>Goal<input data-t="'+i+'" data-f="goal" value="'+esc(g.goal)+'"></label><label>Owner<input data-t="'+i+'" data-f="owner" placeholder="Name or role" value="'+esc(g.owner)+'"></label><label>By<select data-t="'+i+'" data-f="when">'+['30 days','90 days','6 months','12 months'].map(function(o){return '<option'+(o===g.when?' selected':'')+'>'+o+'</option>'}).join('')+'</select></label></div><div class="row" style="grid-template-columns:1fr 1fr;margin-top:8px"><label>Measure<input data-t="'+i+'" data-f="measure" value="'+esc(g.measure)+'"></label><label>First step this week<input data-t="'+i+'" data-f="first" placeholder="e.g. List our 10 most common questions" value="'+esc(g.first)+'"></label></div></div>'}).join('');
+    [].forEach.call(box.querySelectorAll('[data-f]'),function(el){el.addEventListener('input',function(){S.goals[S.pri[+el.getAttribute('data-t')]][el.getAttribute('data-f')]=el.value;doc();save()})});
+  }
+  function modules(){var m=[];S.pri.forEach(function(t){var x=(MAP[t]||[0,0,'Custom workflow'])[2];if(m.indexOf(x)<0)m.push(x)});if(S.pri.length)['Leadership dashboard','xo-ai assistant'].forEach(function(x){if(m.indexOf(x)<0)m.push(x)});return m}
+  function doc(){
+    var co=val('co')||'Your company', em='<p class="em">',ee='</p>';
+    var d=new Date().toLocaleDateString('en-CA',{year:'numeric',month:'long',day:'numeric'});
+    var h='<div class="dh"><small>Strategic plan · Ideas to Results</small><b>'+esc(co)+'</b><span>'+esc(val('ind'))+' · '+esc(val('size'))+' people · '+esc(val('horizon'))+' · '+d+'</span></div><div class="db">';
+    h+='<h4>In the room</h4>'+(S.sel.room.length?'<p>'+esc(S.sel.room.join(', '))+'</p>':em+'Directors and executives'+ee);
+    h+='<h4>Where we are now</h4>'+(val('core')?'<p>'+esc(val('core'))+'</p>':em+'Your core services and products'+ee);
+    if(S.sel.find.length)h+='<p style="margin-top:6px"><b>Clients find us through:</b> '+esc(S.sel.find.join(', '))+'</p>';
+    if(S.sel.slow.length)h+='<p style="margin-top:6px"><b>What slows us down:</b> '+esc(S.sel.slow.join(', ').toLowerCase())+'</p>';
+    var sc=AREAS.filter(function(a){return S.score[a]});
+    h+='<h4>Scorecard</h4>'+(sc.length?'<div class="dsc">'+AREAS.map(function(a){var v=S.score[a]||0;return '<div><span>'+esc(a)+'</span><i><b style="width:'+(v*20)+'%"></b></i><em>'+(v||'-')+'</em></div>'}).join('')+'</div>':em+'Rate six areas from 1 to 5'+ee);
+    var sw=[['Strengths',val('sw_s'),'a'],['Weaknesses',val('sw_w'),'b'],['Opportunities',val('sw_o'),'c'],['Threats',val('sw_t'),'d']];
+    if(sw.some(function(x){return x[1]}))h+='<h4>SWOT</h4><div class="dsw">'+sw.map(function(x){return '<div class="'+x[2]+'"><b>'+x[0]+'</b>'+(x[1]?esc(x[1]):'<span class="em">-</span>')+'</div>'}).join('')+'</div>';
+    var mis=(val('m_who')||val('m_do'))?'We help '+(val('m_who')||'...')+' to '+(val('m_do')||'...')+'.':'';
+    h+='<h4>Mission &amp; vision</h4>'+(mis?'<p><b>Mission:</b> '+esc(mis)+'</p>':'')+(val('vision')?'<p style="margin-top:4px"><b>In three years:</b> '+esc(val('vision'))+'</p>':'')+(S.sel.values.length?'<p style="margin-top:4px"><b>Values:</b> '+esc(S.sel.values.join(' · '))+'</p>':'')+(!mis&&!val('vision')&&!S.sel.values.length?em+'Where you are headed'+ee:'');
+    h+='<h4>The two questions</h4><div class="tq"><div class="a"><b>Serve existing clients</b>'+(S.sel.serve.length?esc(S.sel.serve.join(' · ')):'<span class="em">Your ideas</span>')+'</div><div class="b"><b>Get new business</b>'+(S.sel.grow.length?esc(S.sel.grow.join(' · ')):'<span class="em">Your ideas</span>')+'</div></div>';
+    h+='<h4>Our top priorities</h4>';
+    h+=S.pri.length?S.pri.map(function(t,i){var g=goal(t);return '<div class="pr"><b>'+(i+1)+'. '+esc(t)+'</b><span>Goal: '+esc(g.goal)+'</span><span>Owner: '+esc(g.owner||'to be named')+' · By: '+esc(g.when)+' · Measure: '+esc(g.measure)+'</span>'+(g.first?'<span>First step: '+esc(g.first)+'</span>':'')+'</div>'}).join(''):em+'Your top 3 priorities'+ee;
+    var m=modules();
+    h+='<h4>The platform this plan calls for</h4>'+(m.length?'<div class="plat"><b>One web-based platform, built in stages:</b><div>'+m.map(function(x){return '<span>'+esc(x)+'</span>'}).join('')+'</div></div>':em+'Appears when you choose priorities'+ee);
+    if(S.pri.length)h+='<h4>Keeping it alive</h4><p>Review this plan every quarter. Next check-in: '+esc(new Date(Date.now()+91*864e5).toLocaleDateString('en-CA',{year:'numeric',month:'long',day:'numeric'}))+'.</p>';
+    h+='<div class="foot">Prepared with Ideas to Results by ConceptOasis. A starting point for discussion, not professional advice. Goals and measures are suggestions to adapt.</div></div>';
+    $('doc').innerHTML=h;
+  }
+  function upd(){
+    var n=S.sel.serve.length+S.sel.grow.length;
+    $('tip3').querySelector('span').textContent=n<2?TIPS[0]:(S.sel.serve.length&&S.sel.grow.length?TIPS[1]:TIPS[2]);
+    doc();save();
+  }
+  function go(n){
+    S.step=Math.max(0,Math.min(LAST,n));
+    if(S.step===5)drawPri(); if(S.step===6)drawGoals();
+    steps.forEach(function(s,i){s.classList.toggle('on',i===S.step)});
+    tabs.forEach(function(t,i){t.classList.toggle('on',i===S.step);t.classList.toggle('past',i<S.step)});
+    $('pgt').textContent='Step '+(S.step+1)+' of '+NAMES.length+' · '+NAMES[S.step];$('pgm').style.width=((S.step+1)/NAMES.length*100)+'%';
+    $('next').textContent=S.step<LAST?'Next →':'Send my plan →';
+    var t=document.querySelector('.hd');if(window.scrollY>t.offsetTop+t.offsetHeight-60)window.scrollTo({top:t.offsetTop+t.offsetHeight-70,behavior:'smooth'});
+    save();
+  }
+  function send(){
+    var e=$('err6');e.textContent='';
+    if(!val('nm')){e.textContent='Please add your name.';return}
+    if(!/^\S+@\S+\.\S+$/.test(val('em'))){e.textContent='Please add your email.';return}
+    if(!$('ok').checked){e.textContent='Please tick the consent box.';return}
+    var d={name:val('nm'),email:val('em'),position:val('pos'),website:val('web'),company:val('co'),industry:val('ind'),size:val('size'),horizon:val('horizon'),room:S.sel.room.join('; '),core:val('core'),find:S.sel.find.join('; '),slow:S.sel.slow.join('; '),serve:S.sel.serve.join('; '),grow:S.sel.grow.join('; '),
+      scorecard:AREAS.map(function(a){return a+': '+(S.score[a]||'-')}).join('; '),strengths:val('sw_s'),weaknesses:val('sw_w'),opportunities:val('sw_o'),threats:val('sw_t'),mission:'We help '+val('m_who')+' to '+val('m_do'),vision:val('vision'),values:S.sel.values.join('; '),
+      priorities:S.pri.map(function(t,i){var g=goal(t);return (i+1)+'. '+t+' | Goal: '+g.goal+' | Owner: '+(g.owner||'-')+' | By: '+g.when+' | Measure: '+g.measure+' | First step: '+(g.first||'-')}).join('\n'),platform:modules().join('; ')};
+    d._subject='Ideas to Results plan: '+(d.company||d.name);
+    function done(){$('sendBox').style.display='none';$('done').style.display='block'}
+    if(ENDPOINT){fetch(ENDPOINT,{method:'POST',headers:{'Accept':'application/json','Content-Type':'application/json'},body:JSON.stringify(d)}).then(function(r){if(!r.ok)throw 0;done()}).catch(function(){e.textContent='That did not go through. Please email '+TO+'.'});return}
+    var body=Object.keys(d).filter(function(k){return k!=='_subject'}).map(function(k){return k+': '+d[k]}).join('\n');
+    location.href='mailto:'+TO+'?subject='+encodeURIComponent(d._subject)+'&body='+encodeURIComponent(body);done();
+  }
+  var F=['co','ind','size','horizon','core','sw_s','sw_w','sw_o','sw_t','m_who','m_do','vision','nm','em','pos','web'];
+  function save(){try{var o={S:S,f:{}};F.forEach(function(id){o.f[id]=$(id).value});localStorage.setItem('coco_i2r',JSON.stringify(o))}catch(x){}}
+  function restore(){try{var o=JSON.parse(localStorage.getItem('coco_i2r')||'null');if(!o)return;F.forEach(function(id){if(o.f[id]!=null)$(id).value=o.f[id]});if(o.S){var d=S;S=o.S;S.sel=Object.assign({},d.sel,S.sel||{});S.extra=Object.assign({},d.extra,S.extra||{});S.score=S.score||{};S.goals=S.goals||{};S.pri=S.pri||[];if(S.step>LAST)S.step=0}}catch(x){}}
+  restore();
+  ['co','ind','size','horizon','core','sw_s','sw_w','sw_o','sw_t','m_who','m_do','vision'].forEach(function(id){$(id).addEventListener('input',upd);$(id).addEventListener('change',upd)});
+  [].forEach.call(document.querySelectorAll('[data-next]'),function(b){b.onclick=function(){go(S.step+1)}});
+  [].forEach.call(document.querySelectorAll('[data-prev]'),function(b){b.onclick=function(){go(S.step-1)}});
+  tabs.forEach(function(t,i){t.onclick=function(){go(i)}});
+  $('next').onclick=function(){S.step<LAST?go(S.step+1):send()};
+  $('send').onclick=send; $('print').onclick=function(){window.print()};
+  drawPills();drawScore();upd();go(S.step||0);
+})();
+</script>
+</body>
+</html>

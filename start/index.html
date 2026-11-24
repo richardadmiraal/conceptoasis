@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Start a project · Digitize your sales and workflows | ConceptOasis</title>
+<meta name="description" content="Tell us about the sales or workflow you want to digitize. ConceptOasis attends to your enterprise, reimagines how the work flows and builds it.">
+<link rel="icon" href="../favicon.png" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Inter+Tight:wght@500;600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/site.css">
+<style>
+.ckg{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px 18px;margin-top:8px}
+@media(max-width:700px){.ckg{grid-template-columns:1fr}}
+form.su .ckg label{display:flex;gap:10px;align-items:flex-start;font-weight:500}
+.ckg input{width:20px!important;height:20px;margin:2px 0 0!important;flex:none}
+fieldset{border:0;padding:0;margin:0}
+legend{font:700 14px Inter,sans-serif;color:var(--char);padding:0}
+.fl2{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px 16px;margin-top:8px}@media(max-width:860px){.fl2{grid-template-columns:1fr}}
+.lbl{display:block;font:600 13px Inter,sans-serif;color:var(--char)}.lbl span{font-weight:400;color:var(--mute)}
+form.su .drop{display:flex;position:relative;flex-direction:column;align-items:center;gap:4px;margin-top:8px;padding:22px 16px;border:1.5px dashed #b9c1ce;border-radius:14px;background:#fff;text-align:center;cursor:pointer;transition:border-color .15s,background .15s}
+.drop:hover,.drop.over{border-color:var(--f-teal);background:#f2fbfb}
+.drop input{position:absolute;width:1px;height:1px;opacity:0}
+.drop svg{width:28px;height:28px;fill:none;stroke:var(--f-teal);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.drop b{font:600 14.5px Inter,sans-serif;color:var(--ink)}.drop small{color:var(--mute);font-size:12.5px}
+.flist{list-style:none;margin:10px 0 0;padding:0;display:grid;gap:6px}
+.flist li{display:flex;align-items:center;gap:10px;padding:8px 10px;border:1px solid var(--line);border-radius:10px;background:#fff;font-size:14px}
+.flist .fi{flex:none;font:600 10px var(--mono);padding:3px 6px;border-radius:6px;background:#fdeef5;color:#a3245f}
+.flist b{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:600;color:var(--ink)}
+.flist small{color:var(--mute);font:500 12px var(--mono)}
+.flist button{border:0;background:none;font-size:20px;line-height:1;color:var(--mute);cursor:pointer;padding:0 4px}
+</style>
+</head>
+<body>
+
+<header class="nav"><div class="wrap">
+  <a class="brand" href="../"><img src="../assets/img/coco-logo.webp" alt="" width="34" height="34">ConceptOasis</a>
+  <nav>
+    <a href="../#services">Services</a>
+    <a href="../#portfolio">Portfolio</a>
+    <a href="../#projects">Projects</a>
+    <a class="btn btn-dark" href="#intake">Get your report</a>
+  </nav>
+</div></header>
+
+<section class="hero" style="padding-bottom:30px"><div class="wrap" style="display:block">
+  <span class="tag">ConceptOasis · <b>the Workflow Report</b></span>
+  <h1>Get your Workflow Report</h1>
+  <p class="lead">Share your website, your existing forms and, if you have one, your strategic plan, and tell us about your services, products and sales. We'll review what you send and create a Workflow Report for your enterprise: where the work slows down, what to digitize first, and what it could look like.</p>
+  <div class="steps s5" style="margin-top:22px">
+    <div><b>1</b><h3>Attend</h3><p>By Zoom, or in person. We listen to how the work really gets done.</p></div>
+    <div><b>2</b><h3>Reimagine</h3><p>A clear map and summary of what it could be.</p></div>
+    <div><b>3</b><h3>Prototype</h3><p>A working version within days.</p></div>
+    <div><b>4</b><h3>Build &amp; launch</h3><p>The real platform, on your branding.</p></div>
+    <div><b>5</b><h3>Manage</h3><p>We keep it running and improving.</p></div>
+  </div>
+</div></section>
+
+<section class="s alt" id="intake"><div class="wrap">
+  <span class="kick">Workflow Report request</span>
+  <h2>Tell us about your business</h2>
+  <p class="lead">A few minutes now helps us come prepared. We'll reply with next steps. Your documents stay private and are used only to prepare your report. Nothing is built or charged until you approve it.</p>
+  <form class="su" id="su" novalidate>
+    <label>Name<input name="name" autocomplete="name" required></label>
+    <label>Email<input name="email" type="email" autocomplete="email" required></label>
+    <label>Company<input name="company" autocomplete="organization"></label>
+    <label>Position<input name="position" autocomplete="organization-title"></label>
+    <label>Website<input name="website" inputmode="url" placeholder="https://"></label>
+    <label>Existing forms <span>(links, or upload below)</span><input name="forms" placeholder="Shared link or web address"></label>
+    <label class="full">Existing strategic plan <span>(optional: a shared link, or upload below)</span><input name="plan" placeholder="Shared link"></label>
+    <label class="full">Describe your core services and products, and how you sell them<textarea name="describe" rows="5" placeholder="What you offer, who buys it, and how a sale happens today: from first contact to quote, order and follow-up."></textarea></label>
+    <div class="full">
+      <span class="lbl">Upload your documents <span>(PDF, Word or images: strategic plan, sales forms, brochures. Up to 10 files, 10 MB each)</span></span>
+      <label class="drop" id="drop"><input type="file" id="files" multiple accept=".pdf,.doc,.docx,.png,.jpg,.jpeg"><svg viewBox="0 0 24 24"><path d="M12 16V4M7 9l5-5 5 5"/><path d="M4 16v3a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-3"/></svg><b>Drop files here or tap to choose</b><small>Your documents stay private and are used only to prepare your report.</small></label>
+      <ul class="flist" id="flist"></ul>
+    </div>
+    <label class="ck full"><input type="checkbox" name="consent" required> <span>I agree that ConceptOasis may contact me about this request. We keep your details private and use them only for this request.</span></label>
+    <div class="full"><button class="btn btn-dark" type="submit">Request my Workflow Report &rarr;</button> <span class="note" id="sumsg"></span></div>
+  </form>
+  <div class="ok" id="suok">Thank you! We've got your request<span id="okfiles"></span>, and we'll start on your Workflow Report. Questions? <a href="mailto:info@conceptoasis.com">info@conceptoasis.com</a></div>
+</div></section>
+
+<footer><div class="wrap">
+  <a class="brand" href="../"><img src="../assets/img/coco-logo.webp" alt="" width="30" height="30">ConceptOasis</a>
+  <span class="cocobar">Birds of a feather</span>
+  <span><a href="mailto:info@conceptoasis.com">info@conceptoasis.com</a> · &copy; 2026 ConceptOasis, an ideas company</span>
+</div></footer>
+
+<script>
+(function(){
+  // SETUP: put a form service address here that accepts file uploads (e.g. a Formspree form on a plan with file uploads).
+  // With it set, the form sends everything, documents included. Until then, sending opens a pre-filled email
+  // and asks the person to attach their documents to it.
+  var ENDPOINT='';
+  var TO='info@conceptoasis.com', MAXF=10, MAXB=10*1024*1024;
+  var f=document.getElementById('su'), msg=document.getElementById('sumsg'), ok=document.getElementById('suok');
+  var input=document.getElementById('files'), drop=document.getElementById('drop'), list=document.getElementById('flist'), FILES=[];
+  function size(b){return b>1048576?(b/1048576).toFixed(1)+' MB':Math.max(1,Math.round(b/1024))+' KB'}
+  function esc(t){var d=document.createElement('div');d.textContent=t;return d.innerHTML}
+  function add(fl){ msg.textContent='';
+    Array.prototype.forEach.call(fl,function(x){
+      if(FILES.length>=MAXF){msg.textContent='Up to '+MAXF+' files, please.';return}
+      if(x.size>MAXB){msg.textContent=x.name+' is over 10 MB. Please send a smaller copy or a link.';return}
+      if(!/\.(pdf|docx?|png|jpe?g)$/i.test(x.name)){msg.textContent=x.name+': please use PDF, Word or image files.';return}
+      if(!FILES.some(function(y){return y.name===x.name&&y.size===x.size}))FILES.push(x);
+    }); draw(); }
+  function draw(){ list.innerHTML=FILES.map(function(x,i){return '<li><span class="fi">'+(/\.pdf$/i.test(x.name)?'PDF':/\.docx?$/i.test(x.name)?'DOC':'IMG')+'</span><b>'+esc(x.name)+'</b><small>'+size(x.size)+'</small><button type="button" data-i="'+i+'" aria-label="Remove '+esc(x.name)+'">&times;</button></li>'}).join('');
+    Array.prototype.forEach.call(list.querySelectorAll('button'),function(b){b.onclick=function(){FILES.splice(+b.getAttribute('data-i'),1);draw()}}); }
+  input.addEventListener('change',function(){add(input.files);input.value=''});
+  ['dragenter','dragover'].forEach(function(t){drop.addEventListener(t,function(e){e.preventDefault();drop.classList.add('over')})});
+  ['dragleave','drop'].forEach(function(t){drop.addEventListener(t,function(e){e.preventDefault();drop.classList.remove('over')})});
+  drop.addEventListener('drop',function(e){if(e.dataTransfer&&e.dataTransfer.files)add(e.dataTransfer.files)});
+  f.addEventListener('submit',function(e){ e.preventDefault(); msg.textContent='';
+    if(!f.elements.name.value.trim()){ msg.textContent='Please add your name.'; f.elements.name.focus(); return; }
+    if(!/^\S+@\S+\.\S+$/.test(f.elements.email.value.trim())){ msg.textContent='Please add your email.'; f.elements.email.focus(); return; }
+    if(!f.elements.consent.checked){ msg.textContent='Please tick the consent box.'; return; }
+    var d={};
+    Array.prototype.forEach.call(f.elements,function(el){ if(!el.name) return; d[el.name]=el.type==='checkbox'?(el.checked?'Yes':'No'):el.value.trim(); });
+    d.documents=FILES.map(function(x){return x.name}).join('; ')||'None uploaded';
+    d._subject='Workflow Report request: '+(d.company||d.name)+(d.position?' ('+d.position+')':'');
+    function done(note){ f.style.display='none'; ok.style.display='block'; document.getElementById('okfiles').innerHTML=note||''; ok.scrollIntoView({behavior:'smooth',block:'center'}); }
+    if(ENDPOINT){
+      var fd=new FormData(); Object.keys(d).forEach(function(k){fd.append(k,d[k])}); FILES.forEach(function(x){fd.append('upload',x,x.name)});
+      var btn=f.querySelector('button[type=submit]'); btn.disabled=true; btn.textContent='Sending\u2026';
+      fetch(ENDPOINT,{method:'POST',headers:{'Accept':'application/json'},body:fd}).then(function(r){ if(!r.ok) throw 0; done(FILES.length?' and your '+FILES.length+' document'+(FILES.length>1?'s':''):''); }).catch(function(){ btn.disabled=false; btn.innerHTML='Request my Workflow Report &rarr;'; msg.textContent='That did not go through. Please email '+TO+'.'; }); return; }
+    var body=Object.keys(d).filter(function(k){ return k!=='_subject'; }).map(function(k){ return k+': '+d[k]; }).join('\n');
+    if(FILES.length) body+='\n\nPlease attach these documents to this email before sending:\n- '+FILES.map(function(x){return x.name}).join('\n- ');
+    location.href='mailto:'+TO+'?subject='+encodeURIComponent(d._subject)+'&body='+encodeURIComponent(body);
+    done(FILES.length?'. One more step: please attach your '+FILES.length+' document'+(FILES.length>1?'s':'')+' to the email that just opened, then send it':'');
+  });
+})();
+</script>
+</body>
+</html>

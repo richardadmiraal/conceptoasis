@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>co/co xo-ai · Executive officer AI assistant</title>
+<meta name="description" content="co/co xo-ai: an executive officer AI assistant that drafts minutes, tracks action items, answers routine inquiries and turns intake into reports. It suggests; you decide. Start the intake.">
+<link rel="icon" href="../favicon.png" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Inter+Tight:wght@500;600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/site.css">
+<style>
+.ckg{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px 18px;margin-top:8px}
+@media(max-width:700px){.ckg{grid-template-columns:1fr}}
+form.su .ckg label{display:flex;gap:10px;align-items:flex-start;font-weight:500}
+.ckg input{width:20px!important;height:20px;margin:2px 0 0!important;flex:none}
+fieldset{border:0;padding:0;margin:0}
+legend{font:700 14px Inter,sans-serif;color:var(--char);padding:0}
+</style>
+</head>
+<body>
+
+<header class="nav"><div class="wrap">
+  <a class="brand" href="../"><img src="../assets/img/coco-logo.webp" alt="" width="34" height="34">ConceptOasis</a>
+  <nav>
+    <a href="../#platforms">Platforms</a>
+    <a href="../#projects">Projects</a>
+    <a href="../#services">Services</a>
+    <a class="btn btn-dark" href="#intake">Start intake</a>
+  </nav>
+</div></header>
+
+<section class="hero"><div class="wrap">
+  <div>
+    <span class="tag">co/co · <b>xo-ai</b></span>
+    <h1>Your executive officer AI assistant</h1>
+    <p class="lead">xo-ai keeps the work moving between meetings. It drafts the minutes, tracks the action items, answers routine questions from your own documents and turns intake into finished reports. It suggests. You decide.</p>
+    <div class="cta"><a class="btn btn-dark" href="#intake">Start the intake &rarr;</a><a class="btn btn-line" href="#how">How it works</a></div>
+  </div>
+  <div class="xocard" aria-label="Example xo-ai brief">
+    <div class="xh"><svg viewBox="0 0 24 24" class="xc"><circle cx="12" cy="12" r="9"/><path d="M12 4.5 14 12h-4z" fill="currentColor"/><path d="M12 19.5 10 12h4z"/></svg><b>xo-ai</b><span>Monday brief</span></div>
+    <ul>
+      <li><i class="g"></i>Draft minutes from Thursday's meeting are ready for your review</li>
+      <li><i class="g"></i>4 action items open, 2 due this week</li>
+      <li><i class="t"></i>3 inquiries answered from your policy documents</li>
+      <li><i class="o"></i>1 inquiry needs you: a question about a special levy</li>
+    </ul>
+    <small>Example only. xo-ai drafts; a person approves.</small>
+  </div>
+</div></section>
+
+<section class="s" id="how"><div class="wrap">
+  <span class="kick">How it works</span>
+  <h2>Set up around the way your team already works</h2>
+  <div class="steps">
+    <div><b>1</b><h3>Intake</h3><p>Tell us about your team, your meetings and the work that falls between them.</p></div>
+    <div><b>2</b><h3>Set up</h3><p>We configure xo-ai with your documents, your process, your limits and your disclaimers.</p></div>
+    <div><b>3</b><h3>Work together</h3><p>xo-ai drafts and tracks. Your people review, approve and stay in charge.</p></div>
+  </div>
+  <div class="grid3" style="margin-top:26px">
+    <div class="card"><h3>Strategic planning, built in</h3><p>Guided planning sessions using proven frameworks: where you are, where you want to be, priorities, goals and owners. Then a living plan xo-ai keeps on track.</p></div>
+    <div class="card"><h3>Boards &amp; stratas</h3><p>Minutes, action items, owner questions and document lookups. Built from our work on Strataverse.</p></div>
+    <div class="card"><h3>Brokerages &amp; agent teams</h3><p>Intake forms, deal sheets and follow-ups, alongside co | co forms and File XO.</p></div>
+    <div class="card"><h3>Small companies</h3><p>Inbox triage, meeting notes and weekly briefs for owners who wear every hat.</p></div>
+  </div>
+  <p class="note" style="margin-top:16px">AI can make mistakes. xo-ai drafts and suggests; decisions, approvals and anything legal, financial or contractual stay with your people.</p>
+</div></section>
+
+<section class="s alt" id="intake"><div class="wrap">
+  <span class="kick">xo-ai intake</span>
+  <h2>Tell us about your team</h2>
+  <p class="lead">A few minutes now helps us shape xo-ai around your work. We'll reply with next steps. Nothing is set up until you approve it.</p>
+  <form class="su" id="su" novalidate>
+    <label>Your name<input name="name" autocomplete="name" required></label>
+    <label>Email<input name="email" type="email" autocomplete="email" required></label>
+    <label>Phone <span>(optional)</span><input name="phone" type="tel" autocomplete="tel"></label>
+    <label>Company or organization<input name="company" autocomplete="organization"></label>
+    <label>Your role<input name="role" placeholder="e.g. Owner, board chair, managing broker"></label>
+    <label>Type of organization<select name="orgtype"><option>Board or strata</option><option>Property management</option><option>Real estate brokerage or team</option><option>Small business</option><option>Enterprise</option><option>Other</option></select></label>
+    <label>Team size<select name="size"><option>Just me</option><option>2 to 10</option><option>11 to 50</option><option>51 to 250</option><option>More than 250</option></select></label>
+    <label>When would you like to start?<select name="timing"><option>As soon as possible</option><option>In the next 1 to 3 months</option><option>Just exploring</option></select></label>
+    <fieldset class="full"><legend>What should your xo-ai handle? <span style="font-weight:400;color:var(--mute)">(pick any)</span></legend>
+      <div class="ckg">
+        <label><input type="checkbox" name="jobs" value="Meeting minutes and action items"> Meeting minutes and action items</label>
+        <label><input type="checkbox" name="jobs" value="Routine inquiries from our documents"> Routine inquiries from our documents</label>
+        <label><input type="checkbox" name="jobs" value="Intake forms and reports"> Intake forms and reports</label>
+        <label><input type="checkbox" name="jobs" value="Deal sheets and file checklists"> Deal sheets and file checklists</label>
+        <label><input type="checkbox" name="jobs" value="Follow-ups and reminders"> Follow-ups and reminders</label>
+        <label><input type="checkbox" name="jobs" value="Weekly briefs for leadership"> Weekly briefs for leadership</label>
+        <label><input type="checkbox" name="jobs" value="Strategic planning and goal tracking"> Strategic planning and goal tracking</label>
+      </div>
+    </fieldset>
+    <label class="full">Tools you use now <span>(email, calendar, document storage, CRM)</span><input name="tools"></label>
+    <label class="full">What would a win look like in 90 days?<textarea name="win" rows="3"></textarea></label>
+    <label class="full">Anything else? <span>(limits, privacy needs, questions)</span><textarea name="notes" rows="2"></textarea></label>
+    <label class="ck full"><input type="checkbox" name="consent" required> <span>I agree that ConceptOasis may contact me about this request. We keep your details private and use them only for this request.</span></label>
+    <div class="full"><button class="btn btn-dark" type="submit">Send my intake &rarr;</button> <span class="note" id="sumsg"></span></div>
+  </form>
+  <div class="ok" id="suok">Thank you! We've got your intake and will be in touch soon. Questions? <a href="mailto:info@conceptoasis.com">info@conceptoasis.com</a></div>
+</div></section>
+
+<footer><div class="wrap">
+  <a class="brand" href="../"><img src="../assets/img/coco-logo.webp" alt="" width="30" height="30">ConceptOasis</a>
+  <span class="cocobar">co/co xo-ai</span>
+  <span><a href="mailto:info@conceptoasis.com">info@conceptoasis.com</a> · &copy; 2026 ConceptOasis, an ideas company</span>
+</div></footer>
+
+<script>
+(function(){
+  // SETUP: put a form service address here (e.g. a Formspree form for info@conceptoasis.com).
+  // Until then, sending opens a pre-filled email so no intake is lost.
+  var ENDPOINT='';
+  var TO='info@conceptoasis.com';
+  var f=document.getElementById('su'), msg=document.getElementById('sumsg'), ok=document.getElementById('suok');
+  f.addEventListener('submit',function(e){ e.preventDefault(); msg.textContent='';
+    if(!f.elements.name.value.trim()){ msg.textContent='Please add your name.'; f.elements.name.focus(); return; }
+    if(!/^\S+@\S+\.\S+$/.test(f.elements.email.value.trim())){ msg.textContent='Please add your email.'; f.elements.email.focus(); return; }
+    if(!f.elements.consent.checked){ msg.textContent='Please tick the consent box.'; return; }
+    var d={}, jobs=[];
+    Array.prototype.forEach.call(f.elements,function(el){ if(!el.name) return;
+      if(el.name==='jobs'){ if(el.checked) jobs.push(el.value); return; }
+      d[el.name]=el.type==='checkbox'?(el.checked?'Yes':'No'):el.value.trim(); });
+    d.jobs=jobs.join('; ');
+    d._subject='xo-ai intake: '+(d.company||d.name)+' ('+d.orgtype+')';
+    function done(){ f.style.display='none'; ok.style.display='block'; ok.scrollIntoView({behavior:'smooth',block:'center'}); }
+    if(ENDPOINT){ fetch(ENDPOINT,{method:'POST',headers:{'Accept':'application/json','Content-Type':'application/json'},body:JSON.stringify(d)}).then(function(r){ if(!r.ok) throw 0; done(); }).catch(function(){ msg.textContent='That did not go through. Please email '+TO+'.'; }); return; }
+    var body=Object.keys(d).filter(function(k){ return k!=='_subject'; }).map(function(k){ return k+': '+d[k]; }).join('\n');
+    location.href='mailto:'+TO+'?subject='+encodeURIComponent(d._subject)+'&body='+encodeURIComponent(body); done();
+  });
+})();
+</script>
+</body>
+</html>
