@@ -171,3 +171,15 @@ h3.sub{display:flex;gap:10px;align-items:center;margin:30px 0 14px;font-size:20p
 .xocard i.g{background:#14b05a}.xocard i.t{background:#22b8a0}.xocard i.o{background:#e8833a}
 .xocard small{display:block;padding:0 18px 14px;color:var(--mute)}
 @media(prefers-reduced-motion:reduce){.xocard .xc{animation:none}}
+
+/* v4: who we work with, 5-step services */
+section.who{padding-top:44px;padding-bottom:20px}
+a.wcard{display:block;text-decoration:none;color:inherit;transition:transform .15s,box-shadow .15s}
+a.wcard:hover{transform:translateY(-2px);box-shadow:0 12px 28px rgba(22,30,74,.1)}
+a.wcard.hot{border:2px solid var(--teal);background:linear-gradient(180deg,#f2fbf9,#fff)}
+.wcard .wt{display:inline-block;margin-bottom:8px;padding:3px 10px;border-radius:999px;background:#2c3341;color:#fff;font:800 11px Inter,sans-serif;letter-spacing:.06em;text-transform:uppercase}
+.wcard.hot .wt{background:var(--teal)}
+.wcard .wl{display:block;margin-top:10px;font-weight:700;color:var(--teal)}
+.steps.s5{grid-template-columns:repeat(5,minmax(0,1fr))}
+@media(max-width:1100px){.steps.s5{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:700px){.steps.s5{grid-template-columns:1fr}}
