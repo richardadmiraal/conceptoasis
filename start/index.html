@@ -16,6 +16,7 @@ form.su .ckg label{display:flex;gap:10px;align-items:flex-start;font-weight:500}
 .ckg input{width:20px!important;height:20px;margin:2px 0 0!important;flex:none}
 fieldset{border:0;padding:0;margin:0}
 legend{font:700 14px Inter,sans-serif;color:var(--char);padding:0}
+.fl2{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px 16px;margin-top:8px}@media(max-width:860px){.fl2{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -26,14 +27,14 @@ legend{font:700 14px Inter,sans-serif;color:var(--char);padding:0}
     <a href="../#services">Services</a>
     <a href="../#portfolio">Portfolio</a>
     <a href="../#projects">Projects</a>
-    <a class="btn btn-dark" href="#intake">Start</a>
+    <a class="btn btn-dark" href="#intake">Get your report</a>
   </nav>
 </div></header>
 
 <section class="hero" style="padding-bottom:30px"><div class="wrap" style="display:block">
-  <span class="tag">ConceptOasis · <b>start a project</b></span>
-  <h1>Digitize your sales and workflows</h1>
-  <p class="lead">Tell us about the work you want to move online: how customers find you, ask for a quote, get onboarded, approved or reported to. We'll reply with how we'd reimagine it and what a first working version could look like.</p>
+  <span class="tag">ConceptOasis · <b>the Workflow Report</b></span>
+  <h1>Get your Workflow Report</h1>
+  <p class="lead">Share your existing strategic plan, sales forms and websites, and tell us about the work you want to move online. We'll review what you send and create a Workflow Report for your enterprise: where the work slows down, what to digitize first, and what it could look like.</p>
   <div class="steps s5" style="margin-top:22px">
     <div><b>1</b><h3>Attend</h3><p>We listen to how the work really gets done.</p></div>
     <div><b>2</b><h3>Reimagine</h3><p>A clear map and summary of what it could be.</p></div>
@@ -44,9 +45,9 @@ legend{font:700 14px Inter,sans-serif;color:var(--char);padding:0}
 </div></section>
 
 <section class="s alt" id="intake"><div class="wrap">
-  <span class="kick">Project intake</span>
-  <h2>Tell us about your workflow</h2>
-  <p class="lead">A few minutes now helps us come prepared. We'll reply with next steps. Nothing is built or charged until you approve it.</p>
+  <span class="kick">Workflow Report request</span>
+  <h2>Tell us about your workflow, and share what you have</h2>
+  <p class="lead">A few minutes now helps us come prepared. We'll reply with next steps. Your documents stay private and are used only to prepare your report. Nothing is built or charged until you approve it.</p>
   <form class="su" id="su" novalidate>
     <label>Your name<input name="name" autocomplete="name" required></label>
     <label>Email<input name="email" type="email" autocomplete="email" required></label>
@@ -66,13 +67,20 @@ legend{font:700 14px Inter,sans-serif;color:var(--char);padding:0}
         <label><input type="checkbox" name="jobs" value="An AI assistant (xo-ai)"> An AI assistant (xo-ai)</label>
       </div>
     </fieldset>
+    <fieldset class="full"><legend>Share what you have <span style="font-weight:400;color:var(--mute)">(links to a shared folder or document are perfect)</span></legend>
+      <div class="fl2">
+        <label>Your existing websites<input name="websites" inputmode="url" placeholder="https://"></label>
+        <label>Your existing strategic plan <span>(link)</span><input name="plan_link" inputmode="url" placeholder="Shared link, or attach to the email"></label>
+        <label>Your existing sales forms <span>(links)</span><input name="forms_link" inputmode="url" placeholder="Shared link, or attach to the email"></label>
+      </div>
+    </fieldset>
     <label class="full">How does it work today? <span>(paper, spreadsheets, email, a CRM)</span><input name="tools"></label>
     <label class="full">What would a win look like in 90 days?<textarea name="win" rows="3"></textarea></label>
     <label class="full">Anything else? <span>(limits, privacy needs, questions)</span><textarea name="notes" rows="2"></textarea></label>
     <label class="ck full"><input type="checkbox" name="consent" required> <span>I agree that ConceptOasis may contact me about this request. We keep your details private and use them only for this request.</span></label>
-    <div class="full"><button class="btn btn-dark" type="submit">Send my intake &rarr;</button> <span class="note" id="sumsg"></span></div>
+    <div class="full"><button class="btn btn-dark" type="submit">Request my Workflow Report &rarr;</button> <span class="note" id="sumsg"></span></div>
   </form>
-  <div class="ok" id="suok">Thank you! We've got your project details and will be in touch soon. Questions? <a href="mailto:info@conceptoasis.com">info@conceptoasis.com</a></div>
+  <div class="ok" id="suok">Thank you! We've got your request. If your plan or forms are files, reply to the email with them attached, and we'll start on your Workflow Report. Questions? <a href="mailto:info@conceptoasis.com">info@conceptoasis.com</a></div>
 </div></section>
 
 <footer><div class="wrap">
@@ -97,7 +105,7 @@ legend{font:700 14px Inter,sans-serif;color:var(--char);padding:0}
       if(el.name==='jobs'){ if(el.checked) jobs.push(el.value); return; }
       d[el.name]=el.type==='checkbox'?(el.checked?'Yes':'No'):el.value.trim(); });
     d.jobs=jobs.join('; ');
-    d._subject='Project intake: '+(d.company||d.name)+' ('+d.orgtype+')';
+    d._subject='Workflow Report request: '+(d.company||d.name)+' ('+d.orgtype+')';
     function done(){ f.style.display='none'; ok.style.display='block'; ok.scrollIntoView({behavior:'smooth',block:'center'}); }
     if(ENDPOINT){ fetch(ENDPOINT,{method:'POST',headers:{'Accept':'application/json','Content-Type':'application/json'},body:JSON.stringify(d)}).then(function(r){ if(!r.ok) throw 0; done(); }).catch(function(){ msg.textContent='That did not go through. Please email '+TO+'.'; }); return; }
     var body=Object.keys(d).filter(function(k){ return k!=='_subject'; }).map(function(k){ return k+': '+d[k]; }).join('\n');
