@@ -86,6 +86,7 @@ input:focus,select:focus,textarea:focus{outline:0;border-color:var(--f-teal);box
 .files li span{font:600 10px var(--mono);padding:2px 6px;border-radius:6px;background:#fdeef5;color:#a3245f}
 .files li b{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:500}
 .files li button{border:0;background:none;font-size:18px;color:var(--mute);cursor:pointer}
+.seg5{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:4px}.seg5 button{padding:8px 12px;border-radius:10px;border:1px solid #d3d8e0;background:#fff;font:500 13px Inter,sans-serif;cursor:pointer}.seg5 button.on{background:var(--f-teal);border-color:var(--f-teal);color:#fff}
 .hellos{display:grid;gap:8px}
 .hellos button{text-align:left;padding:12px 14px;border:1px solid var(--line);border-radius:12px;background:#fff;font:500 14.5px Inter,sans-serif;color:var(--ink);cursor:pointer}
 .hellos button.on{border-color:var(--f-teal);background:#f2fbfb}
@@ -160,6 +161,7 @@ input:focus,select:focus,textarea:focus{outline:0;border-color:var(--f-teal);box
   </div>
   <div class="pm-path">
     <b>Strategic planning that ends with your website</b>
+    <p style="margin:8px 0 0;font-size:13.5px;color:var(--char2)">Start with a white empty sheet: a whiteboard, a blackboard. Step one is to organize. Bring in some help, form the board and assign roles.</p>
     <ol>
       <li>Seat your board</li>
       <li>Show us how your orders come in</li>
@@ -196,8 +198,8 @@ input:focus,select:focus,textarea:focus{outline:0;border-color:var(--f-teal);box
 
     <!-- 2 ORDERS -->
     <div class="step">
-      <h2>How do your orders come in?</h2>
-      <p class="mute">Show us the paperwork you already use. A sales invoice and a delivery receipt tell us more than a meeting.</p>
+      <h2>What do your invoices say? What do your receipts tell you?</h2>
+      <p class="mute">The literature of your company: your invoices, receipts and website show who&rsquo;s buying and what they&rsquo;re buying. Show us the paperwork you already use.</p>
       <div class="fl">
         <label>Company<input id="co" placeholder="e.g. Valley Coffee Roasters"></label>
         <label>Your current website<input id="web" inputmode="url" placeholder="https://"></label>
@@ -206,7 +208,7 @@ input:focus,select:focus,textarea:focus{outline:0;border-color:var(--f-teal);box
       <ul class="files" id="flist"></ul>
       <div class="q">Orders come in by <span>(pick any)</span></div>
       <div class="pills" data-k="via"></div>
-      <div class="fl" style="margin-top:14px"><label class="full">Describe it <span>(from first hello to paid and delivered)</span><textarea id="desc" rows="3" placeholder="e.g. Customers call or email, we write up an invoice, they pay by e-transfer, we deliver on Fridays"></textarea></label></div>
+      <div class="fl" style="margin-top:14px"><label class="full">Who&rsquo;s buying, and what are they buying?<input id="buying" placeholder="e.g. Offices buy monthly subscriptions; families buy gift boxes at Christmas"></label><label class="full">How do orders come in? <span>(from first hello to paid and delivered)</span><textarea id="desc" rows="3" placeholder="e.g. Customers call or email, we write up an invoice, they pay by e-transfer, we deliver on Fridays"></textarea></label></div>
       <div class="nav2"><button class="btn btn-line" data-prev>&larr; Back</button><button class="btn btn-dark" data-next>Next: Order form &rarr;</button></div>
     </div>
 
@@ -251,7 +253,9 @@ input:focus,select:focus,textarea:focus{outline:0;border-color:var(--f-teal);box
     <!-- 6 HELLO -->
     <div class="step">
       <h2>How best to say hello?</h2>
-      <p class="mute">The first words on your website. Pick one to start from, or write your own.</p>
+      <p class="mute">How good are you at front-facing your customer today?</p>
+      <div class="seg5" id="ffRate"></div>
+      <p class="mute" style="margin-top:14px">The first words on your website. Pick one to start from, or write your own.</p>
       <div class="hellos" id="hellos"></div>
       <div class="fl" style="margin-top:12px"><label class="full">Or write your own<input id="hello" placeholder="Your hello"></label></div>
       <div class="nav2"><button class="btn btn-line" data-prev>&larr; Back</button><button class="btn btn-dark" data-next>Next: Your website &rarr;</button></div>
@@ -309,7 +313,8 @@ input:focus,select:focus,textarea:focus{outline:0;border-color:var(--f-teal);box
     ['xo','An xo-ai assistant','Answers customer questions and helps your team, with a person in charge'],
     ['sailz','Sailz writes your website','Your story and pages, written in your voice']
   ];
-  var S={seats:{},sel:{via:[],fields:['Name','Email','Phone','Quantity','Delivery or pickup'],are:[],care:[]},hello:'',helloPick:-1,ups:['store'],files:[],seat:2,step:0};
+  var FF=['1 \u00b7 We\u2019re hard to find','2 \u00b7 Basic','3 \u00b7 Okay','4 \u00b7 Good','5 \u00b7 Customers love it'];
+  var S={ff:0,seats:{},sel:{via:[],fields:['Name','Email','Phone','Quantity','Delivery or pickup'],are:[],care:[]},hello:'',helloPick:-1,ups:['store'],files:[],seat:2,step:0};
   var $=function(id){return document.getElementById(id)};
   function esc(t){var d=document.createElement('div');d.textContent=t==null?'':t;return d.innerHTML}
   function val(id){return ($(id).value||'').trim()}
@@ -363,6 +368,7 @@ input:focus,select:focus,textarea:focus{outline:0;border-color:var(--f-teal);box
   }
   function drawHellos(){var h=hellos();$('hellos').innerHTML=h.map(function(t,i){return '<button type="button" class="'+(S.helloPick===i&&!val('hello')?'on':'')+'">'+esc(t)+'</button>'}).join('');
     [].forEach.call($('hellos').children,function(b,i){b.onclick=function(){S.helloPick=i;$('hello').value='';drawHellos();upd()}})}
+  function drawFF(){$('ffRate').innerHTML=FF.map(function(t,i){return '<button type="button" class="'+(S.ff===i+1?'on':'')+'">'+esc(t)+'</button>'}).join('');[].forEach.call($('ffRate').children,function(b,i){b.onclick=function(){S.ff=i+1;drawFF();save()}})}
   function hello(){return val('hello')||(S.helloPick>-1?hellos()[S.helloPick]:'')}
   // ---- upsells ----
   function drawUps(){$('upl').innerHTML=UPS.map(function(u){return '<label><input type="checkbox" data-u="'+u[0]+'"'+(S.ups.indexOf(u[0])>-1?' checked':'')+'><span><b>'+esc(u[1])+'</b><small>'+esc(u[2])+'</small></span></label>'}).join('');
@@ -407,7 +413,7 @@ input:focus,select:focus,textarea:focus{outline:0;border-color:var(--f-teal);box
     if(!$('ok').checked){e.textContent='Please tick the consent box.';return}
     var d={name:val('nm'),email:val('em'),position:val('pos'),phone:val('ph'),company:val('co'),website:val('web'),
       board:ROLES.map(function(r,i){return i===1?null:(r+(i===0?' (2 seats, 2 votes)':'')+': '+(S.seats[i]||'open'))}).filter(Boolean).join('; '),
-      orders_via:S.sel.via.join('; '),orders_described:val('desc'),documents:S.files.map(function(f){return f.name}).join('; ')||'None uploaded',
+      front_facing_today:S.ff?FF[S.ff-1]:'-',whos_buying:val('buying'),orders_via:S.sel.via.join('; '),orders_described:val('desc'),documents:S.files.map(function(f){return f.name}).join('; ')||'None uploaded',
       customers_order:val('what'),form_fields:S.sel.fields.join('; '),online_payment:$('pay').checked?'Yes':'No',coupons:$('cpn').checked?'Yes':'No',delivery_receipt:$('rcpt').checked?'Yes':'No',
       who_we_are:val('who'),what_we_do:val('doo'),where:val('where'),brand_colour:$('brand').value,target_customer:val('tgt'),they_are:S.sel.are.join('; '),they_care_about:S.sel.care.join('; '),hello:hello(),
       add_ons:S.ups.map(function(u){return UPS.filter(function(y){return y[0]===u})[0][1]}).join('; ')};
@@ -420,8 +426,8 @@ input:focus,select:focus,textarea:focus{outline:0;border-color:var(--f-teal);box
     location.href='mailto:'+TO+'?subject='+encodeURIComponent(d._subject)+'&body='+encodeURIComponent(body);
     done(S.files.length?'One more step: please attach your invoice and receipt to the email that just opened, then send it. We’ll reply with your Workflow Report and next steps.':null);
   }
-  var F=['co','web','desc','what','who','doo','brand','where','tgt','hello','nm','em','pos','ph'];
-  function save(){try{var o={S:{seats:S.seats,sel:S.sel,helloPick:S.helloPick,ups:S.ups,seat:S.seat,step:S.step},f:{},t:{pay:$('pay').checked,cpn:$('cpn').checked,rcpt:$('rcpt').checked}};F.forEach(function(id){o.f[id]=$(id).value});localStorage.setItem('coco_pm',JSON.stringify(o))}catch(x){}}
+  var F=['co','web','buying','desc','what','who','doo','brand','where','tgt','hello','nm','em','pos','ph'];
+  function save(){try{var o={S:{ff:S.ff,seats:S.seats,sel:S.sel,helloPick:S.helloPick,ups:S.ups,seat:S.seat,step:S.step},f:{},t:{pay:$('pay').checked,cpn:$('cpn').checked,rcpt:$('rcpt').checked}};F.forEach(function(id){o.f[id]=$(id).value});localStorage.setItem('coco_pm',JSON.stringify(o))}catch(x){}}
   function restore(){try{var o=JSON.parse(localStorage.getItem('coco_pm')||'null');if(!o)return;F.forEach(function(id){if(o.f&&o.f[id]!=null)$(id).value=o.f[id]});if(o.S){for(var k in o.S)S[k]=o.S[k]}if(o.t){$('pay').checked=o.t.pay;$('cpn').checked=o.t.cpn;$('rcpt').checked=o.t.rcpt}if(S.step>LAST)S.step=0}catch(x){}}
 
   restore();
@@ -432,7 +438,7 @@ input:focus,select:focus,textarea:focus{outline:0;border-color:var(--f-teal);box
   tabs.forEach(function(t,i){t.onclick=function(){go(i)}});
   $('next').onclick=function(){S.step<LAST?go(S.step+1):send()};
   $('send').onclick=send;
-  drawBoard();fillEd();drawPills();drawFiles();upd();go(S.step||0);
+  drawBoard();fillEd();drawPills();drawFiles();drawFF();upd();go(S.step||0);
 })();
 </script>
 </body>
