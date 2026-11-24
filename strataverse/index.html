@@ -434,6 +434,14 @@ body.sbs-mode .seat.pill{max-width:104px;padding:2px 7px 2px 2px;gap:4px}body.sb
 .pt-grid .ptd{font:700 10px var(--mono);color:#d6f5a8}
 .pt-note{position:relative;z-index:1;margin:44px 0 0;font-size:12px;color:#d7fbe9}
 body.sbs-mode #g12P,body.sbs-mode #portalP{display:none!important}
+
+.seat.pill.reserved{border-style:dashed;border-color:#6b4fd8;background:linear-gradient(115deg,#ece7ff,#fff 80%)}
+.seat.pill.reserved .av.empty{border-color:#6b4fd8;color:#6b4fd8}
+.story{margin-top:14px;border:1.5px solid #0b0b0d;border-radius:14px;padding:12px;background:linear-gradient(160deg,#fff6fb,#fff 60%)}
+.st-h{display:flex;gap:8px;align-items:baseline;flex-wrap:wrap}.st-h b{font:700 15px "Inter Tight",Inter,sans-serif}
+.st-body{margin-top:8px;font:15px/1.65 Georgia,"Times New Roman",serif;color:#0b0b0d;min-height:60px;outline:0}
+.st-body p{margin:0 0 10px}.st-body .kick{font:700 10px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:#e0458f;margin-bottom:4px}
+.st-body h4{margin:0 0 8px;font:700 20px/1.2 "Inter Tight",Inter,sans-serif}
 .fbox{padding:12px;border:1.5px solid #0b0b0d;border-radius:14px;background:#fff;margin-top:12px;min-width:0}
 .fgrid .fbox{margin-top:0}
 .tblwrap{overflow-x:auto}
@@ -597,6 +605,11 @@ body.sbs-mode #g12P,body.sbs-mode #portalP{display:none!important}
           <h3 style="margin:0">The minutes <span class="muted" id="docState"></span></h3>
           <div class="docbody" id="docBody" spellcheck="true"></div>
           <div class="row" style="margin-top:10px"><button class="btn btn-ghost btn-sm" id="docGen" type="button">xo-ai, write the minutes</button><button class="btn btn-sv btn-sm" id="docPub" type="button">Publish to the strata portal</button></div>
+          <div class="story" id="storyBox">
+            <div class="st-h"><b>The background story</b><span class="muted" id="stBy">by the mediabloom board correspondent</span></div>
+            <div class="st-body" id="stBody" contenteditable="true" spellcheck="true"></div>
+            <div class="row" style="margin-top:8px"><button class="btn btn-ghost btn-sm" id="stGen" type="button">Draft the background story</button><button class="btn btn-ghost btn-sm" id="stShare" type="button">Send to SharedPromoPage for approval</button></div>
+          </div>
           <p class="note">xo-ai writes the minutes from the record in Robert&rsquo;s Rules form. Anyone at the table can edit them until they&rsquo;re published; publishing locks them and files them in the Minutes binder.</p>
         </div>
       </div>
@@ -723,7 +736,7 @@ body.sbs-mode #g12P,body.sbs-mode #portalP{display:none!important}
 
   <aside>
     <div class="panel ledgerP" id="ledgerP">
-      <div class="lg-top"><h2>The ledger</h2><span class="muted" style="font-size:12px">following the agenda</span></div>
+      <div class="lg-top"><h2>The ledger</h2><span class="muted" style="font-size:12px" id="lgKeeper">following the agenda</span></div>
       <div class="lg-now"><button type="button" id="lgPrev" aria-label="Previous agenda item">&larr;</button><b id="lgItem"></b><button type="button" id="lgNext">Next item &rarr;</button></div>
       <div class="lg-smp" id="lgSample"><span>Sample dialogue to show how it reads. Type below to add real entries.</span><button type="button" id="lgClear">Clear sample</button></div>
       <ol class="ledger" id="ledger"></ol>
@@ -856,10 +869,11 @@ body.sbs-mode #g12P,body.sbs-mode #portalP{display:none!important}
       b.type='button';b.className='seat'+(S.me===key?' me':'');b.style.left=x+'%';b.style.top=y+'%';
       b.style.setProperty('--c',st.mono?'#0b0b0d':POSC[p]);
       var lbl=p==='President'&&S.two?'President · '+(i+1):p.replace('Vice President','Vice Pres').replace('President-elect','Pres-elect').replace('Past President','Past Pres');
+      var rv=(S.reserved||{})[key];if(rv)lbl=rv;
       var av=person&&person.av?' style="background-image:url('+person.av+');color:transparent"':'';
-      b.className+=' pill'+(person?'':' open');
-      b.innerHTML='<span class="av'+(person?'':' empty')+'"'+av+'>'+esc(person?initials(person.name):'+')+'</span><span class="pt"><b>'+esc(person?person.name:'Open seat')+'</b><small>'+esc(lbl)+'</small></span>'+(person&&person.ai?'<span class="ai">AI</span>':'')+(person&&person.msgs&&person.msgs.length?'<span class="dot" title="'+person.msgs.length+' message(s)"></span>':'');
-      b.setAttribute('aria-label',p+(person?': '+person.name:': open seat, sign in here'));
+      b.className+=' pill'+(person?'':' open')+(rv&&!person?' reserved':'');
+      b.innerHTML='<span class="av'+(person?'':' empty')+'"'+av+'>'+esc(person?initials(person.name):'+')+'</span><span class="pt"><b>'+esc(person?person.name:(rv?'Reserved':'Open seat'))+'</b><small>'+esc(lbl)+'</small></span>'+(person&&person.ai?'<span class="ai">AI</span>':'')+(person&&person.msgs&&person.msgs.length?'<span class="dot" title="'+person.msgs.length+' message(s)"></span>':'');
+      b.setAttribute('aria-label',(rv||p)+(person?': '+person.name:(rv?': reserved seat':': open seat, sign in here')));
       b.onclick=function(){openSeat(key,p)};
       r.appendChild(b);
     });
@@ -931,7 +945,7 @@ body.sbs-mode #g12P,body.sbs-mode #portalP{display:none!important}
   }
   // ---- decisions: pending, in play, decided ----
   // ---- motions: moved (by the President or from the floor), seconded, voted director by director ----
-  function voters(){var v=[];var pos=positions(S.seats);Object.keys(S.people).forEach(function(k){var p=S.people[k];if(!p.ai)v.push({key:'s'+k,name:p.name,pos:p.pos})});if(S.dealer.name&&!S.dealer.away)v.push({key:'dealer',name:S.dealer.name,pos:'Director ('+(S.dealer.title||'dealer')+')'});return v}
+  function voters(){var v=[];var pos=positions(S.seats);Object.keys(S.people).forEach(function(k){var p=S.people[k],rv=(S.reserved||{})[k]||'';if(!p.ai&&!/correspondent/i.test(rv))v.push({key:'s'+k,name:p.name,pos:p.pos})});if(S.dealer.name&&!S.dealer.away)v.push({key:'dealer',name:S.dealer.name,pos:'Director ('+(S.dealer.title||'dealer')+')'});return v}
   function counts(p){var c={for:0,against:0,abstain:0};Object.keys(p.votes||{}).forEach(function(k){c[p.votes[k]]++});return c}
   function myKey(){return S.me>-1&&S.people[S.me]&&!S.people[S.me].ai?'s'+S.me:null}
   function drawPlay(){
@@ -1050,9 +1064,10 @@ body.sbs-mode #g12P,body.sbs-mode #portalP{display:none!important}
       8:seat('C-KAI','Director',true,'admiraal.ca'),
       9:seat('Sailz','Director',true,'sales language')
     };
+    S.reserved={10:'mediabloom board correspondent',11:'RCM · ledger · recomemo rep'};
     S.me=0;
     $('strata').oninput();drawStyles();drawRoom();drawOwners();save();
-    chatAdd('xo-ai','Welcome to the co|co board. Richard is in the President’s seat. The AI agents sit as advisors: we suggest and keep the records, and the people at this table make every decision. Five seats are open for the people you bring in.','xo');
+    chatAdd('xo-ai','Welcome to the co|co board. Richard is in the President’s seat. The AI agents sit as advisors: we suggest and keep the records, and the people at this table make every decision. Two seats are reserved: a mediabloom board correspondent, who writes the background story, and RCM, the recomemo representative who keeps the ledger. Three more are open for the people you bring in.','xo');
     $('room').scrollIntoView({behavior:'smooth'});
   };
 
@@ -1244,6 +1259,7 @@ body.sbs-mode #g12P,body.sbs-mode #portalP{display:none!important}
   function ledgerAdd(who,text,ai,sample){S.ledger=S.ledger||[];var pp=null;Object.keys(S.people).forEach(function(k){if(S.people[k].name===who)pp=S.people[k]});
     S.ledger.push({i:S.agi||0,who:who,pos:pp?pp.pos:(ai?'xo-ai':''),av:pp?pp.av:'',ai:!!ai,text:text,t:stamp(),sample:!!sample});if(S.ledger.length>400)S.ledger.shift();drawLedger();save()}
   function drawLedger(){
+    var rk=Object.keys(S.reserved||{}).filter(function(k){return /RCM/.test(S.reserved[k])})[0];$('lgKeeper').textContent='following the agenda'+(rk!=null?' · kept by '+(S.people[rk]?S.people[rk].name+', ':'')+'RCM, recomemo rep':'');
     if($('agenda')&&!drawLedger.busy){drawLedger.busy=true;drawAgenda();drawLedger.busy=false}
     var A=agendaList(), L=S.ledger||[], cur=S.agi||0, sample=L.some(function(x){return x.sample});
     $('lgItem').textContent=(cur+1)+'. '+(A[cur]||'');
@@ -1421,6 +1437,22 @@ body.sbs-mode #g12P,body.sbs-mode #portalP{display:none!important}
     $('ptEv').innerHTML=S.events.filter(function(e){return e.portal&&e.date>=today}).slice(0,6).map(function(e){return '<li><span class="ptd">'+esc(nice(e.date))+'</span><br>'+esc(e.title)+'</li>'}).join('')||'<li><small>Nothing scheduled.</small></li>';
     $('ptTr').innerHTML=S.trades.filter(function(t){return t.portal}).map(function(t){return '<li><b>'+esc(t.name)+'</b> · '+esc(t.trade)+'<small>'+esc(t.contact)+(t.offer?' · '+esc(t.offer):'')+'</small></li>'}).join('')||'<li><small>No recommended trades shared.</small></li>';
     $('ptNews').innerHTML=(S.promo||[]).slice(0,4).map(function(x){return '<li>'+esc(x.text)+'<small>'+esc(x.t)+'</small></li>'}).join('')||'<li><small>Approved updates from SharedPromoPage appear here.</small></li>'}
+
+  // ---- mediabloom: the background story, written by the board correspondent ----
+  function correspondent(){var k=Object.keys(S.reserved||{}).filter(function(k){return /correspondent/i.test(S.reserved[k])})[0];return k!=null&&S.people[k]?S.people[k].name:''}
+  function genStory(){var nm=strata()||'the board',done=S.dec.done.filter(function(d){return /^Carried/.test(d.result)}),real=(S.ledger||[]).filter(function(x){return !x.sample&&!x.ai}),ev=(S.events||[]).filter(function(e){return e.portal&&e.date>=iso(new Date())}).slice(0,2);
+    var by=correspondent();
+    var h='<div class="kick">mediabloom &middot; from the board room</div><h4>'+esc(done.length?'Inside '+nm+': '+done.length+' decision'+(done.length===1?'':'s')+' at this meeting':'Inside '+nm+': a meeting at the table')+'</h4>';
+    h+='<p>'+esc(nm)+'&rsquo;s council met '+(S.dealer.away?'without the '+((S.dealer.title||'property manager').toLowerCase())+' at the table, ':'')+'with xo-ai keeping the record'+(real.length?' and '+real.length+' contribution'+(real.length===1?'':'s')+' entered in the ledger':'')+'.</p>';
+    if(done.length)h+='<p>'+done.slice().reverse().map(function(d){return 'Council agreed to '+esc(d.text.charAt(0).toLowerCase()+d.text.slice(1).replace(/\.$/,'').replace(/^adopt /,'adopt '))+(d.c?' ('+d.c.for+' in favour'+(d.c.against?', '+d.c.against+' opposed':'')+')':'')}).join('. ')+'.</p>';
+    if(real.length)h+='<p>From the ledger: &ldquo;'+esc(real[real.length-1].text)+'&rdquo; ('+esc(real[real.length-1].who)+').</p>';
+    if(ev.length)h+='<p>Coming up: '+ev.map(function(e){return esc(e.title)+' on '+esc(nice(e.date))}).join('; ')+'.</p>';
+    h+='<p><i>'+(by?'By '+esc(by)+', mediabloom board correspondent.':'Drafted by xo-ai for the mediabloom board correspondent.')+' Draft until a director approves it.</i></p>';
+    return h}
+  function drawStory(){$('stBody').innerHTML=S.story||'<p class="muted" style="font:13px Inter,sans-serif">The correspondent tells the story behind the minutes: what was decided, why it matters to owners, and what&rsquo;s coming up. Tap Draft to start from the record.</p>';var by=correspondent();$('stBy').textContent=by?'by '+by+', mediabloom board correspondent':'by the mediabloom board correspondent (seat reserved)'}
+  $('stGen').onclick=function(){S.story=genStory();drawStory();save()};
+  $('stBody').addEventListener('input',function(){S.story=this.innerHTML;save()});
+  $('stShare').onclick=function(){if(!S.story){S.story=genStory();drawStory()}var t=$('stBody').innerText.replace(/\s+/g,' ').trim().slice(0,400);S.promoDrafts=S.promoDrafts||[];S.promoDrafts.unshift({text:t,t:stamp()});drawPromo();save();chatAdd('xo-ai','The background story is in SharedPromoPage as a draft. A director approves it before owners see it.','xo')};
   // ---- tabs, controls ----
   function showPane(p){if(p==='doc'){if(!S.pub&&!S.docEdited){S.docHtml=genMinutes();drawDoc()}document.getElementById('agPanel').scrollIntoView({behavior:'smooth',block:'start'});return}[].forEach.call(document.querySelectorAll('#tabs2 button'),function(b){b.classList.toggle('on',b.getAttribute('data-p')===p)});[].forEach.call(document.querySelectorAll('.pane'),function(x){x.classList.toggle('on',x.id==='p-'+p)})}
   [].forEach.call(document.querySelectorAll('#tabs2 button'),function(b){b.onclick=function(){showPane(b.getAttribute('data-p'))}});
@@ -1430,7 +1462,7 @@ body.sbs-mode #g12P,body.sbs-mode #portalP{display:none!important}
   $('joinBtn').onclick=function(){$('room').scrollIntoView({behavior:'smooth'});var pos=positions(S.seats);for(var i=0;i<pos.length;i++){if(S.two&&i===1)continue;if(!S.people[i]){var k=i;setTimeout(function(){openSeat(k,pos[k])},450);return}}};
   function save(){try{localStorage.setItem('coco_sv2',JSON.stringify({S:S,strata:$('strata').value}))}catch(x){}}
   function restore(){try{var o=JSON.parse(localStorage.getItem('coco_sv2')||'null');if(!o)return;for(var k in o.S)S[k]=o.S[k];$('strata').value=o.strata||'';$('seats').value=String(S.seats);$('twoVotes').checked=!!S.two}catch(x){}}
-  restore();if(!S.chat)S.chat=[];if(!S.promo)S.promo=[];if(!S.docs)S.docs=SAMPLE_DOCS.slice();$('strata').oninput();drawStyles();drawRoom();drawOwners();drawMin();drawTodo();drawDec();drawChat();drawPromo();drawShelf();drawAgenda();drawDoc();drawFin();if(!S.ledger){S.ledger=LEDGER_SAMPLE.map(function(r){return {i:r[0],who:r[1],pos:'',av:'',ai:r[3],text:r[2],t:'7:0'+r[0]+' p.m.',sample:true}});S.agi=6}drawLedger();drawMaint();drawOrg();drawG12();
+  restore();if(!S.chat)S.chat=[];if(!S.promo)S.promo=[];if(!S.docs)S.docs=SAMPLE_DOCS.slice();$('strata').oninput();drawStyles();drawRoom();drawOwners();drawMin();drawTodo();drawDec();drawChat();drawPromo();drawShelf();drawAgenda();drawDoc();drawFin();if(!S.ledger){S.ledger=LEDGER_SAMPLE.map(function(r){return {i:r[0],who:r[1],pos:'',av:'',ai:r[3],text:r[2],t:'7:0'+r[0]+' p.m.',sample:true}});S.agi=6}drawLedger();drawMaint();drawOrg();drawG12();drawStory();
 })();
 </script>
 </body>
