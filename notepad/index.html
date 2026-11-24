@@ -102,12 +102,13 @@ label.ck{display:flex;gap:8px;align-items:flex-start;font-size:13px;margin-top:1
       <div class="card">
         <h2>Organizer pills <span class="pill">top of every pad</span></h2>
         <div class="olib" id="olib"></div>
-        <p class="hint" style="margin-top:0">Tap a pill to put it on top of every pad. Drag one onto a single strip&rsquo;s header to give that pad its own agent, so three agents can share one sheet.</p>
+        <p class="hint" style="margin-top:0">Tap a pill to put it on top of every pad. Drag one onto a strip&rsquo;s header to give that pad its own agent, or into a spot: the organizer holds one of the twelve, so a pad is you plus up to eleven merchants.</p>
         <button class="btn" type="button" id="oAdd" style="margin-top:6px">+ Organizer pill</button>
         <div class="row2">
           <label class="f">Role<select id="oRole"><option>Organizer</option><option>Agent</option><option>Broker</option><option>Team</option><option>Sponsor</option></select></label>
           <label class="f">Colour<select id="oCol"><option value="#0b0b0d">Black</option><option value="#16a3a6">Teal</option><option value="#e9b44c">Gold</option><option value="#e0458f">Pink</option><option value="#2a5bd7">Blue</option><option value="#6b4fd8">Violet</option></select></label>
         </div>
+        <label class="f">Their spot on the pad (one of the 12)<input id="oOff" maxlength="40" placeholder="e.g. Free home value report"></label>
         <label class="f">Name<input id="oName" placeholder="Your name" autocomplete="name"></label>
         <label class="f">Brokerage<input id="oBrok" placeholder="Your brokerage (printed on every pad)"></label>
         <div class="row2">
@@ -195,7 +196,7 @@ label.ck{display:flex;gap:8px;align-items:flex-start;font-size:13px;margin-top:1
       {id:'s2',mer:'Your corner barber',off:'$10 off a haircut',det:'Sample. One per visit',use:'twice',exp:'',col:'#e0458f',code:code(),sample:true},
       {id:'s3',mer:'Your skate shop',off:'$2 off skate sharpening',det:'Sample. Every time you come in',use:'again',exp:'',col:'#16a3a6',code:code(),sample:true}
     ],
-    pages:1, total:20, rot:false, slots:{1:['s1','s2','s3']}, cur:1, sel:null, hdr:{mode:'org',text:'',coupon:''}, qty:100
+    pages:1, total:20, rot:false, slots:{1:['org:o1','s1','s2','s3']}, cur:1, sel:null, hdr:{mode:'org',text:'',coupon:''}, qty:100
   };
   try{ var saved=JSON.parse(localStorage.getItem(KEY)||'null'); if(saved&&saved.coupons) S=Object.assign(S,saved); }catch(e){}
   if(!S.orgs){ S.orgs=[Object.assign({id:'o1',role:'Organizer',col:'#0b0b0d'},S.org||{})]; S.orgId='o1'; }
@@ -209,7 +210,13 @@ label.ck{display:flex;gap:8px;align-items:flex-start;font-size:13px;margin-top:1
   function ini(s){return String(s||'?').split(/\s+/).map(function(w){return w[0]||''}).join('').slice(0,2).toUpperCase()}
   function useLabel(u){return u==='once'?'Use once':u==='twice'?'Use up to twice':'Use again and again'}
   function byId(id){return S.coupons.filter(function(c){return c.id===id})[0]}
-  function qrUrl(c){ return 'https://coupon.recomemo.com/r/'+c.code; }
+  function qrUrl(c){ return c.qr||('https://coupon.recomemo.com/r/'+c.code); }
+  // a spot holds a coupon id, or 'org:<id>' for an organizer's own recomemo pill
+  function card(id){ if(!id) return null; if(String(id).indexOf('org:')!==0) return byId(id);
+    var o=orgById(id.slice(4)); if(!o) return null; if(!o.code){ o.code=code(); save(); }
+    var site=(o.site||'').trim();
+    return {mer:[o.name||'Your name',o.brok].filter(Boolean).join(' · '), ini:ini(o.name), off:o.off||'Ask me what your home is worth', det:'', foot:[o.role||'Organizer',o.phone].filter(Boolean).join(' · '), col:o.col||'#0b0b0d', code:o.code,
+      qr: site?(/^https?:/i.test(site)?site:'https://'+site):'https://profile.recomemo.com/r/'+o.code, org:true}; }
   function qrSvg(text){ if(!window.qrcode) return '<svg viewBox="0 0 1 1" aria-hidden="true"><rect width="1" height="1" fill="#eee"/></svg>'; var q=qrcode(0,'M'); q.addData(text); q.make(); var n=q.getModuleCount(), r='';
     for(var y=0;y<n;y++) for(var x=0;x<n;x++) if(q.isDark(y,x)) r+='<rect x="'+x+'" y="'+y+'" width="1" height="1"/>';
     return '<svg viewBox="0 0 '+n+' '+n+'" aria-hidden="true" shape-rendering="crispEdges">'+r+'</svg>'; }
@@ -219,23 +226,23 @@ label.ck{display:flex;gap:8px;align-items:flex-start;font-size:13px;margin-top:1
     return S.slots[p]||[];
   }
 
-  [['oName','name'],['oBrok','brok'],['oPhone','phone'],['oSite','site']].forEach(function(p){
+  [['oOff','off'],['oName','name'],['oBrok','brok'],['oPhone','phone'],['oSite','site']].forEach(function(p){
     var el=$(p[0]); el.addEventListener('input',function(){ S.org[p[1]]=el.value; save(); drawSheet(); drawOrgs(); });
   });
   $('oRole').onchange=function(){ S.org.role=this.value; save(); drawOrgs(); };
   $('oCol').onchange=function(){ S.org.col=this.value; save(); drawOrgs(); drawSheet(); };
-  function fillOrg(){ $('oName').value=S.org.name||''; $('oBrok').value=S.org.brok||''; $('oPhone').value=S.org.phone||''; $('oSite').value=S.org.site||''; $('oRole').value=S.org.role||'Organizer'; $('oCol').value=S.org.col||'#0b0b0d'; }
+  function fillOrg(){ $('oOff').value=S.org.off||''; $('oName').value=S.org.name||''; $('oBrok').value=S.org.brok||''; $('oPhone').value=S.org.phone||''; $('oSite').value=S.org.site||''; $('oRole').value=S.org.role||'Organizer'; $('oCol').value=S.org.col||'#0b0b0d'; }
   function drawOrgs(){
     $('olib').innerHTML=S.orgs.map(function(o){
       return '<div class="rp organizer'+(o.id===S.orgId?' on':'')+'" draggable="true" data-org="'+o.id+'" style="--c:'+(o.col||'#0b0b0d')+'" tabindex="0" role="button" aria-pressed="'+(o.id===S.orgId)+'"><span class="dot">'+esc(ini(o.name))+'</span><span class="tx"><small>'+esc(o.brok||'Your brokerage')+'<span class="role">'+esc(o.role||'Organizer')+'</span></small><b>'+esc(o.name||'Your name')+'</b></span>'+(S.orgs.length>1?'<button class="x" type="button" data-odel="'+o.id+'" aria-label="Delete organizer pill">&times;</button>':'')+'</div>';
     }).join('');
     [].forEach.call($('olib').querySelectorAll('[data-org]'),function(el){
       el.addEventListener('dragstart',function(e){ e.dataTransfer.setData('text/plain','org:'+el.dataset.org); });
-      var pick=function(e){ if(e.target.closest('[data-odel]')) return; S.orgId=el.dataset.org; S.org=orgById(S.orgId); S.stripOrg=[null,null,null]; fillOrg(); save(); drawOrgs(); drawSheet(); };
+      var pick=function(e){ if(e.target.closest('[data-odel]')) return; if(S.sel!=null&&editable()){ place('org:'+el.dataset.org); return; } S.orgId=el.dataset.org; S.org=orgById(S.orgId); S.stripOrg=[null,null,null]; fillOrg(); save(); drawOrgs(); drawSheet(); };
       el.addEventListener('click',pick); el.addEventListener('keydown',function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); pick(e); } });
     });
     [].forEach.call($('olib').querySelectorAll('[data-odel]'),function(b){ b.onclick=function(){ var id=b.dataset.odel; S.orgs=S.orgs.filter(function(o){return o.id!==id});
-      S.stripOrg=S.stripOrg.map(function(x){return x===id?null:x}); if(S.orgId===id){ S.org=S.orgs[0]; S.orgId=S.org.id; fillOrg(); } save(); drawOrgs(); drawSheet(); }; });
+      S.stripOrg=S.stripOrg.map(function(x){return x===id?null:x}); Object.keys(S.slots).forEach(function(k){ S.slots[k]=(S.slots[k]||[]).map(function(x){return x==='org:'+id?null:x}); }); if(S.orgId===id){ S.org=S.orgs[0]; S.orgId=S.org.id; fillOrg(); } save(); drawOrgs(); drawSheet(); }; });
   }
   $('oAdd').onclick=function(){ var o={id:'o'+Date.now(),role:'Agent',col:'#2a5bd7',name:'',brok:S.org.brok||'',phone:'',site:''}; S.orgs.push(o); S.orgId=o.id; S.org=o; fillOrg(); save(); drawOrgs(); drawSheet(); $('oName').focus(); };
   function hdrUI(){ $('hTextL').hidden=S.hdr.mode!=='text'; $('hCouponL').hidden=S.hdr.mode!=='coupon';
@@ -289,7 +296,7 @@ label.ck{display:flex;gap:8px;align-items:flex-start;font-size:13px;margin-top:1
   }
   function orgHead(st){ var o=stripOrg(st);
     return '<div class="sh" data-st="'+st+'" style="--oc:'+(o.col||'#0b0b0d')+'"><span class="av">'+esc(ini(o.name))+'</span><div><b>'+esc(o.name||'Your name')+'</b><span>'+esc(o.brok||'Your brokerage')+'</span><span>'+esc([o.phone,o.site].filter(Boolean).join(' · '))+'</span></div></div>'; }
-  function cpnHtml(c){ return '<div class="cpn" style="--c:'+c.col+'"><span class="dot">'+esc(ini(c.mer))+'</span><span class="t"><small>'+esc(c.mer)+'</small><b>'+esc(c.off)+'</b><em>'+esc(useLabel(c.use))+(c.exp?' · until '+esc(c.exp):'')+'</em></span><span class="q">'+qrSvg(qrUrl(c))+'<span>'+c.code+'</span></span></div>'; }
+  function cpnHtml(c){ return '<div class="cpn" style="--c:'+c.col+'"><span class="dot">'+esc(c.ini||ini(c.mer))+'</span><span class="t"><small>'+esc(c.mer)+'</small><b>'+esc(c.off)+'</b><em>'+esc(c.foot!=null?c.foot:useLabel(c.use))+(c.exp?' · until '+esc(c.exp):'')+'</em></span><span class="q">'+qrSvg(qrUrl(c))+'<span>'+c.code+'</span></span></div>'; }
   function noteHead(st){
     if(S.hdr.mode==='text') return '<div class="sh"><div><b>'+esc(S.hdr.text||'Your custom header')+'</b><span>'+esc(stripOrg(st).brok||'Your brokerage')+'</span></div></div>';
     var c=S.hdr.mode==='coupon'?byId(S.hdr.coupon):null;
@@ -305,7 +312,7 @@ label.ck{display:flex;gap:8px;align-items:flex-start;font-size:13px;margin-top:1
     var arr=pageSlots(S.cur), ed=editable(); $('clearPage').disabled=!ed; $('delPage').hidden=S.pages<2;
     for(var s=0;s<3;s++){
       h+='<div class="strip">'+orgHead(s)+'<div class="slots">';
-      for(var r=0;r<ROWS;r++){ var i=s*ROWS+r, c=arr[i]?byId(arr[i]):null;
+      for(var r=0;r<ROWS;r++){ var i=s*ROWS+r, c=card(arr[i]);
         if(c) h+='<div class="slot full" data-i="'+i+'">'+cpnHtml(c)+(ed?'<button class="clr" type="button" data-clr="'+i+'" aria-label="Remove coupon">&times;</button>':'')+'</div>';
         else h+='<div class="slot'+(S.sel===i?' sel':'')+'" data-i="'+i+'" tabindex="0" role="button" aria-label="Empty spot '+(i+1)+'">'+(ed?(S.sel===i?'Now tap a pill':'Drop a coupon'):'')+'</div>'; }
       h+='</div></div>';
@@ -317,7 +324,7 @@ label.ck{display:flex;gap:8px;align-items:flex-start;font-size:13px;margin-top:1
       var i=+el.dataset.i;
       el.addEventListener('dragover',function(e){ e.preventDefault(); el.classList.add('over'); });
       el.addEventListener('dragleave',function(){ el.classList.remove('over'); });
-      el.addEventListener('drop',function(e){ e.preventDefault(); var id=e.dataTransfer.getData('text/plain'); if(id.indexOf('org:')===0){ $('pdfMsg').textContent='Organizer pills go on a pad header. Coupons go in the spots.'; return; } if(byId(id)){ S.sel=i; place(id); } });
+      el.addEventListener('drop',function(e){ e.preventDefault(); var id=e.dataTransfer.getData('text/plain'); if(card(id)){ S.sel=i; place(id); } });
       if(!el.classList.contains('full')){ var pick=function(){ S.sel=(S.sel===i?null:i); drawSheet(); }; el.addEventListener('click',pick); el.addEventListener('keydown',function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); pick(); } }); }
     });
     [].forEach.call(sh.querySelectorAll('[data-clr]'),function(b){ b.onclick=function(e){ e.stopPropagation(); (S.slots[S.cur]||[])[+b.dataset.clr]=null; save(); drawSheet(); drawLib(); }; });
@@ -380,14 +387,14 @@ label.ck{display:flex;gap:8px;align-items:flex-start;font-size:13px;margin-top:1
         pg.drawSvgPath(pillPath(0,0,w,h),{x:x,y:y+h,color:tint(c.col||'#16a3a6',.16),borderColor:ink,borderWidth:1,borderDashArray:[4,3]});
         var r=Math.min(17,h/2-8), cx=x+10+r, cy=y+h/2;
         pg.drawCircle({x:cx,y:cy,size:r,color:hex(c.col||'#16a3a6')});
-        var ii=clean(ini(c.mer)); pg.drawText(ii,{x:cx-B.widthOfTextAtSize(ii,10)/2,y:cy-3.5,size:10,font:B,color:white});
+        var ii=clean(c.ini||ini(c.mer)); pg.drawText(ii,{x:cx-B.widthOfTextAtSize(ii,10)/2,y:cy-3.5,size:10,font:B,color:white});
         var qs=Math.min(46,h-26), qx=x+w-qs-14, qy=y+(h-qs)/2+4; qr(pg,qrUrl(c),qx,qy,qs);
         pg.drawText(c.code,{x:qx+qs/2-M.widthOfTextAtSize(c.code,6)/2,y:qy-8,size:6,font:M,color:ink});
         var tx=cx+r+8, tw=qx-tx-6, ty=y+h-17;
         pg.drawText((wrap(c.mer,B,6.5,tw,1)[0]||'').toUpperCase(),{x:tx,y:ty,size:6.5,font:B,color:mute});
         ty-=13; wrap(c.off,B,11.5,tw,3).forEach(function(l){ pg.drawText(l,{x:tx,y:ty,size:11.5,font:B,color:ink}); ty-=12.5; });
         if(c.det){ wrap(c.det,F,6.5,tw,1).forEach(function(l){ pg.drawText(l,{x:tx,y:ty,size:6.5,font:F,color:mute}); }); }
-        var u=clean(useLabel(c.use)+(c.exp?' · until '+c.exp:'')); pg.drawText(wrap(u,B,6.5,tw,1)[0],{x:tx,y:y+9,size:6.5,font:B,color:ink});
+        var u=clean((c.foot!=null?c.foot:useLabel(c.use))+(c.exp?' · until '+c.exp:'')); pg.drawText(wrap(u,B,6.5,tw,1)[0],{x:tx,y:y+9,size:6.5,font:B,color:ink});
       }
       for(var p=1;p<=S.total;p++){
         var pg=doc.addPage([W,H]);
@@ -395,7 +402,7 @@ label.ck{display:flex;gap:8px;align-items:flex-start;font-size:13px;margin-top:1
           var x0=st*SW;
           if(p<=S.pages){
             var bottom=orgHead(pg,x0,st)-8, gap=7, ch=(bottom-pad-3*gap)/ROWS, cw=SW-2*pad, arr=pageSlots(p);
-            for(var r=0;r<ROWS;r++){ var i=st*ROWS+r, c=arr[i]?byId(arr[i]):null, y=bottom-(r+1)*ch-r*gap;
+            for(var r=0;r<ROWS;r++){ var i=st*ROWS+r, c=card(arr[i]), y=bottom-(r+1)*ch-r*gap;
               if(c) coupon(pg,c,x0+pad,y,cw,ch); else pg.drawSvgPath(pillPath(0,0,cw,ch),{x:x0+pad,y:y+ch,borderColor:faint,borderWidth:.8,borderDashArray:[3,3]}); }
           } else {
             var b2, hc=S.hdr.mode==='coupon'?byId(S.hdr.coupon):null;
