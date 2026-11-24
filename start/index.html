@@ -34,7 +34,7 @@ legend{font:700 14px Inter,sans-serif;color:var(--char);padding:0}
 <section class="hero" style="padding-bottom:30px"><div class="wrap" style="display:block">
   <span class="tag">ConceptOasis · <b>the Workflow Report</b></span>
   <h1>Get your Workflow Report</h1>
-  <p class="lead">Share your existing strategic plan, sales forms and websites, and tell us about the work you want to move online. We'll review what you send and create a Workflow Report for your enterprise: where the work slows down, what to digitize first, and what it could look like.</p>
+  <p class="lead">Share your website, your existing forms and, if you have one, your strategic plan, and tell us about your services, products and sales. We'll review what you send and create a Workflow Report for your enterprise: where the work slows down, what to digitize first, and what it could look like.</p>
   <div class="steps s5" style="margin-top:22px">
     <div><b>1</b><h3>Attend</h3><p>We listen to how the work really gets done.</p></div>
     <div><b>2</b><h3>Reimagine</h3><p>A clear map and summary of what it could be.</p></div>
@@ -46,37 +46,17 @@ legend{font:700 14px Inter,sans-serif;color:var(--char);padding:0}
 
 <section class="s alt" id="intake"><div class="wrap">
   <span class="kick">Workflow Report request</span>
-  <h2>Tell us about your workflow, and share what you have</h2>
+  <h2>Tell us about your business</h2>
   <p class="lead">A few minutes now helps us come prepared. We'll reply with next steps. Your documents stay private and are used only to prepare your report. Nothing is built or charged until you approve it.</p>
   <form class="su" id="su" novalidate>
-    <label>Your name<input name="name" autocomplete="name" required></label>
+    <label>Name<input name="name" autocomplete="name" required></label>
     <label>Email<input name="email" type="email" autocomplete="email" required></label>
-    <label>Phone <span>(optional)</span><input name="phone" type="tel" autocomplete="tel"></label>
-    <label>Company or organization<input name="company" autocomplete="organization"></label>
-    <label>Your role<input name="role" placeholder="e.g. Owner, board chair, managing broker"></label>
-    <label>Type of organization<select name="orgtype"><option>Enterprise</option><option>Mid-size company</option><option>Small business</option><option>Board, strata or property management</option><option>Real estate brokerage or team</option><option>Other</option></select></label>
-    <label>Team size<select name="size"><option>Just me</option><option>2 to 10</option><option>11 to 50</option><option>51 to 250</option><option>More than 250</option></select></label>
-    <label>When would you like to start?<select name="timing"><option>As soon as possible</option><option>In the next 1 to 3 months</option><option>Just exploring</option></select></label>
-    <fieldset class="full"><legend>What would you like to digitize? <span style="font-weight:400;color:var(--mute)">(pick any)</span></legend>
-      <div class="ckg">
-        <label><input type="checkbox" name="jobs" value="Sales intake, quotes and estimates"> Sales intake, quotes and estimates</label>
-        <label><input type="checkbox" name="jobs" value="A configurator (build and price)"> A configurator (build and price)</label>
-        <label><input type="checkbox" name="jobs" value="Client onboarding"> Client onboarding</label>
-        <label><input type="checkbox" name="jobs" value="Approvals and internal workflows"> Approvals and internal workflows</label>
-        <label><input type="checkbox" name="jobs" value="Reports and client portals"> Reports and client portals</label>
-        <label><input type="checkbox" name="jobs" value="An AI assistant (xo-ai)"> An AI assistant (xo-ai)</label>
-      </div>
-    </fieldset>
-    <fieldset class="full"><legend>Share what you have <span style="font-weight:400;color:var(--mute)">(links to a shared folder or document are perfect)</span></legend>
-      <div class="fl2">
-        <label>Your existing websites<input name="websites" inputmode="url" placeholder="https://"></label>
-        <label>Your existing strategic plan <span>(link)</span><input name="plan_link" inputmode="url" placeholder="Shared link, or attach to the email"></label>
-        <label>Your existing sales forms <span>(links)</span><input name="forms_link" inputmode="url" placeholder="Shared link, or attach to the email"></label>
-      </div>
-    </fieldset>
-    <label class="full">How does it work today? <span>(paper, spreadsheets, email, a CRM)</span><input name="tools"></label>
-    <label class="full">What would a win look like in 90 days?<textarea name="win" rows="3"></textarea></label>
-    <label class="full">Anything else? <span>(limits, privacy needs, questions)</span><textarea name="notes" rows="2"></textarea></label>
+    <label>Company<input name="company" autocomplete="organization"></label>
+    <label>Position<input name="position" autocomplete="organization-title"></label>
+    <label>Website<input name="website" inputmode="url" placeholder="https://"></label>
+    <label>Existing forms <span>(links, or attach to the email)</span><input name="forms" placeholder="Shared link or web address"></label>
+    <label class="full">Existing strategic plan <span>(optional: a shared link, or attach to the email)</span><input name="plan" placeholder="Shared link"></label>
+    <label class="full">Describe your core services and products, and how you sell them<textarea name="describe" rows="5" placeholder="What you offer, who buys it, and how a sale happens today: from first contact to quote, order and follow-up."></textarea></label>
     <label class="ck full"><input type="checkbox" name="consent" required> <span>I agree that ConceptOasis may contact me about this request. We keep your details private and use them only for this request.</span></label>
     <div class="full"><button class="btn btn-dark" type="submit">Request my Workflow Report &rarr;</button> <span class="note" id="sumsg"></span></div>
   </form>
@@ -105,7 +85,7 @@ legend{font:700 14px Inter,sans-serif;color:var(--char);padding:0}
       if(el.name==='jobs'){ if(el.checked) jobs.push(el.value); return; }
       d[el.name]=el.type==='checkbox'?(el.checked?'Yes':'No'):el.value.trim(); });
     d.jobs=jobs.join('; ');
-    d._subject='Workflow Report request: '+(d.company||d.name)+' ('+d.orgtype+')';
+    d._subject='Workflow Report request: '+(d.company||d.name)+(d.position?' ('+d.position+')':'');
     function done(){ f.style.display='none'; ok.style.display='block'; ok.scrollIntoView({behavior:'smooth',block:'center'}); }
     if(ENDPOINT){ fetch(ENDPOINT,{method:'POST',headers:{'Accept':'application/json','Content-Type':'application/json'},body:JSON.stringify(d)}).then(function(r){ if(!r.ok) throw 0; done(); }).catch(function(){ msg.textContent='That did not go through. Please email '+TO+'.'; }); return; }
     var body=Object.keys(d).filter(function(k){ return k!=='_subject'; }).map(function(k){ return k+': '+d[k]; }).join('\n');
