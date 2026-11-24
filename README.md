@@ -46,6 +46,16 @@ All that said, we’re not waiting to be fully utilized by clients. We are an um
   A board table interface with a strategically trained and, of course, very ethical AI Executive Officer (AI-EO) that drafts minutes, tracks action items, answers inquiries, and more.  
   Property management companies have shown interest — the time is now to 10x productivity for property managers.
 
+## Website
+
+This repo is the conceptoasis.com website: plain static HTML, no build step.
+
+- `index.html`: homepage
+- `re-tools/index.html`: RE TOOLS · Live Comp Report product page, pricing and signup
+- `assets/site.css`, `assets/img/`: shared styles and images
+- Signup form: set `ENDPOINT` in `re-tools/index.html` to a form service address. Until then it opens a pre-filled email to info@conceptoasis.com.
+- Hosting: works on GitHub Pages (Settings, then Pages, then deploy from `main` / root). `.nojekyll` keeps GitHub from processing the files. For the custom domain, add a `CNAME` file containing `conceptoasis.com` and point the domain's DNS at GitHub Pages.
+
 ## Contact
 Email: info@conceptoasis.com
 
