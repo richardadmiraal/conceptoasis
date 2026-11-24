@@ -183,7 +183,7 @@ input:focus,select:focus,textarea:focus{outline:0;border-color:var(--teal);box-s
     <div class="step">
       <h2>Where you are now</h2>
       <p class="mute">An honest starting point: what you sell, how clients find you, and what slows you down.</p>
-      <div class="fl"><label class="full">Core services and products<textarea id="core" rows="2" placeholder="What you offer, and who buys it"></textarea></label></div>
+      <div class="fl"><label class="full">Core services and products<textarea data-mic id="core" rows="2" placeholder="What you offer, and who buys it"></textarea></label></div>
       <div class="q">How do new clients find you today?</div>
       <div class="pills" data-k="find"></div>
       <div class="q">What's slowing you down? <span>(pick any)</span></div>
@@ -198,10 +198,10 @@ input:focus,select:focus,textarea:focus{outline:0;border-color:var(--teal);box-s
       <div class="score" id="score"></div>
       <div class="q" style="margin-top:22px">SWOT <span>(a few words each is plenty)</span></div>
       <div class="swot">
-        <label class="sw1">Strengths<textarea id="sw_s" rows="3" placeholder="What do clients love about us? What do we do better than anyone?"></textarea></label>
-        <label class="sw2">Weaknesses<textarea id="sw_w" rows="3" placeholder="Where do we lose time, money or clients?"></textarea></label>
-        <label class="sw3">Opportunities<textarea id="sw_o" rows="3" placeholder="What's changing in our market that we could use?"></textarea></label>
-        <label class="sw4">Threats<textarea id="sw_t" rows="3" placeholder="What could hurt us if we do nothing?"></textarea></label>
+        <label class="sw1">Strengths<textarea data-mic id="sw_s" rows="3" placeholder="What do clients love about us? What do we do better than anyone?"></textarea></label>
+        <label class="sw2">Weaknesses<textarea data-mic id="sw_w" rows="3" placeholder="Where do we lose time, money or clients?"></textarea></label>
+        <label class="sw3">Opportunities<textarea data-mic id="sw_o" rows="3" placeholder="What's changing in our market that we could use?"></textarea></label>
+        <label class="sw4">Threats<textarea data-mic id="sw_t" rows="3" placeholder="What could hurt us if we do nothing?"></textarea></label>
       </div>
       <div class="tip"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 4.5 14 12h-4z"/></svg><span>Do it yourself: have each person in the room rate the scorecard on their own first, then compare. The gaps between answers are where the best conversations start.</span></div>
       <div class="nav2"><button class="btn btn-line" data-prev>&larr; Back</button><button class="btn btn-dark" data-next>Next: Vision &rarr;</button></div>
@@ -213,7 +213,7 @@ input:focus,select:focus,textarea:focus{outline:0;border-color:var(--teal);box-s
       <div class="fl">
         <label class="full">Our mission: we help<input id="m_who" placeholder="who (e.g. homeowners across the Fraser Valley)"></label>
         <label class="full">to<input id="m_do" placeholder="do what (e.g. stay comfortable all year, without the hassle)"></label>
-        <label class="full">Three years from now, we are<textarea id="vision" rows="3" placeholder="e.g. the first call for heating and cooling in our region, with clients who refer us and a team that loves working here"></textarea></label>
+        <label class="full">Three years from now, we are<textarea data-mic id="vision" rows="3" placeholder="e.g. the first call for heating and cooling in our region, with clients who refer us and a team that loves working here"></textarea></label>
       </div>
       <div class="q">Our values <span>(pick up to 4)</span></div>
       <div class="pills" data-k="values"></div>
@@ -419,5 +419,6 @@ input:focus,select:focus,textarea:focus{outline:0;border-color:var(--teal);box-s
   drawPills();drawScore();upd();go(S.step||0);
 })();
 </script>
+<script src="../assets/js/coco-mic.js"></script>
 </body>
 </html>

@@ -175,7 +175,7 @@ body{background:#f4f5f7}
         <label>Phone<input id="f_phone" type="tel" autocomplete="tel"></label>
         <label>Website platform<select id="f_platform"><option>RealtyNinja</option><option>Another real estate website platform</option><option>WordPress or custom</option><option>Not sure</option></select></label>
         <label>Real estate board<input id="f_board" placeholder="e.g. CADREB"></label>
-        <label class="full" id="agentsLbl" hidden>Agents for the dropdown <span>(one per line)</span><textarea id="f_agents" rows="3"></textarea></label>
+        <label class="full" id="agentsLbl" hidden>Agents for the dropdown <span>(one per line)</span><textarea data-mic id="f_agents" rows="3"></textarea></label>
       </div>
       <div class="err" id="err2"></div>
       <div class="nav2"><button class="btn btn-line" data-prev>&larr; Back</button><button class="btn btn-dark" data-next>Next: Brand &rarr;</button></div>
@@ -201,7 +201,7 @@ body{background:#f4f5f7}
       <p class="mute">The form finds the area from the owner's address and loads local key words. Tell us where you work.</p>
       <div class="fl">
         <label class="full">Areas you serve <span>(comma separated)</span><input id="f_areas" placeholder="e.g. Chilliwack, Sardis, Abbotsford"></label>
-        <label class="full">Local key words owners might pick <span>(optional, comma separated)</span><textarea id="f_kw" rows="2" placeholder="e.g. Close to the lake, Mountain views, Walk to schools"></textarea></label>
+        <label class="full">Local key words owners might pick <span>(optional, comma separated)</span><textarea data-mic id="f_kw" rows="2" placeholder="e.g. Close to the lake, Mountain views, Walk to schools"></textarea></label>
       </div>
       <div class="nav2"><button class="btn btn-line" data-prev>&larr; Back</button><button class="btn btn-dark" data-next>Next: Summary &rarr;</button></div>
     </div>
@@ -409,5 +409,6 @@ body{background:#f4f5f7}
   upd(); go(S.step);
 })();
 </script>
+<script src="../assets/js/coco-mic.js"></script>
 </body>
 </html>

@@ -68,7 +68,7 @@ form.su .drop{display:flex;position:relative;flex-direction:column;align-items:c
     <label>Website<input name="website" inputmode="url" placeholder="https://"></label>
     <label>Existing forms <span>(links, or upload below)</span><input name="forms" placeholder="Shared link or web address"></label>
     <label class="full">Existing strategic plan <span>(optional: a shared link, or upload below)</span><input name="plan" placeholder="Shared link"></label>
-    <label class="full">Describe your core services and products, and how you sell them<textarea name="describe" rows="5" placeholder="What you offer, who buys it, and how a sale happens today: from first contact to quote, order and follow-up."></textarea></label>
+    <label class="full">Describe your core services and products, and how you sell them<textarea data-mic name="describe" rows="5" placeholder="What you offer, who buys it, and how a sale happens today: from first contact to quote, order and follow-up."></textarea></label>
     <div class="full">
       <span class="lbl">Upload your documents <span>(PDF, Word or images: strategic plan, sales forms, brochures. Up to 10 files, 10 MB each)</span></span>
       <label class="drop" id="drop"><input type="file" id="files" multiple accept=".pdf,.doc,.docx,.png,.jpg,.jpeg"><svg viewBox="0 0 24 24"><path d="M12 16V4M7 9l5-5 5 5"/><path d="M4 16v3a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-3"/></svg><b>Drop files here or tap to choose</b><small>Your documents stay private and are used only to prepare your report.</small></label>
@@ -130,5 +130,6 @@ form.su .drop{display:flex;position:relative;flex-direction:column;align-items:c
   });
 })();
 </script>
+<script src="../assets/js/coco-mic.js"></script>
 </body>
 </html>

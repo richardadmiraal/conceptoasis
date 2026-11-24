@@ -91,8 +91,8 @@ legend{font:700 14px Inter,sans-serif;color:var(--char);padding:0}
       </div>
     </fieldset>
     <label class="full">Tools you use now <span>(email, calendar, document storage, CRM)</span><input name="tools"></label>
-    <label class="full">What would a win look like in 90 days?<textarea name="win" rows="3"></textarea></label>
-    <label class="full">Anything else? <span>(limits, privacy needs, questions)</span><textarea name="notes" rows="2"></textarea></label>
+    <label class="full">What would a win look like in 90 days?<textarea data-mic name="win" rows="3"></textarea></label>
+    <label class="full">Anything else? <span>(limits, privacy needs, questions)</span><textarea data-mic name="notes" rows="2"></textarea></label>
     <label class="ck full"><input type="checkbox" name="consent" required> <span>I agree that ConceptOasis may contact me about this request. We keep your details private and use them only for this request.</span></label>
     <div class="full"><button class="btn btn-dark" type="submit">Send my intake &rarr;</button> <span class="note" id="sumsg"></span></div>
   </form>
@@ -129,5 +129,6 @@ legend{font:700 14px Inter,sans-serif;color:var(--char);padding:0}
   });
 })();
 </script>
+<script src="../assets/js/coco-mic.js"></script>
 </body>
 </html>
