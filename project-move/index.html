@@ -208,7 +208,7 @@ input:focus,select:focus,textarea:focus{outline:0;border-color:var(--f-teal);box
       <ul class="files" id="flist"></ul>
       <div class="q">Orders come in by <span>(pick any)</span></div>
       <div class="pills" data-k="via"></div>
-      <div class="fl" style="margin-top:14px"><label class="full">Who&rsquo;s buying, and what are they buying?<input id="buying" placeholder="e.g. Offices buy monthly subscriptions; families buy gift boxes at Christmas"></label><label class="full">How do orders come in? <span>(from first hello to paid and delivered)</span><textarea id="desc" rows="3" placeholder="e.g. Customers call or email, we write up an invoice, they pay by e-transfer, we deliver on Fridays"></textarea></label></div>
+      <div class="fl" style="margin-top:14px"><label class="full">Who&rsquo;s buying, and what are they buying?<input id="buying" placeholder="e.g. Offices buy monthly subscriptions; families buy gift boxes at Christmas"></label><label class="full">How do orders come in? <span>(from first hello to paid and delivered)</span><textarea data-mic id="desc" rows="3" placeholder="e.g. Customers call or email, we write up an invoice, they pay by e-transfer, we deliver on Fridays"></textarea></label></div>
       <div class="nav2"><button class="btn btn-line" data-prev>&larr; Back</button><button class="btn btn-dark" data-next>Next: Order form &rarr;</button></div>
     </div>
 
@@ -230,8 +230,8 @@ input:focus,select:focus,textarea:focus{outline:0;border-color:var(--f-teal);box
       <h2>Your story</h2>
       <p class="mute">Who you are and what you do. Plain words work best; Sailz can polish them later.</p>
       <div class="fl">
-        <label class="full">Who you are<textarea id="who" rows="2" placeholder="e.g. A family roastery in Chilliwack since 2009"></textarea></label>
-        <label class="full">What you do<textarea id="doo" rows="2" placeholder="e.g. We roast small batches every week and deliver across the Fraser Valley"></textarea></label>
+        <label class="full">Who you are<textarea data-mic id="who" rows="2" placeholder="e.g. A family roastery in Chilliwack since 2009"></textarea></label>
+        <label class="full">What you do<textarea data-mic id="doo" rows="2" placeholder="e.g. We roast small batches every week and deliver across the Fraser Valley"></textarea></label>
         <label>Brand colour<input id="brand" type="color" value="#16a3a6" style="height:44px;padding:4px"></label>
         <label>Where you serve<input id="where" placeholder="e.g. Fraser Valley"></label>
       </div>
@@ -441,5 +441,6 @@ input:focus,select:focus,textarea:focus{outline:0;border-color:var(--f-teal);box
   drawBoard();fillEd();drawPills();drawFiles();drawFF();upd();go(S.step||0);
 })();
 </script>
+<script src="../assets/js/coco-mic.js"></script>
 </body>
 </html>

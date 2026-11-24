@@ -588,8 +588,8 @@ body.sbs-mode #g12P,body.sbs-mode #portalP{display:none!important}
       <div class="ctl" style="margin-bottom:8px"><div><h2>Board room chat &amp; xo-ai</h2><span class="muted">The running dialogue. Ask xo-ai anything, any time; every answer shows who asked, where things stand and links to the records.</span></div>
         <button class="btn btn-sv btn-sm" id="xoCall" type="button">xo-ai, call the meeting to order</button></div>
       <ul class="chat" id="chat"></ul>
-      <div class="say ask"><span class="xo-tag">xo-ai</span><input id="askIn" placeholder="Ask xo-ai: current summary, find a record, a Robert’s Rules question, or a request"><button class="btn btn-sv btn-sm" id="askBtn" type="button">Ask</button></div>
-      <div class="say"><input id="chatIn" placeholder="Message the board"><button class="btn btn-ghost btn-sm" id="chatSend" type="button">Send</button></div>
+      <div class="say ask"><span class="xo-tag">xo-ai</span><input id="askIn" data-mic placeholder="Ask xo-ai: current summary, find a record, a Robert’s Rules question, or a request"><button class="btn btn-sv btn-sm" id="askBtn" type="button">Ask</button></div>
+      <div class="say"><input id="chatIn" data-mic data-mic-submit="chatSend" placeholder="Message the board"><button class="btn btn-ghost btn-sm" id="chatSend" type="button">Send</button></div>
       <div class="rr" style="margin-top:8px"><button class="btn btn-ghost btn-sm" data-hand="1" type="button">&#9995; Raise hand</button><button class="btn btn-ghost btn-sm" id="chatToMin" type="button">Add last message to the minutes</button></div>
     </div>
 
@@ -599,7 +599,7 @@ body.sbs-mode #g12P,body.sbs-mode #portalP{display:none!important}
       <div class="sbs">
         <div class="sbs-ag">
           <ol class="agbig" id="agenda"></ol>
-          <div class="say"><input id="agText" placeholder="Add an agenda item"><button class="btn btn-ghost btn-sm" id="agAdd" type="button">Add</button></div>
+          <div class="say"><input id="agText" data-mic placeholder="Add an agenda item"><button class="btn btn-ghost btn-sm" id="agAdd" type="button">Add</button></div>
         </div>
         <div class="sbs-min">
           <h3 style="margin:0">The minutes <span class="muted" id="docState"></span></h3>
@@ -648,7 +648,7 @@ body.sbs-mode #g12P,body.sbs-mode #portalP{display:none!important}
         <div class="om-h"><b>Make a recomemo pill</b><small>comment, offer (coupon), file or link &middot; verified U + 3: you, plus three links</small></div>
         <div class="org-add">
           <select id="oKind" aria-label="Kind"><option value="Comment">Comment</option><option value="Offer">Offer (coupon)</option><option value="File">File</option><option value="Link">Link</option><option value="Approved motion">Approved motion</option></select>
-          <input id="oText" placeholder="Say it in a line, e.g. 10% off window cleaning for owners">
+          <input id="oText" data-mic placeholder="Say it in a line, e.g. 10% off window cleaning for owners">
           <input id="oCode" placeholder="Coupon code" style="max-width:130px" hidden>
           <input id="oUrl" placeholder="https://" style="max-width:220px" hidden>
           <label class="btn btn-ghost btn-sm" id="oFileL" style="cursor:pointer" hidden>Choose file<input type="file" id="oFile" hidden></label>
@@ -740,7 +740,7 @@ body.sbs-mode #g12P,body.sbs-mode #portalP{display:none!important}
       <div class="lg-now"><button type="button" id="lgPrev" aria-label="Previous agenda item">&larr;</button><b id="lgItem"></b><button type="button" id="lgNext">Next item &rarr;</button></div>
       <div class="lg-smp" id="lgSample"><span>Sample dialogue to show how it reads. Type below to add real entries.</span><button type="button" id="lgClear">Clear sample</button></div>
       <ol class="ledger" id="ledger"></ol>
-      <div class="lg-in"><input id="lgIn" placeholder="Speak to the current item: this is live, type here"><button class="btn btn-sv btn-sm" id="lgSend" type="button">Add</button></div>
+      <div class="lg-in"><input id="lgIn" data-mic data-mic-submit="lgSend" placeholder="Talk or type to the current item: this is live"><button class="btn btn-sv btn-sm" id="lgSend" type="button">Add</button></div>
       <div class="lg-sub">To do list</div><ul class="lg-list" id="lgTodo"></ul>
       <div class="lg-sub">Past records</div><ul class="lg-list" id="lgPast"></ul>
     </div>
@@ -754,7 +754,7 @@ body.sbs-mode #g12P,body.sbs-mode #portalP{display:none!important}
             <div class="fx" style="grid-template-columns:1fr 1fr;margin-top:8px"><input id="tdText" placeholder="Task"><select id="tdOwner"></select></div>
             <button class="btn btn-ghost btn-sm" id="tdAdd" type="button" style="margin-top:6px">Add to do</button></div>
           <div class="col pend"><h4>Proposed</h4><ul id="dPlay"></ul><ul id="dPend" style="margin-top:6px"></ul>
-            <div class="say"><input id="decText" placeholder="Propose: e.g. Roof repair quote"><button class="btn btn-sv btn-sm" id="decAdd" type="button">Propose</button></div></div>
+            <div class="say"><input id="decText" data-mic placeholder="Propose: e.g. Roof repair quote"><button class="btn btn-sv btn-sm" id="decAdd" type="button">Propose</button></div></div>
         </div>
         <div class="row" style="margin-top:10px"><button class="btn btn-ghost btn-sm" id="postBtn" type="button">Post minutes to the strata portal</button><button class="btn btn-ghost btn-sm" id="copyMin" type="button">Copy minutes</button></div>
         <p class="note" id="postNote">Minutes post only after the board approves them. This demo shows the flow; nothing is sent.</p>
@@ -763,12 +763,12 @@ body.sbs-mode #g12P,body.sbs-mode #portalP{display:none!important}
         <h3>The record</h3>
         <ul class="minutes" id="minutes"></ul>
         <div class="rr"><button class="btn btn-ghost btn-sm" data-act="call">Call to order</button><button class="btn btn-ghost btn-sm" data-act="adjourn">Adjourn</button></div>
-        <div class="say"><input id="say" placeholder="Speak or type a line for the record"><button class="btn btn-sv btn-sm" id="sayBtn" type="button">Add</button></div>
+        <div class="say"><input id="say" data-mic data-mic-submit="sayBtn" placeholder="Speak or type a line for the record"><button class="btn btn-sv btn-sm" id="sayBtn" type="button">Add</button></div>
       </div>
       <div class="pane" id="p-promo">
         <h3>SharedPromoPage &middot; your group of 12</h3>
         <p class="muted" style="margin:0 0 8px">How this board speaks to owners and the community. xo-ai drafts from what was agreed upon; a director approves before it&rsquo;s shared.</p>
-        <div class="fx"><textarea id="prText" rows="3" placeholder="e.g. Good news: the roof repair is approved and starts in March."></textarea></div>
+        <div class="fx"><textarea id="prText" data-mic rows="3" placeholder="e.g. Good news: the roof repair is approved and starts in March."></textarea></div>
         <div class="row" style="margin-top:8px"><button class="btn btn-sv btn-sm" id="prPost" type="button">Share to SharedPromoPage</button><button class="btn btn-ghost btn-sm" id="prDraft" type="button">xo-ai, draft from agreed upon</button></div>
         <ul class="todo" id="promo" style="margin-top:10px"></ul>
         <p class="note">Demo: shared posts appear here. On SharedPromoPage they go out to the group&rsquo;s page for owners and partners.</p>
@@ -1465,5 +1465,6 @@ body.sbs-mode #g12P,body.sbs-mode #portalP{display:none!important}
   restore();if(!S.chat)S.chat=[];if(!S.promo)S.promo=[];if(!S.docs)S.docs=SAMPLE_DOCS.slice();$('strata').oninput();drawStyles();drawRoom();drawOwners();drawMin();drawTodo();drawDec();drawChat();drawPromo();drawShelf();drawAgenda();drawDoc();drawFin();if(!S.ledger){S.ledger=LEDGER_SAMPLE.map(function(r){return {i:r[0],who:r[1],pos:'',av:'',ai:r[3],text:r[2],t:'7:0'+r[0]+' p.m.',sample:true}});S.agi=6}drawLedger();drawMaint();drawOrg();drawG12();drawStory();
 })();
 </script>
+<script src="../assets/js/coco-mic.js"></script>
 </body>
 </html>

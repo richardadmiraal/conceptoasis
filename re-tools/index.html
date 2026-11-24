@@ -133,8 +133,8 @@
     <label>Listing data <span>(if you know)</span><select name="feed"><option>Not sure</option><option>Through my website provider</option><option>IDX</option><option>CREA DDF&reg;</option></select></label>
     <label>Real estate board<input name="board" placeholder="e.g. CADREB"></label>
     <label>Areas you serve<input name="areas" placeholder="e.g. Chilliwack, Sardis, Abbotsford"></label>
-    <label class="full">Agents to list in the agent dropdown <span>(names as they should appear)</span><textarea name="agents" rows="2"></textarea></label>
-    <label class="full">Anything else? <span>(colours, logo link, timing)</span><textarea name="notes" rows="3"></textarea></label>
+    <label class="full">Agents to list in the agent dropdown <span>(names as they should appear)</span><textarea data-mic name="agents" rows="2"></textarea></label>
+    <label class="full">Anything else? <span>(colours, logo link, timing)</span><textarea data-mic name="notes" rows="3"></textarea></label>
     <label class="ck full"><input type="checkbox" name="promo"> <span>Feature me on SharedPromoPage.com as offering the Live Comp Report (optional; you can change this anytime).</span></label>
     <label class="ck full"><input type="checkbox" name="consent" required> <span>I agree that ConceptOasis may contact me about this request. We keep your details private and use them only for this request.</span></label>
     <div class="full"><button class="btn btn-dark" type="submit">Send my details &rarr;</button> <span class="note" id="sumsg"></span></div>
@@ -169,5 +169,6 @@
   });
 })();
 </script>
+<script src="../assets/js/coco-mic.js"></script>
 </body>
 </html>
