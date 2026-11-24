@@ -457,11 +457,25 @@ body.sbs-mode #g12P,body.sbs-mode #portalP{display:none!important}
 .ob2.g12f:before{content:"";position:absolute;left:-2px;top:-11px;width:70px;height:10px;border:2px solid #0b0b0d;border-bottom:0;border-radius:6px 6px 0 0;background:#fff}
 .g12x{border:1.5px solid #0b0b0d!important;border-radius:999px;background:#0b0b0d!important;color:#fff!important;font:600 11px Inter,sans-serif;padding:3px 10px!important;margin-left:auto!important;cursor:pointer}
 .g12x+button{margin-left:4px!important}
-.g12grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(118px,1fr));gap:6px;padding:0 8px 10px}
-.g12s{display:flex;align-items:center;gap:4px;min-width:0;height:28px;padding:0 8px 0 3px;border:1.3px dashed #c3c8d1;border-radius:999px;font:600 10.5px Inter,sans-serif;color:#9aa1ae;justify-content:center}
-.g12s.on{justify-content:flex-start;border:1.3px solid #0b0b0d;color:#0b0b0d;cursor:grab;background:linear-gradient(115deg,color-mix(in srgb,var(--k) 45%,#fff),color-mix(in srgb,var(--k) 12%,#fff))}
-.g12s i{width:20px;height:20px;border-radius:50%;background:var(--k);flex:none}
-.g12s span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.g12bar{display:flex;flex-wrap:wrap;gap:8px;margin:0 8px 10px;padding:10px;border-radius:18px;background:#eef1f5}
+.g12s{display:inline-flex;align-items:center;gap:7px;max-width:100%;min-width:0;padding:8px 14px;border-radius:999px;border:1.5px dashed #c3c8d1;background:#fff;color:#9aa1ae;font:600 12.5px Inter,sans-serif;white-space:nowrap}
+.g12s.on{border:0;color:#fff;font-weight:700;cursor:grab;padding:7px 14px 7px 7px;box-shadow:0 2px 0 rgba(0,0,0,.12)}
+.g12s.on:hover{transform:translateY(-1px);box-shadow:0 4px 10px rgba(0,0,0,.15)}
+.g12s i{width:24px;height:24px;border-radius:50%;flex:none;display:grid;place-items:center;font:800 9.5px Inter,sans-serif;font-style:normal;background:rgba(255,255,255,.25);color:inherit}
+.g12s span{overflow:hidden;text-overflow:ellipsis}
+.g-green{background:linear-gradient(180deg,#26b456,#14923f)}
+.g-navy{background:#162055}
+.g-lime{background:linear-gradient(180deg,#9bd64c,#78b832);color:#14310a!important}
+.g-slate{background:#5f6673}
+.g-pink{background:#e0287a}
+.g-teal{background:#16a39a}
+.g-gold{background:#f0c24a;color:#3b2a00!important}
+.g-white{background:#fff;color:#0b0b0d!important;box-shadow:inset 0 0 0 1.5px #dfe3ea,0 2px 0 rgba(0,0,0,.06)!important}
+.g-white i{background:#eef1f5!important}
+.g-violet{background:#6b4fd8}
+.g-orange{background:#f28c28}
+.g-blue{background:#2a5bd7}
+.g-ink{background:#0b0b0d}
 .g12full{display:flex;flex-wrap:wrap;gap:10px;padding:0 8px 10px}
 .g12k{flex-basis:100%;font:700 9.5px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:#525b6b}
 .g12r{display:flex;flex-direction:column;gap:4px;align-items:flex-start}
@@ -1399,9 +1413,10 @@ body.sbs-mode #g12P,body.sbs-mode #portalP{display:none!important}
     return '<div class="oi pill" draggable="true" data-drag="'+o.id+'" style="--k:'+kc(o)+'"><span class="dotav"></span><div class="ot"><span class="k">'+esc(o.kind==='Offer'?'Offer · coupon':o.kind)+' '+u3(o)+'</span><span>'+esc(o.text)+'</span>'+extra+(lk?'<span class="lk">'+lk+'</span>':'')
       +'<span class="ob">'+(opts?'<select data-to-box="'+o.id+'" aria-label="Add to"><option value="">Add to&hellip;</option>'+opts+'</select>':'')+(o.where!=='priv'?'<button type="button" data-om="'+o.id+'" data-to="priv">Private</button>':'')+(o.where!=='board'?'<button type="button" data-om="'+o.id+'" data-to="board">Board</button>':'')+(o.where!=='prof'?'<button type="button" data-om="'+o.id+'" data-to="prof">Profile</button>':'')+'<button type="button" data-od="'+o.id+'" aria-label="Remove">&times;</button></span></div></div>'}
   function g12(b){var ps=b.pills.map(pillById).filter(Boolean),open=!!b.open,recent=ps.slice().reverse();
-    var slots=[];for(var i=0;i<12;i++){var o=ps[i];slots.push(o?'<span class="g12s on" draggable="true" data-drag="'+o.id+'" style="--k:'+kc(o)+'" title="'+esc(o.kind+': '+o.text)+'"><i></i><span>'+esc(o.text)+'</span></span>':'<span class="g12s">'+(i+1)+'</span>')}
+    var HC=['g-green','g-navy','g-lime','g-slate','g-pink','g-teal','g-gold','g-white','g-violet','g-orange','g-blue','g-ink'];
+    var slots=[];for(var i=0;i<12;i++){var o=ps[i];slots.push(o?'<span class="g12s on '+HC[i]+'" draggable="true" data-drag="'+o.id+'" title="'+esc(o.kind+': '+o.text)+'"><i>'+esc(initials(o.text.split(/[·|,]/)[0]))+'</i><span>'+esc(o.text)+'</span></span>':'<span class="g12s">+ spot '+(i+1)+'</span>')}
     return '<div class="ob2 g12f" data-box="'+b.id+'"><div class="obh"><b>'+esc(b.name)+'</b><small>Group of 12 &middot; '+ps.length+' of 12</small><button type="button" class="g12x" data-gopen="'+b.id+'">'+(open?'Close':'Expand')+'</button><button type="button" data-bd="'+b.id+'" aria-label="Remove">&times;</button></div>'
-      +(open?'<div class="g12full"><small class="g12k">Most recently added first</small>'+(recent.map(function(o){return '<div class="g12r">'+full(o)+'<button type="button" class="g12out" data-gout="'+b.id+'|'+o.id+'">Take out of the group</button></div>'}).join('')||'<small>Drop pills here, up to 12.</small>')+'</div>':'<div class="g12grid">'+slots.join('')+'</div>')+'</div>'}
+      +(open?'<div class="g12full"><small class="g12k">Most recently added first</small>'+(recent.map(function(o){return '<div class="g12r">'+full(o)+'<button type="button" class="g12out" data-gout="'+b.id+'|'+o.id+'">Take out of the group</button></div>'}).join('')||'<small>Drop pills here, up to 12.</small>')+'</div>':'<div class="g12bar">'+slots.join('')+'</div>')+'</div>'}
   function box(b){if(b.type==='G12')return g12(b);var ps=b.pills.map(pillById).filter(Boolean);var cls=b.type.toLowerCase();
     return '<div class="ob2 '+cls+'" data-box="'+b.id+'"><div class="obh"><b>'+esc(b.name)+'</b><small>'+esc(b.type)+' &middot; '+ps.length+'</small><button type="button" data-bd="'+b.id+'" aria-label="Remove">&times;</button></div><div class="obp">'+(ps.map(mini).join('')||'<small>Drop pills here</small>')+'</div>'+(cls==='sphere'?'<div class="sas"><span class="sav2">AI</span>'+esc(b.name)+' assistant &middot; built on CLaiRE and xo-ai</div>':'')+'</div>'}
   function drawOrg(){var me=S.me>-1&&S.people[S.me]?S.people[S.me]:null;

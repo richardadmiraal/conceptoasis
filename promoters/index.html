@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Promoters · SharedPromoPage by co | co</title>
+<meta name="description" content="Offer your promotion services to SharedPromoPage groups. Groups pay through recomemo.com, co|co collects and pays you, and you earn a finder's fee for the groups you bring.">
+<link rel="icon" href="../favicon.png" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Inter+Tight:wght@500;600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+
+<header class="nav"><div class="wrap">
+  <a class="brand" href="../"><img src="../assets/img/coco-logo.webp" alt="" width="34" height="34">ConceptOasis</a>
+  <nav>
+    <a href="#how">How it works</a>
+    <a class="btn btn-dark" href="#signup">Sign up</a>
+  </nav>
+</div></header>
+
+<section class="hero"><div class="wrap">
+  <div>
+    <span class="tag">SharedPromoPage · <b>promoters by co | co</b></span>
+    <h1>Promote the groups of 12.</h1>
+    <p class="lead">Every SharedPromoPage is a group of 12: agents, brokers and the merchants they recommend, promoting together on one live page. They need reels, photos, posts and printed notepads. If that's your work, sign up to offer it.</p>
+    <div class="cta"><a class="btn btn-dark" href="#signup">Sign up as a promoter &rarr;</a></div>
+  </div>
+  <div class="card">
+    <h3>What groups ask for</h3>
+    <ul class="check">
+      <li>Reels and short video for the group's page</li>
+      <li>Photography of homes, people and places</li>
+      <li>Social posts and copy that sound like the group</li>
+      <li>Printed notepads and flyers for boots-on-the-street agents</li>
+      <li>Local events and launches</li>
+    </ul>
+  </div>
+</div></section>
+
+<section class="s" id="how"><div class="wrap">
+  <span class="kick">How it works</span>
+  <h2>The group pays through recomemo. You do the work and earn your fee.</h2>
+  <div class="grid3" style="margin-top:22px">
+    <div class="card"><h3>1 · Sign up</h3><p>Tell us what you offer and where, with three links to your work. Your promoter profile is a recomemo, verified U + 3: you, plus three links.</p></div>
+    <div class="card"><h3>2 · Get matched</h3><p>Groups of 12 see promoters in their area and choose who they work with. Bring a group to SharedPromoPage yourself and you earn a finder&rsquo;s fee for it.</p></div>
+    <div class="card"><h3>3 · Get paid</h3><p>The group pays through recomemo.com, co|co collects, and pays you your share. No chasing invoices.</p></div>
+  </div>
+  <p class="note" style="margin-top:16px">Fees are set out in your promoter agreement. Your fee is for promotion services and for bringing groups to SharedPromoPage, never for real estate referrals or leads.</p>
+</div></section>
+
+<section class="s alt" id="signup"><div class="wrap">
+  <span class="kick">Sign up</span>
+  <h2>Offer your promotion services</h2>
+  <p class="lead">We'll reply with the promoter agreement and next steps. Nothing is shared until you approve it.</p>
+  <form class="su" id="su" novalidate>
+    <label>Your name<input name="name" autocomplete="name" required></label>
+    <label>Email<input name="email" type="email" autocomplete="email" required></label>
+    <label>Phone <span>(optional)</span><input name="phone" type="tel" autocomplete="tel"></label>
+    <label>Business name <span>(optional)</span><input name="business" autocomplete="organization"></label>
+    <label>What you offer<select name="service"><option>Reels and video</option><option>Photography</option><option>Social posts and copy</option><option>Print: notepads and flyers</option><option>Events</option><option>Several of these</option></select></label>
+    <label>Areas you serve<input name="areas" placeholder="e.g. Chilliwack, Abbotsford, Langley"></label>
+    <label>Link 1 to your work<input name="link1" inputmode="url" placeholder="https://"></label>
+    <label>Link 2<input name="link2" inputmode="url" placeholder="https://"></label>
+    <label>Link 3<input name="link3" inputmode="url" placeholder="https://"></label>
+    <label>Your usual rates <span>(optional)</span><input name="rates" placeholder="e.g. $250 per reel"></label>
+    <label class="full">Tell us about your work<textarea data-mic name="about" rows="3" placeholder="What you do best, who you've worked with, and how you like to work"></textarea></label>
+    <label class="full">Groups you could bring <span>(optional)</span><textarea data-mic name="groups" rows="2" placeholder="Agents, brokerages or merchants you already work with"></textarea></label>
+    <label class="ck full"><input type="checkbox" name="consent" required> <span>I agree that ConceptOasis may contact me about this sign-up. We keep your details private and use them only for it.</span></label>
+    <div class="full"><button class="btn btn-dark" type="submit">Sign me up &rarr;</button> <span class="note" id="sumsg"></span></div>
+  </form>
+  <div class="ok" id="suok">Thank you! We've got your sign-up and will send the promoter agreement soon. Questions? <a href="mailto:info@conceptoasis.com">info@conceptoasis.com</a></div>
+</div></section>
+
+<footer><div class="wrap">
+  <a class="brand" href="../"><img src="../assets/img/coco-logo.webp" alt="" width="30" height="30">ConceptOasis</a>
+  <span class="cocobar">workflow forms by co | co</span>
+  <span><a href="mailto:info@conceptoasis.com">info@conceptoasis.com</a> · &copy; 2026 ConceptOasis, an ideas company</span>
+</div></footer>
+
+<script>
+(function(){
+  // SETUP: put a form service address here. Until then, sending opens a pre-filled email.
+  var ENDPOINT='';
+  var TO='info@conceptoasis.com';
+  var f=document.getElementById('su'), msg=document.getElementById('sumsg'), ok=document.getElementById('suok');
+  f.addEventListener('submit',function(e){ e.preventDefault(); msg.textContent='';
+    if(!f.elements.name.value.trim()){ msg.textContent='Please add your name.'; f.elements.name.focus(); return; }
+    if(!/^\S+@\S+\.\S+$/.test(f.elements.email.value.trim())){ msg.textContent='Please add your email.'; f.elements.email.focus(); return; }
+    if(!f.elements.consent.checked){ msg.textContent='Please tick the consent box.'; return; }
+    var d={}; Array.prototype.forEach.call(f.elements,function(el){ if(!el.name) return; d[el.name]=el.type==='checkbox'?(el.checked?'Yes':'No'):el.value.trim(); });
+    var links=[d.link1,d.link2,d.link3].filter(function(u){ return /^https?:\/\/\S+\.\S+/.test(u||''); }).length;
+    d.verified='U+'+links; d._subject='Promoter sign-up: '+(d.business||d.name)+' ('+d.service+', U+'+links+')';
+    function done(){ f.style.display='none'; ok.style.display='block'; ok.scrollIntoView({behavior:'smooth',block:'center'}); }
+    if(ENDPOINT){ fetch(ENDPOINT,{method:'POST',headers:{'Accept':'application/json','Content-Type':'application/json'},body:JSON.stringify(d)}).then(function(r){ if(!r.ok) throw 0; done(); }).catch(function(){ msg.textContent='That did not go through. Please email '+TO+'.'; }); return; }
+    var body=Object.keys(d).filter(function(k){ return k!=='_subject'; }).map(function(k){ return k+': '+d[k]; }).join('\n');
+    location.href='mailto:'+TO+'?subject='+encodeURIComponent(d._subject)+'&body='+encodeURIComponent(body); done();
+  });
+})();
+</script>
+<script src="../assets/js/coco-mic.js"></script>
+</body>
+</html>
