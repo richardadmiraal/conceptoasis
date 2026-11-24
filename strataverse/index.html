@@ -481,6 +481,26 @@ body.sbs-mode #g12P,body.sbs-mode #portalP{display:none!important}
 .g12r{display:flex;flex-direction:column;gap:4px;align-items:flex-start}
 .g12out{border:0;background:none;font:600 10.5px Inter,sans-serif;color:#525b6b;text-decoration:underline;cursor:pointer}
 .org-priv .g12f{color:#0b0b0d}
+
+.g12stage{margin:0 8px 10px;padding:10px;border-radius:18px;background:#eef1f5 center/cover no-repeat;display:flex;flex-direction:column;gap:10px}
+.g12stage .g12bar{margin:0;padding:0;background:none}
+.g12org{display:flex;align-items:center;gap:12px;align-self:flex-start;padding:6px 18px 6px 6px;border-radius:999px;background:#0b0b0d;color:#fff;box-shadow:0 6px 18px rgba(0,0,0,.25)}
+.g12org .oav{width:52px;height:52px;border-radius:50%;display:grid;place-items:center;font:800 17px Inter,sans-serif;background:linear-gradient(135deg,#f0c24a,#e0287a);color:#fff;flex:none}
+.g12org .ot2{display:flex;flex-direction:column;min-width:0}
+.g12org small{font:700 9.5px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:#f0c24a}
+.g12org b{font:800 19px/1.15 "Inter Tight",Inter,sans-serif;color:#fff}
+.g12org em{font-style:normal;font-size:11.5px;color:#c9d1de}
+.g12s.isorg{outline:3px solid #f0c24a;outline-offset:2px}
+.g12f .obh{flex-wrap:wrap}.g12f .obh small{white-space:nowrap}
+.g12bg{border:1.5px solid #0b0b0d;border-radius:999px;background:#fff;font:600 11px Inter,sans-serif;padding:3px 10px;cursor:pointer;margin-left:auto}
+.g12bg+.g12x{margin-left:4px!important}
+.g12in{display:flex;gap:6px}
+.g12in input{flex:1;min-width:0;padding:7px 12px;border:1.5px solid #0b0b0d;border-radius:999px;font:13px Inter,sans-serif;background:rgba(255,255,255,.92)}
+.g12in button{border:0;border-radius:999px;background:#0b0b0d;color:#fff;font:600 12px Inter,sans-serif;padding:0 14px;cursor:pointer}
+.g12sug{list-style:none;margin:0;padding:8px 10px;border-radius:12px;background:rgba(255,255,255,.9);display:grid;gap:4px;font-size:12.5px;color:#0b0b0d}
+.g12sug small{color:#8a92a3;font:500 10px var(--mono)}
+.g12acts{display:flex;gap:10px}
+.g12stage.hasbg .g12full .g12k{color:#0b0b0d;background:rgba(255,255,255,.85);padding:2px 8px;border-radius:999px;align-self:flex-start}
 .fbox{padding:12px;border:1.5px solid #0b0b0d;border-radius:14px;background:#fff;margin-top:12px;min-width:0}
 .fgrid .fbox{margin-top:0}
 .tblwrap{overflow-x:auto}
@@ -1413,10 +1433,25 @@ body.sbs-mode #g12P,body.sbs-mode #portalP{display:none!important}
     return '<div class="oi pill" draggable="true" data-drag="'+o.id+'" style="--k:'+kc(o)+'"><span class="dotav"></span><div class="ot"><span class="k">'+esc(o.kind==='Offer'?'Offer · coupon':o.kind)+' '+u3(o)+'</span><span>'+esc(o.text)+'</span>'+extra+(lk?'<span class="lk">'+lk+'</span>':'')
       +'<span class="ob">'+(opts?'<select data-to-box="'+o.id+'" aria-label="Add to"><option value="">Add to&hellip;</option>'+opts+'</select>':'')+(o.where!=='priv'?'<button type="button" data-om="'+o.id+'" data-to="priv">Private</button>':'')+(o.where!=='board'?'<button type="button" data-om="'+o.id+'" data-to="board">Board</button>':'')+(o.where!=='prof'?'<button type="button" data-om="'+o.id+'" data-to="prof">Profile</button>':'')+'<button type="button" data-od="'+o.id+'" aria-label="Remove">&times;</button></span></div></div>'}
   function g12(b){var ps=b.pills.map(pillById).filter(Boolean),open=!!b.open,recent=ps.slice().reverse();
+    var orgName=b.organizer||myName(),orgPill=b.orgPill?pillById(b.orgPill):null;
     var HC=['g-green','g-navy','g-lime','g-slate','g-pink','g-teal','g-gold','g-white','g-violet','g-orange','g-blue','g-ink'];
-    var slots=[];for(var i=0;i<12;i++){var o=ps[i];slots.push(o?'<span class="g12s on '+HC[i]+'" draggable="true" data-drag="'+o.id+'" title="'+esc(o.kind+': '+o.text)+'"><i>'+esc(initials(o.text.split(/[·|,]/)[0]))+'</i><span>'+esc(o.text)+'</span></span>':'<span class="g12s">+ spot '+(i+1)+'</span>')}
-    return '<div class="ob2 g12f" data-box="'+b.id+'"><div class="obh"><b>'+esc(b.name)+'</b><small>Group of 12 &middot; '+ps.length+' of 12</small><button type="button" class="g12x" data-gopen="'+b.id+'">'+(open?'Close':'Expand')+'</button><button type="button" data-bd="'+b.id+'" aria-label="Remove">&times;</button></div>'
-      +(open?'<div class="g12full"><small class="g12k">Most recently added first</small>'+(recent.map(function(o){return '<div class="g12r">'+full(o)+'<button type="button" class="g12out" data-gout="'+b.id+'|'+o.id+'">Take out of the group</button></div>'}).join('')||'<small>Drop pills here, up to 12.</small>')+'</div>':'<div class="g12bar">'+slots.join('')+'</div>')+'</div>'}
+    var slots=[];for(var i=0;i<12;i++){var o=ps[i];slots.push(o?'<span class="g12s on '+HC[i]+(o.id===b.orgPill?' isorg':'')+'" draggable="true" data-drag="'+o.id+'" title="'+esc(o.kind+': '+o.text)+'"><i>'+esc(initials(o.text.split(/[·|,]/)[0]))+'</i><span>'+esc(o.text)+'</span></span>':'<span class="g12s">+ spot '+(i+1)+'</span>')}
+    var orgBlock='<div class="g12org"><span class="oav">'+esc(initials(orgName))+'</span><span class="ot2"><small>Organizer &middot; the original recomemo</small><b>'+esc(orgName)+'</b><em>Governed by the organizer &middot; input welcome</em></span></div>';
+    var inputs=(b.inputs||[]).slice(-6).reverse();
+    return '<div class="ob2 g12f" data-box="'+b.id+'"><div class="obh"><b>'+esc(b.name)+'</b><small>Group of 12 &middot; '+ps.length+' of 12</small><label class="g12bg">Background<input type="file" accept="image/*" data-gbg="'+b.id+'" hidden></label><button type="button" class="g12x" data-gopen="'+b.id+'">'+(open?'Close':'Expand')+'</button><button type="button" data-bd="'+b.id+'" aria-label="Remove">&times;</button></div>'
+      +'<div class="g12stage" data-gstage="'+b.id+'">'+orgBlock+(open?'<div class="g12full"><small class="g12k">Most recently added first</small>'+(recent.map(function(o){return '<div class="g12r">'+full(o)+'<span class="g12acts"><button type="button" class="g12out" data-gorg="'+b.id+'|'+o.id+'">Make organizer</button><button type="button" class="g12out" data-gout="'+b.id+'|'+o.id+'">Take out of the group</button></span></div>'}).join('')||'<small>Drop pills here, up to 12.</small>')+'</div>':'<div class="g12bar">'+slots.join('')+'</div>')
+      +'<div class="g12in"><input placeholder="Input welcome: suggest something to '+esc(orgName)+'" data-gin="'+b.id+'"><button type="button" data-ginb="'+b.id+'">Suggest</button></div>'
+      +(inputs.length?'<ul class="g12sug">'+inputs.map(function(x){return '<li><b>'+esc(x.who)+'</b> '+esc(x.text)+' <small>'+esc(x.t)+'</small></li>'}).join('')+'</ul>':'')+'</div></div>'}
+  function g12After(){
+    [].forEach.call(document.querySelectorAll('#orgP [data-gstage]'),function(st){var id=st.getAttribute('data-gstage'),k='bg_'+id;
+      function show(u){st.style.backgroundImage='linear-gradient(rgba(255,255,255,.55),rgba(255,255,255,.35)),url('+u+')';st.classList.add('hasbg')}
+      if(URLS[k])show(URLS[k]);else fget(k).then(function(bl){if(bl){URLS[k]=URL.createObjectURL(bl);show(URLS[k])}})});
+    [].forEach.call(document.querySelectorAll('#orgP [data-gbg]'),function(inp){inp.onchange=function(){var f=this.files[0],id=inp.getAttribute('data-gbg');if(!f)return;fput('bg_'+id,f).then(function(){if(URLS['bg_'+id]){URL.revokeObjectURL(URLS['bg_'+id]);delete URLS['bg_'+id]}drawOrg()})}});
+    [].forEach.call(document.querySelectorAll('#orgP [data-gorg]'),function(x){x.onclick=function(){var a=x.getAttribute('data-gorg').split('|'),b=O.boxes.filter(function(y){return y.id===a[0]})[0],o=pillById(a[1]);if(b&&o){b.orgPill=o.id;b.organizer=o.text.split(/[·|,]/)[0].trim();orgSave();drawOrg()}}});
+    [].forEach.call(document.querySelectorAll('#orgP [data-ginb]'),function(x){var id=x.getAttribute('data-ginb'),inp=document.querySelector('#orgP [data-gin="'+id+'"]');
+      function go(){var t=inp.value.trim();if(!t)return;var b=O.boxes.filter(function(y){return y.id===id})[0];if(!b)return;(b.inputs=b.inputs||[]).push({who:myName(),text:t,t:stamp()});orgSave();drawOrg()}
+      x.onclick=go;inp.onkeydown=function(e){if(e.key==='Enter'){e.preventDefault();go()}}});
+  }
   function box(b){if(b.type==='G12')return g12(b);var ps=b.pills.map(pillById).filter(Boolean);var cls=b.type.toLowerCase();
     return '<div class="ob2 '+cls+'" data-box="'+b.id+'"><div class="obh"><b>'+esc(b.name)+'</b><small>'+esc(b.type)+' &middot; '+ps.length+'</small><button type="button" data-bd="'+b.id+'" aria-label="Remove">&times;</button></div><div class="obp">'+(ps.map(mini).join('')||'<small>Drop pills here</small>')+'</div>'+(cls==='sphere'?'<div class="sas"><span class="sav2">AI</span>'+esc(b.name)+' assistant &middot; built on CLaiRE and xo-ai</div>':'')+'</div>'}
   function drawOrg(){var me=S.me>-1&&S.people[S.me]?S.people[S.me]:null;
@@ -1427,7 +1462,7 @@ body.sbs-mode #g12P,body.sbs-mode #portalP{display:none!important}
       $(W[w]).innerHTML=O.pills.filter(function(o){return o.where===w}).map(full).join('')||'<span class="empty">'+(w==='priv'?'Nothing private yet. Make a pill above, or use "keep" on the ledger or a resolution.':'Nothing here yet.')+'</span>';
       $(W[w]+'B').innerHTML=O.boxes.filter(function(b){return b.where===w&&b.type!=='Sphere'}).map(box).join('');
       $(W[w]+'S').innerHTML=O.boxes.filter(function(b){return b.where===w&&b.type==='Sphere'}).map(box).join('')});
-    loadMedia();
+    loadMedia();g12After();
     $('oTray').innerHTML=O.pills.slice(0,14).map(mini).join('')||'<small>Your pills appear here, small and ready to drop in.</small>';
     var P=$('orgP');
     [].forEach.call(P.querySelectorAll('[data-drag]'),function(el){el.ondragstart=function(e){e.stopPropagation();try{e.dataTransfer.setData('text/plain',el.getAttribute('data-drag'))}catch(x){}e.dataTransfer.effectAllowed='copyMove'}});
@@ -1473,7 +1508,7 @@ body.sbs-mode #g12P,body.sbs-mode #portalP{display:none!important}
     if(k==='Offer')o.code=$('oCode').value.trim();if(k==='Link')o.url=$('oUrl').value.trim();if(k==='File'&&pendingFile){o.file=pendingFile;o.folder='CLaiRE: '+claireFolder(pendingFile)}
     pillAdd(o);['oText','oCode','oUrl','oL1','oL2','oL3'].forEach(function(id){$(id).value=''});pendingFile='';$('oFileL').firstChild.textContent='Choose file'};
   $('oText').onkeydown=function(e){if(e.key==='Enter'){e.preventDefault();$('oAdd').onclick()}};
-  $('bAdd').onclick=function(){var n=$('bName').value.trim();if(!n)return;O.boxes.push({id:newId(),type:$('bType').value,name:n,where:$('bWhere').value,pills:[]});$('bName').value='';orgSave();drawOrg()};
+  $('bAdd').onclick=function(){var n=$('bName').value.trim();if(!n)return;O.boxes.push({id:newId(),type:$('bType').value,name:n,where:$('bWhere').value,pills:[],organizer:$('bType').value==='G12'?myName():undefined});$('bName').value='';orgSave();drawOrg()};
   $('bName').onkeydown=function(e){if(e.key==='Enter'){e.preventDefault();$('bAdd').onclick()}};
   $('orgClaire').onclick=function(){var made=0,filed=0;var F={'Comment':'Comments','Offer':'Offers','File':'Files','Link':'Links','Approved motion':'Approved motions'};
     O.pills.forEach(function(o){var name=o.kind==='File'&&o.file?claireFolder(o.file):F[o.kind]||'General';var b=O.boxes.filter(function(x){return x.type==='Folder'&&x.name===name&&x.where==='priv'})[0];
