@@ -134,7 +134,7 @@ body{background:var(--bg);color:var(--txt)}
 .note{font-size:12px;color:var(--txt2);margin-top:10px;line-height:1.5}
 .hire .ck{display:flex;gap:8px;align-items:flex-start;font-size:13.5px;color:#d7deef;padding:5px 0}
 .hire .ck input{accent-color:#16a3a6;width:16px;height:16px;margin-top:2px}
-.chat{list-style:none;margin:0;padding:0;display:grid;gap:8px;max-height:300px;overflow:auto;padding-right:4px}
+.chat{list-style:none;margin:0;padding:0;display:grid;gap:8px;max-height:420px;overflow:auto;padding-right:4px}
 .chat li{display:flex;gap:10px;align-items:flex-start}
 .chat .ca{flex:none;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:#fff center/cover;color:#0f1733;font:700 11px Inter,sans-serif}
 .chat .cb{min-width:0;padding:8px 11px;border-radius:4px 14px 14px 14px;background:var(--field);border:1px solid #1f2b50;font-size:13.5px;line-height:1.45}
@@ -208,6 +208,43 @@ footer{background:#0b0b0d}
 .doc .sum{margin-top:6px;padding:8px 10px;border-radius:10px;background:#f2fbfb;border:1px solid #bfe6e6;font-size:13px;color:#0b0b0d}
 .doc .sum em{font:600 10px var(--mono);font-style:normal;color:#0c6a6c;display:block}
 .doc button{margin-left:auto;flex:none}
+
+/* motions + document */
+.mv{display:grid;gap:6px;margin-top:8px}
+.mv label{font:600 12px Inter,sans-serif}
+.mv select{display:block;width:100%;margin-top:4px;padding:7px 9px;border:1.5px solid #0b0b0d;border-radius:8px;background:#fff;color:#0b0b0d;font:500 13px Inter,sans-serif}
+.mv button,.vr button,#callVote{justify-self:start;padding:4px 10px;border-radius:999px;border:1.5px solid #0b0b0d;background:#fff;color:#0b0b0d;font:600 11.5px Inter,sans-serif;cursor:pointer}
+#callVote{background:#0b0b0d;color:#fff;margin-top:6px}
+.votes{display:grid;gap:4px}
+.vr{display:flex;gap:4px;align-items:center;flex-wrap:wrap}
+.vr span{flex:1;min-width:90px;font-size:12.5px;font-weight:600}
+.vr button{padding:2px 7px;font-size:10.5px}
+.vr button.on{background:#0b0b0d;color:#fff}
+.agenda{margin:0;padding:0;list-style:none;display:grid;gap:4px}
+.agenda li{display:flex;justify-content:space-between;align-items:center;padding:5px 9px;border:1.5px solid #0b0b0d;border-radius:8px;font-size:13px;background:#fff}
+.agenda li button{border:0;background:none;font-size:16px;cursor:pointer;color:#525b6b}
+.docbody{margin-top:8px;padding:16px 18px;border:2px solid #0b0b0d;border-radius:6px;background:#fff;color:#0b0b0d;font:14px/1.6 Georgia,"Times New Roman",serif;max-height:420px;overflow:auto;box-shadow:inset 0 0 0 4px #fff,inset 0 0 0 5px #e6e6e6}
+.docbody[contenteditable="true"]{outline:0}
+.docbody[contenteditable="true"]:focus{box-shadow:0 0 0 3px rgba(22,163,166,.3)}
+.docbody .mt{text-align:center;font:700 14px Inter,sans-serif;letter-spacing:.06em;margin:0}
+.docbody .mc{text-align:center;margin:2px 0 12px;color:#333}
+.docbody p{margin:0 0 10px}
+.docbody .mf{font:italic 12px Georgia,serif;color:#555;border-top:1px solid #ddd;padding-top:8px}
+
+/* ask xo-ai */
+.say.ask{align-items:center;padding:6px;border:2px solid #0b0b0d;border-radius:14px;background:#f2fbfb}
+.say.ask input{border:0;background:transparent}
+.xo-tag{flex:none;padding:4px 9px;border-radius:999px;background:linear-gradient(135deg,#2a5bd7,#16a3a6);color:#fff;font:700 11px var(--mono)}
+.chat li.xoa{display:block;padding:10px;border:2px solid #0b0b0d;border-radius:14px;background:#fff;box-shadow:4px 4px 0 #0b0b0d}
+.xq{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.upill{display:inline-flex;align-items:center;gap:6px;padding:3px 10px 3px 3px;border:1.5px solid #0b0b0d;border-radius:999px;background:#fff}
+.uav{width:24px;height:24px;border-radius:50%;display:grid;place-items:center;background:#0b0b0d center/cover;color:#fff;font:700 10px Inter,sans-serif}
+.upill b{font:650 12.5px Inter,sans-serif;color:#0b0b0d}.upill small{font:600 10px var(--mono);color:#525b6b}
+.qt{font:500 13.5px Inter,sans-serif;color:#0b0b0d}
+.xa{display:grid;gap:6px;margin-top:8px;font-size:13.5px;color:#0b0b0d}
+.xa em{display:block;font:600 10px var(--mono);font-style:normal;letter-spacing:.08em;text-transform:uppercase;color:#0c6a6c}
+.xl button{margin:4px 6px 0 0;padding:4px 10px;border-radius:999px;border:1.5px solid #0b0b0d;background:#fff;color:#0b0b0d;font:600 11.5px Inter,sans-serif;cursor:pointer}
+.xd{font-size:11.5px;color:#525b6b;border-top:1px dashed #cdd3dd;padding-top:6px}
 .preset{margin-top:12px;display:inline-flex;align-items:center;gap:10px;padding:8px 14px 8px 8px;border:2px solid #0b0b0d;border-radius:999px;background:#fff;box-shadow:4px 4px 0 #0b0b0d;cursor:pointer;font:600 13.5px Inter,sans-serif;color:#0b0b0d}
 .preset img{width:30px;height:30px}
 .seat .ai{position:absolute;top:-4px;left:4px;padding:1px 5px;border-radius:999px;background:#0b0b0d;color:#fff;font:700 8px var(--mono);border:1px solid #fff}
@@ -264,10 +301,11 @@ footer{background:#0b0b0d}
     </div>
 
     <div class="panel chatp" style="margin-top:18px">
-      <div class="ctl" style="margin-bottom:8px"><div><h2>Board room chat</h2><span class="muted">Everyone at the table, plus xo-ai. Chat is not part of the minutes unless xo-ai is asked to add it.</span></div>
+      <div class="ctl" style="margin-bottom:8px"><div><h2>Board room chat &amp; xo-ai</h2><span class="muted">The running dialogue. Ask xo-ai anything, any time; every answer shows who asked, where things stand and links to the records.</span></div>
         <button class="btn btn-sv btn-sm" id="xoCall" type="button">xo-ai, call the meeting to order</button></div>
       <ul class="chat" id="chat"></ul>
-      <div class="say"><input id="chatIn" placeholder="Message the board"><button class="btn btn-sv btn-sm" id="chatSend" type="button">Send</button></div>
+      <div class="say ask"><span class="xo-tag">xo-ai</span><input id="askIn" placeholder="Ask xo-ai: current summary, find a record, a Robert’s Rules question, or a request"><button class="btn btn-sv btn-sm" id="askBtn" type="button">Ask</button></div>
+      <div class="say"><input id="chatIn" placeholder="Message the board"><button class="btn btn-ghost btn-sm" id="chatSend" type="button">Send</button></div>
       <div class="rr" style="margin-top:8px"><button class="btn btn-ghost btn-sm" data-hand="1" type="button">&#9995; Raise hand</button><button class="btn btn-ghost btn-sm" id="chatToMin" type="button">Add last message to the minutes</button></div>
     </div>
 
@@ -291,7 +329,7 @@ footer{background:#0b0b0d}
 
   <aside>
     <div class="panel">
-      <div class="tabs2" id="tabs2"><button class="on" data-p="min">Minutes</button><button data-p="rec">Record</button><button data-p="promo">SharedPromoPage</button><button data-p="zoom">Zoom</button></div>
+      <div class="tabs2" id="tabs2"><button class="on" data-p="min">Minutes</button><button data-p="doc">Agenda &amp; document</button><button data-p="rec">Record</button><button data-p="promo">SharedPromoPage</button><button data-p="zoom">Zoom</button></div>
       <div class="pane on" id="p-min">
         <h3>Minutes <span class="muted" id="minDate"></span></h3>
         <div class="dec">
@@ -304,6 +342,15 @@ footer{background:#0b0b0d}
         </div>
         <div class="row" style="margin-top:10px"><button class="btn btn-ghost btn-sm" id="postBtn" type="button">Post minutes to the strata portal</button><button class="btn btn-ghost btn-sm" id="copyMin" type="button">Copy minutes</button></div>
         <p class="note" id="postNote">Minutes post only after the board approves them. This demo shows the flow; nothing is sent.</p>
+      </div>
+      <div class="pane" id="p-doc">
+        <h3>Agenda</h3>
+        <ol class="agenda" id="agenda"></ol>
+        <div class="say"><input id="agText" placeholder="Add an agenda item"><button class="btn btn-ghost btn-sm" id="agAdd" type="button">Add</button></div>
+        <h3 style="margin-top:14px">The document in play <span class="muted" id="docState"></span></h3>
+        <div class="docbody" id="docBody" spellcheck="true"></div>
+        <div class="row" style="margin-top:10px"><button class="btn btn-ghost btn-sm" id="docGen" type="button">xo-ai, write the minutes</button><button class="btn btn-sv btn-sm" id="docPub" type="button">Publish to the strata portal</button></div>
+        <p class="note">xo-ai writes the minutes from the record in Robert&rsquo;s Rules form. Anyone at the table can edit them until they&rsquo;re published; publishing locks them and files them in the Minutes binder.</p>
       </div>
       <div class="pane" id="p-rec">
         <h3>The record</h3>
@@ -437,13 +484,6 @@ footer{background:#0b0b0d}
     $('roomTitle').textContent=(strata()?strata()+' · ':'')+'board of directors room';
     drawPlay();
   }
-  function drawPlay(){
-    var p=S.dec.play, box=$('playBox');
-    if(!p){box.innerHTML='<div class="devs"><i></i><i></i><i></i></div>';return}
-    box.innerHTML='<div class="inplay"><em>In play'+(p.second?' · seconded':'')+'</em><span>'+esc(p.text)+'</span><div class="tally"><button type="button" data-v="for">For '+p.for+'</button><button type="button" data-v="against">Against '+p.against+'</button><button type="button" data-v="abstain">Abstain '+p.abstain+'</button></div></div>';
-    [].forEach.call(box.querySelectorAll('[data-v]'),function(b){b.onclick=function(){p[b.getAttribute('data-v')]++;drawPlay();drawDec();save()}});
-  }
-
   // ---- at the table: sign in, or open a director's recomemo and leave a message ----
   function close(){$('seatcard').classList.remove('on')}
   function topBlock(bg,av,ini){return '<div class="top"'+(bg?' style="background-image:url('+bg+')"':'')+'><span class="av"'+(av?' style="background-image:url('+av+');color:transparent"':'')+'>'+esc(ini)+'</span><button type="button" class="x" aria-label="Close">&times;</button></div>'}
@@ -495,18 +535,45 @@ footer{background:#0b0b0d}
     });
   }
   // ---- decisions: pending, in play, decided ----
-  function drawDec(){
-    var p=S.dec.play;
-    $('dPlay').innerHTML=p?'<li class="playing"><span><b style="color:#e0458f;font:600 10px var(--mono)">IN PLAY</b><br>'+esc(p.text)+'<br><small>for '+p.for+' · against '+p.against+' · abstain '+p.abstain+(p.second?' · seconded':'')+'</small></span></li><li>'+(p.second?'':'<button type="button" id="dSec">Second</button>')+'<button type="button" id="dCar">Carried</button><button type="button" id="dDef">Defeated</button></li>':'';
-    $('dPend').innerHTML=S.dec.pend.map(function(t,i){return '<li><span>'+esc(t)+'</span><button type="button" data-play="'+i+'">Put in play</button></li>'}).join('')||(p?'':'<li><small>Nothing proposed yet</small></li>');
-    $('dDone').innerHTML=S.dec.done.map(function(d,i){return '<li><span>'+esc(d.text)+'<br><small>'+esc(d.result)+'</small></span>'+(/^Carried/.test(d.result)?'<button type="button" data-share="'+i+'">Share</button>':'')+'</li>'}).join('')||'<li><small>Nothing agreed yet</small></li>';
-    [].forEach.call($('dPend').querySelectorAll('[data-play]'),function(b){b.onclick=function(){if(S.dec.play){$('decText').placeholder='Finish the decision in play first';return}var t=S.dec.pend.splice(+b.getAttribute('data-play'),1)[0];S.dec.play={text:t,for:0,against:0,abstain:0,second:false};addMin('Motion put in play by '+who()+': '+t,'mot');drawDec();drawPlay();save()}});
-    [].forEach.call($('dDone').querySelectorAll('[data-share]'),function(b){b.onclick=function(){var d=S.dec.done[+b.getAttribute('data-share')];$('prText').value='Update from '+(strata()||'our board')+': '+d.text+' was approved.';showPane('promo')}});
-    if($('dSec'))$('dSec').onclick=function(){p.second=true;addMin('Seconded: '+p.text,'mot');drawDec();drawPlay();save()};
-    if($('dCar'))$('dCar').onclick=function(){finish('Carried')};
-    if($('dDef'))$('dDef').onclick=function(){finish('Defeated')};
+  // ---- motions: moved (by the President or from the floor), seconded, voted director by director ----
+  function voters(){var v=[];var pos=positions(S.seats);Object.keys(S.people).forEach(function(k){var p=S.people[k];if(!p.ai)v.push({key:'s'+k,name:p.name,pos:p.pos})});if(S.dealer.name)v.push({key:'dealer',name:S.dealer.name,pos:'Director (dealer)'});return v}
+  function counts(p){var c={for:0,against:0,abstain:0};Object.keys(p.votes||{}).forEach(function(k){c[p.votes[k]]++});return c}
+  function myKey(){return S.me>-1&&S.people[S.me]&&!S.people[S.me].ai?'s'+S.me:null}
+  function drawPlay(){
+    var p=S.dec.play, box=$('playBox');
+    if(!p){box.innerHTML='<div class="devs"><i></i><i></i><i></i></div>';return}
+    var c=counts(p), mk=myKey(), mine=mk?p.votes[mk]:null;
+    box.innerHTML='<div class="inplay"><em>In play'+(p.mover?' · moved by '+esc(p.mover.split(' ')[0]):'')+(p.seconder?' · seconded by '+esc(p.seconder.split(' ')[0]):'')+'</em><span>'+esc(p.text)+'</span><div class="tally">'
+      +(p.seconder&&mk?['for','against','abstain'].map(function(v){return '<button type="button" data-v="'+v+'"'+(mine===v?' style="background:#0b0b0d;color:#fff"':'')+'>'+v.charAt(0).toUpperCase()+v.slice(1)+' '+c[v]+'</button>'}).join(''):'<small style="font:600 10px var(--mono)">'+(p.seconder?'for '+c.for+' · against '+c.against+' · abstain '+c.abstain:(p.mover?'needs a seconder':'needs a mover'))+'</small>')+'</div></div>';
+    [].forEach.call(box.querySelectorAll('[data-v]'),function(b){b.onclick=function(){p.votes[mk]=b.getAttribute('data-v');drawPlay();drawDec();save()}});
   }
-  function finish(r){var p=S.dec.play;S.dec.done.unshift({text:p.text,result:r+' '+p.for+'-'+p.against+(p.abstain?'-'+p.abstain:'')});addMin(r.toUpperCase()+': '+p.text+' (for '+p.for+', against '+p.against+', abstain '+p.abstain+').','res');S.dec.play=null;drawDec();drawPlay();save()}
+  function opts(list,ex){return '<option value="">Choose</option>'+list.filter(function(v){return v.name!==ex}).map(function(v){return '<option>'+esc(v.name)+'</option>'}).join('')}
+  function drawDec(){
+    var p=S.dec.play, V=voters();
+    if(p){
+      var c=counts(p), h='<li class="playing" style="display:block"><b style="color:#e0458f;font:600 10px var(--mono)">IN PLAY</b><br>'+esc(p.text);
+      if(!p.mover){var pres=V.filter(function(v){return v.pos==='President'})[0];
+        h+='<div class="mv"><label>Moved by <small>(the President, or a motion from the floor)</small><select id="mvSel">'+opts(V)+'</select></label>'+(pres?'<button type="button" id="mvPres">President moves</button>':'')+'<button type="button" id="mvGo">Moved</button></div>';}
+      else if(!p.seconder){h+='<div class="mv"><small>Moved by '+esc(p.mover)+'</small><label>Seconded by<select id="scSel">'+opts(V,p.mover)+'</select></label><button type="button" id="scGo">Seconded</button></div>';}
+      else{h+='<div class="mv"><small>Moved by '+esc(p.mover)+' · seconded by '+esc(p.seconder)+'</small><div class="votes">'+V.map(function(v){var x=p.votes[v.key];return '<div class="vr"><span>'+esc(v.name)+'</span>'+['for','against','abstain'].map(function(o){return '<button type="button" data-vk="'+v.key+'" data-vo="'+o+'"'+(x===o?' class="on"':'')+'>'+o+'</button>'}).join('')+'</div>'}).join('')+'</div><small>for '+c.for+' · against '+c.against+' · abstain '+c.abstain+'</small><br><button type="button" id="callVote">Call the vote</button></div>';}
+      h+='</li>';$('dPlay').innerHTML=h;
+    } else $('dPlay').innerHTML='';
+    $('dPend').innerHTML=S.dec.pend.map(function(t,i){return '<li><span>'+esc(t)+'</span><button type="button" data-play="'+i+'">Put in play</button></li>'}).join('')||(p?'':'<li><small>Nothing proposed yet</small></li>');
+    $('dDone').innerHTML=S.dec.done.map(function(d,i){return '<li><span>'+esc(d.text)+'<br><small>'+esc(d.result)+(d.mover?' · moved '+esc(d.mover.split(' ')[0])+', seconded '+esc((d.seconder||'').split(' ')[0]):'')+'</small></span>'+(/^Carried/.test(d.result)?'<button type="button" data-share="'+i+'">Share</button>':'')+'</li>'}).join('')||'<li><small>Nothing agreed yet</small></li>';
+    [].forEach.call($('dPend').querySelectorAll('[data-play]'),function(b){b.onclick=function(){if(S.dec.play){$('decText').placeholder='Finish the motion in play first';return}var t=S.dec.pend.splice(+b.getAttribute('data-play'),1)[0];S.dec.play={text:t,mover:'',seconder:'',votes:{}};addMin('On the table: '+t,'mot');drawDec();drawPlay();save()}});
+    [].forEach.call($('dDone').querySelectorAll('[data-share]'),function(b){b.onclick=function(){var d=S.dec.done[+b.getAttribute('data-share')];$('prText').value='Update from '+(strata()||'our board')+': '+d.text+' was approved.';showPane('promo')}});
+    if($('mvPres'))$('mvPres').onclick=function(){var pr=V.filter(function(v){return v.pos==='President'})[0];setMover(pr.name,true)};
+    if($('mvGo'))$('mvGo').onclick=function(){var n=$('mvSel').value;if(n)setMover(n,false)};
+    if($('scGo'))$('scGo').onclick=function(){var n=$('scSel').value;if(!n)return;p.seconder=n;addMin('Seconded by '+n+'.','mot');chatAdd('xo-ai','Moved and seconded. Discussion is open; when the chair is ready, directors vote.','xo');drawDec();drawPlay();save()};
+    [].forEach.call($('dPlay').querySelectorAll('[data-vk]'),function(b){b.onclick=function(){p.votes[b.getAttribute('data-vk')]=b.getAttribute('data-vo');drawDec();drawPlay();save()}});
+    if($('callVote'))$('callVote').onclick=function(){var c=counts(p);finish(c.for>c.against?'Carried':'Defeated')};
+  }
+  function setMover(n,pres){var p=S.dec.play;p.mover=n;addMin((pres?'The President, '+n+', moved':'Motion from the floor: '+n+' moved')+' that '+p.text.charAt(0).toLowerCase()+p.text.slice(1)+'.','mot');drawDec();drawPlay();save()}
+  function finish(r){var p=S.dec.play,c=counts(p);
+    S.dec.done.unshift({text:p.text,result:r+' '+c.for+'-'+c.against+(c.abstain?'-'+c.abstain:''),mover:p.mover,seconder:p.seconder,c:c,t:stamp()});
+    addMin(r.toUpperCase()+': '+p.text+' (for '+c.for+', against '+c.against+', abstain '+c.abstain+').','res');
+    if(r==='Carried'){S.promoDrafts=S.promoDrafts||[];S.promoDrafts.unshift({text:'Update from '+(strata()||'our board')+': '+p.text.replace(/\.$/,'')+' was approved by the board.',t:stamp()});chatAdd('xo-ai','Carried. I’ve drafted a shared promotion for SharedPromoPage; a director approves it before it goes out.','xo')}
+    S.dec.play=null;drawDec();drawPlay();drawPromo();save()}
   $('decAdd').onclick=function(){var t=$('decText').value.trim();if(!t)return;S.dec.pend.push(t);$('decText').value='';drawDec();save()};
   $('decText').onkeydown=function(e){if(e.key==='Enter'){e.preventDefault();$('decAdd').onclick()}};
   // ---- minutes ----
@@ -543,7 +610,8 @@ footer{background:#0b0b0d}
   var MANNERS=['Please address your comments through the chair.','One speaker at a time; raise your hand to be recognized.','Keep discussion to the motion on the table.','Declare any conflict of interest before discussion.','Keep it courteous: debate ideas, not people.','Decisions are made by motion and vote, not in chat.'];
   function chatAdd(from,text,kind){S.chat.push({from:from,text:text,kind:kind||'',t:stamp(),av:(kind==='mine'&&S.me>-1&&S.people[S.me])?S.people[S.me].av:''});if(S.chat.length>200)S.chat.shift();drawChat();save()}
   function drawChat(){
-    $('chat').innerHTML=S.chat.length?S.chat.map(function(m){var ini=m.kind==='xo'?'xo':initials(m.from)||'?';return '<li class="'+m.kind+'"><span class="ca"'+(m.av?' style="background-image:url('+m.av+');color:transparent"':'')+'>'+esc(ini)+'</span><span class="cb"><small>'+esc(m.from)+' · '+esc(m.t)+'</small>'+esc(m.text)+'</span></li>'}).join(''):'<li class="xo"><span class="ca">xo</span><span class="cb"><small>xo-ai</small>Welcome to the board room'+(strata()?' of '+esc(strata()):'')+'. When everyone is seated, ask me to call the meeting to order.</span></li>';
+    $('chat').innerHTML=S.chat.length?S.chat.map(function(m){if(m.kind==='xoa')return xoaCard(m.a);var ini=m.kind==='xo'?'xo':initials(m.from)||'?';return '<li class="'+m.kind+'"><span class="ca"'+(m.av?' style="background-image:url('+m.av+');color:transparent"':'')+'>'+esc(ini)+'</span><span class="cb"><small>'+esc(m.from)+' · '+esc(m.t)+'</small>'+esc(m.text)+'</span></li>'}).join(''):'<li class="xo"><span class="ca">xo</span><span class="cb"><small>xo-ai</small>Welcome to the board room'+(strata()?' of '+esc(strata()):'')+'. When everyone is seated, ask me to call the meeting to order.</span></li>';
+    [].forEach.call($('chat').querySelectorAll('[data-go]'),function(b){b.onclick=function(){var g=b.getAttribute('data-go');if(g==='shelf'){document.getElementById('shelfP').scrollIntoView({behavior:'smooth'})}else{showPane(g);document.getElementById('tabs2').scrollIntoView({behavior:'smooth',block:'start'})}}});
     var el=$('chat');el.scrollTop=el.scrollHeight;
   }
   function seatedCount(){var c=Object.keys(S.people).length;if(S.two&&S.people[0])c+=0;return c+(S.dealer.name?1:0)}
@@ -555,7 +623,7 @@ footer{background:#0b0b0d}
   };
   function chatSend(){var t=($('chatIn').value||'').trim();if(!t)return;var me=S.me>-1&&S.people[S.me]?S.people[S.me].name:'Guest';chatAdd(me,t,'mine');$('chatIn').value='';
     // xo-ai's gentle board-manners nudges
-    if(/\b(i move|motion|move that)\b/i.test(t))setTimeout(function(){chatAdd('xo-ai','To make that a formal motion, add it under Decisions and put it in play. I will record the mover, the seconder and the vote.','xo')},500);
+    if(/\b(i move|motion|move that)\b/i.test(t))setTimeout(function(){chatAdd('xo-ai','To make that a formal motion, add it under Proposed and put it in play. I will record the mover, the seconder and each director\u2019s vote.','xo')},500);
     else if(/\b(vote|voting)\b/i.test(t)&&!S.dec.play)setTimeout(function(){chatAdd('xo-ai','There is no motion on the table yet. '+MANNERS[5],'xo')},500);
     else if(/\b(stupid|idiot|shut up)\b/i.test(t))setTimeout(function(){chatAdd('xo-ai',MANNERS[4],'xo')},500);
   }
@@ -564,9 +632,14 @@ footer{background:#0b0b0d}
   $('chatToMin').onclick=function(){var m=S.chat.filter(function(x){return x.kind!=='xo'}).slice(-1)[0];if(!m)return;addMin(m.from+' (from chat): '+m.text);chatAdd('xo-ai','Added to the minutes.','xo')};
 
   // ---- SharedPromoPage: the group's communication ----
-  function drawPromo(){$('promo').innerHTML=(S.promo||[]).map(function(x){return '<li><span>'+esc(x.text)+'</span><small>'+esc(x.by)+' · '+esc(x.t)+'</small></li>'}).join('')||'<li><span class="muted">Nothing shared yet.</span></li>'}
+  function drawPromo(){
+    var d=(S.promoDrafts||[]).map(function(x,i){return '<li><span><b style="font:600 10px var(--mono);color:#a05a00">AGREED UPON · DRAFT</b><br>'+esc(x.text)+'</span><button type="button" data-ap="'+i+'">Approve &amp; share</button></li>'}).join('');
+    $('promo').innerHTML=d+((S.promo||[]).map(function(x){return '<li><span>'+esc(x.text)+'</span><small>'+esc(x.by)+' · '+esc(x.t)+'</small></li>'}).join('')||(d?'':'<li><span class="muted">Nothing shared yet. Agreed decisions appear here as drafts.</span></li>'));
+    [].forEach.call($('promo').querySelectorAll('[data-ap]'),function(b){b.onclick=function(){var x=S.promoDrafts.splice(+b.getAttribute('data-ap'),1)[0];postPromo(x.text)}});
+  }
+  function postPromo(t){S.promo=S.promo||[];S.promo.unshift({text:t,by:who(),t:stamp()});drawPromo();save();addMin('Shared to SharedPromoPage by '+who()+': '+t);chatAdd('xo-ai','Shared to your SharedPromoPage. Owners and partners will see it there.','xo')}
   $('prDraft').onclick=function(){var a=S.dec.done.filter(function(d){return /^Carried/.test(d.result)}).map(function(d){return d.text});$('prText').value=a.length?'Update from '+(strata()||'our board')+': the board approved '+a.join('; ')+'. Thank you to everyone who took part.':'Nothing has been agreed upon yet. Once a motion carries, I can draft the update.'};
-  $('prPost').onclick=function(){var t=$('prText').value.trim();if(!t)return;S.promo=S.promo||[];S.promo.unshift({text:t,by:who(),t:stamp()});$('prText').value='';drawPromo();save();addMin('Shared to SharedPromoPage by '+who()+': '+t);chatAdd('xo-ai','Shared to your SharedPromoPage. Owners and partners will see it there.','xo')};
+  $('prPost').onclick=function(){var t=$('prText').value.trim();if(!t)return;$('prText').value='';postPromo(t)};
 
   // ---- the co|co board: a group of 12 for Concept Oasis Company ----
   $('cocoBoard').onclick=function(){
@@ -618,8 +691,92 @@ footer{background:#0b0b0d}
     showDocs(hits,'xo-ai found');}
   $('findBtn').onclick=find;$('find').onkeydown=function(e){if(e.key==='Enter'){e.preventDefault();find()}};
 
+  // ---- agenda and the minutes document: written by xo-ai, editable until published ----
+  var AGENDA0=['Call to order','Approval of the agenda','Adoption of the previous minutes','Business arising','Financial report','Correspondence','New business','Next meeting','Adjournment'];
+  function drawAgenda(){var a=S.agenda||AGENDA0.slice();S.agenda=a;
+    $('agenda').innerHTML=a.map(function(x,i){return '<li><span>'+(i+1)+'. '+esc(x)+'</span>'+(S.pub?'':'<button type="button" data-ag="'+i+'" aria-label="Remove">&times;</button>')+'</li>'}).join('');
+    [].forEach.call($('agenda').querySelectorAll('[data-ag]'),function(b){b.onclick=function(){S.agenda.splice(+b.getAttribute('data-ag'),1);drawAgenda();save()}})}
+  $('agAdd').onclick=function(){var t=$('agText').value.trim();if(!t||S.pub)return;var i=S.agenda.indexOf('Next meeting');S.agenda.splice(i>-1?i:S.agenda.length,0,t);$('agText').value='';drawAgenda();save()};
+  function genMinutes(){
+    var nm=strata()||'the Strata Corporation', date=new Date().toLocaleDateString('en-CA',{weekday:'long',year:'numeric',month:'long',day:'numeric'});
+    var ppl=Object.keys(S.people).map(function(k){return S.people[k]}), hum=ppl.filter(function(p){return !p.ai}), ai=ppl.filter(function(p){return p.ai});
+    var call=S.minutes.filter(function(m){return /called the meeting to order|called to order/i.test(m.text)})[0], adj=S.minutes.filter(function(m){return /adjourned/i.test(m.text)}).slice(-1)[0];
+    var h='<h4 class="mt">MINUTES OF THE COUNCIL MEETING</h4><p class="mc">'+esc(nm)+'<br>'+esc(date)+' &middot; held by Zoom and in person</p>';
+    h+='<p><b>PRESENT:</b> '+(hum.length?hum.map(function(p){return esc(p.name)+' ('+esc(p.pos)+')'}).join(', '):'[council members]')+(S.dealer.name?'; '+esc(S.dealer.name)+(S.dealer.org?', '+esc(S.dealer.org):'')+' (property manager, Director)':'')+'</p>';
+    if(ai.length)h+='<p><b>IN ATTENDANCE (non-voting):</b> '+ai.map(function(p){return esc(p.name)+(p.name==='xo-ai'?' (recording secretary)':' (AI advisor)')}).join(', ')+'</p>';
+    var n=0;function sec(t,body){n++;h+='<p><b>'+n+'. '+esc(t.toUpperCase())+'</b><br>'+body+'</p>'}
+    (S.agenda||AGENDA0).forEach(function(item){var k=item.toLowerCase();
+      if(k==='call to order')sec(item,'The meeting was called to order'+(call?' at '+esc(call.t):'')+' and quorum was confirmed.');
+      else if(k==='approval of the agenda')sec(item,'It was MOVED and SECONDED to approve the agenda as presented. CARRIED.');
+      else if(k==='adoption of the previous minutes')sec(item,'It was MOVED and SECONDED to adopt the minutes of the previous meeting as circulated. CARRIED.');
+      else if(k==='new business'){var b=S.dec.done.slice().reverse().map(function(d){return 'It was MOVED by '+esc(d.mover||'[mover]')+' and SECONDED by '+esc(d.seconder||'[seconder]')+' that '+esc(d.text.charAt(0).toLowerCase()+d.text.slice(1).replace(/\.$/,''))+'. <b>'+esc((d.result||'').split(' ')[0].toUpperCase())+'</b> ('+(d.c?d.c.for+' in favour, '+d.c.against+' opposed'+(d.c.abstain?', '+d.c.abstain+' abstained':''):esc(d.result))+').'}).join('<br><br>');
+        var open=S.dec.pend.length?'<br><br>Tabled to the next meeting: '+S.dec.pend.map(esc).join('; ')+'.':'';sec(item,(b||'No motions were brought forward.')+open)}
+      else if(k==='correspondence'){var l=(S.docs||[]).filter(function(d){return d.f==='letters'});sec(item,l.length?'Received and filed: '+l.map(function(d){return esc(d.name)}).join('; ')+'.':'No correspondence was received.')}
+      else if(k==='financial report')sec(item,'The Treasurer presented the financial report. It was MOVED and SECONDED to receive the report as presented. CARRIED.');
+      else if(k==='next meeting')sec(item,'The next council meeting will be held on [date] at [time].');
+      else if(k==='adjournment')sec(item,'There being no further business, the meeting was adjourned'+(adj?' at '+esc(adj.t):'')+'.');
+      else sec(item,'[Discussion]');
+    });
+    var td=S.todo.filter(function(t){return !t.done});
+    if(td.length)h+='<p><b>ACTION ITEMS</b><br>'+td.map(function(t){return '&bull; '+esc(t.text)+(t.owner?' ('+esc(t.owner)+')':'')}).join('<br>')+'</p>';
+    h+='<p class="mf">Minutes recorded by xo-ai, recording secretary. Draft for council approval. Not legal advice.</p>';
+    return h;
+  }
+  function drawDoc(){
+    var d=$('docBody');
+    if(!S.docHtml)S.docHtml=genMinutes();
+    d.innerHTML=S.docHtml;d.contentEditable=S.pub?'false':'true';
+    $('docState').textContent=S.pub?'Published to the strata portal '+S.pub.replace(/\.$/,'')+'. Locked.':'Draft · editable until published';
+    $('docGen').disabled=!!S.pub;$('docPub').disabled=!!S.pub;$('agAdd').disabled=!!S.pub;
+  }
+  $('docBody').addEventListener('input',function(){if(!S.pub){S.docHtml=this.innerHTML;save()}});
+  var regenArmed=false;
+  $('docGen').onclick=function(){if(S.pub)return;if(S.docEdited&&!regenArmed){regenArmed=true;$('docState').textContent='Rewriting replaces your edits. Tap again to confirm.';return}regenArmed=false;S.docHtml=genMinutes();S.docEdited=false;drawDoc();save();chatAdd('xo-ai','The minutes are written from the record, in Robert’s Rules form. Edit anything before you publish.','xo')};
+  $('docBody').addEventListener('keydown',function(){S.docEdited=true});
+  $('docPub').onclick=function(){if(S.pub)return;S.pub=new Date().toLocaleString('en-CA',{month:'long',day:'numeric',hour:'numeric',minute:'2-digit'});
+    S.docs=S.docs||[];S.docs.unshift({f:'minutes',name:'Council minutes, '+new Date().toLocaleDateString('en-CA',{year:'numeric',month:'long',day:'numeric'}),type:'PDF',sample:false,sum:'Published minutes: '+S.dec.done.length+' motion'+(S.dec.done.length===1?'':'s')+' recorded, '+S.todo.filter(function(t){return !t.done}).length+' action item(s).'});
+    drawDoc();drawAgenda();drawShelf();save();addMin('Minutes published to the strata portal.');chatAdd('xo-ai','Published to the strata portal and filed in the Minutes binder. (Demo: in Strataverse this posts to your owners’ portal.)','xo')};
+
+  // ---- ask xo-ai: always open for input; every answer shows who asked, current, summary, 3 links and a disclaimer ----
+  function requester(){var p=S.me>-1?S.people[S.me]:null;return p?{name:p.name,pos:p.pos,av:p.av}:{name:'Guest',pos:'not seated',av:''}}
+  function nowState(){var p=S.dec.play;return p?('In play: '+p.text+(p.mover?' (moved by '+p.mover+(p.seconder?', seconded by '+p.seconder:'')+')':' (waiting for a mover)')):(S.dec.pend.length?'Nothing in play. Next proposed: '+S.dec.pend[0]+'.':'Nothing in play and nothing proposed.')}
+  function summaryText(){var agreed=S.dec.done.filter(function(d){return /^Carried/.test(d.result)});var td=S.todo.filter(function(t){return !t.done});
+    return (agreed.length?agreed.length+' agreed upon ('+agreed.slice(0,2).map(function(d){return d.text}).join('; ')+(agreed.length>2?'…':'')+')':'Nothing agreed upon yet')+'. '+(td.length?td.length+' to-do item'+(td.length===1?'':'s')+' open':'No open to-dos')+'. '+(S.dec.pend.length?S.dec.pend.length+' proposed':'Nothing else proposed')+'. Minutes: '+(S.pub?'published '+S.pub:'draft, editable')+'.'}
+  var LINKS={agreed:['Agreed upon','min'],todo:['To do list','min'],proposed:['Proposed','min'],doc:['Agenda & document','doc'],record:['The record','rec'],promo:['SharedPromoPage','promo'],zoom:['Zoom invite','zoom'],shelf:['Board folder','shelf']};
+  function answer(q){
+    var l=q.toLowerCase(), ans='', links=[], docs=(S.docs||[]);
+    if(/\b(find|where is|look up|policy|bylaw|insurance|quote|budget|report|letter)\b/.test(l)){
+      var words=l.replace(/\b(find|the|a|an|our|for|me|please|show|where|is|look|up|can|you)\b/g,' ').split(/\s+/).filter(function(w){return w.length>2});
+      var hits=docs.filter(function(d){var h=(d.name+' '+d.f+' '+(d.sum||'')).toLowerCase();return words.some(function(w){return h.indexOf(w)>-1})}).slice(0,3);
+      ans=hits.length?'I found '+hits.length+' record'+(hits.length===1?'':'s')+' on the shelf: '+hits.map(function(d){return d.name}).join('; ')+'.'+(hits[0].sum?' In short: '+hits[0].sum:''):'I couldn’t find that on the shelf yet. Add it under Board folder and I’ll file it.';
+      links=hits.map(function(d){return [d.name,'shelf']});while(links.length<3)links.push(LINKS[['shelf','doc','record'][links.length]]);
+    } else if(/\b(summary|summarize|current|where are we|status|recap|update)\b/.test(l)){
+      ans='Here is where the meeting stands. '+summaryText();links=[LINKS.agreed,LINKS.proposed,LINKS.doc];
+    } else if(/\b(robert|rules|motion|second|vote|quorum|amend|table|point of order)\b/.test(l)){
+      ans=/amend/.test(l)?'Under Robert’s Rules, an amendment is moved and seconded like any motion, debated, and voted on before the main motion.':/quorum/.test(l)?'Quorum is the minimum number of voting members present to do business, set by your bylaws. I count it when I call the meeting to order.':/table/.test(l)?'A motion to table (postpone) sets the item aside; it needs a second and a majority vote.':/point of order/.test(l)?'A point of order asks the chair to enforce the rules; the chair rules on it right away.':'A motion is moved, seconded, discussed through the chair, then voted on. I record the mover, the seconder and each director’s vote.';
+      links=[LINKS.proposed,LINKS.record,LINKS.doc];
+    } else if(/\b(minutes|publish|document)\b/.test(l)){
+      ans='The minutes are '+(S.pub?'published to the strata portal ('+S.pub+').':'a draft. Edit them under Agenda & document, then publish to the strata portal.');links=[LINKS.doc,LINKS.record,LINKS.shelf];
+    } else if(/\b(promo|share|announce|owners know)\b/.test(l)){
+      ans='Agreed decisions become draft promotions on SharedPromoPage. A director approves each one before it’s shared.';links=[LINKS.promo,LINKS.agreed,LINKS.doc];
+    } else if(/\b(zoom|meeting time|schedule)\b/.test(l)){
+      ans='I can draft the Zoom invite and agenda under the Zoom tab.';links=[LINKS.zoom,LINKS.doc,LINKS.record];
+    } else {
+      ans='Request noted for the board. I’ve added it to the record so the chair can bring it forward.';addMin('Request to xo-ai from '+requester().name+': '+q);links=[LINKS.record,LINKS.proposed,LINKS.doc];
+    }
+    return {q:q,who:requester(),current:nowState(),summary:ans,links:links.slice(0,3),t:stamp()};
+  }
+  function askXo(){var q=($('askIn').value||'').trim();if(!q)return;$('askIn').value='';var a=answer(q);S.chat.push({kind:'xoa',a:a,t:a.t,from:'xo-ai',text:''});if(S.chat.length>200)S.chat.shift();drawChat();save()}
+  $('askBtn').onclick=askXo;$('askIn').onkeydown=function(e){if(e.key==='Enter'){e.preventDefault();askXo()}};
+  function xoaCard(a){
+    return '<li class="xoa"><div class="xq"><span class="upill"><span class="uav"'+(a.who.av?' style="background-image:url('+a.who.av+');color:transparent"':'')+'>'+esc(initials(a.who.name)||'U')+'</span><b>'+esc(a.who.name)+'</b><small>'+esc(a.who.pos)+'</small></span><span class="qt">&ldquo;'+esc(a.q)+'&rdquo;</span></div>'
+      +'<div class="xa"><div><em>Current</em>'+esc(a.current)+'</div><div><em>Summary</em>'+esc(a.summary)+'</div>'
+      +'<div class="xl"><em>Links</em>'+a.links.map(function(k){return '<button type="button" data-go="'+esc(k[1])+'">'+esc(k[0])+' &rarr;</button>'}).join('')+'</div>'
+      +'<div class="xd">Requested by '+esc(a.who.name)+' &middot; '+esc(a.t.replace(/\.$/,''))+'. xo-ai keeps the records and can make mistakes; it does not give legal advice, and the board decides.</div></div></li>';
+  }
+
   // ---- tabs, controls ----
-  function showPane(p){[].forEach.call(document.querySelectorAll('#tabs2 button'),function(b){b.classList.toggle('on',b.getAttribute('data-p')===p)});[].forEach.call(document.querySelectorAll('.pane'),function(x){x.classList.toggle('on',x.id==='p-'+p)})}
+  function showPane(p){if(p==='doc'&&!S.pub&&!S.docEdited){S.docHtml=genMinutes();drawDoc()}[].forEach.call(document.querySelectorAll('#tabs2 button'),function(b){b.classList.toggle('on',b.getAttribute('data-p')===p)});[].forEach.call(document.querySelectorAll('.pane'),function(x){x.classList.toggle('on',x.id==='p-'+p)})}
   [].forEach.call(document.querySelectorAll('#tabs2 button'),function(b){b.onclick=function(){showPane(b.getAttribute('data-p'))}});
   $('seats').onchange=function(){S.seats=+this.value;if(S.two&&S.seats<5){S.two=false;$('twoVotes').checked=false}Object.keys(S.people).forEach(function(k){if(+k>=S.seats)delete S.people[k]});drawRoom();drawOwners();save()};
   $('twoVotes').onchange=function(){S.two=this.checked;S.people={};S.me=-1;drawRoom();drawOwners();save()};
@@ -627,7 +784,7 @@ footer{background:#0b0b0d}
   $('joinBtn').onclick=function(){$('room').scrollIntoView({behavior:'smooth'});var pos=positions(S.seats);for(var i=0;i<pos.length;i++){if(S.two&&i===1)continue;if(!S.people[i]){var k=i;setTimeout(function(){openSeat(k,pos[k])},450);return}}};
   function save(){try{localStorage.setItem('coco_sv2',JSON.stringify({S:S,strata:$('strata').value}))}catch(x){}}
   function restore(){try{var o=JSON.parse(localStorage.getItem('coco_sv2')||'null');if(!o)return;for(var k in o.S)S[k]=o.S[k];$('strata').value=o.strata||'';$('seats').value=String(S.seats);$('twoVotes').checked=!!S.two}catch(x){}}
-  restore();if(!S.chat)S.chat=[];if(!S.promo)S.promo=[];if(!S.docs)S.docs=SAMPLE_DOCS.slice();$('strata').oninput();drawStyles();drawRoom();drawOwners();drawMin();drawTodo();drawDec();drawChat();drawPromo();drawShelf();
+  restore();if(!S.chat)S.chat=[];if(!S.promo)S.promo=[];if(!S.docs)S.docs=SAMPLE_DOCS.slice();$('strata').oninput();drawStyles();drawRoom();drawOwners();drawMin();drawTodo();drawDec();drawChat();drawPromo();drawShelf();drawAgenda();drawDoc();
 })();
 </script>
 </body>
