@@ -159,6 +159,11 @@ video{width:100%;border-radius:12px;background:#000;margin-top:10px}
           </div>
         </div>
         <div class="card">
+          <h2>Publish ads to the network</h2>
+          <p class="hint" style="margin-top:0">Recomemo spots on other sites, like admiraal.ca, show the ads in the network feed. Download the feed of everything running as an ad here, and send it to co|co to publish. <a href="../spot/">See a recomemo spot</a></p>
+          <div class="bar"><button class="btn sm" id="adExport" type="button">Download the ad feed</button><span class="msg" id="adMsg"></span></div>
+        </div>
+        <div class="card">
           <h2>This is a working prototype</h2>
           <p class="hint" style="margin-top:0">Everything here is saved in this browser only. The shared RCM ledger, merchant logins and live QR redemption come with the recomemo backend. Sample pills are made up.</p>
         </div>
@@ -299,7 +304,9 @@ video{width:100%;border-radius:12px;background:#000;margin-top:10px}
     if(hc){ $('hhCard').innerHTML=pill(hc)+(hc.ad&&hc.ad.on&&hc.ad.off!==hc.off?'<p class="vs" style="margin-top:10px"><span class="adtag">online now</span> <b>'+esc(hc.ad.off)+'</b>: '+esc(hc.mer)+' raised this offer online.</p>':''); $('hhHow').textContent='Show this at '+hc.mer;
       var left=limit(hc.use)-uses(hc), exp=hc.exp&&hc.exp<new Date().toISOString().slice(0,10);
       $('hhRule').textContent=exp?'This coupon has expired.':(limit(hc.use)===Infinity?'Use it again and again.':(left>0?left+' use'+(left>1?'s':'')+' left.':'This coupon has been used.')); }
-    else { $('hhCard').innerHTML='<div class="card"><h2>We could not find that coupon</h2><p class="hint" style="margin-top:0">Coupon <b>'+esc(rc)+'</b> is not on this device yet. When coupon.recomemo opens to everyone, every pad&rsquo;s coupons will show up here.</p></div>'; $('hhHow').textContent='Coupons from your neighbourhood pad'; }
+    else { fetch('../assets/ads.json',{cache:'no-cache'}).then(function(r){return r.json()}).then(function(f){ var a=(f.ads||[]).filter(function(x){return x.code===String(rc).toUpperCase()})[0]; if(!a) return;
+        $('hhCard').innerHTML=pill({mer:a.mer,off:a.off,det:a.det,use:a.use,col:a.col,code:a.code}); $('hhHow').textContent='Show this at '+a.mer; $('hhRule').textContent=a.link?'More at '+a.link:''; }).catch(function(){});
+      $('hhCard').innerHTML='<div class="card"><h2>We could not find that coupon</h2><p class="hint" style="margin-top:0">Coupon <b>'+esc(rc)+'</b> is not on this device yet. When coupon.recomemo opens to everyone, every pad&rsquo;s coupons will show up here.</p></div>'; $('hhHow').textContent='Coupons from your neighbourhood pad'; }
     return;
   }
 
@@ -420,6 +427,12 @@ video{width:100%;border-radius:12px;background:#000;margin-top:10px}
     try{ navigator.clipboard.writeText(t).then(done,function(){ sel(); }); }catch(e){ sel(); }
     function sel(){ var r=document.createRange(); r.selectNodeContents($('invLink')); var s=getSelection(); s.removeAllRanges(); s.addRange(r); b.textContent='Selected: press copy'; } };
 
+  $('adExport').onclick=function(){
+    var ads=pad.coupons.filter(function(c){return c.ad&&c.ad.on&&!c.sample}).map(function(c){ return {code:c.code,mer:c.mer,off:c.ad.off||c.off,det:c.det||'',col:c.col,use:c.use,places:c.ad.places||[]}; });
+    if(!ads.length){ say('adMsg','Nothing is running as an ad yet. Samples are left out.',true); return; }
+    var blob=new Blob([JSON.stringify({updated:new Date().toISOString().slice(0,10),ads:ads},null,2)],{type:'application/json'}), a=document.createElement('a');
+    a.href=URL.createObjectURL(blob); a.download='ads.json'; document.body.appendChild(a); a.click(); setTimeout(function(){ URL.revokeObjectURL(a.href); a.remove(); },1500);
+    say('adMsg',ads.length+' ad'+(ads.length>1?'s':'')+' in the feed. Logos go in once they are hosted online.'); };
   $('mPrint').onclick=function(){ var o=(load(PAD)||{}).org||{}; var who=[o.name,o.brok,o.phone].filter(Boolean).join(' · '); $('spOrg').textContent='Organizer: '+(who||'______________________________');
     window.print(); };
 

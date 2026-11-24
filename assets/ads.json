@@ -1,0 +1,27 @@
+{
+  "updated": "2026-11-24",
+  "note": "Ads that run in recomemo spots across the network. Each one is the online version of a coupon pill.",
+  "ads": [
+    {
+      "code": "ADMRL1",
+      "mer": "Admiraal Real Estate",
+      "off": "$1,000 cash back on your 2nd transaction within 12 months",
+      "det": "Restrictions may apply on discounted commissions.",
+      "col": "#0b0b0d",
+      "use": "once",
+      "places": ["admiraal.ca", "recomemo profiles", "affiliates.recomemo", "conceptoasis.com"],
+      "link": "https://admiraal.ca"
+    },
+    {
+      "code": "YOURAD",
+      "mer": "coupon.recomemo",
+      "off": "Your coupon here. Local merchants: join a neighbourhood notepad",
+      "det": "Printed on pads delivered door to door, and running online across recomemo.",
+      "col": "#16a3a6",
+      "use": "again",
+      "places": ["admiraal.ca", "recomemo profiles", "affiliates.recomemo", "SharedPromoPage", "Netrotown malls", "conceptoasis.com"],
+      "link": "https://conceptoasis.com/coupon/",
+      "house": true
+    }
+  ]
+}
