@@ -327,7 +327,7 @@ body.sbs-mode .seat.pill{max-width:104px;padding:2px 7px 2px 2px;gap:4px}body.sb
 .org-items .empty{font-size:12px;opacity:.7}
 .oi{position:relative;display:flex;flex-direction:column;gap:3px;max-width:240px;color:#0b0b0d;font-size:13px}
 .oi .k{font:700 9px var(--mono);letter-spacing:.06em;text-transform:uppercase;color:#525b6b}
-.oi .ob{display:flex;gap:4px;margin-top:2px}
+.oi .ob{display:flex;gap:4px;margin-top:2px;flex-wrap:wrap}
 .oi .ob button{border:1px solid #0b0b0d;background:#fff;border-radius:999px;font:600 10px Inter,sans-serif;padding:1px 7px;cursor:pointer;color:#0b0b0d}
 .oi.pill{flex-direction:row;align-items:center;gap:6px;padding:5px 12px 5px 5px;border:1.5px solid #0b0b0d;border-radius:22px;background:#fff;flex-wrap:wrap}
 .oi.pill .dotav{width:22px;height:22px;border-radius:50%;background:#0b0b0d;flex:none}
@@ -341,6 +341,55 @@ body.sbs-mode .seat.pill{max-width:104px;padding:2px 7px 2px 2px;gap:4px}body.sb
 .ethics h3{margin:0 0 6px}.ethics h4{margin:12px 0 4px;font-size:14px}
 .ethics ul{margin:0;padding-left:18px;font-size:13px;display:grid;gap:3px}.ethics p{margin:0;font-size:13px;color:#333}
 .keep{border:0;background:none;font:600 10.5px Inter,sans-serif;color:#525b6b;cursor:pointer;padding:0 2px;text-decoration:underline}
+
+/* colour: every recomemo pill gets a relevant background */
+.seat.pill{background:linear-gradient(115deg,color-mix(in srgb,var(--c,#0b0b0d) 30%,#fff) 0%,color-mix(in srgb,var(--c,#0b0b0d) 9%,#fff) 70%,#fff 100%)}
+.seat.pill.open{background:rgba(255,255,255,.85)}
+.mepill:not([style*="background-image"]){background:linear-gradient(115deg,#bfeeee 0%,#eefafa 70%,#fff)}
+.dealer:not([style*="background-image"]){background:linear-gradient(115deg,#d9d2fb 0%,#f3f0fe 70%,#fff)}
+.oi{--k:#16a3a6}
+.oi.pill{background:linear-gradient(115deg,color-mix(in srgb,var(--k) 42%,#fff),color-mix(in srgb,var(--k) 12%,#fff) 75%)}
+.oi.pill .dotav{background:var(--k)}
+.oi.notepad{border-top:6px solid var(--k)}
+.oi.folder,.oi.folder:before{background:color-mix(in srgb,var(--k) 18%,#fff)}
+.oi.sphere{background:radial-gradient(circle at 32% 28%,#fff,color-mix(in srgb,var(--k) 30%,#fff) 55%,color-mix(in srgb,var(--k) 70%,#fff))}
+.org-priv .oi .k{color:#5a0012}
+.org-sph{display:flex;flex-wrap:wrap;gap:10px;margin-top:10px;padding-top:10px;border-top:1.5px dashed currentColor;min-height:30px}
+.org-sph:empty{display:none}
+.org-sph:before{content:"Spheres";flex-basis:100%;font:700 9.5px var(--mono);letter-spacing:.08em;text-transform:uppercase;opacity:.75}
+.org-tray{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:0 0 10px;padding:8px 10px;border:1.5px dashed #0b0b0d;border-radius:12px;background:#fff}
+.org-tray .k{font:700 9.5px var(--mono);letter-spacing:.08em;text-transform:uppercase}
+.org-tray small{color:#525b6b;font-size:11.5px}
+#oTray{display:flex;gap:6px;flex-wrap:wrap}
+.mpl{display:inline-flex;align-items:center;gap:4px;max-width:150px;padding:2px 9px 2px 2px;border:1.2px solid #0b0b0d;border-radius:999px;font:600 11px Inter,sans-serif;cursor:grab;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;background:linear-gradient(115deg,color-mix(in srgb,var(--k) 45%,#fff),color-mix(in srgb,var(--k) 12%,#fff));color:#0b0b0d;user-select:none}
+.mpl i{width:14px;height:14px;border-radius:50%;background:var(--k);flex:none}
+.mpl span{overflow:hidden;text-overflow:ellipsis}
+.drop-on{outline:3px dashed #16a3a6;outline-offset:3px}
+
+.org-make{border:1.5px solid #0b0b0d;border-radius:14px;padding:10px;margin:12px 0 8px;background:#fff}
+.om-h{display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}.om-h small{color:#525b6b;font-size:12px}
+.org-make .org-add{margin:8px 0 0}
+.u3k{font:800 11px var(--mono);padding:6px 9px;border-radius:999px;background:#0b0b0d;color:#fff;align-self:center}
+.u3 input{flex:1;min-width:140px}
+.org-box{align-items:center}.org-box b{font-size:13px}
+.oi.pill .ot{display:flex;flex-direction:column;gap:3px;min-width:0}
+.u3b{display:inline-block;margin-left:4px;padding:0 5px;border-radius:999px;border:1px solid #8a92a3;font:700 9px var(--mono);color:#525b6b;background:#fff}
+.u3b.ok{border-color:#0b6b5c;color:#0b6b5c;background:#e8f8f2}
+.cpn{align-self:flex-start;font:800 12px var(--mono);letter-spacing:.08em;padding:2px 8px;border:1.5px dashed #7a4a00;border-radius:6px;background:#fff8e6;color:#7a4a00}
+.ol{font:600 11.5px var(--mono);color:#3b2a9a}
+.lk{display:flex;gap:4px}.lk a{width:18px;height:18px;border-radius:50%;display:grid;place-items:center;border:1px solid #0b0b0d;background:#fff;font:700 10px var(--mono);color:#0b0b0d;text-decoration:none}
+.oi .ob select{font:600 10px Inter,sans-serif;border:1px solid #0b0b0d;border-radius:999px;padding:1px 4px;background:#fff;max-width:130px}
+.org-boxes{display:flex;flex-wrap:wrap;gap:10px;margin-top:10px}.org-boxes:empty{display:none}
+.ob2{min-width:170px;max-width:260px;flex:1;border:1.5px solid #0b0b0d;color:#0b0b0d;position:relative}
+.ob2 .obh{display:flex;align-items:center;gap:6px;padding:6px 8px}.ob2 .obh b{font-size:13px}.ob2 .obh small{font:600 10px var(--mono);color:#525b6b}.ob2 .obh button{margin-left:auto;border:0;background:none;cursor:pointer;color:#8a92a3}
+.ob2 .obp{display:flex;flex-wrap:wrap;gap:4px;padding:0 8px 8px;min-height:26px}.ob2 .obp small{font-size:11px;color:#8a92a3}
+.ob2.notepad{border-radius:4px;background:repeating-linear-gradient(#fffdf2 0 19px,#e6e1c8 19px 20px);border-top:6px solid #16a3a6;box-shadow:2px 2px 0 #0b0b0d}
+.ob2.folder{border-radius:2px 10px 10px 10px;background:#f6efe0;margin-top:10px}
+.ob2.folder:before{content:"";position:absolute;left:-1.5px;top:-11px;width:64px;height:10px;border:1.5px solid #0b0b0d;border-bottom:0;border-radius:6px 6px 0 0;background:#f6efe0}
+.ob2.sphere{border-radius:999px;min-width:220px;max-width:340px;padding:10px 16px;background:radial-gradient(circle at 25% 20%,#fff,#d9f2f2 50%,#9fd9da)}
+.sas{display:flex;align-items:center;gap:6px;padding:0 8px 4px;font:600 10.5px Inter,sans-serif;color:#0b4f50}
+.sav2{width:18px;height:18px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,#2a5bd7,#16a3a6);color:#fff;font:700 8px Inter,sans-serif}
+.org-sph:before{color:inherit}
 .fbox{padding:12px;border:1.5px solid #0b0b0d;border-radius:14px;background:#fff;margin-top:12px;min-width:0}
 .fgrid .fbox{margin-top:0}
 .tblwrap{overflow-x:auto}
@@ -371,7 +420,7 @@ body.sbs-mode .seat.pill{max-width:104px;padding:2px 7px 2px 2px;gap:4px}body.sb
 .trep{font:14px/1.6 Georgia,serif;color:#0b0b0d;padding:10px 12px;border:1px solid #dfe3ea;border-radius:10px;background:#fcfcfc}
 
 /* members around the table as recomemo pill profiles */
-.seat.pill{width:auto;display:flex;align-items:center;gap:6px;padding:3px 10px 3px 3px;border:1.5px solid var(--c,#0b0b0d);border-radius:999px;background:#fff;box-shadow:3px 3px 0 #0b0b0d;max-width:150px;text-align:left}
+.seat.pill{width:max-content;display:flex;align-items:center;gap:6px;padding:3px 10px 3px 3px;border:1.5px solid var(--c,#0b0b0d);border-radius:999px;box-shadow:3px 3px 0 #0b0b0d;max-width:150px;text-align:left}
 .seat.pill .av{width:30px;height:30px;border-width:0;box-shadow:none;margin:0;flex:none;background-color:var(--c,#0b0b0d);color:#fff;font-size:11px}
 .seat.pill .av.empty{background:#fff;color:#0b0b0d;border:1.5px dashed #0b0b0d}
 .seat.pill .pt{display:block;min-width:0}
@@ -383,7 +432,7 @@ body.sbs-mode .seat.pill{max-width:104px;padding:2px 7px 2px 2px;gap:4px}body.sb
 .seat.pill.me{box-shadow:0 0 0 3px rgba(22,163,166,.45),3px 3px 0 #0b0b0d}
 .seat.pill .ai{top:-7px;left:auto;right:-4px}
 .seat.pill .dot{top:-4px;right:-4px}
-.room.dense .seat.pill{max-width:128px;padding:2px 8px 2px 2px}.room.dense .seat.pill .av{width:26px;height:26px}.room.dense .seat.pill .pt b{font-size:11px}
+.room.dense .seat.pill{width:max-content;max-width:128px;padding:2px 8px 2px 2px}.room.dense .seat.pill .av{width:26px;height:26px}.room.dense .seat.pill .pt b{font-size:11px}
 @media(max-width:620px){.seat.pill{max-width:88px;padding:2px 6px 2px 2px;gap:4px}.seat.pill .av{width:22px;height:22px;font-size:9px}.seat.pill .pt b{font-size:9.5px}.seat.pill .pt small{font-size:7.5px}}
 /* the ledger */
 .ledgerP{padding:14px}
@@ -511,19 +560,25 @@ body.sbs-mode .seat.pill{max-width:104px;padding:2px 7px 2px 2px;gap:4px}body.sb
 
     <div class="panel" style="margin-top:18px" id="orgP">
       <div class="org-h"><span class="org-av" id="orgAv">+</span><div><h2>organize.recomemo.com</h2><span class="muted" id="orgWho">Your recomemo. Keep anything from this board, privately or in public.</span></div><button class="btn btn-ghost btn-sm" id="orgClaire" type="button"><span class="claire">CL<b>ai</b><b>RE</b></span>, organize</button></div>
-      <div class="org-add">
-        <select id="oType" aria-label="Form"><option>Pill</option><option>Notepad</option><option>Folder</option><option>Sphere</option></select>
-        <select id="oKind" aria-label="Kind"><option>Comment</option><option>Offer</option><option>Prompt</option><option>Approved motion</option></select>
-        <input id="oText" placeholder="Write it down, e.g. Ask for the elevator certificate">
-        <select id="oWhere" aria-label="Where"><option value="priv">Private</option><option value="board">Public &middot; this board</option><option value="prof">Public &middot; my profile</option></select>
-        <button class="btn btn-sv btn-sm" id="oAdd" type="button">Add</button>
-        <label class="btn btn-ghost btn-sm" style="cursor:pointer">Add file<input type="file" id="oFile" multiple hidden></label>
+      <div class="org-make">
+        <div class="om-h"><b>Make a recomemo pill</b><small>comment, offer (coupon), file or link &middot; verified U + 3: you, plus three links</small></div>
+        <div class="org-add">
+          <select id="oKind" aria-label="Kind"><option value="Comment">Comment</option><option value="Offer">Offer (coupon)</option><option value="File">File</option><option value="Link">Link</option><option value="Approved motion">Approved motion</option></select>
+          <input id="oText" placeholder="Say it in a line, e.g. 10% off window cleaning for owners">
+          <input id="oCode" placeholder="Coupon code" style="max-width:130px" hidden>
+          <input id="oUrl" placeholder="https://" style="max-width:220px" hidden>
+          <label class="btn btn-ghost btn-sm" id="oFileL" style="cursor:pointer" hidden>Choose file<input type="file" id="oFile" hidden></label>
+          <select id="oWhere" aria-label="Where"><option value="priv">Private</option><option value="board">Public &middot; this board</option><option value="prof">Public &middot; my profile</option></select>
+        </div>
+        <div class="org-add u3"><span class="u3k">U + 3</span><input id="oL1" placeholder="Link 1 https://"><input id="oL2" placeholder="Link 2 https://"><input id="oL3" placeholder="Link 3 https://"><button class="btn btn-sv btn-sm" id="oAdd" type="button">Make pill</button></div>
       </div>
+      <div class="org-add org-box"><b>Make a</b><select id="bType" aria-label="Container"><option>Notepad</option><option>Folder</option><option>Sphere</option></select><input id="bName" placeholder="Name it, e.g. Elevator, or Harbour View owners"><select id="bWhere" aria-label="Where"><option value="priv">Private</option><option value="board">Public &middot; this board</option><option value="prof">Public &middot; my profile</option></select><button class="btn btn-ghost btn-sm" id="bAdd" type="button">Create</button></div>
+      <div class="org-tray"><span class="k">Ready to drop</span><div id="oTray"></div><small>Drag a mini pill onto a notepad, folder or sphere, into a box, or onto the ledger.</small></div>
       <div class="org-pub">
-        <div class="org-col" data-w="board"><h4>Public &middot; this board</h4><div class="org-items" id="oBoard"></div></div>
-        <div class="org-col" data-w="prof"><h4>Public &middot; profile.recomemo.com</h4><div class="org-items" id="oProf"></div></div>
+        <div class="org-col" data-w="board"><h4>Public &middot; this board</h4><div class="org-items" id="oBoard"></div><div class="org-boxes" id="oBoardB"></div><div class="org-sph" id="oBoardS"></div></div>
+        <div class="org-col" data-w="prof"><h4>Public &middot; profile.recomemo.com</h4><div class="org-items" id="oProf"></div><div class="org-boxes" id="oProfB"></div><div class="org-sph" id="oProfS"></div></div>
       </div>
-      <div class="org-col org-priv" data-w="priv"><h4>Private &middot; only you</h4><div class="org-items" id="oPriv"></div></div>
+      <div class="org-col org-priv" data-w="priv"><h4>Private &middot; only you</h4><div class="org-items" id="oPriv"></div><div class="org-boxes" id="oPrivB"></div><div class="org-sph" id="oPrivS"></div></div>
       <p class="note" id="orgNote">Demo: what you keep here stays in this browser only and isn&rsquo;t part of the board&rsquo;s shared page. On recomemo, private items live in your own private account.</p>
       <div class="ethics">
         <h3>xo-ai has the ethics</h3>
@@ -1203,28 +1258,66 @@ body.sbs-mode .seat.pill{max-width:104px;padding:2px 7px 2px 2px;gap:4px}body.sb
   $('sbsOn').onclick=function(){sbs(!document.body.classList.contains('sbs-mode'))};$('sbsOff').onclick=function(){sbs(false)};
   try{if(localStorage.getItem('sv_sbs'))sbs(true)}catch(x){}
 
-  // ---- organize.recomemo.com: private by default, public when you choose ----
-  var ORG=[];try{ORG=JSON.parse(localStorage.getItem('recomemo_org')||'[]')}catch(x){ORG=[]}
-  function orgSave(){try{localStorage.setItem('recomemo_org',JSON.stringify(ORG))}catch(x){}}
-  function orgAdd(o){o.id=Date.now()+Math.random();o.t=stamp();o.where=o.where||'priv';ORG.unshift(o);orgSave();drawOrg()}
-  window.svKeep=function(text,kind){orgAdd({type:kind==='Approved motion'?'Notepad':'Pill',kind:kind||'Comment',text:text,where:'priv'});chatAdd('xo-ai','Kept privately on your recomemo (organize.recomemo.com). Only you can see it.','xo')};
+  // ---- organize.recomemo.com: pills (comment, offer, file, link; U + 3), kept in notepads and folders, posted to spheres ----
+  var O={pills:[],boxes:[]};try{O=JSON.parse(localStorage.getItem('recomemo_org2')||'null')||O}catch(x){}
+  function orgSave(){try{localStorage.setItem('recomemo_org2',JSON.stringify(O))}catch(x){}}
+  var KC={'Comment':'#16a3a6','Offer':'#e9b44c','File':'#2a5bd7','Link':'#6b4fd8','Approved motion':'#8cc63f'};
+  function kc(o){return KC[o.kind]||'#e0458f'}
+  function okUrl(u){return /^https:\/\/[^\s.]+\.[^\s]+$/i.test((u||'').trim())}
+  function newId(){return 'r'+Date.now().toString(36)+Math.floor(Math.random()*1e4)}
+  function pillAdd(o){o.id=newId();o.t=stamp();o.where=o.where||'priv';o.links=(o.links||[]).filter(okUrl);O.pills.unshift(o);orgSave();drawOrg();return o}
+  window.svKeep=function(text,kind){pillAdd({kind:kind||'Comment',text:text,where:'priv'});chatAdd('xo-ai','Kept privately on your recomemo (organize.recomemo.com). Only you can see it.','xo')};
+  function pillById(id){return O.pills.filter(function(x){return x.id===id})[0]}
+  function u3(o){var n=(o.links||[]).length;return '<span class="u3b'+(n>=3?' ok':'')+'" title="Verified by you plus '+n+' link'+(n===1?'':'s')+'">U+'+n+(n>=3?' &#10003;':'')+'</span>'}
+  function mini(o){return '<span class="mpl" draggable="true" data-drag="'+o.id+'" style="--k:'+kc(o)+'" title="'+esc(o.kind+': '+o.text)+'"><i></i><span>'+esc(o.text)+'</span></span>'}
+  function full(o){var extra='';
+    if(o.kind==='Offer'&&o.code)extra+='<span class="cpn">'+esc(o.code)+'</span>';
+    if(o.kind==='Link'&&okUrl(o.url))extra+='<a class="ol" href="'+esc(o.url)+'" target="_blank" rel="noopener">'+esc(o.url.replace(/^https:\/\//,'').slice(0,34))+' &#8599;</a>';
+    if(o.kind==='File'&&o.file)extra+='<span class="fl">'+esc(o.file)+(o.folder?' &middot; '+esc(o.folder):'')+'</span>';
+    var lk=(o.links||[]).map(function(u,i){return '<a href="'+esc(u)+'" target="_blank" rel="noopener" title="'+esc(u)+'">'+(i+1)+'</a>'}).join('');
+    var opts=O.boxes.map(function(b){return '<option value="'+b.id+'">'+esc(b.type)+': '+esc(b.name)+'</option>'}).join('');
+    return '<div class="oi pill" draggable="true" data-drag="'+o.id+'" style="--k:'+kc(o)+'"><span class="dotav"></span><div class="ot"><span class="k">'+esc(o.kind==='Offer'?'Offer · coupon':o.kind)+' '+u3(o)+'</span><span>'+esc(o.text)+'</span>'+extra+(lk?'<span class="lk">'+lk+'</span>':'')
+      +'<span class="ob">'+(opts?'<select data-to-box="'+o.id+'" aria-label="Add to"><option value="">Add to&hellip;</option>'+opts+'</select>':'')+(o.where!=='priv'?'<button type="button" data-om="'+o.id+'" data-to="priv">Private</button>':'')+(o.where!=='board'?'<button type="button" data-om="'+o.id+'" data-to="board">Board</button>':'')+(o.where!=='prof'?'<button type="button" data-om="'+o.id+'" data-to="prof">Profile</button>':'')+'<button type="button" data-od="'+o.id+'" aria-label="Remove">&times;</button></span></div></div>'}
+  function box(b){var ps=b.pills.map(pillById).filter(Boolean);var cls=b.type.toLowerCase();
+    return '<div class="ob2 '+cls+'" data-box="'+b.id+'"><div class="obh"><b>'+esc(b.name)+'</b><small>'+esc(b.type)+' &middot; '+ps.length+'</small><button type="button" data-bd="'+b.id+'" aria-label="Remove">&times;</button></div><div class="obp">'+(ps.map(mini).join('')||'<small>Drop pills here</small>')+'</div>'+(cls==='sphere'?'<div class="sas"><span class="sav2">AI</span>'+esc(b.name)+' assistant &middot; built on CLaiRE and xo-ai</div>':'')+'</div>'}
   function drawOrg(){var me=S.me>-1&&S.people[S.me]?S.people[S.me]:null;
     $('orgAv').textContent=me?initials(me.name):'+';$('orgAv').style.backgroundImage=me&&me.av?'url('+me.av+')':'';$('orgAv').style.color=me&&me.av?'transparent':'#fff';
-    $('orgWho').textContent=(me?me.name+' · ':'')+'Your recomemo. Keep anything from this board, privately or in public.';
+    $('orgWho').textContent=(me?me.name+' · ':'')+'Your recomemo. Make pills, keep them in notepads and folders, post them to your spheres of influence.';
     var W={board:'oBoard',prof:'oProf',priv:'oPriv'};
-    Object.keys(W).forEach(function(w){var list=ORG.filter(function(o){return o.where===w});
-      $(W[w]).innerHTML=list.map(function(o){var cls=o.type.toLowerCase();
-        return '<div class="oi '+cls+'">'+(cls==='pill'?'<span class="dotav"></span>':'')+'<span class="k">'+esc(o.kind)+(o.file?' · file':'')+'</span><span>'+esc(o.text)+'</span>'+(o.folder?'<span class="fl">'+esc(o.folder)+'</span>':'')
-          +'<span class="ob">'+(w!=='priv'?'<button type="button" data-om="'+o.id+'" data-to="priv">Private</button>':'')+(w!=='board'?'<button type="button" data-om="'+o.id+'" data-to="board">Board</button>':'')+(w!=='prof'?'<button type="button" data-om="'+o.id+'" data-to="prof">Profile</button>':'')+'<button type="button" data-od="'+o.id+'" aria-label="Remove">&times;</button></span></div>'}).join('')||'<span class="empty">'+(w==='priv'?'Nothing private yet. Use "keep" on the ledger or a resolution, or add one above.':'Nothing here yet.')+'</span>'});
-    [].forEach.call($('orgP').querySelectorAll('[data-om]'),function(b){b.onclick=function(){var id=+b.getAttribute('data-om');ORG.forEach(function(o){if(o.id===id)o.where=b.getAttribute('data-to')});orgSave();drawOrg()}});
-    [].forEach.call($('orgP').querySelectorAll('[data-od]'),function(b){b.onclick=function(){var id=+b.getAttribute('data-od');ORG=ORG.filter(function(o){return o.id!==id});orgSave();drawOrg()}});
+    Object.keys(W).forEach(function(w){
+      $(W[w]).innerHTML=O.pills.filter(function(o){return o.where===w}).map(full).join('')||'<span class="empty">'+(w==='priv'?'Nothing private yet. Make a pill above, or use "keep" on the ledger or a resolution.':'Nothing here yet.')+'</span>';
+      $(W[w]+'B').innerHTML=O.boxes.filter(function(b){return b.where===w&&b.type!=='Sphere'}).map(box).join('');
+      $(W[w]+'S').innerHTML=O.boxes.filter(function(b){return b.where===w&&b.type==='Sphere'}).map(box).join('')});
+    $('oTray').innerHTML=O.pills.slice(0,14).map(mini).join('')||'<small>Your pills appear here, small and ready to drop in.</small>';
+    var P=$('orgP');
+    [].forEach.call(P.querySelectorAll('[data-drag]'),function(el){el.ondragstart=function(e){e.stopPropagation();try{e.dataTransfer.setData('text/plain',el.getAttribute('data-drag'))}catch(x){}e.dataTransfer.effectAllowed='copyMove'}});
+    [].forEach.call(P.querySelectorAll('[data-om]'),function(b){b.onclick=function(){var o=pillById(b.getAttribute('data-om'));if(o){o.where=b.getAttribute('data-to');orgSave();drawOrg()}}});
+    [].forEach.call(P.querySelectorAll('[data-od]'),function(b){b.onclick=function(){var id=b.getAttribute('data-od');O.pills=O.pills.filter(function(o){return o.id!==id});O.boxes.forEach(function(x){x.pills=x.pills.filter(function(p){return p!==id})});orgSave();drawOrg()}});
+    [].forEach.call(P.querySelectorAll('[data-bd]'),function(b){b.onclick=function(){var id=b.getAttribute('data-bd');O.boxes=O.boxes.filter(function(x){return x.id!==id});orgSave();drawOrg()}});
+    [].forEach.call(P.querySelectorAll('[data-to-box]'),function(sel){sel.onchange=function(){if(sel.value)toBox(sel.value,sel.getAttribute('data-to-box'))}});
+    [].forEach.call(P.querySelectorAll('[data-box]'),function(el){dropZone(el,function(o){toBox(el.getAttribute('data-box'),o.id)},true)});
   }
-  $('oAdd').onclick=function(){var t=$('oText').value.trim();if(!t)return;orgAdd({type:$('oType').value,kind:$('oKind').value,text:t,where:$('oWhere').value});$('oText').value=''};
+  function toBox(bid,pid){var b=O.boxes.filter(function(x){return x.id===bid})[0];if(!b)return;if(b.pills.indexOf(pid)<0)b.pills.push(pid);orgSave();drawOrg();
+    if(b.type==='Sphere')chatAdd(b.name+' assistant','Posted to the '+b.name+' sphere'+(b.where==='priv'?' (private: only you see it)':'')+'. I keep it organized; you decide who sees it.','xo')}
+  function dropZone(el,onDrop,stop){el.addEventListener('dragover',function(e){e.preventDefault();if(stop)e.stopPropagation();el.classList.add('drop-on')});el.addEventListener('dragleave',function(e){if(!el.contains(e.relatedTarget))el.classList.remove('drop-on')});el.addEventListener('drop',function(e){e.preventDefault();if(stop)e.stopPropagation();el.classList.remove('drop-on');var o=pillById(e.dataTransfer.getData('text/plain'));if(o)onDrop(o)})}
+  [].forEach.call(document.querySelectorAll('#orgP [data-w]'),function(col){dropZone(col,function(o){o.where=col.getAttribute('data-w');orgSave();drawOrg()})});
+  dropZone($('ledgerP'),function(o){ledgerAdd(myName(),o.text+(o.kind==='Offer'&&o.code?' (coupon '+o.code+')':'')+' · '+o.kind.toLowerCase()+' from my recomemo',false,false)});
+  function kindUI(){var k=$('oKind').value;$('oCode').hidden=k!=='Offer';$('oUrl').hidden=k!=='Link';$('oFileL').hidden=k!=='File'}
+  $('oKind').onchange=kindUI;kindUI();
+  var pendingFile='';
+  function claireFolder(name){var l=name.toLowerCase();return /invoice|statement|receipt/.test(l)?'Financials':/minute/.test(l)?'Minutes':/quote|offer|bid|estimate|coupon/.test(l)?'Offers':/bylaw|rule/.test(l)?'Bylaws':/insur/.test(l)?'Insurance':/depreciat|maint|inspect/.test(l)?'Maintenance':'General'}
+  $('oFile').addEventListener('change',function(){pendingFile=this.files[0]?this.files[0].name:'';$('oFileL').firstChild.textContent=pendingFile?pendingFile.slice(0,24):'Choose file';if(pendingFile&&!$('oText').value)$('oText').value=pendingFile});
+  $('oAdd').onclick=function(){var k=$('oKind').value,t=$('oText').value.trim();if(!t&&!(k==='File'&&pendingFile))return;
+    var o={kind:k,text:t||pendingFile,where:$('oWhere').value,links:[$('oL1').value,$('oL2').value,$('oL3').value]};
+    if(k==='Offer')o.code=$('oCode').value.trim();if(k==='Link')o.url=$('oUrl').value.trim();if(k==='File'&&pendingFile){o.file=pendingFile;o.folder='CLaiRE: '+claireFolder(pendingFile)}
+    pillAdd(o);['oText','oCode','oUrl','oL1','oL2','oL3'].forEach(function(id){$(id).value=''});pendingFile='';$('oFileL').firstChild.textContent='Choose file'};
   $('oText').onkeydown=function(e){if(e.key==='Enter'){e.preventDefault();$('oAdd').onclick()}};
-  function claireFolder(name){var l=name.toLowerCase();return /invoice|statement|receipt/.test(l)?'Financials':/minute/.test(l)?'Minutes':/quote|offer|bid|estimate/.test(l)?'Offers':/bylaw|rule/.test(l)?'Bylaws':/insur/.test(l)?'Insurance':/depreciat|maint|inspect/.test(l)?'Maintenance':'General'}
-  $('oFile').addEventListener('change',function(){[].forEach.call(this.files,function(f){orgAdd({type:'Folder',kind:'File',text:f.name,file:true,folder:'CLaiRE filed it: '+claireFolder(f.name),where:'priv'})});this.value=''});
-  $('orgClaire').onclick=function(){var n=0;ORG.forEach(function(o){var f=o.file?claireFolder(o.text):({'Offer':'Offers','Prompt':'Prompts','Approved motion':'Approved motions','Comment':'Notes'})[o.kind]||'General';var lab='CLaiRE filed it: '+f;if(o.folder!==lab){o.folder=lab;n++}});
-    ORG.sort(function(a,b){return (a.folder||'').localeCompare(b.folder||'')});orgSave();drawOrg();chatAdd('CLaiRE',n?'Organized '+n+' item'+(n===1?'':'s')+' on your recomemo into folders. Private items stay private.':'Everything on your recomemo is already in its folder.','xo')};
+  $('bAdd').onclick=function(){var n=$('bName').value.trim();if(!n)return;O.boxes.push({id:newId(),type:$('bType').value,name:n,where:$('bWhere').value,pills:[]});$('bName').value='';orgSave();drawOrg()};
+  $('bName').onkeydown=function(e){if(e.key==='Enter'){e.preventDefault();$('bAdd').onclick()}};
+  $('orgClaire').onclick=function(){var made=0,filed=0;var F={'Comment':'Comments','Offer':'Offers','File':'Files','Link':'Links','Approved motion':'Approved motions'};
+    O.pills.forEach(function(o){var name=o.kind==='File'&&o.file?claireFolder(o.file):F[o.kind]||'General';var b=O.boxes.filter(function(x){return x.type==='Folder'&&x.name===name&&x.where==='priv'})[0];
+      if(!b){b={id:newId(),type:'Folder',name:name,where:'priv',pills:[]};O.boxes.push(b);made++}if(b.pills.indexOf(o.id)<0){b.pills.push(o.id);filed++}});
+    orgSave();drawOrg();chatAdd('CLaiRE',filed?'Filed '+filed+' pill'+(filed===1?'':'s')+' into '+(made?made+' new ':'')+'private folders. Nothing was made public.':'Everything is already in its folder.','xo')};
   // ---- tabs, controls ----
   function showPane(p){if(p==='doc'){if(!S.pub&&!S.docEdited){S.docHtml=genMinutes();drawDoc()}document.getElementById('agPanel').scrollIntoView({behavior:'smooth',block:'start'});return}[].forEach.call(document.querySelectorAll('#tabs2 button'),function(b){b.classList.toggle('on',b.getAttribute('data-p')===p)});[].forEach.call(document.querySelectorAll('.pane'),function(x){x.classList.toggle('on',x.id==='p-'+p)})}
   [].forEach.call(document.querySelectorAll('#tabs2 button'),function(b){b.onclick=function(){showPane(b.getAttribute('data-p'))}});
