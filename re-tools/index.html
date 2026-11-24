@@ -9,6 +9,24 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Inter+Tight:wght@500;600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../assets/site.css">
+<style>
+.cur{display:inline-flex;border:1.5px solid #c3c9d3;border-radius:999px;padding:3px;margin:6px 0 18px;background:#fff}
+.cur button{border:0;background:none;padding:6px 14px;border-radius:999px;font:600 13px Inter,sans-serif;cursor:pointer;color:inherit}
+.cur button.on{background:#0f1733;color:#fff}
+.plans{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+@media(max-width:760px){.plans{grid-template-columns:minmax(0,1fr)}}
+.plan{position:relative;background:#fff;border:1.5px solid #dfe3ea;border-radius:18px;padding:24px}
+.plan.hl{border:2px solid #16a3a6;box-shadow:0 10px 30px rgba(22,163,166,.15)}
+.plan .flag{position:absolute;top:-12px;left:20px;background:#16a3a6;color:#fff;font:700 11px "Inter Tight",Inter,sans-serif;letter-spacing:.1em;text-transform:uppercase;padding:4px 10px;border-radius:999px}
+.plan h3{margin:0 0 8px}
+.price{display:flex;align-items:baseline;gap:6px;flex-wrap:wrap;margin-bottom:10px}
+.price small{width:100%;color:#5b6475;font-size:13px}
+.price b{font:800 52px/1 "Inter Tight",Inter,sans-serif;letter-spacing:-.03em}
+.price .sym{font-size:26px;vertical-align:top;margin-right:2px}
+.price span{color:#5b6475}.price em{font-style:normal;font:600 11px "JetBrains Mono",monospace;padding:2px 6px;border-radius:6px;background:#eef6f6;color:#0b6b5c}
+.incl{margin-top:22px;background:#fff;border:1.5px solid #dfe3ea;border-radius:18px;padding:22px}
+.incl h3{margin-top:0}
+</style>
 </head>
 <body>
 
@@ -17,7 +35,7 @@
   <nav>
     <a href="#how">How it works</a>
     <a href="#report">The report</a>
-    <a href="#pricing">Availability</a>
+    <a href="#pricing">Pricing</a>
     <a class="btn btn-dark" href="#signup">Get started</a>
   </nav>
 </div></header>
@@ -31,7 +49,7 @@
       <span class="pill">&#9728; Morning sun</span><span class="pill">&#128293; Natural gas fireplace</span><span class="pill t">Close to Sardis shops</span><span class="pill n">2 storey (living on the main)</span><span class="pill">Large fenced backyard</span>
     </div>
     <div class="cta">
-      <a class="btn btn-dark" href="#signup">Ask about it &rarr;</a>
+      <a class="btn btn-dark" href="#pricing">See pricing &rarr;</a>
       <a class="btn btn-line" href="https://www.admiraal.ca/CMAreport" target="_blank" rel="noopener">Try the live demo</a>
     </div>
   </div>
@@ -69,21 +87,46 @@
 </div></section>
 
 <section class="s" id="pricing"><div class="wrap">
-  <span class="kick">Availability</span>
-  <h2>Available on request</h2>
-  <p class="lead">The CMA Report with the Live Comp Report runs on admiraal.ca today. We offer it to agents and brokerages on request while we build File XO. Tell us about your site below and we'll be in touch.</p>
-  <p class="note" style="margin-top:14px">Listings come from your own website's licensed feed (for example RealtyNinja, IDX or CREA DDF&reg; through your brokerage). We don't resell MLS&reg; data.</p>
+  <span class="kick">Pricing</span>
+  <h2>One price per agent. Brokerages pay less.</h2>
+  <div class="plans">
+    <div class="plan">
+      <h3>Agent</h3>
+      <div class="price"><b><span class="sym">CA$</span>29</b><span>/ agent / month</span></div>
+      <p>Your own CMA configurator with the Live Comp Report, running for you from day one.</p>
+      <a class="btn btn-dark" href="#signup" data-tier="Agent">Start as an agent &rarr;</a>
+    </div>
+    <div class="plan hl">
+      <span class="flag">Whole brokerage</span>
+      <h3>Brokerage</h3>
+      <div class="price"><small>as low as</small><b><span class="sym">CA$</span>12</b><span>/ agent / month</span></div>
+      <p>Sign up your whole brokerage. Pricing depends on the number of agents; our Sailz department will put it together for you.</p>
+      <a class="btn btn-dark" href="#signup" data-tier="Brokerage">Contact the Sailz department &rarr;</a>
+    </div>
+  </div>
+  <div class="incl">
+    <h3>Included</h3>
+    <ul class="check">
+      <li><b>Live Comp Report:</b> the CMA configurator owners fill in themselves, with key words, features, active comps and Part 1 of the CMA Report as a branded PDF.</li>
+      <li><b>Where it runs:</b> on your own website, or we run it for you at livecompreport.com under your user name.</li>
+      <li>Your branding, your agents in the agent dropdown, and requests delivered to you.</li>
+    </ul>
+    <p class="note">Prices in Canadian dollars; outside Canada you're billed in your currency at the equivalent rate. Plus applicable taxes (GST/PST). Set-up fees may apply if you need it installed on your existing website. Listings come from your own website's licensed feed; we don't resell MLS&reg; data.</p>
+  </div>
 </div></section>
 
 <section class="s alt" id="signup"><div class="wrap">
-  <span class="kick">Ask about it</span>
-  <h2>Tell us about your site</h2>
-  <p class="lead">This gives us what we need to set up the Live Comp Report on your website. We'll reply with next steps. Nothing is installed until you approve it.</p>
+  <span class="kick">Sign up</span>
+  <h2>Tell us about you</h2>
+  <p class="lead">This gives us what we need to set up your Live Comp Report, on your website or at livecompreport.com. We'll reply with next steps and a secure payment link. Nothing is charged or installed until you approve it.</p>
   <form class="su" id="su" novalidate>
     <label>Your name<input name="name" autocomplete="name" required></label>
     <label>Email<input name="email" type="email" autocomplete="email" required></label>
     <label>Phone <span>(optional)</span><input name="phone" type="tel" autocomplete="tel"></label>
-    <label>I'm interested as<select name="tier"><option>Agent</option><option>Brokerage</option><option>Enterprise</option></select></label>
+    <label>I'm signing up as<select name="tier"><option>Agent</option><option>Brokerage</option><option>Enterprise</option></select></label>
+    <label>Number of agents <span>(brokerages)</span><input name="agentcount" inputmode="numeric"></label>
+    <label>Run it<select name="where"><option>At livecompreport.com under my user name</option><option>On my own website</option><option>Not sure yet</option></select></label>
+    <label>Currency<select name="currency"><option>CAD</option><option>USD</option></select></label>
     <label>Brokerage name<input name="brokerage" autocomplete="organization"></label>
     <label>Website<input name="website" inputmode="url" placeholder="https://"></label>
     <label>Website platform<select name="platform"><option>RealtyNinja</option><option>Another real estate website platform</option><option>WordPress or custom</option><option>Not sure</option></select></label>
@@ -118,7 +161,7 @@
     if(!/^\S+@\S+\.\S+$/.test(f.elements.email.value.trim())){ msg.textContent='Please add your email.'; f.elements.email.focus(); return; }
     if(!f.elements.consent.checked){ msg.textContent='Please tick the consent box.'; return; }
     var d={}; Array.prototype.forEach.call(f.elements,function(el){ if(!el.name) return; d[el.name]=el.type==='checkbox'?(el.checked?'Yes':'No'):el.value.trim(); });
-    d._subject='Live Comp Report signup: '+(d.brokerage||d.name)+' ('+d.tier+')';
+    d._subject='Live Comp Report sign-up: '+(d.brokerage||d.name)+' ('+d.tier+')';
     function done(){ f.style.display='none'; ok.style.display='block'; ok.scrollIntoView({behavior:'smooth',block:'center'}); }
     if(ENDPOINT){ fetch(ENDPOINT,{method:'POST',headers:{'Accept':'application/json','Content-Type':'application/json'},body:JSON.stringify(d)}).then(function(r){ if(!r.ok) throw 0; done(); }).catch(function(){ msg.textContent='That did not go through. Please email '+TO+'.'; }); return; }
     var body=Object.keys(d).filter(function(k){ return k!=='_subject'; }).map(function(k){ return k+': '+d[k]; }).join('\n');
