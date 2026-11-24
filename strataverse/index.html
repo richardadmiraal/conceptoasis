@@ -292,6 +292,55 @@ footer{background:#0b0b0d}
 .agbig .res small{display:block;font:600 10.5px var(--mono);color:#525b6b;margin-top:3px}
 .agbig .res.def{border-left-color:#e0458f;background:#fdf2f7}
 .sbs-min .docbody{max-height:none;min-height:420px}
+
+/* zoom side by side */
+.zbar{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px 18px;align-items:center;margin-top:14px;padding-block:14px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));border:2px solid #0b0b0d;border-radius:16px;background:#fff;box-shadow:5px 5px 0 #0b0b0d}
+.zb-l b{display:block;font:700 18px "Inter Tight",Inter,sans-serif}.zb-l span{font-size:13.5px;color:#525b6b}
+.zb-steps{list-style:none;margin:0;padding:0;display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.zb-steps li{display:flex;align-items:center;gap:6px}
+.zb-steps li>span{width:20px;height:20px;border-radius:50%;background:#0b0b0d;color:#fff;display:grid;place-items:center;font:700 11px var(--mono)}
+.zb-steps input{padding:6px 9px;border:1.5px solid #0b0b0d;border-radius:999px;font:13px Inter,sans-serif;width:210px;max-width:52vw}
+.zb-pick{display:flex;gap:6px;flex-wrap:wrap;margin:6px 0}.zb-pick button{padding:5px 12px;border-radius:999px;border:1.5px solid #0b0b0d;background:#fff;font:600 12.5px Inter,sans-serif;cursor:pointer;color:#0b0b0d}.zb-pick button.on{background:#0b0b0d;color:#fff}.zb-table{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.zb-tip{grid-column:1/-1;margin:0;font-size:12px;color:#525b6b}
+@media(max-width:900px){.zbar{grid-template-columns:minmax(0,1fr)}}
+.sbs-exit{position:fixed;right:calc(12px + env(safe-area-inset-right,0px));bottom:calc(12px + env(safe-area-inset-bottom,0px));z-index:50;padding:8px 14px;border-radius:999px;border:2px solid #0b0b0d;background:#fff;font:600 13px Inter,sans-serif;cursor:pointer;box-shadow:3px 3px 0 #0b0b0d}
+body.sbs-mode .sv-hero,body.sbs-mode #finP,body.sbs-mode #shelfP,body.sbs-mode #orgP,body.sbs-mode .zb-l,body.sbs-mode .zb-tip,body.sbs-mode #styPanel,body.sbs-mode .feathers{display:none!important}
+body.sbs-mode .wrap{max-width:640px}
+body.sbs-mode .sv{grid-template-columns:minmax(0,1fr)}
+body.sbs-mode .sbs{grid-template-columns:minmax(0,1fr)}
+body.sbs-mode .zbar{grid-template-columns:minmax(0,1fr)}
+body.sbs-mode .seat.pill{max-width:104px;padding:2px 7px 2px 2px;gap:4px}body.sbs-mode .seat.pill .av{width:24px;height:24px;font-size:9.5px}body.sbs-mode .seat.pill .pt b{font-size:10.5px}body.sbs-mode .seat.pill .pt small{font-size:8px}
+/* organize.recomemo.com */
+.org-h{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.org-h h2{margin:0}.org-h>div{flex:1;min-width:0}
+.org-av{width:44px;height:44px;border-radius:50%;background:#0b0b0d center/cover;color:#fff;display:grid;place-items:center;font:700 14px Inter,sans-serif;flex:none}
+.org-add{display:flex;gap:6px;flex-wrap:wrap;margin:12px 0}
+.org-add select,.org-add input{padding:7px 9px;border:1.5px solid #0b0b0d;border-radius:10px;font:13px Inter,sans-serif;background:#fff;color:#0b0b0d}
+.org-add input{flex:1;min-width:180px}
+.org-pub{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:10px}
+@media(max-width:620px){.org-pub{grid-template-columns:minmax(0,1fr)}}
+.org-col{border:1.5px solid #0b0b0d;border-radius:14px;padding:10px;background:#fff;min-width:0}
+.org-col h4{margin:0 0 8px;font:700 10.5px var(--mono);letter-spacing:.08em;text-transform:uppercase}
+.org-priv{margin-top:10px;background:#c8102e;border-color:#7a0019;color:#fff}
+.org-priv h4{color:#fff}
+.org-items{display:flex;flex-wrap:wrap;gap:8px;align-items:flex-start;min-height:44px}
+.org-items .empty{font-size:12px;opacity:.7}
+.oi{position:relative;display:flex;flex-direction:column;gap:3px;max-width:240px;color:#0b0b0d;font-size:13px}
+.oi .k{font:700 9px var(--mono);letter-spacing:.06em;text-transform:uppercase;color:#525b6b}
+.oi .ob{display:flex;gap:4px;margin-top:2px}
+.oi .ob button{border:1px solid #0b0b0d;background:#fff;border-radius:999px;font:600 10px Inter,sans-serif;padding:1px 7px;cursor:pointer;color:#0b0b0d}
+.oi.pill{flex-direction:row;align-items:center;gap:6px;padding:5px 12px 5px 5px;border:1.5px solid #0b0b0d;border-radius:22px;background:#fff;flex-wrap:wrap}
+.oi.pill .dotav{width:22px;height:22px;border-radius:50%;background:#0b0b0d;flex:none}
+.oi.notepad{padding:8px 10px 8px 14px;border:1.5px solid #0b0b0d;border-radius:4px;background:repeating-linear-gradient(#fffdf2 0 19px,#e6e1c8 19px 20px);min-width:150px;box-shadow:2px 2px 0 #0b0b0d}
+.oi.folder{padding:12px 10px 8px;border:1.5px solid #0b0b0d;border-radius:2px 10px 10px 10px;background:#f6efe0;min-width:150px;margin-top:10px}
+.oi.folder:before{content:"";position:absolute;left:-1.5px;top:-11px;width:60px;height:10px;border:1.5px solid #0b0b0d;border-bottom:0;border-radius:6px 6px 0 0;background:#f6efe0}
+.oi.sphere{width:150px;height:150px;border-radius:50%;border:1.5px solid #0b0b0d;background:radial-gradient(circle at 32% 30%,#fff,#d9f2f2 55%,#9fd9da);align-items:center;justify-content:center;text-align:center;padding:12px;font-size:11.5px;overflow:hidden}
+.org-priv .oi.pill,.org-priv .oi .ob button{border-color:#fff}
+.oi .fl{font:600 10px var(--mono);color:#7a4a00}
+.ethics{margin-top:14px;padding:12px 14px;border:1.5px dashed #0b0b0d;border-radius:14px;background:#fbfbfd}
+.ethics h3{margin:0 0 6px}.ethics h4{margin:12px 0 4px;font-size:14px}
+.ethics ul{margin:0;padding-left:18px;font-size:13px;display:grid;gap:3px}.ethics p{margin:0;font-size:13px;color:#333}
+.keep{border:0;background:none;font:600 10.5px Inter,sans-serif;color:#525b6b;cursor:pointer;padding:0 2px;text-decoration:underline}
 .fbox{padding:12px;border:1.5px solid #0b0b0d;border-radius:14px;background:#fff;margin-top:12px;min-width:0}
 .fgrid .fbox{margin-top:0}
 .tblwrap{overflow-x:auto}
@@ -401,6 +450,19 @@ footer{background:#0b0b0d}
   </div>
 </div></section>
 
+<div class="wrap zbar" id="zbar">
+  <div class="zb-l"><b>How is your board meeting today?</b>
+    <div class="zb-pick"><button type="button" class="on" data-meet="zoom">On Zoom, with Strataverse beside it</button><button type="button" data-meet="table">Right here at the table</button></div>
+    <span id="zbDesc">Keep your Zoom meeting. Run Strataverse beside it: the ledger, the agenda and the vote, while everyone talks on Zoom.</span></div>
+  <div class="zb-table" id="zbTable" hidden><button class="btn btn-sv btn-sm" id="pickRoom" type="button">Pick your board room &darr;</button><span class="appr wait">built-in voice: in development</span></div>
+  <ol class="zb-steps" id="zbSteps">
+    <li><span>1</span><a class="btn btn-ghost btn-sm" href="https://zoom.us/start/videomeeting" target="_blank" rel="noopener">Start your Zoom meeting &#8599;</a></li>
+    <li><span>2</span><input id="zLink" placeholder="Paste the Zoom link to share it"><a id="zJoin" class="btn btn-ghost btn-sm" target="_blank" rel="noopener" hidden>Join on Zoom &#8599;</a></li>
+    <li><span>3</span><button class="btn btn-sv btn-sm" id="sbsOn" type="button">Side-by-side mode</button></li>
+  </ol>
+  <p class="zb-tip">On a laptop: snap Zoom to the left half of the screen and this page to the right. Side-by-side mode keeps just what the meeting needs.</p>
+</div>
+<button class="sbs-exit" id="sbsOff" type="button" hidden>Exit side-by-side &times;</button>
 <div class="wrap sv" id="room">
   <div>
     <div class="panel">
@@ -444,6 +506,36 @@ footer{background:#0b0b0d}
           <div class="row" style="margin-top:10px"><button class="btn btn-ghost btn-sm" id="docGen" type="button">xo-ai, write the minutes</button><button class="btn btn-sv btn-sm" id="docPub" type="button">Publish to the strata portal</button></div>
           <p class="note">xo-ai writes the minutes from the record in Robert&rsquo;s Rules form. Anyone at the table can edit them until they&rsquo;re published; publishing locks them and files them in the Minutes binder.</p>
         </div>
+      </div>
+    </div>
+
+    <div class="panel" style="margin-top:18px" id="orgP">
+      <div class="org-h"><span class="org-av" id="orgAv">+</span><div><h2>organize.recomemo.com</h2><span class="muted" id="orgWho">Your recomemo. Keep anything from this board, privately or in public.</span></div><button class="btn btn-ghost btn-sm" id="orgClaire" type="button"><span class="claire">CL<b>ai</b><b>RE</b></span>, organize</button></div>
+      <div class="org-add">
+        <select id="oType" aria-label="Form"><option>Pill</option><option>Notepad</option><option>Folder</option><option>Sphere</option></select>
+        <select id="oKind" aria-label="Kind"><option>Comment</option><option>Offer</option><option>Prompt</option><option>Approved motion</option></select>
+        <input id="oText" placeholder="Write it down, e.g. Ask for the elevator certificate">
+        <select id="oWhere" aria-label="Where"><option value="priv">Private</option><option value="board">Public &middot; this board</option><option value="prof">Public &middot; my profile</option></select>
+        <button class="btn btn-sv btn-sm" id="oAdd" type="button">Add</button>
+        <label class="btn btn-ghost btn-sm" style="cursor:pointer">Add file<input type="file" id="oFile" multiple hidden></label>
+      </div>
+      <div class="org-pub">
+        <div class="org-col" data-w="board"><h4>Public &middot; this board</h4><div class="org-items" id="oBoard"></div></div>
+        <div class="org-col" data-w="prof"><h4>Public &middot; profile.recomemo.com</h4><div class="org-items" id="oProf"></div></div>
+      </div>
+      <div class="org-col org-priv" data-w="priv"><h4>Private &middot; only you</h4><div class="org-items" id="oPriv"></div></div>
+      <p class="note" id="orgNote">Demo: what you keep here stays in this browser only and isn&rsquo;t part of the board&rsquo;s shared page. On recomemo, private items live in your own private account.</p>
+      <div class="ethics">
+        <h3>xo-ai has the ethics</h3>
+        <ul>
+          <li>Acts for the strata corporation as a whole; mindful of directors&rsquo; fiduciary duties</li>
+          <li>Keeps confidences: private stays private; nothing leaves this room without a director&rsquo;s approval</li>
+          <li>Asks directors to declare conflicts of interest before a vote</li>
+          <li>Records accurately and impartially; advises, never votes</li>
+          <li>No legal or accounting advice; points to the Strata Property Act, your bylaws and your professionals</li>
+        </ul>
+        <h4>The standard accord of the United Agent Brands <span class="appr wait">draft for your review</span></h4>
+        <p>Every co|co agent (xo-ai, CLaiRE, Fil, Sailz and the rest) works to one accord: honest with the people it serves, clear that it is AI, respectful of private information, and the human decides.</p>
       </div>
     </div>
     <div class="panel" style="margin-top:18px" id="finP">
@@ -493,7 +585,7 @@ footer{background:#0b0b0d}
       <div class="found" id="found"></div>
     </div>
 
-    <div class="panel" style="margin-top:18px">
+    <div class="panel" style="margin-top:18px" id="styPanel">
       <h2>Choose your board room style</h2>
       <span class="muted">Poker table style, every one: everyone faces in, with talk or text entry at the table.</span>
       <div class="sty-h">Black on white</div>
@@ -619,7 +711,7 @@ footer{background:#0b0b0d}
   function who(){return S.me>-1&&S.people[S.me]?S.people[S.me].name:'A director'}
 
   // ---- room: seats spread around the table, the bottom centre kept for the dealer ----
-  function drawRoom(){
+  function drawRoom(){setTimeout(function(){try{drawOrg()}catch(x){}},0);
     var st=ALL.filter(function(x){return x.id===S.style})[0]||ALL[0], r=$('roomEl');
     r.style.setProperty('--floor',st.floor);r.style.setProperty('--top',st.top);r.style.setProperty('--rim',st.rim);r.style.setProperty('--radius',st.radius);r.style.setProperty('--ink2',st.ink);r.style.setProperty('--shadow',st.shadow||'0 18px 40px rgba(0,0,0,.45)');
     r.style.setProperty('--lbl',st.mono?'#0b0b0d':(st.lbl||'#e6ebf7'));r.style.setProperty('--lblsh',st.mono?'none':(st.lblsh||'0 1px 2px rgba(0,0,0,.5)'));
@@ -876,7 +968,8 @@ footer{background:#0b0b0d}
     function itemOf(d){return resItem(d,a)}
     $('agenda').innerHTML=a.map(function(x,i){var rs=S.dec.done.filter(function(d){return itemOf(d)===i}).slice().reverse();
       return '<li class="'+(i===(S.agi||0)?'cur':'')+'"><div class="agt" data-goi="'+i+'"><span class="n">'+(i+1)+'.</span><b>'+esc(x)+'</b>'+(i===(S.agi||0)?'<span class="now">NOW</span>':'')+(S.pub?'':'<button type="button" data-ag="'+i+'" aria-label="Remove">&times;</button>')+'</div>'
-        +rs.map(function(d){var ok=/^Carried/.test(d.result);return '<div class="res'+(ok?'':' def')+'">'+(ok?'<b>RESOLVED:</b> ':'<b>DEFEATED:</b> ')+esc(d.text.replace(/\.$/,''))+'.<small>'+esc(d.result)+(d.c?' · for '+d.c.for+', against '+d.c.against+', abstain '+d.c.abstain:'')+(d.mover?' · moved '+esc(d.mover)+', seconded '+esc(d.seconder||''):'')+'</small></div>'}).join('')+'</li>'}).join('');
+        +rs.map(function(d){var ok=/^Carried/.test(d.result);return '<div class="res'+(ok?'':' def')+'">'+(ok?'<b>RESOLVED:</b> ':'<b>DEFEATED:</b> ')+esc(d.text.replace(/\.$/,''))+'.<small>'+esc(d.result)+(d.c?' · for '+d.c.for+', against '+d.c.against+', abstain '+d.c.abstain:'')+(d.mover?' · moved '+esc(d.mover)+', seconded '+esc(d.seconder||''):'')+'</small>'+(ok?'<button type="button" class="keep" data-keepr="'+esc(d.text)+'">keep on my recomemo</button>':'')+'</div>'}).join('')+'</li>'}).join('');
+    [].forEach.call($('agenda').querySelectorAll('[data-keepr]'),function(b){b.onclick=function(e){e.stopPropagation();svKeep('RESOLVED: '+b.getAttribute('data-keepr'),'Approved motion')}});
     [].forEach.call($('agenda').querySelectorAll('[data-goi]'),function(el){el.onclick=function(e){if(e.target.closest('[data-ag]'))return;S.agi=+el.getAttribute('data-goi');drawAgenda();if(typeof drawLedger==='function')drawLedger();save()}});
     [].forEach.call($('agenda').querySelectorAll('[data-ag]'),function(b){b.onclick=function(){S.agenda.splice(+b.getAttribute('data-ag'),1);drawAgenda();save()}})}
   $('agAdd').onclick=function(){var t=$('agText').value.trim();if(!t||S.pub)return;var i=S.agenda.indexOf('Next meeting');S.agenda.splice(i>-1?i:S.agenda.length,0,t);$('agText').value='';drawAgenda();save()};
@@ -1030,7 +1123,8 @@ footer{background:#0b0b0d}
     $('lgItem').textContent=(cur+1)+'. '+(A[cur]||'');
     $('lgSample').hidden=!sample;
     $('ledger').innerHTML=A.map(function(item,i){var rows=L.filter(function(x){return x.i===i});if(!rows.length&&i!==cur)return '<li class="lh dim"><span>'+(i+1)+'. '+esc(item)+'</span></li>';
-      return '<li class="lh'+(i===cur?' cur':'')+'"><span>'+(i+1)+'. '+esc(item)+'</span>'+(i===cur?'<em>now</em>':'')+'</li>'+rows.map(function(x){return '<li class="le'+(x.sample?' smp':'')+'"><p>'+esc(x.text)+'</p><div class="lsig"><span class="sig'+(x.ai?' ai':'')+'"><span class="sav"'+(x.av?' style="background-image:url('+x.av+');color:transparent"':'')+'>'+esc(x.ai?'xo':initials(x.who))+'</span>'+esc(x.who)+'</span><small>'+esc(x.t.replace(/\.$/,''))+(x.sample?' · sample':'')+'</small></div></li>'}).join('')}).join('');
+      return '<li class="lh'+(i===cur?' cur':'')+'"><span>'+(i+1)+'. '+esc(item)+'</span>'+(i===cur?'<em>now</em>':'')+'</li>'+rows.map(function(x){return '<li class="le'+(x.sample?' smp':'')+'"><p>'+esc(x.text)+'</p><div class="lsig"><span class="sig'+(x.ai?' ai':'')+'"><span class="sav"'+(x.av?' style="background-image:url('+x.av+');color:transparent"':'')+'>'+esc(x.ai?'xo':initials(x.who))+'</span>'+esc(x.who)+'</span><small>'+esc(x.t.replace(/\.$/,''))+(x.sample?' · sample':'')+'</small><button type="button" class="keep" data-keep="'+esc(x.text)+'">keep</button></div></li>'}).join('')}).join('');
+    [].forEach.call($('ledger').querySelectorAll('[data-keep]'),function(b){b.onclick=function(){svKeep(b.getAttribute('data-keep'),'Comment')}});
     var el=$('ledger');el.scrollTop=el.scrollHeight;
     // to do and past records under the ledger
     $('lgTodo').innerHTML=S.todo.length?S.todo.map(function(t){return '<li class="'+(t.done?'done':'')+'">'+(t.done?'&#10003; ':'&#9675; ')+esc(t.text)+(t.owner?' <small>'+esc(t.owner)+'</small>':'')+'</li>'}).join(''):'<li><small>No to-dos yet.</small></li>';
@@ -1092,6 +1186,45 @@ footer{background:#0b0b0d}
     d.approved={t:nice(new Date()),how:how,mover:mover||'',seconder:seconder||''};S.adopted={name:name,how:how,mover:mover||'',seconder:seconder||'',c:c||null};if(c)d.approved.c=c;
     addMin('Minutes approved: '+name+(how==='consent'?', as circulated, by general consent.':', adopted by motion.'),'res');
     if(!S.pub&&!S.docEdited){S.docHtml=genMinutes();drawDoc()}drawShelf();drawLedger();save()}
+
+  // ---- how the board meets: Zoom beside it, or right here at the table ----
+  function meet(m){[].forEach.call(document.querySelectorAll('[data-meet]'),function(b){b.classList.toggle('on',b.getAttribute('data-meet')===m)});
+    $('zbSteps').hidden=m!=='zoom';$('zbTable').hidden=m!=='table';document.querySelector('.zb-tip').hidden=m!=='zoom';
+    $('zbDesc').textContent=m==='zoom'?'Keep your Zoom meeting. Run Strataverse beside it: the ledger, the agenda and the vote, while everyone talks on Zoom.':'Meet at a real poker-style board table: pick your board room, take your seat, talk and type at the table. Built-in voice is in development; until then, text at the table works for everyone.';
+    try{localStorage.setItem('sv_meet',m)}catch(x){}}
+  [].forEach.call(document.querySelectorAll('[data-meet]'),function(b){b.onclick=function(){meet(b.getAttribute('data-meet'))}});
+  $('pickRoom').onclick=function(){document.getElementById('styPanel').scrollIntoView({behavior:'smooth',block:'start'})};
+  try{meet(localStorage.getItem('sv_meet')||'zoom')}catch(x){meet('zoom')}
+  // ---- zoom side by side ----
+  try{var zl=localStorage.getItem('sv_zoom')||'';$('zLink').value=zl}catch(x){}
+  function zDraw(){var v=($('zLink').value||'').trim(),ok=/^https:\/\/([a-z0-9-]+\.)*zoom\.us\//i.test(v);$('zJoin').hidden=!ok;if(ok)$('zJoin').href=v}
+  $('zLink').oninput=function(){try{localStorage.setItem('sv_zoom',this.value)}catch(x){}zDraw()};zDraw();
+  function sbs(on){document.body.classList.toggle('sbs-mode',on);$('sbsOff').hidden=!on;$('sbsOn').textContent=on?'Side-by-side is on':'Side-by-side mode';try{localStorage.setItem('sv_sbs',on?'1':'')}catch(x){}if(on)document.getElementById('zbar').scrollIntoView({block:'start'})}
+  $('sbsOn').onclick=function(){sbs(!document.body.classList.contains('sbs-mode'))};$('sbsOff').onclick=function(){sbs(false)};
+  try{if(localStorage.getItem('sv_sbs'))sbs(true)}catch(x){}
+
+  // ---- organize.recomemo.com: private by default, public when you choose ----
+  var ORG=[];try{ORG=JSON.parse(localStorage.getItem('recomemo_org')||'[]')}catch(x){ORG=[]}
+  function orgSave(){try{localStorage.setItem('recomemo_org',JSON.stringify(ORG))}catch(x){}}
+  function orgAdd(o){o.id=Date.now()+Math.random();o.t=stamp();o.where=o.where||'priv';ORG.unshift(o);orgSave();drawOrg()}
+  window.svKeep=function(text,kind){orgAdd({type:kind==='Approved motion'?'Notepad':'Pill',kind:kind||'Comment',text:text,where:'priv'});chatAdd('xo-ai','Kept privately on your recomemo (organize.recomemo.com). Only you can see it.','xo')};
+  function drawOrg(){var me=S.me>-1&&S.people[S.me]?S.people[S.me]:null;
+    $('orgAv').textContent=me?initials(me.name):'+';$('orgAv').style.backgroundImage=me&&me.av?'url('+me.av+')':'';$('orgAv').style.color=me&&me.av?'transparent':'#fff';
+    $('orgWho').textContent=(me?me.name+' · ':'')+'Your recomemo. Keep anything from this board, privately or in public.';
+    var W={board:'oBoard',prof:'oProf',priv:'oPriv'};
+    Object.keys(W).forEach(function(w){var list=ORG.filter(function(o){return o.where===w});
+      $(W[w]).innerHTML=list.map(function(o){var cls=o.type.toLowerCase();
+        return '<div class="oi '+cls+'">'+(cls==='pill'?'<span class="dotav"></span>':'')+'<span class="k">'+esc(o.kind)+(o.file?' · file':'')+'</span><span>'+esc(o.text)+'</span>'+(o.folder?'<span class="fl">'+esc(o.folder)+'</span>':'')
+          +'<span class="ob">'+(w!=='priv'?'<button type="button" data-om="'+o.id+'" data-to="priv">Private</button>':'')+(w!=='board'?'<button type="button" data-om="'+o.id+'" data-to="board">Board</button>':'')+(w!=='prof'?'<button type="button" data-om="'+o.id+'" data-to="prof">Profile</button>':'')+'<button type="button" data-od="'+o.id+'" aria-label="Remove">&times;</button></span></div>'}).join('')||'<span class="empty">'+(w==='priv'?'Nothing private yet. Use "keep" on the ledger or a resolution, or add one above.':'Nothing here yet.')+'</span>'});
+    [].forEach.call($('orgP').querySelectorAll('[data-om]'),function(b){b.onclick=function(){var id=+b.getAttribute('data-om');ORG.forEach(function(o){if(o.id===id)o.where=b.getAttribute('data-to')});orgSave();drawOrg()}});
+    [].forEach.call($('orgP').querySelectorAll('[data-od]'),function(b){b.onclick=function(){var id=+b.getAttribute('data-od');ORG=ORG.filter(function(o){return o.id!==id});orgSave();drawOrg()}});
+  }
+  $('oAdd').onclick=function(){var t=$('oText').value.trim();if(!t)return;orgAdd({type:$('oType').value,kind:$('oKind').value,text:t,where:$('oWhere').value});$('oText').value=''};
+  $('oText').onkeydown=function(e){if(e.key==='Enter'){e.preventDefault();$('oAdd').onclick()}};
+  function claireFolder(name){var l=name.toLowerCase();return /invoice|statement|receipt/.test(l)?'Financials':/minute/.test(l)?'Minutes':/quote|offer|bid|estimate/.test(l)?'Offers':/bylaw|rule/.test(l)?'Bylaws':/insur/.test(l)?'Insurance':/depreciat|maint|inspect/.test(l)?'Maintenance':'General'}
+  $('oFile').addEventListener('change',function(){[].forEach.call(this.files,function(f){orgAdd({type:'Folder',kind:'File',text:f.name,file:true,folder:'CLaiRE filed it: '+claireFolder(f.name),where:'priv'})});this.value=''});
+  $('orgClaire').onclick=function(){var n=0;ORG.forEach(function(o){var f=o.file?claireFolder(o.text):({'Offer':'Offers','Prompt':'Prompts','Approved motion':'Approved motions','Comment':'Notes'})[o.kind]||'General';var lab='CLaiRE filed it: '+f;if(o.folder!==lab){o.folder=lab;n++}});
+    ORG.sort(function(a,b){return (a.folder||'').localeCompare(b.folder||'')});orgSave();drawOrg();chatAdd('CLaiRE',n?'Organized '+n+' item'+(n===1?'':'s')+' on your recomemo into folders. Private items stay private.':'Everything on your recomemo is already in its folder.','xo')};
   // ---- tabs, controls ----
   function showPane(p){if(p==='doc'){if(!S.pub&&!S.docEdited){S.docHtml=genMinutes();drawDoc()}document.getElementById('agPanel').scrollIntoView({behavior:'smooth',block:'start'});return}[].forEach.call(document.querySelectorAll('#tabs2 button'),function(b){b.classList.toggle('on',b.getAttribute('data-p')===p)});[].forEach.call(document.querySelectorAll('.pane'),function(x){x.classList.toggle('on',x.id==='p-'+p)})}
   [].forEach.call(document.querySelectorAll('#tabs2 button'),function(b){b.onclick=function(){showPane(b.getAttribute('data-p'))}});
@@ -1101,7 +1234,7 @@ footer{background:#0b0b0d}
   $('joinBtn').onclick=function(){$('room').scrollIntoView({behavior:'smooth'});var pos=positions(S.seats);for(var i=0;i<pos.length;i++){if(S.two&&i===1)continue;if(!S.people[i]){var k=i;setTimeout(function(){openSeat(k,pos[k])},450);return}}};
   function save(){try{localStorage.setItem('coco_sv2',JSON.stringify({S:S,strata:$('strata').value}))}catch(x){}}
   function restore(){try{var o=JSON.parse(localStorage.getItem('coco_sv2')||'null');if(!o)return;for(var k in o.S)S[k]=o.S[k];$('strata').value=o.strata||'';$('seats').value=String(S.seats);$('twoVotes').checked=!!S.two}catch(x){}}
-  restore();if(!S.chat)S.chat=[];if(!S.promo)S.promo=[];if(!S.docs)S.docs=SAMPLE_DOCS.slice();$('strata').oninput();drawStyles();drawRoom();drawOwners();drawMin();drawTodo();drawDec();drawChat();drawPromo();drawShelf();drawAgenda();drawDoc();drawFin();if(!S.ledger){S.ledger=LEDGER_SAMPLE.map(function(r){return {i:r[0],who:r[1],pos:'',av:'',ai:r[3],text:r[2],t:'7:0'+r[0]+' p.m.',sample:true}});S.agi=6}drawLedger();drawMaint();
+  restore();if(!S.chat)S.chat=[];if(!S.promo)S.promo=[];if(!S.docs)S.docs=SAMPLE_DOCS.slice();$('strata').oninput();drawStyles();drawRoom();drawOwners();drawMin();drawTodo();drawDec();drawChat();drawPromo();drawShelf();drawAgenda();drawDoc();drawFin();if(!S.ledger){S.ledger=LEDGER_SAMPLE.map(function(r){return {i:r[0],who:r[1],pos:'',av:'',ai:r[3],text:r[2],t:'7:0'+r[0]+' p.m.',sample:true}});S.agi=6}drawLedger();drawMaint();drawOrg();
 })();
 </script>
 </body>
