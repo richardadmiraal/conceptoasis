@@ -30,7 +30,8 @@ body{background:var(--bg);color:var(--txt)}
 .xo-id small{font:500 11px var(--mono);color:#9fdcd6;letter-spacing:.06em}
 .xo-id ul{margin:10px 0 0;padding-left:18px;font-size:13.5px;line-height:1.8;color:#c7d0e6}
 .sv{display:grid;grid-template-columns:minmax(0,1fr) 360px;gap:22px;padding-block:10px 60px}
-@media(max-width:1060px){.sv{grid-template-columns:1fr}}
+@media(max-width:1060px){.sv{grid-template-columns:minmax(0,1fr)}}
+.ctl>div{min-width:0}
 .panel{background:var(--panel);border:1px solid var(--line2);border-radius:18px;padding:18px}
 .panel h2{color:#fff;font-size:18px;margin:0 0 4px}
 .panel h3{color:#fff;font-size:15px;margin:0 0 8px}
@@ -184,6 +185,29 @@ body:before{content:"";position:fixed;inset:0;background:url(../assets/img/coco-
 .hire .ck input,.todo li input{accent-color:#0b0b0d}
 footer{background:#0b0b0d}
 .room.dense .seat{width:58px}.room.dense .seat .av{width:36px;height:36px;font-size:12px;border-width:2.5px}.room.dense .seat .lb{font-size:8.5px;margin-top:2px}.room.dense .seat .ai{top:-6px}
+
+/* board recomemo + records shelf */
+.brm{display:flex;width:fit-content;max-width:100%;align-items:center;gap:8px;margin-top:8px;padding:4px 10px 4px 4px;border:1.5px solid #0b0b0d;border-radius:999px;background:#fff;box-shadow:3px 3px 0 #0b0b0d}
+.brm-av{width:24px;height:24px;border-radius:50%;display:grid;place-items:center;background:#0b0b0d;color:#fff;font:700 10px Inter,sans-serif}
+.brm-url{font:600 12px var(--mono);color:#0b0b0d;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.brm .mint,.brm-av{flex:none}
+.brm .mint{width:12px;height:5px;border-radius:2px;background:#5de0c0}
+.shelf{display:flex;align-items:flex-end;gap:6px;flex-wrap:wrap;padding:14px 12px 0;margin:10px 0 0;border-bottom:8px solid #0b0b0d;border-radius:4px;min-height:130px;background:linear-gradient(#fff,#fafafa)}
+.binder{position:relative;width:46px;height:120px;border:2px solid #0b0b0d;border-radius:5px 5px 2px 2px;background:#fff;cursor:pointer;display:flex;flex-direction:column;align-items:center;padding:8px 0 6px;transition:transform .15s}
+.binder:hover,.binder.on{transform:translateY(-8px)}
+.binder.on{box-shadow:0 0 0 3px rgba(22,163,166,.35)}
+.binder i{display:block;width:26px;height:6px;border-radius:2px;background:var(--bc,#16a3a6);margin-bottom:6px}
+.binder span{writing-mode:vertical-rl;transform:rotate(180deg);font:700 11px Inter,sans-serif;color:#0b0b0d;flex:1;text-align:center}
+.binder small{font:600 9px var(--mono);color:#525b6b}
+.binder.tall{height:128px}.binder.short{height:108px}
+.found{margin-top:10px;display:grid;gap:8px}
+.doc{display:flex;gap:10px;align-items:flex-start;padding:10px 12px;border:1.5px solid #0b0b0d;border-radius:12px;background:#fff}
+.doc .ft{flex:none;font:700 10px var(--mono);padding:3px 6px;border-radius:6px;background:#0b0b0d;color:#fff}
+.doc b{display:block;font-size:14px;color:#0b0b0d}
+.doc small{display:block;color:#525b6b;font-size:12px}
+.doc .sum{margin-top:6px;padding:8px 10px;border-radius:10px;background:#f2fbfb;border:1px solid #bfe6e6;font-size:13px;color:#0b0b0d}
+.doc .sum em{font:600 10px var(--mono);font-style:normal;color:#0c6a6c;display:block}
+.doc button{margin-left:auto;flex:none}
 .preset{margin-top:12px;display:inline-flex;align-items:center;gap:10px;padding:8px 14px 8px 8px;border:2px solid #0b0b0d;border-radius:999px;background:#fff;box-shadow:4px 4px 0 #0b0b0d;cursor:pointer;font:600 13.5px Inter,sans-serif;color:#0b0b0d}
 .preset img{width:30px;height:30px}
 .seat .ai{position:absolute;top:-4px;left:4px;padding:1px 5px;border-radius:999px;background:#0b0b0d;color:#fff;font:700 8px var(--mono);border:1px solid #fff}
@@ -223,7 +247,7 @@ footer{background:#0b0b0d}
   <div>
     <div class="panel">
       <div class="ctl">
-        <div><h2 id="roomTitle">The board of directors room</h2><span class="muted" id="roomSub">Sketch &middot; 8 seats</span></div>
+        <div><h2 id="roomTitle">The board of directors room</h2><span class="muted" id="roomSub">Sketch &middot; 8 seats</span><div class="brm" id="boardRm"><span class="brm-av" id="brmAv">co</span><span class="brm-url" id="brmUrl">profile.recomemo.com/yourboard</span><span class="mint"></span></div></div>
         <div class="row">
           <label class="muted">Seats <select id="seats"><option>4</option><option>5</option><option>6</option><option>7</option><option selected>8</option><option>9</option><option>10</option><option>11</option><option>12</option></select></label>
           <label class="muted"><input type="checkbox" id="twoVotes"> President holds two seats (per your bylaws)</label>
@@ -245,6 +269,14 @@ footer{background:#0b0b0d}
       <ul class="chat" id="chat"></ul>
       <div class="say"><input id="chatIn" placeholder="Message the board"><button class="btn btn-sv btn-sm" id="chatSend" type="button">Send</button></div>
       <div class="rr" style="margin-top:8px"><button class="btn btn-ghost btn-sm" data-hand="1" type="button">&#9995; Raise hand</button><button class="btn btn-ghost btn-sm" id="chatToMin" type="button">Add last message to the minutes</button></div>
+    </div>
+
+    <div class="panel" style="margin-top:18px" id="shelfP">
+      <div class="ctl" style="margin-bottom:6px"><div><h2>Board folder &middot; records on the shelf</h2><span class="muted">Your strata portal: every record in one place. Ask xo-ai to find the right document and summarize it.</span></div>
+        <label class="btn btn-ghost btn-sm" style="cursor:pointer">Add records<input type="file" id="shelfUp" multiple accept=".pdf,.doc,.docx,.xls,.xlsx,.png,.jpg,.jpeg" hidden></label></div>
+      <div class="shelf" id="shelf"></div>
+      <div class="say"><input id="find" placeholder="Ask xo-ai: e.g. find the insurance policy, or the roof quote"><button class="btn btn-sv btn-sm" id="findBtn" type="button">Find</button></div>
+      <div class="found" id="found"></div>
     </div>
 
     <div class="panel" style="margin-top:18px">
@@ -400,6 +432,7 @@ footer{background:#0b0b0d}
     $('mAv').textContent=me&&me.av?'':(me?initials(me.name):'+');$('mAv').style.backgroundImage=me&&me.av?'url('+me.av+')':'';
     mp.style.backgroundImage=me&&me.bg?'url('+me.bg+')':'';mp.classList.toggle('bgimg',!!(me&&me.bg));
     $('roomSub').textContent=st.name+' · '+n+' seats + the dealer';
+    $('brmUrl').textContent='profile.recomemo.com/'+(slug(strata())||'yourboard');$('brmAv').textContent=strata()?initials(strata().replace(/[^A-Za-z ]/g,' ')).slice(0,2):'co';
     $('tblLabel').textContent=strata()||'Board table';
     $('roomTitle').textContent=(strata()?strata()+' · ':'')+'board of directors room';
     drawPlay();
@@ -554,6 +587,37 @@ footer{background:#0b0b0d}
     $('room').scrollIntoView({behavior:'smooth'});
   };
 
+  // ---- board folder: records on the shelf, xo-ai finds and summarizes ----
+  var BINDERS=[['minutes','Minutes','#16a3a6'],['bylaws','Bylaws & rules','#2a5bd7'],['budget','Budget & financials','#8cc63f'],['insurance','Insurance','#f28c28'],['depreciation','Depreciation report','#6b4fd8'],['contracts','Contracts & quotes','#e0458f'],['agm','AGM & SGM','#e9b44c'],['letters','Correspondence','#525b6b']];
+  // sample records so the shelf isn't empty; summaries are examples of what xo-ai writes
+  var SAMPLE_DOCS=[
+    {f:'minutes',name:'Board minutes, October 2026',type:'PDF',sample:true,sum:'Five directors present. Approved the snow removal contract (carried 5-0). Tabled the lobby painting until three quotes are in. Next meeting November 20.'},
+    {f:'bylaws',name:'Strata bylaws (consolidated)',type:'PDF',sample:true,sum:'Covers pets (two per strata lot), rentals, quiet hours (10 p.m. to 7 a.m.) and how fines are applied after written notice.'},
+    {f:'insurance',name:'Building insurance policy 2026-27',type:'PDF',sample:true,sum:'Full replacement cost policy, renews June 30. Water damage deductible is the largest; owners are encouraged to carry their own deductible coverage.'},
+    {f:'contracts',name:'Roof repair quote: three bids',type:'PDF',sample:true,sum:'Three bids for the east roof section. The middle bid includes a 10-year warranty; the lowest excludes flashing repairs.'},
+    {f:'budget',name:'Operating budget 2027 (draft)',type:'XLSX',sample:true,sum:'Draft shows strata fees rising slightly to rebuild the contingency reserve fund after the roof work.'},
+    {f:'depreciation',name:'Depreciation report 2024',type:'PDF',sample:true,sum:'Flags the roof, elevator and exterior paint as the main capital items over the next ten years.'}
+  ];
+  var SHELF_F='minutes';
+  function drawShelf(){
+    var counts={};(S.docs||[]).forEach(function(d){counts[d.f]=(counts[d.f]||0)+1});
+    $('shelf').innerHTML=BINDERS.map(function(b,i){return '<button type="button" class="binder'+(i%3===0?' tall':(i%3===2?' short':''))+(b[0]===SHELF_F?' on':'')+'" data-f="'+b[0]+'" style="--bc:'+b[2]+'" title="'+esc(b[1])+'"><i></i><span>'+esc(b[1])+'</span><small>'+(counts[b[0]]||0)+'</small></button>'}).join('');
+    [].forEach.call($('shelf').children,function(x){x.onclick=function(){SHELF_F=x.getAttribute('data-f');drawShelf();showDocs((S.docs||[]).filter(function(d){return d.f===SHELF_F}),BINDERS.filter(function(b){return b[0]===SHELF_F})[0][1])}});
+  }
+  function showDocs(list,title){
+    $('found').innerHTML='<div class="muted" style="font-weight:600">'+esc(title)+' &middot; '+list.length+' record'+(list.length===1?'':'s')+'</div>'+(list.map(function(d){var k=S.docs.indexOf(d);return '<div class="doc"><span class="ft">'+esc(d.type)+'</span><div style="flex:1;min-width:0"><b>'+esc(d.name)+'</b><small>'+esc(BINDERS.filter(function(b){return b[0]===d.f})[0][1])+(d.sample?' · sample':'')+'</small><div class="sum" id="sum'+k+'" hidden></div></div><button type="button" class="btn btn-ghost btn-sm" data-sum="'+k+'">Summarize</button></div>'}).join('')||'<div class="muted">Nothing on this shelf yet. Add records above.</div>');
+    [].forEach.call($('found').querySelectorAll('[data-sum]'),function(b){b.onclick=function(){var k=+b.getAttribute('data-sum'),d=S.docs[k],el=$('sum'+k);el.hidden=false;
+      el.innerHTML=d.sum?'<em>xo-ai summary'+(d.sample?' (sample)':'')+'</em>'+esc(d.sum):'<em>xo-ai</em>When Strataverse is connected, xo-ai reads this document and summarizes it in seconds. (Demo: summaries for your own uploads are switched on with the full app.)'}});
+  }
+  $('shelfUp').addEventListener('change',function(){[].forEach.call(this.files,function(f){var ext=(f.name.split('.').pop()||'').toUpperCase().slice(0,4);var low=f.name.toLowerCase();
+      var fold=/minute/.test(low)?'minutes':/bylaw|rule/.test(low)?'bylaws':/budget|financ|statement/.test(low)?'budget':/insur/.test(low)?'insurance':/depreci/.test(low)?'depreciation':/quote|contract|bid/.test(low)?'contracts':/agm|sgm|agenda/.test(low)?'agm':'letters';
+      S.docs.push({f:fold,name:f.name,type:ext,sample:false,sum:''})});this.value='';drawShelf();save();
+    chatAdd('xo-ai','Filed on the shelf. I sorted each record into its binder by name; you can move anything I got wrong.','xo')});
+  function find(){var q=($('find').value||'').toLowerCase().trim();if(!q)return;var words=q.replace(/\b(find|the|a|an|our|for|me|please|show|where|is)\b/g,' ').split(/\s+/).filter(Boolean);
+    var hits=(S.docs||[]).filter(function(d){var hay=(d.name+' '+d.f+' '+(d.sum||'')).toLowerCase();return words.some(function(w){return hay.indexOf(w)>-1})});
+    showDocs(hits,'xo-ai found');}
+  $('findBtn').onclick=find;$('find').onkeydown=function(e){if(e.key==='Enter'){e.preventDefault();find()}};
+
   // ---- tabs, controls ----
   function showPane(p){[].forEach.call(document.querySelectorAll('#tabs2 button'),function(b){b.classList.toggle('on',b.getAttribute('data-p')===p)});[].forEach.call(document.querySelectorAll('.pane'),function(x){x.classList.toggle('on',x.id==='p-'+p)})}
   [].forEach.call(document.querySelectorAll('#tabs2 button'),function(b){b.onclick=function(){showPane(b.getAttribute('data-p'))}});
@@ -563,7 +627,7 @@ footer{background:#0b0b0d}
   $('joinBtn').onclick=function(){$('room').scrollIntoView({behavior:'smooth'});var pos=positions(S.seats);for(var i=0;i<pos.length;i++){if(S.two&&i===1)continue;if(!S.people[i]){var k=i;setTimeout(function(){openSeat(k,pos[k])},450);return}}};
   function save(){try{localStorage.setItem('coco_sv2',JSON.stringify({S:S,strata:$('strata').value}))}catch(x){}}
   function restore(){try{var o=JSON.parse(localStorage.getItem('coco_sv2')||'null');if(!o)return;for(var k in o.S)S[k]=o.S[k];$('strata').value=o.strata||'';$('seats').value=String(S.seats);$('twoVotes').checked=!!S.two}catch(x){}}
-  restore();if(!S.chat)S.chat=[];if(!S.promo)S.promo=[];$('strata').oninput();drawStyles();drawRoom();drawOwners();drawMin();drawTodo();drawDec();drawChat();drawPromo();
+  restore();if(!S.chat)S.chat=[];if(!S.promo)S.promo=[];if(!S.docs)S.docs=SAMPLE_DOCS.slice();$('strata').oninput();drawStyles();drawRoom();drawOwners();drawMin();drawTodo();drawDec();drawChat();drawPromo();drawShelf();
 })();
 </script>
 </body>
