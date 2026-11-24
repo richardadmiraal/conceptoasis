@@ -200,3 +200,6 @@ blockquote.belief p{margin:0;font:600 19px/1.55 Inter,sans-serif;color:var(--ink
 blockquote.belief cite{display:block;margin-top:10px;font-style:normal;font-weight:700;color:var(--teal)}
 
 .live2{align-items:stretch}.card h3 small{font:600 14px Inter,sans-serif;color:var(--mute);margin-left:4px}
+
+blockquote.belief.plan{margin:26px 0 6px;background:#fbf7f0}
+blockquote.belief.plan .kick{display:block}
