@@ -452,6 +452,21 @@ body.sbs-mode #g12P,body.sbs-mode #portalP{display:none!important}
 .med audio{display:block;width:100%;max-width:220px;height:32px}
 .med a{font:600 12px Inter,sans-serif;color:#2a5bd7}
 .mph{font:600 10px var(--mono);color:#525b6b}
+
+.ob2.g12f{flex-basis:100%;max-width:none;border-radius:2px 12px 12px 12px;background:#fff;margin-top:10px;border-width:2px}
+.ob2.g12f:before{content:"";position:absolute;left:-2px;top:-11px;width:70px;height:10px;border:2px solid #0b0b0d;border-bottom:0;border-radius:6px 6px 0 0;background:#fff}
+.g12x{border:1.5px solid #0b0b0d!important;border-radius:999px;background:#0b0b0d!important;color:#fff!important;font:600 11px Inter,sans-serif;padding:3px 10px!important;margin-left:auto!important;cursor:pointer}
+.g12x+button{margin-left:4px!important}
+.g12grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(118px,1fr));gap:6px;padding:0 8px 10px}
+.g12s{display:flex;align-items:center;gap:4px;min-width:0;height:28px;padding:0 8px 0 3px;border:1.3px dashed #c3c8d1;border-radius:999px;font:600 10.5px Inter,sans-serif;color:#9aa1ae;justify-content:center}
+.g12s.on{justify-content:flex-start;border:1.3px solid #0b0b0d;color:#0b0b0d;cursor:grab;background:linear-gradient(115deg,color-mix(in srgb,var(--k) 45%,#fff),color-mix(in srgb,var(--k) 12%,#fff))}
+.g12s i{width:20px;height:20px;border-radius:50%;background:var(--k);flex:none}
+.g12s span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.g12full{display:flex;flex-wrap:wrap;gap:10px;padding:0 8px 10px}
+.g12k{flex-basis:100%;font:700 9.5px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:#525b6b}
+.g12r{display:flex;flex-direction:column;gap:4px;align-items:flex-start}
+.g12out{border:0;background:none;font:600 10.5px Inter,sans-serif;color:#525b6b;text-decoration:underline;cursor:pointer}
+.org-priv .g12f{color:#0b0b0d}
 .fbox{padding:12px;border:1.5px solid #0b0b0d;border-radius:14px;background:#fff;margin-top:12px;min-width:0}
 .fgrid .fbox{margin-top:0}
 .tblwrap{overflow-x:auto}
@@ -666,7 +681,7 @@ body.sbs-mode #g12P,body.sbs-mode #portalP{display:none!important}
         </div>
         <div class="org-add u3"><span class="u3k">U + 3</span><input id="oL1" placeholder="Link 1 https://"><input id="oL2" placeholder="Link 2 https://"><input id="oL3" placeholder="Link 3 https://"><button class="btn btn-sv btn-sm" id="oAdd" type="button">Make pill</button></div>
       </div>
-      <div class="org-add org-box"><b>Make a</b><select id="bType" aria-label="Container"><option>Notepad</option><option>Folder</option><option>Sphere</option></select><input id="bName" placeholder="Name it, e.g. Elevator, or Harbour View owners"><select id="bWhere" aria-label="Where"><option value="priv">Private</option><option value="board">Public &middot; this board</option><option value="prof">Public &middot; my profile</option></select><button class="btn btn-ghost btn-sm" id="bAdd" type="button">Create</button></div>
+      <div class="org-add org-box"><b>Make a</b><select id="bType" aria-label="Container"><option value="G12">Group of 12</option><option>Notepad</option><option>Folder</option><option>Sphere</option></select><input id="bName" placeholder="Name it, e.g. Elevator, or Harbour View owners"><select id="bWhere" aria-label="Where"><option value="priv">Private</option><option value="board">Public &middot; this board</option><option value="prof">Public &middot; my profile</option></select><button class="btn btn-ghost btn-sm" id="bAdd" type="button">Create</button></div>
       <div class="org-files" id="oDrop"><div><b>Add files</b><small>images, MP4, MP3, PDF or any file &middot; stored privately &middot; drop them here</small></div>
         <label class="btn btn-sv btn-sm" style="cursor:pointer">Add images<input type="file" id="oF_img" accept="image/*" multiple hidden></label>
         <label class="btn btn-ghost btn-sm" style="cursor:pointer">Add MP4<input type="file" id="oF_vid" accept="video/mp4,video/*" multiple hidden></label>
@@ -1380,10 +1395,14 @@ body.sbs-mode #g12P,body.sbs-mode #portalP{display:none!important}
     if(o.kind==='Link'&&okUrl(o.url))extra+='<a class="ol" href="'+esc(o.url)+'" target="_blank" rel="noopener">'+esc(o.url.replace(/^https:\/\//,'').slice(0,34))+' &#8599;</a>';
     if(o.kind==='File'&&o.file)extra+='<span class="fl">'+esc(o.file)+(o.folder?' &middot; '+esc(o.folder):'')+'</span>';
     var lk=(o.links||[]).map(function(u,i){return '<a href="'+esc(u)+'" target="_blank" rel="noopener" title="'+esc(u)+'">'+(i+1)+'</a>'}).join('');
-    var opts=O.boxes.map(function(b){return '<option value="'+b.id+'">'+esc(b.type)+': '+esc(b.name)+'</option>'}).join('');
+    var opts=O.boxes.map(function(b){return '<option value="'+b.id+'">'+esc(b.type==='G12'?'Group of 12':b.type)+': '+esc(b.name)+'</option>'}).join('');
     return '<div class="oi pill" draggable="true" data-drag="'+o.id+'" style="--k:'+kc(o)+'"><span class="dotav"></span><div class="ot"><span class="k">'+esc(o.kind==='Offer'?'Offer · coupon':o.kind)+' '+u3(o)+'</span><span>'+esc(o.text)+'</span>'+extra+(lk?'<span class="lk">'+lk+'</span>':'')
       +'<span class="ob">'+(opts?'<select data-to-box="'+o.id+'" aria-label="Add to"><option value="">Add to&hellip;</option>'+opts+'</select>':'')+(o.where!=='priv'?'<button type="button" data-om="'+o.id+'" data-to="priv">Private</button>':'')+(o.where!=='board'?'<button type="button" data-om="'+o.id+'" data-to="board">Board</button>':'')+(o.where!=='prof'?'<button type="button" data-om="'+o.id+'" data-to="prof">Profile</button>':'')+'<button type="button" data-od="'+o.id+'" aria-label="Remove">&times;</button></span></div></div>'}
-  function box(b){var ps=b.pills.map(pillById).filter(Boolean);var cls=b.type.toLowerCase();
+  function g12(b){var ps=b.pills.map(pillById).filter(Boolean),open=!!b.open,recent=ps.slice().reverse();
+    var slots=[];for(var i=0;i<12;i++){var o=ps[i];slots.push(o?'<span class="g12s on" draggable="true" data-drag="'+o.id+'" style="--k:'+kc(o)+'" title="'+esc(o.kind+': '+o.text)+'"><i></i><span>'+esc(o.text)+'</span></span>':'<span class="g12s">'+(i+1)+'</span>')}
+    return '<div class="ob2 g12f" data-box="'+b.id+'"><div class="obh"><b>'+esc(b.name)+'</b><small>Group of 12 &middot; '+ps.length+' of 12</small><button type="button" class="g12x" data-gopen="'+b.id+'">'+(open?'Close':'Expand')+'</button><button type="button" data-bd="'+b.id+'" aria-label="Remove">&times;</button></div>'
+      +(open?'<div class="g12full"><small class="g12k">Most recently added first</small>'+(recent.map(function(o){return '<div class="g12r">'+full(o)+'<button type="button" class="g12out" data-gout="'+b.id+'|'+o.id+'">Take out of the group</button></div>'}).join('')||'<small>Drop pills here, up to 12.</small>')+'</div>':'<div class="g12grid">'+slots.join('')+'</div>')+'</div>'}
+  function box(b){if(b.type==='G12')return g12(b);var ps=b.pills.map(pillById).filter(Boolean);var cls=b.type.toLowerCase();
     return '<div class="ob2 '+cls+'" data-box="'+b.id+'"><div class="obh"><b>'+esc(b.name)+'</b><small>'+esc(b.type)+' &middot; '+ps.length+'</small><button type="button" data-bd="'+b.id+'" aria-label="Remove">&times;</button></div><div class="obp">'+(ps.map(mini).join('')||'<small>Drop pills here</small>')+'</div>'+(cls==='sphere'?'<div class="sas"><span class="sav2">AI</span>'+esc(b.name)+' assistant &middot; built on CLaiRE and xo-ai</div>':'')+'</div>'}
   function drawOrg(){var me=S.me>-1&&S.people[S.me]?S.people[S.me]:null;
     $('orgAv').textContent=me?initials(me.name):'+';$('orgAv').style.backgroundImage=me&&me.av?'url('+me.av+')':'';$('orgAv').style.color=me&&me.av?'transparent':'#fff';
@@ -1400,10 +1419,12 @@ body.sbs-mode #g12P,body.sbs-mode #portalP{display:none!important}
     [].forEach.call(P.querySelectorAll('[data-om]'),function(b){b.onclick=function(){var o=pillById(b.getAttribute('data-om'));if(o){o.where=b.getAttribute('data-to');orgSave();drawOrg()}}});
     [].forEach.call(P.querySelectorAll('[data-od]'),function(b){b.onclick=function(){var id=b.getAttribute('data-od');fdel(id);if(URLS[id]){URL.revokeObjectURL(URLS[id]);delete URLS[id]}O.pills=O.pills.filter(function(o){return o.id!==id});O.boxes.forEach(function(x){x.pills=x.pills.filter(function(p){return p!==id})});orgSave();drawOrg()}});
     [].forEach.call(P.querySelectorAll('[data-bd]'),function(b){b.onclick=function(){var id=b.getAttribute('data-bd');O.boxes=O.boxes.filter(function(x){return x.id!==id});orgSave();drawOrg()}});
+    [].forEach.call(P.querySelectorAll('[data-gopen]'),function(x){x.onclick=function(){var b=O.boxes.filter(function(y){return y.id===x.getAttribute('data-gopen')})[0];if(b){b.open=!b.open;orgSave();drawOrg()}}});
+    [].forEach.call(P.querySelectorAll('[data-gout]'),function(x){x.onclick=function(){var a=x.getAttribute('data-gout').split('|'),b=O.boxes.filter(function(y){return y.id===a[0]})[0];if(b){b.pills=b.pills.filter(function(z){return z!==a[1]});orgSave();drawOrg()}}});
     [].forEach.call(P.querySelectorAll('[data-to-box]'),function(sel){sel.onchange=function(){if(sel.value)toBox(sel.value,sel.getAttribute('data-to-box'))}});
     [].forEach.call(P.querySelectorAll('[data-box]'),function(el){dropZone(el,function(o){toBox(el.getAttribute('data-box'),o.id)},true)});
   }
-  function toBox(bid,pid){var b=O.boxes.filter(function(x){return x.id===bid})[0];if(!b)return;if(b.pills.indexOf(pid)<0)b.pills.push(pid);orgSave();drawOrg();
+  function toBox(bid,pid){var b=O.boxes.filter(function(x){return x.id===bid})[0];if(!b)return;if(b.type==='G12'&&b.pills.length>=12&&b.pills.indexOf(pid)<0){$('oFMsg').textContent=b.name+' is full: 12 of 12. Take one out first.';return}if(b.pills.indexOf(pid)<0)b.pills.push(pid);orgSave();drawOrg();
     if(b.type==='Sphere')chatAdd(b.name+' assistant','Posted to the '+b.name+' sphere'+(b.where==='priv'?' (private: only you see it)':'')+'. I keep it organized; you decide who sees it.','xo')}
   function dropZone(el,onDrop,stop){el.addEventListener('dragover',function(e){e.preventDefault();if(stop)e.stopPropagation();el.classList.add('drop-on')});el.addEventListener('dragleave',function(e){if(!el.contains(e.relatedTarget))el.classList.remove('drop-on')});el.addEventListener('drop',function(e){e.preventDefault();if(stop)e.stopPropagation();el.classList.remove('drop-on');var o=pillById(e.dataTransfer.getData('text/plain'));if(o)onDrop(o)})}
   [].forEach.call(document.querySelectorAll('#orgP [data-w]'),function(col){dropZone(col,function(o){o.where=col.getAttribute('data-w');orgSave();drawOrg()})});
