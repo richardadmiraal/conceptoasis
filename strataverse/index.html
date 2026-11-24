@@ -3,19 +3,23 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Strataverse · The board room, with xo-ai | ConceptOasis</title>
-<meta name="description" content="Strataverse: step into your board of directors room. Choose your table, seat your executive, and let xo-ai keep the records: minutes, motions, to-dos and Zoom meetings. All across the Strataverse.">
+<title>Strataverse · The board room, with xo-ai | co|co forms</title>
+<meta name="description" content="Strataverse board room by co|co forms: choose your table, take your seat with a recomemo profile, seat the dealer, and let xo-ai keep the records: minutes, motions in play, decisions, to-dos and Zoom meetings.">
 <link rel="icon" href="../favicon.png" type="image/png">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Inter+Tight:wght@500;600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../assets/site.css">
 <style>
-body{background:#0b1022;color:#d7deef}
-.nav{background:rgba(11,16,34,.88)}
-.nav .brand,.nav nav a{color:#e9eefb}
-.sv-hero .wrap{padding-block:34px 18px;display:grid;grid-template-columns:1.1fr .9fr;gap:28px;align-items:end}
+:root{--bg:#0b1022;--panel:#11182f;--line2:#233056;--field:#0e1530;--txt:#d7deef;--txt2:#8f9bb9}
+body{background:var(--bg);color:var(--txt)}
+.cfh{position:sticky;top:0;z-index:50;background:rgba(11,16,34,.92);backdrop-filter:blur(10px);border-bottom:1px solid #1c264a}
+.cfh .wrap{display:flex;align-items:center;gap:12px;height:58px}
+.cfh a.lg{display:flex;align-items:center;gap:10px;text-decoration:none;color:#fff;font:650 17px "Inter Tight",Inter,sans-serif;letter-spacing:-.02em}
+.cfh a.lg img{width:30px;height:30px;border-radius:8px}
+.cfh .ver{margin-left:auto;font:600 11.5px var(--mono);color:#9fdcd6;padding:5px 10px;border:1px solid #2c3a66;border-radius:999px}
+.sv-hero .wrap{padding-block:28px 14px;display:grid;grid-template-columns:1.1fr .9fr;gap:28px;align-items:end}
 @media(max-width:900px){.sv-hero .wrap{grid-template-columns:1fr}}
-.sv-hero h1{color:#fff;font-size:clamp(30px,4vw,46px);margin:4px 0 8px}
+.sv-hero h1{color:#fff;font-size:clamp(28px,3.8vw,44px);margin:4px 0 8px}
 .sv-hero .kick{color:#9fdcd6}
 .sv-hero p{color:#b9c3dc;max-width:60ch;margin:0}
 .sv-name{display:flex;gap:10px;align-items:end;flex-wrap:wrap;margin-top:16px}
@@ -27,99 +31,131 @@ body{background:#0b1022;color:#d7deef}
 .xo-id ul{margin:10px 0 0;padding-left:18px;font-size:13.5px;line-height:1.8;color:#c7d0e6}
 .sv{display:grid;grid-template-columns:minmax(0,1fr) 360px;gap:22px;padding-block:10px 60px}
 @media(max-width:1060px){.sv{grid-template-columns:1fr}}
-.panel{background:#11182f;border:1px solid #233056;border-radius:18px;padding:18px}
+.panel{background:var(--panel);border:1px solid var(--line2);border-radius:18px;padding:18px}
 .panel h2{color:#fff;font-size:18px;margin:0 0 4px}
 .panel h3{color:#fff;font-size:15px;margin:0 0 8px}
-.muted{color:#8f9bb9;font-size:13px}
+.muted{color:var(--txt2);font-size:13px}
 .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
 .ctl{display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:12px}
-.ctl select,.ctl input{padding:8px 10px;border-radius:10px;border:1px solid #2c3a66;background:#0e1530;color:#fff;font:500 14px Inter,sans-serif}
+.ctl select{padding:8px 10px;border-radius:10px;border:1px solid #2c3a66;background:var(--field);color:#fff;font:500 14px Inter,sans-serif}
 .btn-sv{background:#16a3a6;color:#fff!important;border:0}
 .btn-ghost{background:transparent;color:#d7deef!important;border:1px solid #2c3a66}
 .btn-sm{padding:8px 12px;font-size:13px}
-/* room */
-.room{position:relative;border-radius:18px;overflow:hidden;aspect-ratio:1.55;background:var(--floor);border:1px solid #233056}
-@media(max-width:620px){.room{aspect-ratio:1}}
-.room .tbl{position:absolute;left:18%;right:18%;top:22%;bottom:22%;background:var(--top);border:var(--rim);box-shadow:var(--shadow);border-radius:var(--radius);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+.room{position:relative;border-radius:18px 18px 0 0;overflow:hidden;aspect-ratio:1.5;background:var(--floor);border:1px solid var(--line2);border-bottom:0}
+@media(max-width:620px){.room{aspect-ratio:.95}}
+.room .tbl{position:absolute;left:19%;right:19%;top:20%;bottom:26%;background:var(--top);border:var(--rim);box-shadow:var(--shadow);border-radius:var(--radius);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:8px}
 .room .tbl b{font:650 14px "Inter Tight",Inter,sans-serif;color:var(--ink2)}
 .room .tbl small{font:500 10px var(--mono);color:var(--ink2);opacity:.8}
-.room .tbl .devs{display:flex;gap:8px;margin-top:8px}
-.room .tbl .devs i{width:18px;height:24px;border-radius:3px;background:rgba(255,255,255,.85);box-shadow:0 1px 0 rgba(0,0,0,.2)}
-.room .tbl .devs i:nth-child(2){width:26px;height:18px;margin-top:3px;background:#0f1733;border:2px solid #9aa6c4}
-.seat{position:absolute;transform:translate(-50%,-50%);width:64px;text-align:center;background:none;border:0;padding:0;cursor:pointer}
-.seat .av{display:grid;place-items:center;width:44px;height:44px;margin:0 auto;border-radius:50%;background:#fff;color:#0f1733;font:700 13px Inter,sans-serif;border:3px solid var(--c,#9aa6c4);box-shadow:0 4px 12px rgba(0,0,0,.35);transition:transform .15s}
-.seat .av.empty{background:rgba(255,255,255,.12);color:#cfd6e6;border-style:dashed}
-.seat .lb{display:block;margin-top:4px;font:600 9.5px var(--mono);color:var(--lbl,#e6ebf7);text-shadow:0 1px 2px rgba(0,0,0,.5);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.inplay{margin-top:8px;max-width:90%;padding:8px 10px;border-radius:12px;background:rgba(255,255,255,.95);color:#0f1733;border:1.5px solid #0f1733;box-shadow:0 6px 18px rgba(0,0,0,.2)}
+.inplay em{display:block;font:600 9.5px var(--mono);font-style:normal;letter-spacing:.1em;text-transform:uppercase;color:#a3245f}
+.inplay span{display:block;font:600 12.5px Inter,sans-serif;line-height:1.3}
+.inplay .tally{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;margin-top:6px}
+.inplay .tally button{padding:3px 8px;border-radius:999px;border:1px solid #cdd3dd;background:#fff;font:600 11px var(--mono);cursor:pointer;color:#0f1733}
+.devs{display:flex;gap:8px;margin-top:8px}
+.devs i{width:16px;height:22px;border-radius:3px;background:rgba(255,255,255,.85);box-shadow:0 0 0 1px rgba(0,0,0,.35)}
+.devs i:nth-child(2){width:24px;height:16px;margin-top:3px;background:#0f1733;border:2px solid #9aa6c4}
+.seat{position:absolute;transform:translate(-50%,-50%);width:66px;text-align:center;background:none;border:0;padding:0;cursor:pointer}
+.seat .av{display:grid;place-items:center;width:46px;height:46px;margin:0 auto;border-radius:50%;background:#fff center/cover;color:#0f1733;font:700 13px Inter,sans-serif;border:3px solid var(--c,#9aa6c4);box-shadow:0 4px 12px rgba(0,0,0,.3);transition:transform .15s}
+.seat .av.empty{background:rgba(255,255,255,.14);color:var(--lbl,#cfd6e6);border-style:dashed}
+.seat .lb{display:block;margin-top:4px;font:600 9.5px var(--mono);color:var(--lbl,#e6ebf7);text-shadow:var(--lblsh,0 1px 2px rgba(0,0,0,.5));white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .seat:hover .av{transform:scale(1.08)}
-.seat.me .av{box-shadow:0 0 0 4px rgba(46,196,198,.5),0 4px 12px rgba(0,0,0,.35)}
-.seat.speaking .av{animation:pulse 1.2s infinite}
-@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(46,196,198,.6)}50%{box-shadow:0 0 0 8px rgba(46,196,198,0)}}
-@media(max-width:620px){.seat{width:48px}.seat .av{width:32px;height:32px;font-size:11px;border-width:2px}.seat .lb{font-size:8px}}
-.xo-chip{position:absolute;right:12px;top:12px;display:flex;align-items:center;gap:8px;padding:6px 10px;border-radius:999px;background:rgba(15,23,51,.85);border:1px solid #2c3a66;font:600 11px var(--mono);color:#9fdcd6}
-.xo-chip i{width:8px;height:8px;border-radius:50%;background:#2ec4c6;animation:pulse 1.6s infinite}
-/* styles picker */
+.seat.me .av{box-shadow:0 0 0 4px rgba(46,196,198,.5),0 4px 12px rgba(0,0,0,.3)}
+.seat .dot{position:absolute;top:-2px;right:8px;width:12px;height:12px;border-radius:50%;background:#e0458f;border:2px solid #fff}
+@media(max-width:620px){.seat{width:50px}.seat .av{width:34px;height:34px;font-size:11px;border-width:2px}.seat .lb{font-size:8px}}
+.dealer{position:absolute;left:50%;bottom:4%;transform:translateX(-50%);display:flex;align-items:center;gap:8px;padding:6px 12px 6px 6px;border-radius:999px;background:#fff center/cover;border:2px solid #0f1733;box-shadow:4px 4px 0 #0f1733;cursor:pointer;min-width:220px}
+.dealer .av{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:#0f1733 center/cover;color:#fff;font:700 12px Inter,sans-serif;flex:none}
+.dealer b{display:block;font:650 13px "Inter Tight",Inter,sans-serif;color:#0f1733;text-align:left}
+.dealer small{display:block;font:600 9.5px var(--mono);color:#525b6b;text-align:left}
+.dealer .mint{margin-left:auto;width:12px;height:6px;border-radius:2px;background:#5de0c0;flex:none}
+.dealer.bgimg b,.dealer.bgimg small{background:rgba(255,255,255,.86);padding:0 4px;border-radius:4px}
+@media(max-width:620px){.dealer{min-width:0;bottom:2%}.dealer small{display:none}}
+.feathers{height:12px;background:linear-gradient(90deg,#2a5bd7,#16a3a6,#2ec4c6,#8cc63f,#e9b44c,#f28c28,#e0458f,#6b4fd8);border-radius:0 0 18px 18px}
+.seatcard{position:absolute;inset:0;display:none;align-items:center;justify-content:center;background:rgba(5,8,18,.55);backdrop-filter:blur(2px);z-index:5;padding:12px}
+.seatcard.on{display:flex}
+.rcard{width:min(380px,100%);max-height:100%;overflow:auto;background:#fff;color:#0f1733;border:2px solid #0f1733;border-radius:22px;box-shadow:8px 8px 0 #0f1733}
+.rcard .top{position:relative;height:80px;background:linear-gradient(135deg,#e8f6f6,#fdeef5) center/cover;border-radius:20px 20px 0 0}
+.rcard .top .av{position:absolute;left:16px;bottom:-26px;width:58px;height:58px;border-radius:16px;border:2px solid #0f1733;background:#fff center/cover;display:grid;place-items:center;font:700 16px Inter,sans-serif}
+.rcard .top .x{position:absolute;right:10px;top:8px;border:0;background:rgba(255,255,255,.9);border-radius:999px;width:28px;height:28px;font-size:16px;cursor:pointer}
+.rcard .bd{padding:32px 16px 16px}
+.rcard .url{font:700 13px var(--mono);color:#0f1733}
+.rcard h4{margin:4px 0 2px;font:650 18px "Inter Tight",Inter,sans-serif;color:#0f1733}
+.rcard .pos{font:600 11px var(--mono);color:#525b6b}
+.rcard .cred{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0}
+.rcard .cred span{padding:3px 9px;border-radius:999px;border:1.5px solid #0f1733;font:600 11px Inter,sans-serif}
+.rcard .cred span.vok{background:#e9fbf4;border-color:#5de0c0}
+.rcard input,.rcard textarea{display:block;width:100%;margin-top:6px;padding:9px 10px;border:1.5px solid #cdd3dd;border-radius:10px;font:400 14px Inter,sans-serif;color:#0f1733;box-sizing:border-box}
+.rcard label{display:block;font:600 12px Inter,sans-serif;margin-top:8px}
+.rcard .msgs{list-style:none;margin:8px 0 0;padding:0;display:grid;gap:6px;max-height:120px;overflow:auto}
+.rcard .msgs li{padding:6px 9px;border-radius:10px;background:#f3f5f9;font-size:13px}
+.rcard .msgs small{display:block;font:500 10px var(--mono);color:#6b7891}
+.rcard .note{font-size:11.5px;color:#525b6b;margin-top:8px;line-height:1.5}
+.rcard .btn{margin-top:10px}
+.lines4{display:grid;gap:3px;margin:8px 0}
+.lines4 i{display:block;height:8px;width:140px;border:1px solid #3dd5e3;border-left:24px solid #3dd5e3;border-radius:2px}
 .styles{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px;margin-top:10px}
-.sty{border:1px solid #2c3a66;border-radius:14px;padding:8px;background:#0e1530;cursor:pointer;text-align:left;color:#d7deef}
+.sty{border:1px solid #2c3a66;border-radius:14px;padding:8px;background:var(--field);cursor:pointer;text-align:left;color:#d7deef}
 .sty.on{border-color:#2ec4c6;box-shadow:0 0 0 2px rgba(46,196,198,.35)}
 .sty .smini{display:block;position:relative;height:62px;border-radius:10px;background:var(--floor);overflow:hidden}
 .sty .smini span{position:absolute;left:20%;right:20%;top:24%;bottom:24%;background:var(--top);border:var(--rim);border-radius:var(--radius)}
 .sty b{display:block;font:600 12.5px Inter,sans-serif;margin-top:6px}
-.sty small{font:500 10px var(--mono);color:#8f9bb9}
-/* side */
+.sty small{font:500 10px var(--mono);color:var(--txt2)}
+.sty-h{margin:14px 0 0;font:600 11px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--txt2)}
 .tabs2{display:flex;gap:4px;margin-bottom:10px;flex-wrap:wrap}
 .tabs2 button{padding:7px 11px;border-radius:999px;border:1px solid #2c3a66;background:transparent;color:#c7d0e6;font:600 12.5px Inter,sans-serif;cursor:pointer}
 .tabs2 button.on{background:#16a3a6;border-color:#16a3a6;color:#fff}
 .pane{display:none}.pane.on{display:block}
-.minutes{list-style:none;margin:0;padding:0;display:grid;gap:6px;max-height:280px;overflow:auto}
-.minutes li{padding:8px 10px;border-radius:10px;background:#0e1530;border:1px solid #1f2b50;font-size:13px;line-height:1.45}
-.minutes li small{display:block;font:500 10.5px var(--mono);color:#8f9bb9}
+.minutes{list-style:none;margin:0;padding:0;display:grid;gap:6px;max-height:260px;overflow:auto}
+.minutes li{padding:8px 10px;border-radius:10px;background:var(--field);border:1px solid #1f2b50;font-size:13px;line-height:1.45}
+.minutes li small{display:block;font:500 10.5px var(--mono);color:var(--txt2)}
 .minutes li.mot{border-color:#3a4f8f}.minutes li.res{border-color:#2ec4c6}
 .say{display:flex;gap:8px;margin-top:10px}
-.say input,.fx input,.fx select,.fx textarea{flex:1;min-width:0;padding:9px 11px;border-radius:10px;border:1px solid #2c3a66;background:#0e1530;color:#fff;font:400 14px Inter,sans-serif;width:100%;box-sizing:border-box}
+.say input,.fx input,.fx select,.fx textarea{flex:1;min-width:0;padding:9px 11px;border-radius:10px;border:1px solid #2c3a66;background:var(--field);color:#fff;font:400 14px Inter,sans-serif;width:100%;box-sizing:border-box}
 .rr{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
 .todo{list-style:none;margin:8px 0 0;padding:0;display:grid;gap:6px}
-.todo li{display:flex;gap:8px;align-items:center;padding:8px 10px;border-radius:10px;background:#0e1530;border:1px solid #1f2b50;font-size:13.5px}
+.todo li{display:flex;gap:8px;align-items:center;padding:8px 10px;border-radius:10px;background:var(--field);border:1px solid #1f2b50;font-size:13.5px}
 .todo li input{accent-color:#16a3a6;width:16px;height:16px}
 .todo li.done span{text-decoration:line-through;color:#7d88a6}
 .todo li small{margin-left:auto;font:500 10.5px var(--mono);color:#9fdcd6}
+.dec{display:grid;gap:10px}
+.dec h4{margin:0 0 6px;font:600 11px var(--mono);letter-spacing:.1em;text-transform:uppercase}
+.dec .col{padding:10px;border-radius:12px;background:var(--field);border:1px solid #1f2b50}
+.dec .col.pend h4{color:#e9b44c}.dec .col.play h4{color:#e0458f}.dec .col.done h4{color:#5de0c0}
+.dec ul{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+.dec li{display:flex;gap:8px;align-items:center;flex-wrap:wrap;font-size:13px}
+.dec li span{flex:1;min-width:0}
+.dec li small{font:600 10.5px var(--mono);color:var(--txt2)}
+.dec li button{padding:3px 8px;border-radius:999px;border:1px solid #2c3a66;background:transparent;color:#c7d0e6;font:600 11px Inter,sans-serif;cursor:pointer}
 .fx{display:grid;gap:8px}
 .fx label{font:600 12px Inter,sans-serif;color:#c7d0e6}
-.invite{white-space:pre-wrap;font:500 12.5px var(--mono);background:#0e1530;border:1px dashed #2c3a66;border-radius:10px;padding:10px;color:#cfe9e4;margin-top:8px}
-.note{font-size:12px;color:#8f9bb9;margin-top:10px;line-height:1.5}
-.signin{margin-top:16px}
-.signin .fx{grid-template-columns:1fr 1fr}
-@media(max-width:620px){.signin .fx{grid-template-columns:1fr}}
-.rm{display:flex;gap:10px;align-items:flex-start;margin-top:10px;padding:10px 12px;border-radius:12px;background:#0e1530;border:1px solid #233056;font-size:12.5px;color:#c7d0e6}
-.rm b{font-family:var(--mono);color:#fff}
+.invite{white-space:pre-wrap;font:500 12.5px var(--mono);background:var(--field);border:1px dashed #2c3a66;border-radius:10px;padding:10px;color:#cfe9e4;margin-top:8px}
+.note{font-size:12px;color:var(--txt2);margin-top:10px;line-height:1.5}
+.hire .ck{display:flex;gap:8px;align-items:flex-start;font-size:13.5px;color:#d7deef;padding:5px 0}
+.hire .ck input{accent-color:#16a3a6;width:16px;height:16px;margin-top:2px}
 footer{background:#070b18}
 </style>
 </head>
 <body>
 
-<header class="nav"><div class="wrap">
-  <a class="brand" href="../"><img src="../assets/img/coco-logo.webp" alt="" width="34" height="34">ConceptOasis</a>
-  <nav>
-    <a href="../#services">Services</a>
-    <a href="../#agents">AI agents</a>
-    <a href="../#projects">Projects</a>
-    <a class="btn btn-sv" href="#room">Board room</a>
-  </nav>
+<header class="cfh"><div class="wrap">
+  <a class="lg" href="../"><img src="../assets/img/coco-logo.webp" alt="" width="30" height="30">co | co forms</a>
+  <span class="ver">xo-ai &middot; strataverse.ai 1.4</span>
 </div></header>
 
 <section class="sv-hero"><div class="wrap">
   <div>
     <span class="kick">Strataverse &middot; all across the Strataverse</span>
     <h1>Step into the board room.</h1>
-    <p>Choose your table, seat your executive and let xo-ai keep the records: minutes, motions, the to-do list and your Zoom meetings, posted to your strata portal when the board approves them. For condo and strata boards, and any other board for that matter.</p>
-    <div class="sv-name"><label>Your strata or board name<input id="strata" placeholder="e.g. Harbour View Strata" value=""></label><button class="btn btn-ghost btn-sm" id="joinBtn" type="button">Join board room in progress &rarr;</button></div>
+    <p>Choose your table and take your seat with your recomemo. The dealer, your property manager or partner, sits at the table too. xo-ai keeps the records: minutes, decisions in play, the to-do list and your Zoom meetings, posted to your strata portal when the board approves them.</p>
+    <div class="sv-name"><label>Your strata or board name<input id="strata" placeholder="e.g. Harbour View Strata"></label><button class="btn btn-ghost btn-sm" id="joinBtn" type="button">Join board room in progress &rarr;</button></div>
   </div>
   <div class="xo-id">
-    <small>eXecutive Officer AI</small>
+    <small>eXecutive Officer AI &middot; strataverse.ai 1.4</small>
     <b id="xoName">xo-ai &middot; your board</b>
     <ul>
       <li>Takes the minutes, in Robert&rsquo;s Rules order</li>
-      <li>Arranges your Zoom meeting and sends the invite</li>
-      <li>Keeps the to-do list, with owners and dates</li>
+      <li>Puts each decision in play, records the vote, files it</li>
+      <li>Runs the to-do list, with owners and dates</li>
+      <li>Arranges your Zoom meeting and drafts the invite</li>
       <li>Posts approved minutes to your strata portal</li>
       <li>Mindful of directors&rsquo; fiduciary duties; never gives legal advice</li>
     </ul>
@@ -130,53 +166,56 @@ footer{background:#070b18}
   <div>
     <div class="panel">
       <div class="ctl">
-        <div><h2 id="roomTitle">The board of directors room</h2><span class="muted" id="roomSub">Classic boardroom &middot; 8 seats</span></div>
+        <div><h2 id="roomTitle">The board of directors room</h2><span class="muted" id="roomSub">Sketch &middot; 8 seats</span></div>
         <div class="row">
           <label class="muted">Seats <select id="seats"><option>4</option><option>5</option><option>6</option><option>7</option><option selected>8</option><option>9</option><option>10</option><option>11</option><option>12</option></select></label>
           <label class="muted"><input type="checkbox" id="twoVotes"> President holds two seats (per your bylaws)</label>
         </div>
       </div>
       <div class="room" id="roomEl">
-        <div class="tbl"><b id="tblLabel">Board table</b><small id="tblSub">notepads &amp; devices are the cards</small><div class="devs"><i></i><i></i><i></i></div></div>
-        <div class="xo-chip"><i></i><span id="xoChip">xo-ai is keeping the minutes</span></div>
+        <div class="tbl"><b id="tblLabel">Board table</b><small>overhead view &middot; notepads &amp; devices are the cards</small><div id="playBox"><div class="devs"><i></i><i></i><i></i></div></div></div>
+        <button type="button" class="dealer" id="dealer"><span class="av" id="dAv">PM</span><span><b id="dName">The dealer</b><small id="dSub">property manager or partner &middot; Director</small></span><span class="mint"></span></button>
+        <div class="seatcard" id="seatcard"><div class="rcard" id="rcard"></div></div>
       </div>
-      <p class="note">Tap a seat to sit there or name the director. Executive positions: President, President-elect, Vice President and Past President, then Secretary, Treasurer and directors.</p>
+      <div class="feathers" aria-hidden="true"></div>
+      <p class="note">Tap any seat: sign in right at the table, or open that director&rsquo;s recomemo and leave them a message. Executive positions: President, President-elect, Vice President, Past President, then Secretary, Treasurer and directors. The dealer sits at the table edge.</p>
     </div>
 
     <div class="panel" style="margin-top:18px">
       <h2>Choose your board room style</h2>
       <span class="muted">Poker table style, every one: everyone faces in, with talk or text entry at the table.</span>
+      <div class="sty-h">Black on white</div>
+      <div class="styles" id="stylesBW"></div>
+      <div class="sty-h">Colour</div>
       <div class="styles" id="styles"></div>
     </div>
   </div>
 
   <aside>
     <div class="panel">
-      <div class="tabs2" id="tabs2"><button class="on" data-p="min">Minutes</button><button data-p="todo">To do</button><button data-p="zoom">Zoom</button><button data-p="in">Sign in</button></div>
-
-      <div class="pane on" id="p-min">
+      <div class="tabs2" id="tabs2"><button class="on" data-p="dec">Decisions</button><button data-p="min">Minutes</button><button data-p="todo">To do</button><button data-p="zoom">Zoom</button></div>
+      <div class="pane on" id="p-dec">
+        <div class="dec">
+          <div class="col pend"><h4>Pending</h4><ul id="dPend"></ul></div>
+          <div class="col play"><h4>In play &middot; on the table</h4><ul id="dPlay"></ul></div>
+          <div class="col done"><h4>Decided</h4><ul id="dDone"></ul></div>
+        </div>
+        <div class="say"><input id="decText" placeholder="Add a pending decision, e.g. Roof repair quote"><button class="btn btn-sv btn-sm" id="decAdd" type="button">Add</button></div>
+      </div>
+      <div class="pane" id="p-min">
         <h3>Minutes <span class="muted" id="minDate"></span></h3>
         <ul class="minutes" id="minutes"></ul>
-        <div class="rr">
-          <button class="btn btn-ghost btn-sm" data-act="call">Call to order</button>
-          <button class="btn btn-ghost btn-sm" data-act="move">Motion</button>
-          <button class="btn btn-ghost btn-sm" data-act="second">Second</button>
-          <button class="btn btn-ghost btn-sm" data-act="carried">Carried</button>
-          <button class="btn btn-ghost btn-sm" data-act="defeated">Defeated</button>
-          <button class="btn btn-ghost btn-sm" data-act="adjourn">Adjourn</button>
-        </div>
-        <div class="say"><input id="say" placeholder="Speak or type: e.g. Motion to approve the roof quote"><button class="btn btn-sv btn-sm" id="sayBtn" type="button">Add</button></div>
+        <div class="rr"><button class="btn btn-ghost btn-sm" data-act="call">Call to order</button><button class="btn btn-ghost btn-sm" data-act="adjourn">Adjourn</button></div>
+        <div class="say"><input id="say" placeholder="Speak or type a line for the minutes"><button class="btn btn-sv btn-sm" id="sayBtn" type="button">Add</button></div>
         <div class="row" style="margin-top:10px"><button class="btn btn-ghost btn-sm" id="postBtn" type="button">Post minutes to the strata portal</button><button class="btn btn-ghost btn-sm" id="copyMin" type="button">Copy minutes</button></div>
         <p class="note" id="postNote">Minutes post only after the board approves them. This demo shows the flow; nothing is sent.</p>
       </div>
-
       <div class="pane" id="p-todo">
-        <h3>To-do list</h3>
+        <h3>xo-ai&rsquo;s to-do list</h3>
         <div class="fx" style="grid-template-columns:1fr 1fr"><input id="tdText" placeholder="Task"><select id="tdOwner"></select></div>
         <button class="btn btn-sv btn-sm" id="tdAdd" type="button" style="margin-top:8px">Add task</button>
         <ul class="todo" id="todo"></ul>
       </div>
-
       <div class="pane" id="p-zoom">
         <h3>Arrange a Zoom meeting</h3>
         <div class="fx">
@@ -185,155 +224,218 @@ footer{background:#070b18}
           <label>Agenda<textarea id="zAgenda" rows="3">1. Call to order
 2. Approve last minutes
 3. Reports
-4. New business
+4. Decisions in play
 5. Adjourn</textarea></label>
         </div>
         <button class="btn btn-sv btn-sm" id="zMake" type="button" style="margin-top:8px">Draft the invite</button>
         <div class="invite" id="invite" hidden></div>
         <p class="note">xo-ai drafts the invite and agenda; your Zoom link is added from your board&rsquo;s Zoom account when Strataverse is connected.</p>
       </div>
+    </div>
 
-      <div class="pane" id="p-in">
-        <h3>Board member: sign in</h3>
-        <div class="signin">
-          <div class="fx">
-            <label>Full name<input id="inName" autocomplete="name"></label>
-            <label>Email<input id="inEmail" type="email" autocomplete="email"></label>
-            <label>Unit or lot<input id="inUnit" placeholder="e.g. 304"></label>
-            <label>Position<select id="inPos"></select></label>
-          </div>
-          <button class="btn btn-sv btn-sm" id="inBtn" type="button" style="margin-top:10px">Sign in and take my seat</button>
-          <div class="rm"><span>&#128274;</span><span>Please note: we use <b>profile.recomemo.com</b> to help verify identity and key details. Signing in automatically creates a private recomemo account you can use to sign in and authenticate across the co|co network. Please type clearly so details are understood quickly.</span></div>
-          <p class="note" id="inNote"></p>
-        </div>
+    <form class="panel hire" id="hire" style="margin-top:18px">
+      <h3>Hire xo-ai</h3>
+      <span class="muted">I would like to hire xo-ai for:</span>
+      <div id="hireList" style="margin-top:6px"></div>
+      <div class="fx" style="margin-top:8px">
+        <input id="hName" placeholder="Your name" autocomplete="name">
+        <input id="hEmail" type="email" placeholder="Email" autocomplete="email">
+        <input id="hBoard" placeholder="Board or strata name">
       </div>
-    </div>
-    <div class="panel" style="margin-top:18px">
-      <h3>Keeping the records, nothing more</h3>
-      <p class="muted" style="margin:0">xo-ai is here to keep the records. The board makes every decision. It&rsquo;s mindful of directors&rsquo; duties to act honestly and in the best interest of the owners, and points you to your lawyer or property manager for legal or financial questions. AI can make mistakes; minutes are reviewed and approved by the board.</p>
-      <a class="btn btn-sv btn-sm" style="margin-top:12px" href="../start/">Bring Strataverse to your board &rarr;</a>
-    </div>
+      <button class="btn btn-sv btn-sm" type="submit" style="margin-top:10px">Hire xo-ai &rarr;</button>
+      <p class="note" id="hNote">We&rsquo;ll reply with next steps. xo-ai keeps the records; your board makes every decision.</p>
+    </form>
   </aside>
 </div>
 
 <footer><div class="wrap">
-  <a class="brand" href="../"><img src="../assets/img/coco-logo.webp" alt="" width="30" height="30">ConceptOasis</a>
+  <a class="brand" href="../"><img src="../assets/img/coco-logo.webp" alt="" width="30" height="30">co | co forms</a>
   <span class="cocobar">Strataverse &middot; all across the Strataverse</span>
   <span><a href="mailto:info@conceptoasis.com">info@conceptoasis.com</a> · &copy; 2026 ConceptOasis, an ideas company</span>
 </div></footer>
 
 <script>
 (function(){
+  var TO='info@conceptoasis.com';
   var $=function(id){return document.getElementById(id)};
   function esc(t){var d=document.createElement('div');d.textContent=t==null?'':t;return d.innerHTML}
-  // Board room styles: floor, table top, rim, radius, shadow, table ink, seat ring colour
-  var STYLES=[
-    {id:'classic',name:'Classic boardroom',sub:'walnut oval',floor:'radial-gradient(ellipse at 50% 40%,#2a3352,#141a30)',top:'linear-gradient(135deg,#6b4226,#4a2c18)',rim:'6px solid #2d1a0e',radius:'999px',ink:'#f3e4d2',ring:'#c69c6d'},
-    {id:'poker',name:'Poker felt',sub:'green felt, padded rail',floor:'radial-gradient(ellipse at 50% 40%,#1c2a22,#0d1611)',top:'radial-gradient(ellipse at 50% 45%,#1f7a4a,#125334)',rim:'10px solid #3b2416',radius:'999px',ink:'#e6f6ec',ring:'#e9b44c'},
-    {id:'glass',name:'Glass round',sub:'modern, light',floor:'radial-gradient(circle at 50% 40%,#e9eef7,#c9d3e6)',top:'linear-gradient(135deg,rgba(255,255,255,.75),rgba(200,225,240,.55))',rim:'2px solid rgba(255,255,255,.9)',radius:'50%',ink:'#0f1733',ring:'#2a5bd7',lbl:'#0f1733'},
-    {id:'harbour',name:'Harbour view',sub:'ocean blue',floor:'linear-gradient(180deg,#0d2a44,#0a1a2c)',top:'linear-gradient(135deg,#1c5d8a,#0f3d5e)',rim:'6px solid #c9b48a',radius:'999px',ink:'#e8f4fb',ring:'#2ec4c6'},
-    {id:'night',name:'Night tech',sub:'dark, neon feather edge',floor:'radial-gradient(ellipse at 50% 40%,#151a3a,#05070f)',top:'linear-gradient(135deg,#0f1733,#1a1f45)',rim:'3px solid #2ec4c6',radius:'26px',ink:'#9fdcd6',ring:'#e0458f',shadow:'0 0 24px rgba(46,196,198,.45)'},
-    {id:'horseshoe',name:'Horseshoe',sub:'chair at the open end',floor:'radial-gradient(ellipse at 50% 40%,#2c2a3f,#16141f)',top:'linear-gradient(135deg,#4b5361,#2d333d)',rim:'5px solid #8a93a8',radius:'999px 999px 18px 18px',ink:'#f1f3f8',ring:'#8cc63f'},
-    {id:'terrace',name:'Garden terrace',sub:'outdoor, warm wood',floor:'linear-gradient(180deg,#2f4a2a,#1d2f1a)',top:'linear-gradient(135deg,#b88a55,#8a6438)',rim:'5px solid #5c4022',radius:'40px',ink:'#fff7ea',ring:'#8cc63f'},
-    {id:'royal',name:'Round table',sub:'everyone equal',floor:'radial-gradient(circle at 50% 40%,#3a2140,#1b0f20)',top:'radial-gradient(circle,#7a3c8c,#4a1f57)',rim:'7px solid #e9b44c',radius:'50%',ink:'#fbeefe',ring:'#e9b44c'},
-    {id:'board',name:'Long boardroom',sub:'rectangular, executive',floor:'linear-gradient(180deg,#20263b,#121624)',top:'linear-gradient(90deg,#343b52,#262c40)',rim:'4px solid #6b7891',radius:'14px',ink:'#e6ebf7',ring:'#f28c28'},
-    {id:'feather',name:'Birds of a feather',sub:'co|co colours',floor:'radial-gradient(ellipse at 50% 40%,#1a2140,#0b1022)',top:'linear-gradient(135deg,#2a5bd7,#16a3a6 40%,#8cc63f 65%,#f28c28 85%,#e0458f)',rim:'4px solid #fff',radius:'999px',ink:'#fff',ring:'#ffffff'}
+  var BW=[
+    {id:'sketch',name:'Sketch',sub:'black line on white',floor:'#ffffff',top:'#ffffff',rim:'3px solid #0b0b0d',radius:'999px',ink:'#0b0b0d',mono:true,shadow:'8px 8px 0 #0b0b0d'},
+    {id:'ink',name:'Ink table',sub:'black table, white room',floor:'#ffffff',top:'#0b0b0d',rim:'3px solid #0b0b0d',radius:'999px',ink:'#ffffff',mono:true,shadow:'0 14px 30px rgba(0,0,0,.25)'},
+    {id:'halftone',name:'Halftone',sub:'dotted, like the drop zone',floor:'radial-gradient(circle,#c9c9c9 1.4px,transparent 1.7px) 0 0/12px 12px,#ffffff',top:'#ffffff',rim:'3px solid #0b0b0d',radius:'40px',ink:'#0b0b0d',mono:true,shadow:'10px 10px 0 #0b0b0d'},
+    {id:'paper',name:'Paper round',sub:'round, pencil grey',floor:'#fafafa',top:'#ffffff',rim:'2px solid #555',radius:'50%',ink:'#222',mono:true,shadow:'0 0 0 8px #fafafa,0 0 0 9px #bbb'},
+    {id:'grid',name:'Blueprint mono',sub:'grid lines, black on white',floor:'linear-gradient(#e6e6e6 1px,transparent 1px) 0 0/22px 22px,linear-gradient(90deg,#e6e6e6 1px,transparent 1px) 0 0/22px 22px,#fff',top:'#ffffff',rim:'2px dashed #0b0b0d',radius:'18px',ink:'#0b0b0d',mono:true,shadow:'none'}
   ];
+  var CO=[
+    {id:'classic',name:'Classic boardroom',sub:'walnut oval',floor:'radial-gradient(ellipse at 50% 40%,#2a3352,#141a30)',top:'linear-gradient(135deg,#6b4226,#4a2c18)',rim:'6px solid #2d1a0e',radius:'999px',ink:'#f3e4d2'},
+    {id:'poker',name:'Poker felt',sub:'green felt, padded rail',floor:'radial-gradient(ellipse at 50% 40%,#1c2a22,#0d1611)',top:'radial-gradient(ellipse at 50% 45%,#1f7a4a,#125334)',rim:'10px solid #3b2416',radius:'999px',ink:'#e6f6ec'},
+    {id:'glass',name:'Glass round',sub:'modern, light',floor:'radial-gradient(circle at 50% 40%,#e9eef7,#c9d3e6)',top:'linear-gradient(135deg,rgba(255,255,255,.75),rgba(200,225,240,.55))',rim:'2px solid rgba(255,255,255,.9)',radius:'50%',ink:'#0f1733',lbl:'#0f1733',lblsh:'none'},
+    {id:'harbour',name:'Harbour view',sub:'ocean blue',floor:'linear-gradient(180deg,#0d2a44,#0a1a2c)',top:'linear-gradient(135deg,#1c5d8a,#0f3d5e)',rim:'6px solid #c9b48a',radius:'999px',ink:'#e8f4fb'},
+    {id:'night',name:'Night tech',sub:'dark, neon edge',floor:'radial-gradient(ellipse at 50% 40%,#151a3a,#05070f)',top:'linear-gradient(135deg,#0f1733,#1a1f45)',rim:'3px solid #2ec4c6',radius:'26px',ink:'#9fdcd6',shadow:'0 0 24px rgba(46,196,198,.45)'},
+    {id:'horseshoe',name:'Horseshoe',sub:'chair at the open end',floor:'radial-gradient(ellipse at 50% 40%,#2c2a3f,#16141f)',top:'linear-gradient(135deg,#4b5361,#2d333d)',rim:'5px solid #8a93a8',radius:'999px 999px 18px 18px',ink:'#f1f3f8'},
+    {id:'terrace',name:'Garden terrace',sub:'outdoor, warm wood',floor:'linear-gradient(180deg,#2f4a2a,#1d2f1a)',top:'linear-gradient(135deg,#b88a55,#8a6438)',rim:'5px solid #5c4022',radius:'40px',ink:'#fff7ea'},
+    {id:'royal',name:'Round table',sub:'everyone equal',floor:'radial-gradient(circle at 50% 40%,#3a2140,#1b0f20)',top:'radial-gradient(circle,#7a3c8c,#4a1f57)',rim:'7px solid #e9b44c',radius:'50%',ink:'#fbeefe'},
+    {id:'board',name:'Long boardroom',sub:'rectangular, executive',floor:'linear-gradient(180deg,#20263b,#121624)',top:'linear-gradient(90deg,#343b52,#262c40)',rim:'4px solid #6b7891',radius:'14px',ink:'#e6ebf7'},
+    {id:'feather',name:'Birds of a feather',sub:'co|co colours',floor:'radial-gradient(ellipse at 50% 40%,#1a2140,#0b1022)',top:'linear-gradient(135deg,#2a5bd7,#16a3a6 40%,#8cc63f 65%,#f28c28 85%,#e0458f)',rim:'4px solid #fff',radius:'999px',ink:'#fff'}
+  ];
+  var ALL=BW.concat(CO);
   var EXEC=['President','President-elect','Vice President','Past President','Secretary','Treasurer'];
   var POSC={'President':'#f28c28','President-elect':'#e9b44c','Vice President':'#2a5bd7','Past President':'#6b4fd8','Secretary':'#16a3a6','Treasurer':'#8cc63f','Director':'#e0458f'};
-  var S={style:'classic',seats:8,two:false,names:{},me:-1,minutes:[],todo:[],motion:null};
+  var HIRE=['Taking the minutes','Arranging Zoom meetings','The to-do list','Decisions and votes','Posting minutes to our strata portal','Strategic planning sessions','Answering routine owner questions'];
+  var S={style:'sketch',seats:8,two:false,people:{},dealer:{name:'',org:'',bg:'',av:''},me:-1,minutes:[],todo:[],dec:{pend:[],play:null,done:[]}};
 
-  function positions(n){
-    var arr=[];
-    if(S.two){arr.push('President','President');n-=2;EXEC.slice(1).forEach(function(p){if(n>0){arr.push(p);n--}})}
-    else{EXEC.forEach(function(p){if(n>0){arr.push(p);n--}})}
-    while(n-->0)arr.push('Director');
-    return arr;
-  }
   function strata(){return ($('strata').value||'').trim()}
-  function drawRoom(){
-    var st=STYLES.filter(function(x){return x.id===S.style})[0], r=$('roomEl');
-    r.style.setProperty('--floor',st.floor);r.style.setProperty('--top',st.top);r.style.setProperty('--rim',st.rim);r.style.setProperty('--radius',st.radius);r.style.setProperty('--ink2',st.ink);r.style.setProperty('--shadow',st.shadow||'0 18px 40px rgba(0,0,0,.45)');r.style.setProperty('--lbl',st.lbl||'#e6ebf7');
-    [].forEach.call(r.querySelectorAll('.seat'),function(x){x.remove()});
-    var pos=positions(S.seats), n=pos.length;
-    pos.forEach(function(p,i){
-      var a=-Math.PI/2+(i-(S.two?0.5:0))*(2*Math.PI/n), x=50+42*Math.cos(a), y=50+40*Math.sin(a);
-      var nm=S.names[i]||'', b=document.createElement('button');
-      b.type='button';b.className='seat'+(S.me===i?' me':'');b.style.left=x+'%';b.style.top=y+'%';b.style.setProperty('--c',POSC[p]);
-      var ini=nm?nm.split(/\s+/).map(function(w){return w.charAt(0)}).join('').slice(0,2).toUpperCase():'+';
-      var lbl=p==='President'&&S.two?'President · '+(i+1):p.replace('Vice President','Vice Pres').replace('President-elect','Pres-elect').replace('Past President','Past Pres');
-      b.innerHTML='<span class="av'+(nm?'':' empty')+'">'+esc(ini)+'</span><span class="lb">'+esc(lbl)+'</span>';
-      b.setAttribute('aria-label',p+(nm?': '+nm:': open seat'));
-      b.onclick=function(){openSeat(i,p)};
-      r.appendChild(b);
-    });
-    $('roomSub').textContent=st.name+' · '+n+' seats';
-    $('tblLabel').textContent=strata()||'Board table';
-    $('roomTitle').textContent=(strata()?strata()+' · ':'')+'board of directors room';
-  }
-  function openSeat(i,p){ // switch to sign-in tab with that position selected
-    showPane('in'); $('inPos').value=String(i); $('inName').focus();
-  }
-  function drawStyles(){
-    $('styles').innerHTML=STYLES.map(function(st){return '<button type="button" class="sty'+(st.id===S.style?' on':'')+'" data-s="'+st.id+'" style="--floor:'+st.floor+';--top:'+st.top+';--rim:'+st.rim.replace(/\d+px/,function(m){return Math.max(2,Math.round(parseInt(m)/2))+'px'})+';--radius:'+st.radius+'"><span class="smini"><span></span></span><b>'+esc(st.name)+'</b><small>'+esc(st.sub)+'</small></button>'}).join('');
-    [].forEach.call($('styles').children,function(b){b.onclick=function(){S.style=b.getAttribute('data-s');drawStyles();drawRoom();save()}});
-  }
-  function drawPosSelect(){
-    var pos=positions(S.seats);
-    var opts=pos.map(function(p,i){if(S.two&&i===1)return '';return '<option value="'+i+'">'+esc(p+(S.two&&i===0?' (two seats, two votes)':'')+' · seat '+(i+1))+'</option>'}).join('');
-    $('inPos').innerHTML=opts;
-    var names=pos.map(function(p,i){return S.names[i]?S.names[i]+' ('+p+')':null}).filter(Boolean);
-    $('tdOwner').innerHTML='<option value="">Owner</option>'+names.map(function(n){return '<option>'+esc(n)+'</option>'}).join('');
-  }
-  // minutes
+  function positions(n){var arr=[];if(S.two){arr.push('President','President');n-=2;EXEC.slice(1).forEach(function(p){if(n>0){arr.push(p);n--}})}else{EXEC.forEach(function(p){if(n>0){arr.push(p);n--}})}while(n-->0)arr.push('Director');return arr}
+  function initials(n){return n?n.split(/\s+/).map(function(w){return w.charAt(0)}).join('').slice(0,2).toUpperCase():''}
+  function slug(n){return (n||'').toLowerCase().replace(/[^a-z0-9]+/g,'')}
   function stamp(){return new Date().toLocaleTimeString('en-CA',{hour:'numeric',minute:'2-digit'})}
   function addMin(text,cls){S.minutes.push({t:stamp(),text:text,cls:cls||''});drawMin();save()}
+  function who(){return S.me>-1&&S.people[S.me]?S.people[S.me].name:'A director'}
+
+  // ---- room: seats spread around the table, the bottom centre kept for the dealer ----
+  function drawRoom(){
+    var st=ALL.filter(function(x){return x.id===S.style})[0]||ALL[0], r=$('roomEl');
+    r.style.setProperty('--floor',st.floor);r.style.setProperty('--top',st.top);r.style.setProperty('--rim',st.rim);r.style.setProperty('--radius',st.radius);r.style.setProperty('--ink2',st.ink);r.style.setProperty('--shadow',st.shadow||'0 18px 40px rgba(0,0,0,.45)');
+    r.style.setProperty('--lbl',st.mono?'#0b0b0d':(st.lbl||'#e6ebf7'));r.style.setProperty('--lblsh',st.mono?'none':(st.lblsh||'0 1px 2px rgba(0,0,0,.5)'));
+    [].forEach.call(r.querySelectorAll('.seat'),function(x){x.remove()});
+    var pos=positions(S.seats), n=pos.length, gap=1.0, span=Math.PI*2-gap;
+    // evenly spaced slots around the table, leaving the bottom centre for the dealer
+    var slots=[]; for(var k=0;k<n;k++){slots.push(Math.PI/2+gap/2+(k+0.5)*(span/n))}
+    // executives take the slots nearest the top, directors fill toward the dealer
+    var order=slots.map(function(a,k){return k}).sort(function(x,y){return Math.abs(slots[x]-1.5*Math.PI)-Math.abs(slots[y]-1.5*Math.PI)});
+    pos.forEach(function(p,i){
+      var a=slots[order[i]];
+      var x=50+42*Math.cos(a), y=46+38*Math.sin(a);
+      var key=S.two&&i===1?0:i, person=S.people[key], b=document.createElement('button');
+      b.type='button';b.className='seat'+(S.me===key?' me':'');b.style.left=x+'%';b.style.top=y+'%';
+      b.style.setProperty('--c',st.mono?'#0b0b0d':POSC[p]);
+      var lbl=p==='President'&&S.two?'President · '+(i+1):p.replace('Vice President','Vice Pres').replace('President-elect','Pres-elect').replace('Past President','Past Pres');
+      var av=person&&person.av?' style="background-image:url('+person.av+');color:transparent"':'';
+      b.innerHTML='<span class="av'+(person?'':' empty')+'"'+av+'>'+esc(person?initials(person.name):'+')+'</span><span class="lb">'+esc(lbl)+'</span>'+(person&&person.msgs&&person.msgs.length?'<span class="dot" title="'+person.msgs.length+' message(s)"></span>':'');
+      b.setAttribute('aria-label',p+(person?': '+person.name:': open seat, sign in here'));
+      b.onclick=function(){openSeat(key,p)};
+      r.appendChild(b);
+    });
+    var d=S.dealer;
+    $('dName').textContent=d.name||'The dealer';
+    $('dSub').textContent=(d.org?d.org+' · ':'property manager or partner · ')+'Director';
+    $('dAv').textContent=d.av?'':(d.name?initials(d.name):'PM');$('dAv').style.backgroundImage=d.av?'url('+d.av+')':'';
+    $('dealer').style.backgroundImage=d.bg?'url('+d.bg+')':'';$('dealer').classList.toggle('bgimg',!!d.bg);
+    $('roomSub').textContent=st.name+' · '+n+' seats + the dealer';
+    $('tblLabel').textContent=strata()||'Board table';
+    $('roomTitle').textContent=(strata()?strata()+' · ':'')+'board of directors room';
+    drawPlay();
+  }
+  function drawPlay(){
+    var p=S.dec.play, box=$('playBox');
+    if(!p){box.innerHTML='<div class="devs"><i></i><i></i><i></i></div>';return}
+    box.innerHTML='<div class="inplay"><em>In play'+(p.second?' · seconded':'')+'</em><span>'+esc(p.text)+'</span><div class="tally"><button type="button" data-v="for">For '+p.for+'</button><button type="button" data-v="against">Against '+p.against+'</button><button type="button" data-v="abstain">Abstain '+p.abstain+'</button></div></div>';
+    [].forEach.call(box.querySelectorAll('[data-v]'),function(b){b.onclick=function(){p[b.getAttribute('data-v')]++;drawPlay();drawDec();save()}});
+  }
+
+  // ---- at the table: sign in, or open a director's recomemo and leave a message ----
+  function close(){$('seatcard').classList.remove('on')}
+  function topBlock(bg,av,ini){return '<div class="top"'+(bg?' style="background-image:url('+bg+')"':'')+'><span class="av"'+(av?' style="background-image:url('+av+');color:transparent"':'')+'>'+esc(ini)+'</span><button type="button" class="x" aria-label="Close">&times;</button></div>'}
+  function openSeat(i,p){
+    var person=S.people[i], c=$('rcard');
+    if(!person){
+      c.innerHTML=topBlock('','','+')+'<div class="bd"><div class="url">profile.recomemo.com</div><h4>Take the '+esc(p)+' seat</h4><div class="pos">'+esc(p)+(S.two&&i===0?' · two seats, two votes':'')+'</div>'
+        +'<label>Full name<input id="sN" autocomplete="name"></label><label>Email<input id="sE" type="email" autocomplete="email"></label><label>Unit or lot<input id="sU"></label>'
+        +'<button type="button" class="btn btn-sv btn-sm" id="sGo">Sign in and take my seat</button><div class="note">We use profile.recomemo.com to help verify identity and key details. Signing in automatically creates a private recomemo account you can use to sign in and authenticate. Please type clearly so details are understood quickly.</div><div class="note" id="sErr"></div></div>';
+      $('sGo').onclick=function(){var n=$('sN').value.trim(),e=$('sE').value.trim();if(!n){$('sErr').textContent='Please add your full name.';return}if(!/^\S+@\S+\.\S+$/.test(e)){$('sErr').textContent='Please add your email.';return}
+        S.people[i]={name:n,email:e,unit:$('sU').value.trim(),pos:p,msgs:[],bg:'',av:''};S.me=i;save();drawRoom();drawOwners();addMin(n+' signed in and took the '+p+' seat.');openSeat(i,p)};
+      setTimeout(function(){$('sN').focus()},50);
+    } else {
+      var msgs=(person.msgs||[]).map(function(m){return '<li><small>'+esc(m.from)+' · '+esc(m.t)+'</small>'+esc(m.text)+'</li>'}).join('');
+      c.innerHTML=topBlock(person.bg,person.av,initials(person.name))+'<div class="bd"><div class="url">profile.recomemo.com/'+esc(slug(person.name))+'</div><h4>'+esc(person.name)+'</h4><div class="pos">'+esc(p)+(S.two&&i===0?' · two votes':'')+(person.unit?' · unit '+esc(person.unit):'')+'</div>'
+        +'<div class="cred"><span class="vok">&#10003; recomemo verified</span><span>'+esc(p)+'</span>'+(strata()?'<span>'+esc(strata())+'</span>':'')+'</div><div class="lines4"><i></i><i></i><i></i><i></i></div>'
+        +(S.me===i?'<label>Background image for my recomemo<input type="file" id="sBg" accept="image/*"></label><label>Photo<input type="file" id="sAv" accept="image/*"></label>':'')
+        +'<label>Leave '+esc(person.name.split(' ')[0])+' a message<textarea id="sM" rows="2" placeholder="Your message"></textarea></label><button type="button" class="btn btn-sv btn-sm" id="sSend">Leave message</button>'
+        +(msgs?'<ul class="msgs">'+msgs+'</ul>':'')+'<div class="note" id="sErr"></div></div>';
+      $('sSend').onclick=function(){var t=$('sM').value.trim();if(!t)return;person.msgs=person.msgs||[];person.msgs.push({from:S.me>-1&&S.people[S.me]?S.people[S.me].name:'A board member',t:stamp(),text:t});save();drawRoom();openSeat(i,p)};
+      if($('sBg'))$('sBg').onchange=function(){readImg(this.files[0],function(u){person.bg=u;save();openSeat(i,p)})};
+      if($('sAv'))$('sAv').onchange=function(){readImg(this.files[0],function(u){person.av=u;save();drawRoom();openSeat(i,p)})};
+    }
+    c.querySelector('.x').onclick=close;$('seatcard').classList.add('on');
+  }
+  function readImg(f,cb){if(!f)return;if(f.size>3*1024*1024){var n=$('sErr')||$('dErr');if(n)n.textContent='Please choose an image under 3 MB.';return}var r=new FileReader();r.onload=function(){cb(r.result)};r.readAsDataURL(f)}
+  $('seatcard').addEventListener('click',function(e){if(e.target===this)close()});
+  // ---- the dealer: property manager or partner, minted as a Director ----
+  $('dealer').onclick=function(){
+    var d=S.dealer, c=$('rcard');
+    c.innerHTML=topBlock(d.bg,d.av,d.name?initials(d.name):'PM')+'<div class="bd">'
+      +'<div class="url">profile.recomemo.com'+(d.name?'/'+esc(slug(d.name)):'')+'</div><h4>The dealer</h4><div class="pos">real-world property manager or partner &middot; minted as a Director position</div>'
+      +'<div class="cred"><span class="vok">&#10003; recomemo verified</span><span>Director</span><span>Property manager</span></div>'
+      +'<label>Name<input id="dN" value="'+esc(d.name)+'"></label><label>Company<input id="dO" value="'+esc(d.org)+'" placeholder="e.g. your property management company"></label>'
+      +'<label>Background image for the dealer&rsquo;s recomemo pill<input type="file" id="dBg" accept="image/*"></label><label>Logo or photo<input type="file" id="dAvF" accept="image/*"></label>'
+      +'<button type="button" class="btn btn-sv btn-sm" id="dGo">Seat the dealer</button><div class="note">The dealer holds all the credentials of a recomemo profile pill, and is minted as a Director position at this table.</div><div class="note" id="dErr"></div></div>';
+    c.querySelector('.x').onclick=close;
+    $('dBg').onchange=function(){readImg(this.files[0],function(u){S.dealer.bg=u;save();drawRoom();$('dealer').onclick()})};
+    $('dAvF').onchange=function(){readImg(this.files[0],function(u){S.dealer.av=u;save();drawRoom();$('dealer').onclick()})};
+    $('dGo').onclick=function(){var was=!!S.dealer.name;S.dealer.name=$('dN').value.trim();S.dealer.org=$('dO').value.trim();save();drawRoom();drawOwners();if(S.dealer.name&&!was)addMin(S.dealer.name+(S.dealer.org?' ('+S.dealer.org+')':'')+' took the dealer seat as a Director.');close()};
+    $('seatcard').classList.add('on');
+  };
+  // ---- styles ----
+  function drawStyles(){
+    [['stylesBW',BW],['styles',CO]].forEach(function(g){
+      $(g[0]).innerHTML=g[1].map(function(st){return '<button type="button" class="sty'+(st.id===S.style?' on':'')+'" data-s="'+st.id+'" style="--floor:'+st.floor+';--top:'+st.top+';--rim:'+st.rim.replace(/\d+px/,function(m){return Math.max(2,Math.round(parseInt(m)/2))+'px'})+';--radius:'+st.radius+'"><span class="smini"><span></span></span><b>'+esc(st.name)+'</b><small>'+esc(st.sub)+'</small></button>'}).join('');
+      [].forEach.call($(g[0]).children,function(b){b.onclick=function(){S.style=b.getAttribute('data-s');drawStyles();drawRoom();save()}});
+    });
+  }
+  // ---- decisions: pending, in play, decided ----
+  function drawDec(){
+    $('dPend').innerHTML=S.dec.pend.map(function(t,i){return '<li><span>'+esc(t)+'</span><button type="button" data-play="'+i+'">Put in play</button></li>'}).join('')||'<li><small>Nothing pending</small></li>';
+    var p=S.dec.play;
+    $('dPlay').innerHTML=p?'<li><span>'+esc(p.text)+'<br><small>for '+p.for+' · against '+p.against+' · abstain '+p.abstain+(p.second?' · seconded':'')+'</small></span></li><li>'+(p.second?'':'<button type="button" id="dSec">Second</button>')+'<button type="button" id="dCar">Carried</button><button type="button" id="dDef">Defeated</button></li>':'<li><small>Nothing on the table</small></li>';
+    $('dDone').innerHTML=S.dec.done.map(function(d){return '<li><span>'+esc(d.text)+'</span><small>'+esc(d.result)+'</small></li>'}).join('')||'<li><small>No decisions yet</small></li>';
+    [].forEach.call($('dPend').querySelectorAll('[data-play]'),function(b){b.onclick=function(){if(S.dec.play){$('decText').placeholder='Finish the decision in play first';return}var t=S.dec.pend.splice(+b.getAttribute('data-play'),1)[0];S.dec.play={text:t,for:0,against:0,abstain:0,second:false};addMin('Motion put in play by '+who()+': '+t,'mot');drawDec();drawPlay();save()}});
+    if($('dSec'))$('dSec').onclick=function(){p.second=true;addMin('Seconded: '+p.text,'mot');drawDec();drawPlay();save()};
+    if($('dCar'))$('dCar').onclick=function(){finish('Carried')};
+    if($('dDef'))$('dDef').onclick=function(){finish('Defeated')};
+  }
+  function finish(r){var p=S.dec.play;S.dec.done.unshift({text:p.text,result:r+' '+p.for+'-'+p.against+(p.abstain?'-'+p.abstain:'')});addMin(r.toUpperCase()+': '+p.text+' (for '+p.for+', against '+p.against+', abstain '+p.abstain+').','res');S.dec.play=null;drawDec();drawPlay();save()}
+  $('decAdd').onclick=function(){var t=$('decText').value.trim();if(!t)return;S.dec.pend.push(t);$('decText').value='';drawDec();save()};
+  $('decText').onkeydown=function(e){if(e.key==='Enter'){e.preventDefault();$('decAdd').onclick()}};
+  // ---- minutes ----
   function drawMin(){
     $('minDate').textContent=new Date().toLocaleDateString('en-CA',{year:'numeric',month:'long',day:'numeric'});
     $('minutes').innerHTML=S.minutes.length?S.minutes.map(function(m){return '<li class="'+m.cls+'"><small>'+esc(m.t)+'</small>'+esc(m.text)+'</li>'}).join(''):'<li><small>xo-ai</small>Ready when you are. Call the meeting to order to begin the minutes.</li>';
     var el=$('minutes');el.scrollTop=el.scrollHeight;
   }
-  function who(){return S.me>-1&&S.names[S.me]?S.names[S.me]:'A director'}
-  [].forEach.call(document.querySelectorAll('[data-act]'),function(b){b.onclick=function(){
-    var a=b.getAttribute('data-act'), txt=($('say').value||'').trim();
+  [].forEach.call(document.querySelectorAll('[data-act]'),function(b){b.onclick=function(){var a=b.getAttribute('data-act');
     if(a==='call')addMin('Meeting called to order'+(strata()?' for '+strata():'')+'. Quorum confirmed by the chair.');
-    if(a==='move'){S.motion=txt||'(motion wording)';addMin('Motion by '+who()+': '+S.motion,'mot');$('say').value=''}
-    if(a==='second')addMin('Seconded'+(S.motion?': '+S.motion:'')+'.','mot');
-    if(a==='carried'){addMin('CARRIED'+(S.motion?': '+S.motion:'')+'.','res');S.motion=null}
-    if(a==='defeated'){addMin('DEFEATED'+(S.motion?': '+S.motion:'')+'.','res');S.motion=null}
-    if(a==='adjourn')addMin('Meeting adjourned.');
-  }});
+    if(a==='adjourn')addMin('Meeting adjourned.')}});
   function say(){var t=($('say').value||'').trim();if(!t)return;addMin(who()+': '+t);$('say').value=''}
   $('sayBtn').onclick=say;$('say').onkeydown=function(e){if(e.key==='Enter'){e.preventDefault();say()}};
   $('postBtn').onclick=function(){$('postNote').textContent=S.minutes.length?'Ready to post: '+S.minutes.length+' lines. In Strataverse these go to your strata portal once the board approves them. (Demo: nothing was sent.)':'Add some minutes first.'};
   $('copyMin').onclick=function(){var t=(strata()||'Board')+' minutes, '+$('minDate').textContent+'\n'+S.minutes.map(function(m){return m.t+'  '+m.text}).join('\n');
     if(navigator.clipboard)navigator.clipboard.writeText(t).then(function(){$('postNote').textContent='Minutes copied.'},function(){$('postNote').textContent='Could not copy; select the minutes instead.'})};
-  // to-do
+  // ---- to-do ----
+  function drawOwners(){var o=Object.keys(S.people).map(function(k){var p=S.people[k];return p.name+' ('+p.pos+')'});if(S.dealer.name)o.push(S.dealer.name+' (dealer)');$('tdOwner').innerHTML='<option value="">Owner</option>'+o.map(function(n){return '<option>'+esc(n)+'</option>'}).join('')}
   function drawTodo(){$('todo').innerHTML=S.todo.map(function(t,i){return '<li class="'+(t.done?'done':'')+'"><input type="checkbox" data-i="'+i+'"'+(t.done?' checked':'')+'><span>'+esc(t.text)+'</span><small>'+esc(t.owner||'')+'</small></li>'}).join('')||'<li><span class="muted">No tasks yet. Add one, or xo-ai adds them from the minutes.</span></li>';
     [].forEach.call($('todo').querySelectorAll('input'),function(c){c.onchange=function(){S.todo[+c.getAttribute('data-i')].done=c.checked;drawTodo();save()}})}
   $('tdAdd').onclick=function(){var t=($('tdText').value||'').trim();if(!t)return;S.todo.push({text:t,owner:$('tdOwner').value,done:false});$('tdText').value='';drawTodo();save();addMin('Action item: '+t+($('tdOwner').value?' ('+$('tdOwner').value+')':''))};
-  // zoom
+  // ---- zoom ----
   $('zMake').onclick=function(){var w=$('zWhen').value?new Date($('zWhen').value).toLocaleString('en-CA',{weekday:'long',month:'long',day:'numeric',hour:'numeric',minute:'2-digit'}):'(date and time)';
-    var inv=(strata()||'Our board')+': '+($('zTitle').value||'Board meeting')+'\n'+w+'\nZoom link: added from your board’s Zoom account\n\nAgenda\n'+$('zAgenda').value+'\n\nMinutes will be kept by xo-ai and posted after board approval.';
-    $('invite').hidden=false;$('invite').textContent=inv};
-  // sign in
-  $('inBtn').onclick=function(){var n=($('inName').value||'').trim(), e=($('inEmail').value||'').trim();
-    if(!n){$('inNote').textContent='Please add your full name.';return}
-    if(!/^\S+@\S+\.\S+$/.test(e)){$('inNote').textContent='Please add your email.';return}
-    var i=+$('inPos').value;S.names[i]=n;S.me=i;if(S.two&&i===0)S.names[1]=n;
-    $('inNote').textContent='Welcome, '+n+'. You’re seated. (Demo: in Strataverse this creates your private recomemo profile and verifies you.)';
-    drawRoom();drawPosSelect();save();addMin(n+' joined the meeting.')};
-  // tabs
+    $('invite').hidden=false;$('invite').textContent=(strata()||'Our board')+': '+($('zTitle').value||'Board meeting')+'\n'+w+'\nZoom link: added from your board’s Zoom account\n\nAgenda\n'+$('zAgenda').value+'\n\nMinutes will be kept by xo-ai and posted after board approval.'};
+  // ---- hire xo-ai ----
+  $('hireList').innerHTML=HIRE.map(function(h,i){return '<label class="ck"><input type="checkbox" value="'+esc(h)+'"'+(i<3?' checked':'')+'> '+esc(h)+'</label>'}).join('');
+  $('hire').addEventListener('submit',function(e){e.preventDefault();var n=$('hName').value.trim(),em=$('hEmail').value.trim();
+    if(!n){$('hNote').textContent='Please add your name.';return}if(!/^\S+@\S+\.\S+$/.test(em)){$('hNote').textContent='Please add your email.';return}
+    var jobs=[].map.call(document.querySelectorAll('#hireList input:checked'),function(c){return c.value});
+    var body='I would like to hire xo-ai for:\n- '+(jobs.join('\n- ')||'(not chosen yet)')+'\n\nName: '+n+'\nEmail: '+em+'\nBoard: '+($('hBoard').value.trim()||strata()||'-');
+    location.href='mailto:'+TO+'?subject='+encodeURIComponent('Hire xo-ai: '+($('hBoard').value.trim()||strata()||n))+'&body='+encodeURIComponent(body);
+    $('hNote').textContent='Thank you! Your email is ready to send. We’ll reply with next steps.'});
+  // ---- tabs, controls ----
   function showPane(p){[].forEach.call(document.querySelectorAll('#tabs2 button'),function(b){b.classList.toggle('on',b.getAttribute('data-p')===p)});[].forEach.call(document.querySelectorAll('.pane'),function(x){x.classList.toggle('on',x.id==='p-'+p)})}
   [].forEach.call(document.querySelectorAll('#tabs2 button'),function(b){b.onclick=function(){showPane(b.getAttribute('data-p'))}});
-  // controls
-  $('seats').onchange=function(){S.seats=+this.value;if(S.two&&S.seats<5){S.two=false;$('twoVotes').checked=false}drawRoom();drawPosSelect();save()};
-  $('twoVotes').onchange=function(){S.two=this.checked;S.names={};S.me=-1;drawRoom();drawPosSelect();save()};
-  $('strata').oninput=function(){var s=strata();$('xoName').textContent='xo-ai · '+(s||'your board');$('xoChip').textContent='xo-ai'+(s?' for '+s:'')+' is keeping the minutes';drawRoom();save()};
-  $('joinBtn').onclick=function(){document.getElementById('room').scrollIntoView({behavior:'smooth'});showPane('in');setTimeout(function(){$('inName').focus()},500)};
-  function save(){try{localStorage.setItem('coco_sv',JSON.stringify({S:S,strata:$('strata').value}))}catch(x){}}
-  function restore(){try{var o=JSON.parse(localStorage.getItem('coco_sv')||'null');if(!o)return;for(var k in o.S)S[k]=o.S[k];$('strata').value=o.strata||'';$('seats').value=String(S.seats);$('twoVotes').checked=!!S.two}catch(x){}}
-  restore();$('strata').oninput();drawStyles();drawRoom();drawPosSelect();drawMin();drawTodo();
+  $('seats').onchange=function(){S.seats=+this.value;if(S.two&&S.seats<5){S.two=false;$('twoVotes').checked=false}Object.keys(S.people).forEach(function(k){if(+k>=S.seats)delete S.people[k]});drawRoom();drawOwners();save()};
+  $('twoVotes').onchange=function(){S.two=this.checked;S.people={};S.me=-1;drawRoom();drawOwners();save()};
+  $('strata').oninput=function(){var s=strata();$('xoName').textContent='xo-ai · '+(s||'your board');drawRoom();save()};
+  $('joinBtn').onclick=function(){$('room').scrollIntoView({behavior:'smooth'});var pos=positions(S.seats);for(var i=0;i<pos.length;i++){if(S.two&&i===1)continue;if(!S.people[i]){var k=i;setTimeout(function(){openSeat(k,pos[k])},450);return}}};
+  function save(){try{localStorage.setItem('coco_sv2',JSON.stringify({S:S,strata:$('strata').value}))}catch(x){}}
+  function restore(){try{var o=JSON.parse(localStorage.getItem('coco_sv2')||'null');if(!o)return;for(var k in o.S)S[k]=o.S[k];$('strata').value=o.strata||'';$('seats').value=String(S.seats);$('twoVotes').checked=!!S.two}catch(x){}}
+  restore();$('strata').oninput();drawStyles();drawRoom();drawOwners();drawMin();drawTodo();drawDec();
 })();
 </script>
 </body>
