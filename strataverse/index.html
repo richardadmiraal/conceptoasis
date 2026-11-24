@@ -245,6 +245,44 @@ footer{background:#0b0b0d}
 .xa em{display:block;font:600 10px var(--mono);font-style:normal;letter-spacing:.08em;text-transform:uppercase;color:#0c6a6c}
 .xl button{margin:4px 6px 0 0;padding:4px 10px;border-radius:999px;border:1.5px solid #0b0b0d;background:#fff;color:#0b0b0d;font:600 11.5px Inter,sans-serif;cursor:pointer}
 .xd{font-size:11.5px;color:#525b6b;border-top:1px dashed #cdd3dd;padding-top:6px}
+/* financials */
+.kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:10px 0 14px}
+@media(max-width:760px){.kpis{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.kpi{padding:12px;border:2px solid #0b0b0d;border-radius:14px;background:#fff}
+.kpi small{display:block;font:600 10px var(--mono);letter-spacing:.06em;text-transform:uppercase;color:#525b6b}
+.kpi b{display:block;font:650 22px "Inter Tight",Inter,sans-serif;color:#0b0b0d;margin-top:4px;font-variant-numeric:tabular-nums}
+.kpi span{font-size:12px;color:#525b6b}
+.kpi.warn{border-color:#c2410c}.kpi.warn b{color:#c2410c}
+.fgrid{display:grid;grid-template-columns:1fr;gap:12px}
+[hidden]{display:none!important}
+.fbox{padding:12px;border:1.5px solid #0b0b0d;border-radius:14px;background:#fff;margin-top:12px;min-width:0}
+.fgrid .fbox{margin-top:0}
+.tblwrap{overflow-x:auto}
+.ftab{width:100%;border-collapse:collapse;font-size:13px;font-variant-numeric:tabular-nums}
+.ftab th{text-align:left;font:600 10px var(--mono);letter-spacing:.06em;text-transform:uppercase;color:#525b6b;padding:4px 6px;border-bottom:1.5px solid #0b0b0d}
+.ftab td{padding:5px 6px;border-bottom:1px solid #eceef2;color:#0b0b0d;white-space:nowrap}
+.ftab td input{width:84px;padding:4px 6px;border:1px solid #cdd3dd;border-radius:6px;font:inherit;text-align:right}
+.ftab .bar{display:inline-block;vertical-align:middle;width:70px;height:7px;border-radius:7px;background:#eef0f4;overflow:hidden;margin-right:6px}
+.ftab .bar i{display:block;height:100%;background:#16a3a6}
+.ftab .bar i.over{background:#c2410c}
+.ftab td button{border:0;background:none;cursor:pointer;color:#8a92a3;font-size:15px}
+.crfbar{height:14px;border-radius:14px;border:1.5px solid #0b0b0d;background:#fff;overflow:hidden}
+.crfbar i{display:block;height:100%;background:linear-gradient(90deg,#2a5bd7,#16a3a6,#8cc63f)}
+.crfnums{display:flex;gap:10px;flex-wrap:wrap;margin-top:8px;font-size:12.5px;color:#525b6b}
+.crfnums input{display:block;width:120px;margin-top:3px;padding:6px 8px;border:1.5px solid #0b0b0d;border-radius:8px;font:600 14px Inter,sans-serif;font-variant-numeric:tabular-nums}
+.arrears,.inv,.watch{list-style:none;margin:8px 0 0;padding:0;display:grid;gap:6px}
+.arrears li,.inv li,.watch li{display:flex;gap:8px;align-items:center;flex-wrap:wrap;padding:7px 10px;border:1px solid #dfe3ea;border-radius:10px;font-size:13px;color:#0b0b0d}
+.arrears li b{font-variant-numeric:tabular-nums}
+.arrears li small,.inv li small{color:#525b6b}
+.arrears li button,.inv li button{margin-left:auto;padding:3px 9px;border-radius:999px;border:1.5px solid #0b0b0d;background:#fff;font:600 11px Inter,sans-serif;cursor:pointer}
+.inv li select,.inv li input{padding:4px 6px;border:1px solid #cdd3dd;border-radius:6px;font:13px Inter,sans-serif}
+.inv li input{width:90px;text-align:right}
+.inv li .done{color:#0d7a5f;font:600 11px var(--mono)}
+.claire .cl-h{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.cl-av{width:38px;height:38px;border-radius:12px;display:grid;place-items:center;background:linear-gradient(135deg,#2a5bd7,#16a3a6);color:#fff;font:700 13px Inter,sans-serif;flex:none}
+.watch li{border-color:#f3c9a8;background:#fff8f2}
+.watch li.ok{border-color:#bfe6d6;background:#f2fbf7}
+.trep{font:14px/1.6 Georgia,serif;color:#0b0b0d;padding:10px 12px;border:1px solid #dfe3ea;border-radius:10px;background:#fcfcfc}
 .preset{margin-top:12px;display:inline-flex;align-items:center;gap:10px;padding:8px 14px 8px 8px;border:2px solid #0b0b0d;border-radius:999px;background:#fff;box-shadow:4px 4px 0 #0b0b0d;cursor:pointer;font:600 13.5px Inter,sans-serif;color:#0b0b0d}
 .preset img{width:30px;height:30px}
 .seat .ai{position:absolute;top:-4px;left:4px;padding:1px 5px;border-radius:999px;background:#0b0b0d;color:#fff;font:700 8px var(--mono);border:1px solid #fff}
@@ -275,6 +313,7 @@ footer{background:#0b0b0d}
       <li>Runs the to-do list, with owners and dates</li>
       <li>Arranges your Zoom meeting and drafts the invite</li>
       <li>Posts approved minutes to your strata portal</li>
+      <li>With CLaiRE on the floor: invoices filed, the Treasurer&rsquo;s report written</li>
       <li>Mindful of directors&rsquo; fiduciary duties; never gives legal advice</li>
     </ul>
   </div>
@@ -307,6 +346,36 @@ footer{background:#0b0b0d}
       <div class="say ask"><span class="xo-tag">xo-ai</span><input id="askIn" placeholder="Ask xo-ai: current summary, find a record, a Robert’s Rules question, or a request"><button class="btn btn-sv btn-sm" id="askBtn" type="button">Ask</button></div>
       <div class="say"><input id="chatIn" placeholder="Message the board"><button class="btn btn-ghost btn-sm" id="chatSend" type="button">Send</button></div>
       <div class="rr" style="margin-top:8px"><button class="btn btn-ghost btn-sm" data-hand="1" type="button">&#9995; Raise hand</button><button class="btn btn-ghost btn-sm" id="chatToMin" type="button">Add last message to the minutes</button></div>
+    </div>
+
+    <div class="panel" style="margin-top:18px" id="finP">
+      <div class="ctl" style="margin-bottom:6px"><div><h2>Financials</h2><span class="muted" id="finSub">Budget against actual, the contingency reserve fund, strata fees and arrears. CLaiRE files the paperwork; xo-ai writes the Treasurer&rsquo;s report.</span></div>
+        <div class="row"><label class="muted">Fiscal year <input id="fy" value="2026-27" style="width:90px;padding:6px 8px;border:1.5px solid #0b0b0d;border-radius:8px"></label><button class="btn btn-ghost btn-sm" id="finClear" type="button">Clear sample figures</button></div></div>
+      <div class="kpis" id="kpis"></div>
+      <div class="fgrid">
+        <div class="fbox"><h3>Budget against actual</h3>
+          <div class="tblwrap"><table class="ftab" id="ftab"><thead><tr><th>Line</th><th>Budget</th><th>Actual</th><th>Used</th></tr></thead><tbody></tbody></table></div>
+          <div class="say"><input id="flName" placeholder="Add a budget line, e.g. Gardening"><input id="flBud" inputmode="decimal" placeholder="Budget $" style="max-width:110px"><button class="btn btn-ghost btn-sm" id="flAdd" type="button">Add</button></div>
+        </div>
+        <div class="fbox"><h3>Contingency reserve fund</h3>
+          <div class="crf"><div class="crfbar"><i id="crfFill"></i></div><div class="crfnums"><span>Balance <input id="crfBal" inputmode="decimal"></span><span>Target <input id="crfTgt" inputmode="decimal"></span></div></div>
+          <h3 style="margin-top:14px">Strata fees and arrears</h3>
+          <div class="crfnums"><span>Billed this year <input id="feeBill" inputmode="decimal"></span><span>Collected <input id="feeColl" inputmode="decimal"></span></div>
+          <ul class="arrears" id="arrears"></ul>
+          <div class="say"><input id="arUnit" placeholder="Unit" style="max-width:80px"><input id="arAmt" inputmode="decimal" placeholder="Owing $" style="max-width:110px"><input id="arDays" inputmode="numeric" placeholder="Days" style="max-width:80px"><button class="btn btn-ghost btn-sm" id="arAdd" type="button">Add</button></div>
+        </div>
+      </div>
+      <div class="fbox claire">
+        <div class="cl-h"><span class="cl-av">CL</span><div><h3 style="margin:0">CL<b>ai</b><b>RE</b> on the floor</h3><span class="muted">Drop invoices, statements and quotes. CLaiRE files each one under the right budget line; confirm the amount and it&rsquo;s counted.</span></div>
+          <label class="btn btn-sv btn-sm" style="cursor:pointer;margin-left:auto">Drop invoices<input type="file" id="invUp" multiple accept=".pdf,.png,.jpg,.jpeg,.xlsx,.csv" hidden></label></div>
+        <ul class="inv" id="inv"></ul>
+      </div>
+      <div class="fbox"><h3>Watch-outs</h3><ul class="watch" id="watch"></ul></div>
+      <div class="fbox"><h3>Treasurer&rsquo;s report <span class="muted">written by xo-ai</span></h3><div class="trep" id="trep"></div>
+        <div class="row" style="margin-top:8px"><button class="btn btn-sv btn-sm" id="repUse" type="button">Use in the minutes</button><button class="btn btn-ghost btn-sm" id="crfMotion" type="button">Propose a reserve fund expenditure</button></div>
+        <div class="say" id="crfForm" hidden><input id="crfAmt" inputmode="decimal" placeholder="$ amount" style="max-width:120px"><input id="crfFor" placeholder="for, e.g. the roof repair"><button class="btn btn-ghost btn-sm" id="crfGo" type="button">Propose</button></div>
+        <p class="note">Figures you enter here are for the board&rsquo;s discussion; your strata manager&rsquo;s statements are the official record. Not accounting or legal advice.</p>
+      </div>
     </div>
 
     <div class="panel" style="margin-top:18px" id="shelfP">
@@ -611,7 +680,7 @@ footer{background:#0b0b0d}
   function chatAdd(from,text,kind){S.chat.push({from:from,text:text,kind:kind||'',t:stamp(),av:(kind==='mine'&&S.me>-1&&S.people[S.me])?S.people[S.me].av:''});if(S.chat.length>200)S.chat.shift();drawChat();save()}
   function drawChat(){
     $('chat').innerHTML=S.chat.length?S.chat.map(function(m){if(m.kind==='xoa')return xoaCard(m.a);var ini=m.kind==='xo'?'xo':initials(m.from)||'?';return '<li class="'+m.kind+'"><span class="ca"'+(m.av?' style="background-image:url('+m.av+');color:transparent"':'')+'>'+esc(ini)+'</span><span class="cb"><small>'+esc(m.from)+' · '+esc(m.t)+'</small>'+esc(m.text)+'</span></li>'}).join(''):'<li class="xo"><span class="ca">xo</span><span class="cb"><small>xo-ai</small>Welcome to the board room'+(strata()?' of '+esc(strata()):'')+'. When everyone is seated, ask me to call the meeting to order.</span></li>';
-    [].forEach.call($('chat').querySelectorAll('[data-go]'),function(b){b.onclick=function(){var g=b.getAttribute('data-go');if(g==='shelf'){document.getElementById('shelfP').scrollIntoView({behavior:'smooth'})}else{showPane(g);document.getElementById('tabs2').scrollIntoView({behavior:'smooth',block:'start'})}}});
+    [].forEach.call($('chat').querySelectorAll('[data-go]'),function(b){b.onclick=function(){var g=b.getAttribute('data-go');if(g==='shelf'){document.getElementById('shelfP').scrollIntoView({behavior:'smooth'})}else if(g==='fin'){document.getElementById('finP').scrollIntoView({behavior:'smooth'})}else{showPane(g);document.getElementById('tabs2').scrollIntoView({behavior:'smooth',block:'start'})}}});
     var el=$('chat');el.scrollTop=el.scrollHeight;
   }
   function seatedCount(){var c=Object.keys(S.people).length;if(S.two&&S.people[0])c+=0;return c+(S.dealer.name?1:0)}
@@ -712,7 +781,7 @@ footer{background:#0b0b0d}
       else if(k==='new business'){var b=S.dec.done.slice().reverse().map(function(d){return 'It was MOVED by '+esc(d.mover||'[mover]')+' and SECONDED by '+esc(d.seconder||'[seconder]')+' that '+esc(d.text.charAt(0).toLowerCase()+d.text.slice(1).replace(/\.$/,''))+'. <b>'+esc((d.result||'').split(' ')[0].toUpperCase())+'</b> ('+(d.c?d.c.for+' in favour, '+d.c.against+' opposed'+(d.c.abstain?', '+d.c.abstain+' abstained':''):esc(d.result))+').'}).join('<br><br>');
         var open=S.dec.pend.length?'<br><br>Tabled to the next meeting: '+S.dec.pend.map(esc).join('; ')+'.':'';sec(item,(b||'No motions were brought forward.')+open)}
       else if(k==='correspondence'){var l=(S.docs||[]).filter(function(d){return d.f==='letters'});sec(item,l.length?'Received and filed: '+l.map(function(d){return esc(d.name)}).join('; ')+'.':'No correspondence was received.')}
-      else if(k==='financial report')sec(item,'The Treasurer presented the financial report. It was MOVED and SECONDED to receive the report as presented. CARRIED.');
+      else if(k==='financial report')sec(item,(S.treasurer?esc(S.treasurer)+'<br><br>':'The Treasurer presented the financial report. ')+'It was MOVED and SECONDED to receive the report as presented. CARRIED.');
       else if(k==='next meeting')sec(item,'The next council meeting will be held on [date] at [time].');
       else if(k==='adjournment')sec(item,'There being no further business, the meeting was adjourned'+(adj?' at '+esc(adj.t):'')+'.');
       else sec(item,'[Discussion]');
@@ -750,6 +819,8 @@ footer{background:#0b0b0d}
       var hits=docs.filter(function(d){var h=(d.name+' '+d.f+' '+(d.sum||'')).toLowerCase();return words.some(function(w){return h.indexOf(w)>-1})}).slice(0,3);
       ans=hits.length?'I found '+hits.length+' record'+(hits.length===1?'':'s')+' on the shelf: '+hits.map(function(d){return d.name}).join('; ')+'.'+(hits[0].sum?' In short: '+hits[0].sum:''):'I couldn’t find that on the shelf yet. Add it under Board folder and I’ll file it.';
       links=hits.map(function(d){return [d.name,'shelf']});while(links.length<3)links.push(LINKS[['shelf','doc','record'][links.length]]);
+    } else if(/\b(budget|financ|money|reserve|crf|arrears|fees|treasurer|spent|spend)\b/.test(l)){
+      ans=treasurerReport();links=[['Financials','fin'],LINKS.doc,['Budget binder','shelf']];
     } else if(/\b(summary|summarize|current|where are we|status|recap|update)\b/.test(l)){
       ans='Here is where the meeting stands. '+summaryText();links=[LINKS.agreed,LINKS.proposed,LINKS.doc];
     } else if(/\b(robert|rules|motion|second|vote|quorum|amend|table|point of order)\b/.test(l)){
@@ -775,6 +846,53 @@ footer{background:#0b0b0d}
       +'<div class="xd">Requested by '+esc(a.who.name)+' &middot; '+esc(a.t.replace(/\.$/,''))+'. xo-ai keeps the records and can make mistakes; it does not give legal advice, and the board decides.</div></div></li>';
   }
 
+  // ---- Financials: budget vs actual, reserve fund, fees and arrears; CLaiRE files invoices; xo-ai writes the report ----
+  var FIN0={sample:true,lines:[['Strata management',36000,24600],['Insurance',58000,58000],['Repairs & maintenance',42000,35900],['Gardening & snow removal',18000,15400],['Utilities',26000,17100],['Elevator service',9000,6200],['Window cleaning',4500,4500],['Contingency reserve contribution',30000,20000]],crf:{bal:142000,tgt:220000},fees:{bill:224000,coll:209500},arrears:[['204',2350,95],['512',840,40]],inv:[]};
+  function money(n){n=+n||0;return '$'+Math.round(n).toLocaleString('en-CA')}
+  function num(v){return +(String(v||'').replace(/[^0-9.\-]/g,''))||0}
+  function F(){if(!S.fin)S.fin=JSON.parse(JSON.stringify(FIN0));return S.fin}
+  function drawFin(){
+    var f=F(), bud=0, act=0;f.lines.forEach(function(l){bud+=l[1];act+=l[2]});
+    var crfPct=f.crf.tgt?Math.min(100,f.crf.bal/f.crf.tgt*100):0, coll=f.fees.bill?f.fees.coll/f.fees.bill*100:0, arr=f.arrears.reduce(function(a,x){return a+x[1]},0);
+    $('kpis').innerHTML=[['Operating budget',money(bud),'spent '+money(act)+' ('+(bud?Math.round(act/bud*100):0)+'%)',act>bud],['Reserve fund',money(f.crf.bal),Math.round(crfPct)+'% of '+money(f.crf.tgt)+' target',crfPct<60],['Fees collected',Math.round(coll)+'%',money(f.fees.coll)+' of '+money(f.fees.bill),coll<95],['Arrears',money(arr),f.arrears.length+' strata lot'+(f.arrears.length===1?'':'s'),arr>0]]
+      .map(function(k){return '<div class="kpi'+(k[3]?' warn':'')+'"><small>'+k[0]+'</small><b>'+k[1]+'</b><span>'+k[2]+'</span></div>'}).join('');
+    $('ftab').querySelector('tbody').innerHTML=f.lines.map(function(l,i){var u=l[1]?l[2]/l[1]*100:0;return '<tr><td>'+esc(l[0])+'</td><td><input data-l="'+i+'" data-c="1" value="'+Math.round(l[1])+'"></td><td><input data-l="'+i+'" data-c="2" value="'+Math.round(l[2])+'"></td><td><span class="bar"><i class="'+(u>100?'over':'')+'" style="width:'+Math.min(100,u)+'%"></i></span>'+Math.round(u)+'%</td><td><button type="button" data-rm="'+i+'" aria-label="Remove">&times;</button></td></tr>'}).join('');
+    [].forEach.call($('ftab').querySelectorAll('input'),function(x){x.onchange=function(){f.lines[+x.getAttribute('data-l')][+x.getAttribute('data-c')]=num(x.value);f.sample=false;drawFin();save()}});
+    [].forEach.call($('ftab').querySelectorAll('[data-rm]'),function(x){x.onclick=function(){f.lines.splice(+x.getAttribute('data-rm'),1);drawFin();save()}});
+    $('crfFill').style.width=crfPct+'%';$('crfBal').value=Math.round(f.crf.bal);$('crfTgt').value=Math.round(f.crf.tgt);$('feeBill').value=Math.round(f.fees.bill);$('feeColl').value=Math.round(f.fees.coll);
+    $('arrears').innerHTML=f.arrears.map(function(a,i){return '<li>Unit <b>'+esc(a[0])+'</b> owes <b>'+money(a[1])+'</b><small>'+a[2]+' days</small><button type="button" data-ar="'+i+'">Paid</button></li>'}).join('')||'<li class="ok">No arrears.</li>';
+    [].forEach.call($('arrears').querySelectorAll('[data-ar]'),function(x){x.onclick=function(){var a=f.arrears.splice(+x.getAttribute('data-ar'),1)[0];f.fees.coll+=a[1];addMin('Arrears for unit '+a[0]+' ('+money(a[1])+') recorded as paid.');drawFin();save()}});
+    // CLaiRE's invoice tray
+    var cats=f.lines.map(function(l){return l[0]});
+    $('inv').innerHTML=f.inv.map(function(v,i){return '<li><span class="ft" style="font:700 10px var(--mono);padding:2px 6px;border-radius:6px;background:#0b0b0d;color:#fff">'+esc(v.type)+'</span><b style="min-width:0;overflow:hidden;text-overflow:ellipsis">'+esc(v.name)+'</b>'+(v.done?'<span class="done">&#10003; '+money(v.amt)+' &rarr; '+esc(v.cat)+'</span>':'<select data-ic="'+i+'">'+cats.map(function(c){return '<option'+(c===v.cat?' selected':'')+'>'+esc(c)+'</option>'}).join('')+'</select><input data-ia="'+i+'" inputmode="decimal" placeholder="$ amount"><button type="button" data-iok="'+i+'">Confirm</button>')+'</li>'}).join('')||'<li><small>No invoices yet. Drop them in and CLaiRE will sort them.</small></li>';
+    [].forEach.call($('inv').querySelectorAll('[data-iok]'),function(x){x.onclick=function(){var i=+x.getAttribute('data-iok'),v=f.inv[i],amt=num($('inv').querySelector('[data-ia="'+i+'"]').value),cat=$('inv').querySelector('[data-ic="'+i+'"]').value;if(!amt)return;
+      v.amt=amt;v.cat=cat;v.done=true;f.lines.forEach(function(l){if(l[0]===cat)l[2]+=amt});(S.docs=S.docs||[]).push({f:'budget',name:v.name,type:v.type,sample:false,sum:'Invoice filed by CLaiRE: '+money(amt)+' under '+cat+'.'});addMin('CLaiRE filed '+v.name+': '+money(amt)+' under '+cat+'.');drawFin();drawShelf();save()}});
+    // watch-outs
+    var w=[];f.lines.forEach(function(l){if(l[1]&&l[2]>l[1]*1.0)w.push(esc(l[0])+' is over budget: '+money(l[2])+' spent of '+money(l[1])+'.')});
+    f.lines.forEach(function(l){if(l[1]&&l[2]>=l[1]*0.9&&l[2]<=l[1])w.push(esc(l[0])+' is at '+Math.round(l[2]/l[1]*100)+'% of budget.')});
+    if(crfPct<60)w.push('The contingency reserve fund is at '+Math.round(crfPct)+'% of its target. Check the contribution against your depreciation report.');
+    f.arrears.forEach(function(a){if(a[2]>=60)w.push('Unit '+esc(a[0])+' is '+a[2]+' days in arrears ('+money(a[1])+'). Follow your bylaws and the Strata Property Act for notices.')});
+    $('watch').innerHTML=w.length?w.map(function(x){return '<li>'+x+'</li>'}).join(''):'<li class="ok">Nothing to flag right now.</li>';
+    $('trep').innerHTML=esc(treasurerReport());
+    $('finSub').textContent=(f.sample?'Sample figures shown. ':'')+'Budget against actual, the contingency reserve fund, strata fees and arrears. CLaiRE files the paperwork; xo-ai writes the Treasurer’s report.';
+  }
+  function treasurerReport(){var f=F(),bud=0,act=0;f.lines.forEach(function(l){bud+=l[1];act+=l[2]});var over=f.lines.filter(function(l){return l[2]>l[1]});var arr=f.arrears.reduce(function(a,x){return a+x[1]},0);
+    return 'For fiscal year '+($('fy').value||'')+', operating spending to date is '+money(act)+' of a '+money(bud)+' budget ('+(bud?Math.round(act/bud*100):0)+'%). '+(over.length?over.map(function(l){return l[0]}).join(' and ')+(over.length===1?' is':' are')+' over budget. ':'All budget lines are within budget. ')+'The contingency reserve fund stands at '+money(f.crf.bal)+' against a target of '+money(f.crf.tgt)+'. Strata fees collected are '+money(f.fees.coll)+' of '+money(f.fees.bill)+' billed'+(arr?', with '+money(arr)+' in arrears across '+f.arrears.length+' strata lot'+(f.arrears.length===1?'':'s'):'')+'. Figures are for discussion; the strata manager’s statements are the official record.'}
+  $('flAdd').onclick=function(){var n=$('flName').value.trim(),b=num($('flBud').value);if(!n)return;F().lines.push([n,b,0]);$('flName').value='';$('flBud').value='';drawFin();save()};
+  ['crfBal','crfTgt','feeBill','feeColl'].forEach(function(id){$(id).onchange=function(){var f=F();f.sample=false;if(id==='crfBal')f.crf.bal=num(this.value);if(id==='crfTgt')f.crf.tgt=num(this.value);if(id==='feeBill')f.fees.bill=num(this.value);if(id==='feeColl')f.fees.coll=num(this.value);drawFin();save()}});
+  $('arAdd').onclick=function(){var u=$('arUnit').value.trim(),a=num($('arAmt').value),d=parseInt($('arDays').value)||0;if(!u||!a)return;F().arrears.push([u,a,d]);$('arUnit').value='';$('arAmt').value='';$('arDays').value='';drawFin();save()};
+  $('finClear').onclick=function(){S.fin={sample:false,lines:FIN0.lines.map(function(l){return [l[0],0,0]}),crf:{bal:0,tgt:0},fees:{bill:0,coll:0},arrears:[],inv:[]};drawFin();save()};
+  $('fy').onchange=function(){drawFin();save()};
+  $('invUp').addEventListener('change',function(){var f=F(),cats=f.lines.map(function(l){return l[0].toLowerCase()});
+    [].forEach.call(this.files,function(x){var low=x.name.toLowerCase(),guess=f.lines[0]?f.lines[0][0]:'Repairs & maintenance';
+      [['insur','Insurance'],['garden','Gardening'],['snow','Gardening'],['hydro','Utilities'],['gas','Utilities'],['water','Utilities'],['elevat','Elevator'],['window','Window'],['manage','management'],['roof','Repairs'],['plumb','Repairs'],['repair','Repairs']].forEach(function(r){if(low.indexOf(r[0])>-1){var m=f.lines.filter(function(l){return l[0].toLowerCase().indexOf(r[1].toLowerCase())>-1})[0];if(m)guess=m[0]}});
+      f.inv.push({name:x.name,type:(x.name.split('.').pop()||'').toUpperCase().slice(0,4),cat:guess,amt:0,done:false})});
+    this.value='';drawFin();save();chatAdd('xo-ai','CLaiRE has the invoices on the floor and filed each under her best-guess budget line. Confirm the amounts and they’re counted.','xo')});
+  $('repUse').onclick=function(){S.treasurer=treasurerReport();S.docEdited=false;S.docHtml=null;if(!S.pub){S.docHtml=genMinutes();drawDoc()}chatAdd('xo-ai','The Treasurer’s report is in the minutes under Financial report.','xo');showPane('doc')};
+  $('crfMotion').onclick=function(){$('crfForm').hidden=!$('crfForm').hidden};
+  $('crfGo').onclick=function(){var a=num($('crfAmt').value),w=$('crfFor').value.trim();if(!a||!w)return;S.dec.pend.push('Approve the expenditure of '+money(a)+' from the contingency reserve fund for '+w);$('crfAmt').value='';$('crfFor').value='';$('crfForm').hidden=true;drawDec();save();
+    chatAdd('xo-ai','Added to Proposed. A reminder before the vote: spending from the contingency reserve fund generally needs owner approval at a general meeting, usually by a 3/4 vote, unless an exception in BC’s Strata Property Act applies (for example an emergency, or a depreciation report expense). Please check with your strata manager or lawyer.','xo')};
+
   // ---- tabs, controls ----
   function showPane(p){if(p==='doc'&&!S.pub&&!S.docEdited){S.docHtml=genMinutes();drawDoc()}[].forEach.call(document.querySelectorAll('#tabs2 button'),function(b){b.classList.toggle('on',b.getAttribute('data-p')===p)});[].forEach.call(document.querySelectorAll('.pane'),function(x){x.classList.toggle('on',x.id==='p-'+p)})}
   [].forEach.call(document.querySelectorAll('#tabs2 button'),function(b){b.onclick=function(){showPane(b.getAttribute('data-p'))}});
@@ -784,7 +902,7 @@ footer{background:#0b0b0d}
   $('joinBtn').onclick=function(){$('room').scrollIntoView({behavior:'smooth'});var pos=positions(S.seats);for(var i=0;i<pos.length;i++){if(S.two&&i===1)continue;if(!S.people[i]){var k=i;setTimeout(function(){openSeat(k,pos[k])},450);return}}};
   function save(){try{localStorage.setItem('coco_sv2',JSON.stringify({S:S,strata:$('strata').value}))}catch(x){}}
   function restore(){try{var o=JSON.parse(localStorage.getItem('coco_sv2')||'null');if(!o)return;for(var k in o.S)S[k]=o.S[k];$('strata').value=o.strata||'';$('seats').value=String(S.seats);$('twoVotes').checked=!!S.two}catch(x){}}
-  restore();if(!S.chat)S.chat=[];if(!S.promo)S.promo=[];if(!S.docs)S.docs=SAMPLE_DOCS.slice();$('strata').oninput();drawStyles();drawRoom();drawOwners();drawMin();drawTodo();drawDec();drawChat();drawPromo();drawShelf();drawAgenda();drawDoc();
+  restore();if(!S.chat)S.chat=[];if(!S.promo)S.promo=[];if(!S.docs)S.docs=SAMPLE_DOCS.slice();$('strata').oninput();drawStyles();drawRoom();drawOwners();drawMin();drawTodo();drawDec();drawChat();drawPromo();drawShelf();drawAgenda();drawDoc();drawFin();
 })();
 </script>
 </body>
