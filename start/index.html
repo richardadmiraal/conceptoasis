@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Start a project · Digitize your sales and workflows | ConceptOasis</title>
+<meta name="description" content="Tell us about the sales or workflow you want to digitize. ConceptOasis attends to your enterprise, reimagines how the work flows and builds it.">
+<link rel="icon" href="../favicon.png" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/site.css">
+<style>
+.ckg{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px 18px;margin-top:8px}
+@media(max-width:700px){.ckg{grid-template-columns:1fr}}
+form.su .ckg label{display:flex;gap:10px;align-items:flex-start;font-weight:500}
+.ckg input{width:20px!important;height:20px;margin:2px 0 0!important;flex:none}
+fieldset{border:0;padding:0;margin:0}
+legend{font:700 14px Inter,sans-serif;color:var(--char);padding:0}
+</style>
+</head>
+<body>
+
+<header class="nav"><div class="wrap">
+  <a class="brand" href="../"><img src="../assets/img/coco-logo.webp" alt="" width="34" height="34">ConceptOasis</a>
+  <nav>
+    <a href="../#services">Services</a>
+    <a href="../#portfolio">Portfolio</a>
+    <a href="../#projects">Projects</a>
+    <a class="btn btn-dark" href="#intake">Start</a>
+  </nav>
+</div></header>
+
+<section class="hero" style="padding-bottom:30px"><div class="wrap" style="display:block">
+  <span class="tag">ConceptOasis · <b>start a project</b></span>
+  <h1>Digitize your sales and workflows</h1>
+  <p class="lead">Tell us about the work you want to move online: how customers find you, ask for a quote, get onboarded, approved or reported to. We'll reply with how we'd reimagine it and what a first working version could look like.</p>
+  <div class="steps s5" style="margin-top:22px">
+    <div><b>1</b><h3>Attend</h3><p>We listen to how the work really gets done.</p></div>
+    <div><b>2</b><h3>Reimagine</h3><p>A clear map and summary of what it could be.</p></div>
+    <div><b>3</b><h3>Prototype</h3><p>A working version within days.</p></div>
+    <div><b>4</b><h3>Build &amp; launch</h3><p>The real platform, on your branding.</p></div>
+    <div><b>5</b><h3>Manage</h3><p>We keep it running and improving.</p></div>
+  </div>
+</div></section>
+
+<section class="s alt" id="intake"><div class="wrap">
+  <span class="kick">Project intake</span>
+  <h2>Tell us about your workflow</h2>
+  <p class="lead">A few minutes now helps us come prepared. We'll reply with next steps. Nothing is built or charged until you approve it.</p>
+  <form class="su" id="su" novalidate>
+    <label>Your name<input name="name" autocomplete="name" required></label>
+    <label>Email<input name="email" type="email" autocomplete="email" required></label>
+    <label>Phone <span>(optional)</span><input name="phone" type="tel" autocomplete="tel"></label>
+    <label>Company or organization<input name="company" autocomplete="organization"></label>
+    <label>Your role<input name="role" placeholder="e.g. Owner, board chair, managing broker"></label>
+    <label>Type of organization<select name="orgtype"><option>Enterprise</option><option>Mid-size company</option><option>Small business</option><option>Board, strata or property management</option><option>Real estate brokerage or team</option><option>Other</option></select></label>
+    <label>Team size<select name="size"><option>Just me</option><option>2 to 10</option><option>11 to 50</option><option>51 to 250</option><option>More than 250</option></select></label>
+    <label>When would you like to start?<select name="timing"><option>As soon as possible</option><option>In the next 1 to 3 months</option><option>Just exploring</option></select></label>
+    <fieldset class="full"><legend>What would you like to digitize? <span style="font-weight:400;color:var(--mute)">(pick any)</span></legend>
+      <div class="ckg">
+        <label><input type="checkbox" name="jobs" value="Sales intake, quotes and estimates"> Sales intake, quotes and estimates</label>
+        <label><input type="checkbox" name="jobs" value="A configurator (build and price)"> A configurator (build and price)</label>
+        <label><input type="checkbox" name="jobs" value="Client onboarding"> Client onboarding</label>
+        <label><input type="checkbox" name="jobs" value="Approvals and internal workflows"> Approvals and internal workflows</label>
+        <label><input type="checkbox" name="jobs" value="Reports and client portals"> Reports and client portals</label>
+        <label><input type="checkbox" name="jobs" value="An AI assistant (xo-ai)"> An AI assistant (xo-ai)</label>
+      </div>
+    </fieldset>
+    <label class="full">How does it work today? <span>(paper, spreadsheets, email, a CRM)</span><input name="tools"></label>
+    <label class="full">What would a win look like in 90 days?<textarea name="win" rows="3"></textarea></label>
+    <label class="full">Anything else? <span>(limits, privacy needs, questions)</span><textarea name="notes" rows="2"></textarea></label>
+    <label class="ck full"><input type="checkbox" name="consent" required> <span>I agree that ConceptOasis may contact me about this request. We keep your details private and use them only for this request.</span></label>
+    <div class="full"><button class="btn btn-dark" type="submit">Send my intake &rarr;</button> <span class="note" id="sumsg"></span></div>
+  </form>
+  <div class="ok" id="suok">Thank you! We've got your project details and will be in touch soon. Questions? <a href="mailto:info@conceptoasis.com">info@conceptoasis.com</a></div>
+</div></section>
+
+<footer><div class="wrap">
+  <a class="brand" href="../"><img src="../assets/img/coco-logo.webp" alt="" width="30" height="30">ConceptOasis</a>
+  <span class="cocobar">Birds of a feather</span>
+  <span><a href="mailto:info@conceptoasis.com">info@conceptoasis.com</a> · &copy; 2026 ConceptOasis, an ideas company</span>
+</div></footer>
+
+<script>
+(function(){
+  // SETUP: put a form service address here (e.g. a Formspree form for info@conceptoasis.com).
+  // Until then, sending opens a pre-filled email so no intake is lost.
+  var ENDPOINT='';
+  var TO='info@conceptoasis.com';
+  var f=document.getElementById('su'), msg=document.getElementById('sumsg'), ok=document.getElementById('suok');
+  f.addEventListener('submit',function(e){ e.preventDefault(); msg.textContent='';
+    if(!f.elements.name.value.trim()){ msg.textContent='Please add your name.'; f.elements.name.focus(); return; }
+    if(!/^\S+@\S+\.\S+$/.test(f.elements.email.value.trim())){ msg.textContent='Please add your email.'; f.elements.email.focus(); return; }
+    if(!f.elements.consent.checked){ msg.textContent='Please tick the consent box.'; return; }
+    var d={}, jobs=[];
+    Array.prototype.forEach.call(f.elements,function(el){ if(!el.name) return;
+      if(el.name==='jobs'){ if(el.checked) jobs.push(el.value); return; }
+      d[el.name]=el.type==='checkbox'?(el.checked?'Yes':'No'):el.value.trim(); });
+    d.jobs=jobs.join('; ');
+    d._subject='Project intake: '+(d.company||d.name)+' ('+d.orgtype+')';
+    function done(){ f.style.display='none'; ok.style.display='block'; ok.scrollIntoView({behavior:'smooth',block:'center'}); }
+    if(ENDPOINT){ fetch(ENDPOINT,{method:'POST',headers:{'Accept':'application/json','Content-Type':'application/json'},body:JSON.stringify(d)}).then(function(r){ if(!r.ok) throw 0; done(); }).catch(function(){ msg.textContent='That did not go through. Please email '+TO+'.'; }); return; }
+    var body=Object.keys(d).filter(function(k){ return k!=='_subject'; }).map(function(k){ return k+': '+d[k]; }).join('\n');
+    location.href='mailto:'+TO+'?subject='+encodeURIComponent(d._subject)+'&body='+encodeURIComponent(body); done();
+  });
+})();
+</script>
+</body>
+</html>
