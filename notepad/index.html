@@ -1,0 +1,308 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>notepad.recomemo · build a coupon notepad</title>
+<meta name="description" content="Drag coupons into a landscape 8.5 x 11 notepad, three columns, with the organizer at the top. Download a print-ready PDF.">
+<link rel="icon" href="../favicon.png" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Inter+Tight:wght@600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#0b0b0d;--mute:#5b6475;--line:#dfe3ea;--teal:#16a3a6;--gold:#e9b44c;--pink:#e0458f;--blue:#2a5bd7;--lime:#8cc63f;--bg:#f6f7fb;--mono:"JetBrains Mono",ui-monospace,monospace}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 Inter,system-ui,sans-serif}
+a{color:var(--blue)}
+.top{display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding:14px max(16px,env(safe-area-inset-left,0px));background:#fff;border-bottom:1px solid var(--line)}
+.top b{font:800 18px "Inter Tight",Inter,sans-serif}.top .k{font:600 12px var(--mono);color:var(--mute)}
+.top .sp{flex:1}
+.wrap{max-width:1320px;margin:0 auto;padding:20px max(16px,env(safe-area-inset-right,0px)) 60px max(16px,env(safe-area-inset-left,0px))}
+h1{font:800 clamp(26px,3.4vw,38px)/1.1 "Inter Tight",Inter,sans-serif;letter-spacing:-.02em;margin:0 0 6px}
+.lead{color:var(--mute);max-width:70ch;margin:0 0 18px}
+.grid{display:grid;grid-template-columns:360px minmax(0,1fr);gap:20px;align-items:start}
+@media(max-width:980px){.grid{grid-template-columns:minmax(0,1fr)}}
+.card{background:#fff;border:1.5px solid var(--ink);border-radius:16px;padding:16px;box-shadow:4px 4px 0 var(--ink)}
+.card h2{font:700 16px "Inter Tight",Inter,sans-serif;margin:0 0 10px}
+.card+.card{margin-top:16px}
+label.f{display:block;font-size:12px;font-weight:600;color:var(--mute);margin-top:8px}
+label.f input,label.f select,label.f textarea{display:block;width:100%;margin-top:3px;padding:8px 10px;border:1.5px solid var(--line);border-radius:10px;font:14px Inter,sans-serif;color:var(--ink);background:#fff}
+label.f input:focus,label.f select:focus,label.f textarea:focus{outline:0;border-color:var(--ink)}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.btn{display:inline-flex;align-items:center;gap:6px;border:1.5px solid var(--ink);background:#fff;color:var(--ink);border-radius:999px;padding:8px 14px;font:600 13px Inter,sans-serif;cursor:pointer;text-decoration:none}
+.btn.dark{background:var(--ink);color:#fff}.btn.gold{background:var(--gold);border-color:var(--gold)}
+.btn:disabled{opacity:.5;cursor:default}
+.lib{display:flex;flex-direction:column;gap:8px;max-height:430px;overflow:auto;padding-right:2px}
+.cp{position:relative;display:grid;grid-template-columns:8px minmax(0,1fr);border:1.5px dashed var(--ink);border-radius:12px;background:#fff;cursor:grab;overflow:hidden}
+.cp i{background:var(--c,#16a3a6)}
+.cp div{padding:8px 10px}
+.cp small{display:block;font:600 10.5px var(--mono);color:var(--mute);text-transform:uppercase;letter-spacing:.05em}
+.cp b{display:block;font:800 15px/1.2 "Inter Tight",Inter,sans-serif}
+.cp em{display:block;font-style:normal;font-size:11.5px;color:var(--mute)}
+.cp .x{position:absolute;top:4px;right:4px;border:0;background:none;color:var(--mute);cursor:pointer;font-size:15px;line-height:1}
+.cp.picked{outline:3px solid var(--gold);outline-offset:1px}
+.hint{font-size:12px;color:var(--mute);margin:6px 0 0}
+.tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}
+.tabs button{border:1.5px solid var(--ink);background:#fff;border-radius:999px;padding:5px 12px;font:600 12.5px Inter,sans-serif;cursor:pointer}
+.tabs button.on{background:var(--ink);color:#fff}
+.sheet{width:100%;aspect-ratio:11/8.5;background:#fff;border:1px solid #c9ced8;box-shadow:0 12px 30px rgba(11,11,13,.12);display:flex;flex-direction:column;padding:3.6% 3.6%;gap:1.6%;container-type:inline-size}
+.org{flex:0 0 13.5%;display:flex;align-items:center;gap:2.4cqw;border-bottom:2px solid var(--ink);padding-bottom:1.2cqw}
+.org .av{width:7cqw;height:7cqw;border-radius:50%;background:var(--ink);color:#fff;display:grid;place-items:center;font:800 2.2cqw Inter,sans-serif;flex:none}
+.org b{display:block;font:800 2.6cqw/1.1 "Inter Tight",Inter,sans-serif}
+.org span{display:block;font-size:1.35cqw;color:var(--mute)}
+.org .tg{margin-left:auto;text-align:right;font:600 1.3cqw var(--mono);color:var(--mute)}
+.slots{flex:1;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));grid-template-rows:repeat(3,minmax(0,1fr));gap:1.6cqw}
+.slot{border:1.5px dashed #b9bfca;border-radius:1.2cqw;display:grid;place-items:center;color:#9aa1ae;font:600 1.4cqw Inter,sans-serif;cursor:pointer;position:relative;min-width:0;min-height:0;background:#fbfcfe}
+.slot.sel{border-color:var(--gold);background:#fff8e6;color:#7a4a00}
+.slot.over{border-color:var(--teal);background:#e9fbfb}
+.slot.full{border:1.5px dashed var(--ink);background:#fff;place-items:stretch;cursor:default;color:var(--ink)}
+.sc{display:grid;grid-template-columns:1.1cqw minmax(0,1fr) auto;height:100%;overflow:hidden;border-radius:1.1cqw}
+.sc i{background:var(--c,#16a3a6)}
+.sc .t{padding:1cqw 1.2cqw;display:flex;flex-direction:column;gap:.4cqw;min-width:0}
+.sc small{font:700 1.05cqw var(--mono);color:var(--mute);text-transform:uppercase;letter-spacing:.04em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sc b{font:800 2cqw/1.1 "Inter Tight",Inter,sans-serif;overflow:hidden}
+.sc em{font-style:normal;font-size:1.05cqw;color:var(--mute);overflow:hidden}
+.sc .u{margin-top:auto;font:700 1cqw var(--mono);color:var(--ink)}
+.sc .q{width:6.4cqw;padding:1cqw 1cqw 1cqw 0;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:.3cqw}
+.sc .q svg{width:100%;height:auto}
+.sc .q span{font:600 .9cqw var(--mono)}
+.slot .clr{position:absolute;top:.4cqw;right:.6cqw;border:0;background:#fff;border-radius:50%;width:2.4cqw;height:2.4cqw;font-size:1.6cqw;line-height:1;cursor:pointer;color:var(--mute)}
+.lines{flex:1;background:repeating-linear-gradient(#fff 0 calc(3.2cqw - 1px),#d7dbe4 calc(3.2cqw - 1px) 3.2cqw)}
+.foot{font:600 1.1cqw var(--mono);color:#9aa1ae;text-align:center}
+.bar{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:14px}
+.bar .sp{flex:1}
+.note{font-size:12.5px;color:var(--mute)}
+.msg{font-size:13px;color:#0b6b5c;min-height:1.2em}
+.pill{display:inline-block;font:700 10.5px var(--mono);padding:2px 8px;border-radius:999px;border:1px solid #bfe6d6;background:#f2fbf7;color:#0b6b5c;text-transform:uppercase;letter-spacing:.05em}
+</style>
+</head>
+<body>
+<div class="top">
+  <b>notepad.recomemo</b><span class="k">coupon notepads by co | co</span><span class="sp"></span>
+  <a class="btn" href="../">ConceptOasis</a>
+</div>
+
+<div class="wrap">
+  <h1>Build a coupon notepad.</h1>
+  <p class="lead">Landscape 8.5 &times; 11, three columns. The organizer takes the top spot on every page. Drag coupons into place on the first pages, and the rest of the pad is for notes. Download a print-ready PDF. Boots-on-the-street agents hand them out in their own neighbourhoods.</p>
+
+  <div class="grid">
+    <div>
+      <div class="card">
+        <h2>The organizer <span class="pill">top spot</span></h2>
+        <label class="f">Name<input id="oName" placeholder="Your name" autocomplete="name"></label>
+        <label class="f">Brokerage<input id="oBrok" placeholder="Your brokerage (shown on every page)"></label>
+        <div class="row2">
+          <label class="f">Phone<input id="oPhone" placeholder="604-555-0100" inputmode="tel"></label>
+          <label class="f">recomemo<input id="oSite" placeholder="profile.recomemo.com/you"></label>
+        </div>
+        <label class="f">One line about you<input id="oTag" placeholder="Your neighbourhood agent, boots on the street" maxlength="70"></label>
+      </div>
+
+      <div class="card">
+        <h2>coupon.recomemo &middot; your coupons</h2>
+        <div class="lib" id="lib"></div>
+        <p class="hint">Drag a coupon onto the page, or tap an empty spot and then tap a coupon.</p>
+        <details style="margin-top:10px">
+          <summary class="btn" style="list-style:none">+ Make a coupon</summary>
+          <label class="f">Merchant<input id="cMer" placeholder="e.g. Corner Barber Shop"></label>
+          <label class="f">The offer<input id="cOff" placeholder="e.g. $10 off a haircut" maxlength="44"></label>
+          <label class="f">Details<input id="cDet" placeholder="e.g. 123 Main St, Chilliwack · one per visit" maxlength="90"></label>
+          <div class="row2">
+            <label class="f">Use<select id="cUse"><option value="once">Once</option><option value="twice">Up to twice</option><option value="again">Again and again</option></select></label>
+            <label class="f">Expires<input id="cExp" type="date"></label>
+          </div>
+          <label class="f">Colour<select id="cCol"><option value="#16a3a6">Teal</option><option value="#e9b44c">Gold</option><option value="#e0458f">Pink</option><option value="#2a5bd7">Blue</option><option value="#8cc63f">Lime</option><option value="#0b0b0d">Black</option></select></label>
+          <div class="bar"><button class="btn dark" id="cAdd" type="button">Add coupon</button><span class="msg" id="cMsg"></span></div>
+        </details>
+      </div>
+
+      <div class="card">
+        <h2>The pad</h2>
+        <div class="row2">
+          <label class="f">Coupon pages<select id="pCoup"><option>1</option><option>2</option><option>3</option><option>4</option></select></label>
+          <label class="f">Pages in the pad<select id="pTotal"><option>10</option><option selected>20</option><option>30</option><option>40</option></select></label>
+        </div>
+        <p class="hint">Each coupon page holds nine coupons. The other pages are lined, with the organizer at the top.</p>
+      </div>
+    </div>
+
+    <div>
+      <div class="card">
+        <div class="tabs" id="tabs" role="tablist" aria-label="Pages"></div>
+        <div class="sheet" id="sheet" aria-label="Page preview"></div>
+        <div class="bar">
+          <button class="btn" id="clearPage" type="button">Clear this page</button>
+          <span class="sp"></span>
+          <span class="msg" id="pdfMsg"></span>
+          <button class="btn dark" id="pdfBtn" type="button">Download print-ready PDF</button>
+        </div>
+        <p class="note">Each coupon carries a QR code and its own short code. When coupon.recomemo opens, merchants scan it to redeem, and the RCM ledger counts each use: once, twice, or again and again. Until then the QR codes point to coupon.recomemo.com. Sample coupons are made up; swap in real merchants who&rsquo;ve agreed to their offer.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.js"></script>
+<script>
+(function(){
+  var KEY='coco_notepad_v1', PER=9;
+  function code(){ var a='ABCDEFGHJKLMNPQRSTUVWXYZ23456789', s=''; for(var i=0;i<6;i++) s+=a[Math.floor(Math.random()*a.length)]; return s; }
+  var S = {
+    org:{name:'',brok:'',phone:'',site:'',tag:''},
+    coupons:[
+      {id:'s1',mer:'Your phone repair shop',off:'$50 towards computer or phone repair',det:'Sample coupon. Any repair over $150.',use:'once',exp:'',col:'#2a5bd7',code:code(),sample:true},
+      {id:'s2',mer:'Your corner barber',off:'$10 off a haircut',det:'Sample coupon. One per visit.',use:'twice',exp:'',col:'#e0458f',code:code(),sample:true},
+      {id:'s3',mer:'Your skate shop',off:'$2 off skate sharpening',det:'Sample coupon. Every time you come in.',use:'again',exp:'',col:'#16a3a6',code:code(),sample:true}
+    ],
+    pages:1, total:20, slots:{1:[]}, cur:1, sel:null
+  };
+  try{ var saved=JSON.parse(localStorage.getItem(KEY)||'null'); if(saved&&saved.coupons) S=Object.assign(S,saved); }catch(e){}
+  function save(){ try{ localStorage.setItem(KEY, JSON.stringify(S)); }catch(e){} }
+  var $=function(id){return document.getElementById(id)};
+  function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+  function useLabel(u){return u==='once'?'Use once':u==='twice'?'Use up to twice':'Use again and again'}
+  function byId(id){return S.coupons.filter(function(c){return c.id===id})[0]}
+  function qrSvg(text){ if(!window.qrcode) return '<svg viewBox="0 0 1 1" aria-hidden="true"><rect width="1" height="1" fill="#eee"/></svg>'; var q=qrcode(0,'M'); q.addData(text); q.make(); var n=q.getModuleCount(), r='';
+    for(var y=0;y<n;y++) for(var x=0;x<n;x++) if(q.isDark(y,x)) r+='<rect x="'+x+'" y="'+y+'" width="1" height="1"/>';
+    return '<svg viewBox="0 0 '+n+' '+n+'" aria-hidden="true" shape-rendering="crispEdges">'+r+'</svg>'; }
+  function qrUrl(c){ return 'https://coupon.recomemo.com/r/'+c.code; }
+
+  // organizer fields
+  [['oName','name'],['oBrok','brok'],['oPhone','phone'],['oSite','site'],['oTag','tag']].forEach(function(p){
+    var el=$(p[0]); el.value=S.org[p[1]]||''; el.addEventListener('input',function(){ S.org[p[1]]=el.value; save(); drawSheet(); });
+  });
+  $('pCoup').value=String(S.pages); $('pTotal').value=String(S.total);
+  $('pCoup').onchange=function(){ S.pages=+this.value; if(S.cur>S.pages) S.cur=S.pages; save(); drawTabs(); drawSheet(); };
+  $('pTotal').onchange=function(){ S.total=+this.value; save(); drawTabs(); };
+
+  function drawLib(){
+    $('lib').innerHTML=S.coupons.map(function(c){
+      return '<div class="cp'+(S.picked===c.id?' picked':'')+'" draggable="true" data-id="'+c.id+'" style="--c:'+c.col+'" tabindex="0" role="button" aria-label="Coupon: '+esc(c.off)+'"><i></i><div><small>'+esc(c.mer)+(c.sample?' · sample':'')+'</small><b>'+esc(c.off)+'</b><em>'+esc(useLabel(c.use))+(c.exp?' · until '+esc(c.exp):'')+'</em></div><button class="x" type="button" data-del="'+c.id+'" aria-label="Delete coupon">&times;</button></div>';
+    }).join('') || '<p class="hint">No coupons yet. Make one below.</p>';
+    [].forEach.call($('lib').querySelectorAll('.cp'),function(el){
+      el.addEventListener('dragstart',function(e){ e.dataTransfer.setData('text/plain',el.dataset.id); });
+      el.addEventListener('click',function(e){ if(e.target.closest('[data-del]')) return; place(el.dataset.id); });
+      el.addEventListener('keydown',function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); place(el.dataset.id); } });
+    });
+    [].forEach.call($('lib').querySelectorAll('[data-del]'),function(b){ b.onclick=function(){
+      var id=b.dataset.del; S.coupons=S.coupons.filter(function(c){return c.id!==id});
+      Object.keys(S.slots).forEach(function(k){ S.slots[k]=(S.slots[k]||[]).map(function(x){return x===id?null:x}); });
+      save(); drawLib(); drawSheet(); }; });
+  }
+  function place(id){
+    var arr=S.slots[S.cur]=S.slots[S.cur]||[];
+    var i=S.sel!=null?S.sel:(function(){ for(var k=0;k<PER;k++) if(!arr[k]) return k; return -1; })();
+    if(i<0){ $('pdfMsg').textContent='This page is full. Clear a spot or go to the next coupon page.'; return; }
+    arr[i]=id; S.sel=null; save(); drawSheet();
+  }
+  function drawTabs(){
+    var h=''; for(var p=1;p<=S.pages;p++) h+='<button type="button" role="tab" aria-selected="'+(S.cur===p)+'" class="'+(S.cur===p?'on':'')+'" data-p="'+p+'">Coupon page '+p+'</button>';
+    h+='<button type="button" class="'+(S.cur===0?'on':'')+'" data-p="0">Note pages ('+(S.total-S.pages)+')</button>';
+    $('tabs').innerHTML=h;
+    [].forEach.call($('tabs').querySelectorAll('[data-p]'),function(b){ b.onclick=function(){ S.cur=+b.dataset.p; S.sel=null; save(); drawTabs(); drawSheet(); }; });
+  }
+  function orgHtml(){
+    var o=S.org, ini=(o.name||'?').split(' ').map(function(w){return w[0]||''}).join('').slice(0,2).toUpperCase();
+    return '<div class="org"><span class="av">'+esc(ini)+'</span><div><b>'+esc(o.name||'Your name')+'</b><span>'+esc(o.brok||'Your brokerage')+(o.phone?' · '+esc(o.phone):'')+(o.site?' · '+esc(o.site):'')+'</span></div><span class="tg">'+esc(o.tag||'notepad.recomemo')+'</span></div>';
+  }
+  function drawSheet(){
+    var sh=$('sheet');
+    if(S.cur===0){ sh.innerHTML=orgHtml()+'<div class="lines"></div><div class="foot">notepad.recomemo.com</div>'; $('clearPage').disabled=true; return; }
+    $('clearPage').disabled=false;
+    var arr=S.slots[S.cur]||[], h='';
+    for(var i=0;i<PER;i++){
+      var c=arr[i]?byId(arr[i]):null;
+      if(c) h+='<div class="slot full" data-i="'+i+'"><div class="sc" style="--c:'+c.col+'"><i></i><div class="t"><small>'+esc(c.mer)+'</small><b>'+esc(c.off)+'</b><em>'+esc(c.det||'')+'</em><span class="u">'+esc(useLabel(c.use))+(c.exp?' · until '+esc(c.exp):'')+'</span></div><div class="q">'+qrSvg(qrUrl(c))+'<span>'+c.code+'</span></div></div><button class="clr" type="button" data-clr="'+i+'" aria-label="Remove coupon">&times;</button></div>';
+      else h+='<div class="slot'+(S.sel===i?' sel':'')+'" data-i="'+i+'" tabindex="0" role="button" aria-label="Empty spot '+(i+1)+'">'+(S.sel===i?'Now tap a coupon':'Drop a coupon')+'</div>';
+    }
+    sh.innerHTML=orgHtml()+'<div class="slots">'+h+'</div>';
+    [].forEach.call(sh.querySelectorAll('.slot'),function(el){
+      var i=+el.dataset.i;
+      el.addEventListener('dragover',function(e){ e.preventDefault(); el.classList.add('over'); });
+      el.addEventListener('dragleave',function(){ el.classList.remove('over'); });
+      el.addEventListener('drop',function(e){ e.preventDefault(); var id=e.dataTransfer.getData('text/plain'); if(byId(id)){ S.sel=i; place(id); } });
+      if(!el.classList.contains('full')){ var pick=function(){ S.sel=(S.sel===i?null:i); drawSheet(); }; el.addEventListener('click',pick); el.addEventListener('keydown',function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); pick(); } }); }
+    });
+    [].forEach.call(sh.querySelectorAll('[data-clr]'),function(b){ b.onclick=function(e){ e.stopPropagation(); (S.slots[S.cur]||[])[+b.dataset.clr]=null; save(); drawSheet(); }; });
+  }
+  $('clearPage').onclick=function(){ S.slots[S.cur]=[]; save(); drawSheet(); };
+  $('cAdd').onclick=function(){
+    var off=$('cOff').value.trim(), mer=$('cMer').value.trim();
+    if(!off||!mer){ $('cMsg').textContent='Add the merchant and the offer.'; return; }
+    S.coupons.unshift({id:'c'+Date.now(),mer:mer,off:off,det:$('cDet').value.trim(),use:$('cUse').value,exp:$('cExp').value,col:$('cCol').value,code:code()});
+    ['cMer','cOff','cDet','cExp'].forEach(function(id){$(id).value='';}); $('cMsg').textContent='Added. Drag it onto the page.'; save(); drawLib();
+  };
+
+  // ---------- print-ready PDF ----------
+  function clean(s){ return String(s||'').replace(/[‘’]/g,"'").replace(/[“”]/g,'"').replace(/[–—]/g,'-').replace(/[^\x20-\x7E -ÿ•·]/g,''); }
+  function hex(c){ var n=parseInt(c.slice(1),16); return PDFLib.rgb(((n>>16)&255)/255,((n>>8)&255)/255,(n&255)/255); }
+  function wrap(text,font,size,maxW,maxLines){
+    var words=clean(text).split(/\s+/).filter(Boolean), lines=[], cur='';
+    words.forEach(function(w){ var t=cur?cur+' '+w:w; if(font.widthOfTextAtSize(t,size)<=maxW) cur=t; else { if(cur) lines.push(cur); cur=w; } });
+    if(cur) lines.push(cur);
+    if(lines.length>maxLines){ lines=lines.slice(0,maxLines); var l=lines[maxLines-1]; while(l.length&&font.widthOfTextAtSize(l+'...',size)>maxW) l=l.slice(0,-1); lines[maxLines-1]=l+'...'; }
+    return lines;
+  }
+  $('pdfBtn').onclick=async function(){
+    if(!window.PDFLib||!window.qrcode){ $('pdfMsg').textContent='The PDF tools did not load. Check your connection and try again.'; return; }
+    var btn=this; btn.disabled=true; $('pdfMsg').textContent='Making the PDF…';
+    try{
+      var L=PDFLib, doc=await L.PDFDocument.create();
+      doc.setTitle('notepad.recomemo - '+clean(S.org.name||'coupon notepad')); doc.setCreator('notepad.recomemo by co|co');
+      var F=await doc.embedFont(L.StandardFonts.Helvetica), B=await doc.embedFont(L.StandardFonts.HelveticaBold), M=await doc.embedFont(L.StandardFonts.Courier);
+      var W=792,H=612,m=29, ink=L.rgb(.043,.043,.051), mute=L.rgb(.36,.39,.46), faint=L.rgb(.84,.86,.89);
+      function header(pg,compact){
+        var o=S.org, top=H-m, hh=compact?44:70, r=compact?15:24, cx=m+r, cy=top-hh/2;
+        pg.drawCircle({x:cx,y:cy,size:r,color:ink});
+        var ini=clean((o.name||'?').split(' ').map(function(w){return w[0]||''}).join('').slice(0,2).toUpperCase());
+        pg.drawText(ini,{x:cx-B.widthOfTextAtSize(ini,compact?10:15)/2,y:cy-(compact?3.5:5.5),size:compact?10:15,font:B,color:L.rgb(1,1,1)});
+        var tx=cx+r+12;
+        pg.drawText(clean(o.name||'Your name'),{x:tx,y:cy+(compact?2:6),size:compact?13:20,font:B,color:ink});
+        var sub=[o.brok||'Your brokerage',o.phone,o.site].filter(Boolean).map(clean).join('  ·  ');
+        pg.drawText(sub,{x:tx,y:cy-(compact?11:14),size:compact?8:10,font:F,color:mute});
+        var tg=clean(o.tag||'notepad.recomemo'); pg.drawText(tg,{x:W-m-M.widthOfTextAtSize(tg,8.5),y:cy-3,size:8.5,font:M,color:mute});
+        pg.drawLine({start:{x:m,y:top-hh},end:{x:W-m,y:top-hh},thickness:1.6,color:ink});
+        return top-hh;
+      }
+      function qr(pg,text,x,y,size){
+        var q=qrcode(0,'M'); q.addData(text); q.make(); var n=q.getModuleCount(), s=size/n;
+        for(var r=0;r<n;r++) for(var c=0;c<n;c++) if(q.isDark(r,c)) pg.drawRectangle({x:x+c*s,y:y+(n-1-r)*s,width:s+.15,height:s+.15,color:ink});
+      }
+      function coupon(pg,c,x,y,w,h){
+        pg.drawRectangle({x:x,y:y,width:w,height:h,borderColor:ink,borderWidth:1,borderDashArray:[4,3],color:L.rgb(1,1,1)});
+        pg.drawRectangle({x:x,y:y,width:7,height:h,color:hex(c.col||'#16a3a6')});
+        var qs=60, qx=x+w-qs-10, qy=y+18; qr(pg,qrUrl(c),qx,qy,qs);
+        var cd=c.code; pg.drawText(cd,{x:qx+qs/2-M.widthOfTextAtSize(cd,7.5)/2,y:y+8,size:7.5,font:M,color:ink});
+        var tx=x+16, tw=qx-tx-8, ty=y+h-18;
+        wrap(c.mer,B,7.5,tw+qs,1).forEach(function(l){ pg.drawText(l.toUpperCase(),{x:tx,y:ty,size:7.5,font:B,color:mute}); });
+        ty-=18; wrap(c.off,B,15,tw,3).forEach(function(l){ pg.drawText(l,{x:tx,y:ty,size:15,font:B,color:ink}); ty-=17; });
+        ty-=2; wrap(c.det,F,7.5,tw,3).forEach(function(l){ pg.drawText(l,{x:tx,y:ty,size:7.5,font:F,color:mute}); ty-=9.5; });
+        var u=clean(useLabel(c.use)+(c.exp?' · until '+c.exp:'')); pg.drawText(u,{x:tx,y:y+10,size:7.5,font:B,color:ink});
+      }
+      for(var p=1;p<=S.total;p++){
+        var pg=doc.addPage([W,H]);
+        if(p<=S.pages){
+          var bottom=header(pg,false)-10, gap=12, cw=(W-2*m-2*gap)/3, ch=(bottom-m-2*gap)/3, arr=S.slots[p]||[];
+          for(var i=0;i<PER;i++){ var col=i%3,row=Math.floor(i/3), x=m+col*(cw+gap), y=bottom-(row+1)*ch-row*gap, c=arr[i]?byId(arr[i]):null;
+            if(c) coupon(pg,c,x,y,cw,ch); else pg.drawRectangle({x:x,y:y,width:cw,height:ch,borderColor:faint,borderWidth:.8,borderDashArray:[3,3]}); }
+        } else {
+          var b2=header(pg,true)-6;
+          for(var ly=b2-24;ly>m+18;ly-=23) pg.drawLine({start:{x:m,y:ly},end:{x:W-m,y:ly},thickness:.5,color:faint});
+          var ft='notepad.recomemo.com'; pg.drawText(ft,{x:W/2-M.widthOfTextAtSize(ft,7.5)/2,y:m-6,size:7.5,font:M,color:mute});
+        }
+      }
+      var bytes=await doc.save(), blob=new Blob([bytes],{type:'application/pdf'}), a=document.createElement('a');
+      a.href=URL.createObjectURL(blob); a.download='notepad-'+(clean(S.org.name||'recomemo').toLowerCase().replace(/[^a-z0-9]+/g,'-'))+'.pdf';
+      document.body.appendChild(a); a.click(); setTimeout(function(){ URL.revokeObjectURL(a.href); a.remove(); },1500);
+      $('pdfMsg').textContent='PDF ready: '+S.total+' pages, landscape 8.5 × 11.';
+    }catch(e){ $('pdfMsg').textContent='Could not make the PDF: '+e.message; }
+    btn.disabled=false;
+  };
+
+  if(!S.slots[1]||!S.slots[1].length){ S.slots[1]=['s1','s2','s3']; }
+  drawLib(); drawTabs(); drawSheet();
+})();
+</script>
+</body>
+</html>
