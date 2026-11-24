@@ -390,6 +390,50 @@ body.sbs-mode .seat.pill{max-width:104px;padding:2px 7px 2px 2px;gap:4px}body.sb
 .sas{display:flex;align-items:center;gap:6px;padding:0 8px 4px;font:600 10.5px Inter,sans-serif;color:#0b4f50}
 .sav2{width:18px;height:18px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,#2a5bd7,#16a3a6);color:#fff;font:700 8px Inter,sans-serif}
 .org-sph:before{color:inherit}
+
+/* dealer away */
+.dealer.away{opacity:.6;border-style:dashed}
+.dchk{display:flex!important;align-items:center;gap:8px;font-size:13px;margin:6px 0}
+/* group of 12 */
+.g12{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:12px}
+@media(max-width:820px){.g12{grid-template-columns:minmax(0,1fr)}}
+.trades{list-style:none;margin:8px 0 0;padding:0;display:grid;gap:6px;counter-reset:tr}
+.trades li{display:grid;grid-template-columns:26px minmax(0,1fr) auto;gap:4px 8px;align-items:center;padding:7px 9px;border:1.5px solid #0b0b0d;border-radius:12px;background:linear-gradient(115deg,#e7f7ef,#fff 70%)}
+.trades li:before{counter-increment:tr;content:counter(tr);width:22px;height:22px;border-radius:50%;background:#0b0b0d;color:#fff;display:grid;place-items:center;font:700 10px var(--mono)}
+.trades .tn{min-width:0}.trades .tn b{font-size:13.5px}.trades .tn small{display:block;font-size:11.5px;color:#525b6b;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.trades .tt{font:700 9.5px var(--mono);text-transform:uppercase;letter-spacing:.05em;color:#0b6b5c}
+.trades .tx{display:flex;gap:4px;align-items:center}
+.trades .tx button{border:1px solid #0b0b0d;background:#fff;border-radius:999px;font:600 10.5px Inter,sans-serif;padding:2px 8px;cursor:pointer}
+.trades .tx button.on{background:#0b6b5c;border-color:#0b6b5c;color:#fff}
+.trades li.open{background:#fff;border-style:dashed;color:#8a92a3;font-size:12px}
+.trades li.open:before{background:#c3c8d1}
+.tr-add{flex-wrap:wrap}.tr-add input{min-width:120px;flex:1 1 120px}
+.events{list-style:none;margin:8px 0 0;padding:0;display:grid;gap:6px;max-height:420px;overflow:auto}
+.events li{display:flex;align-items:center;gap:8px;padding:6px 8px;border:1px solid #dfe3ea;border-radius:10px;font-size:13px}
+.events .ed{flex:none;width:44px;text-align:center;border:1.5px solid #0b0b0d;border-radius:8px;overflow:hidden;font:700 10px var(--mono)}
+.events .ed i{display:block;font-style:normal;background:#16a3a6;color:#fff;padding:1px 0}.events .ed b{display:block;font-size:15px;padding:1px 0}
+.events li span{flex:1;min-width:0}.events li button{border:0;background:none;color:#8a92a3;cursor:pointer}
+.events li label{font-size:11px;color:#525b6b;display:flex;gap:3px;align-items:center}
+/* the public portal: strataverse teal and green, concept oasis forests */
+.portal{margin-top:18px;border-radius:20px;overflow:hidden;color:#eafff6;padding:22px 22px 18px;position:relative;
+  background:
+   radial-gradient(120% 70% at 100% 0%,rgba(140,198,63,.35),transparent 60%),
+   linear-gradient(180deg,#0e6b6d 0%,#0f7f6a 45%,#12573f 100%);
+  box-shadow:6px 6px 0 #0b0b0d;border:2px solid #0b0b0d}
+.portal:after{content:"";position:absolute;left:0;right:0;bottom:0;height:70px;pointer-events:none;opacity:.55;
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='70' viewBox='0 0 120 70'%3E%3Cg fill='%230a3d2c'%3E%3Cpath d='M14 70V52L4 52 14 34 7 34 17 14 27 34 20 34 30 52 20 52V70z'/%3E%3Cpath d='M58 70V48L44 48 58 26 49 26 62 2 75 26 66 26 80 48 66 48V70z'/%3E%3Cpath d='M98 70V55L90 55 98 41 93 41 101 26 109 41 104 41 112 55 104 55V70z'/%3E%3C/g%3E%3C/svg%3E") repeat-x bottom/120px 70px}
+.pt-top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;flex-wrap:wrap;position:relative;z-index:1}
+.pt-top small{font:600 11px var(--mono);letter-spacing:.06em;color:#bdf3df}
+.pt-top h2{margin:2px 0 0;color:#fff;font:700 clamp(22px,3vw,30px) "Inter Tight",Inter,sans-serif;letter-spacing:-.02em}
+.pt-badge{font:700 10px var(--mono);letter-spacing:.06em;text-transform:uppercase;padding:4px 10px;border-radius:999px;background:#8cc63f;color:#0b2a1c}
+.pt-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-top:14px;position:relative;z-index:1}
+.pt-grid section{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.25);border-radius:14px;padding:12px;backdrop-filter:blur(2px);min-width:0}
+.pt-grid h3{margin:0 0 6px;color:#fff;font-size:14px;letter-spacing:.02em}
+.pt-grid ul{list-style:none;margin:0;padding:0;display:grid;gap:6px;font-size:13px;color:#eafff6}
+.pt-grid li small{display:block;color:#bdf3df;font-size:11.5px}
+.pt-grid .ptd{font:700 10px var(--mono);color:#d6f5a8}
+.pt-note{position:relative;z-index:1;margin:44px 0 0;font-size:12px;color:#d7fbe9}
+body.sbs-mode #g12P,body.sbs-mode #portalP{display:none!important}
 .fbox{padding:12px;border:1.5px solid #0b0b0d;border-radius:14px;background:#fff;margin-top:12px;min-width:0}
 .fgrid .fbox{margin-top:0}
 .tblwrap{overflow-x:auto}
@@ -558,6 +602,33 @@ body.sbs-mode .seat.pill{max-width:104px;padding:2px 7px 2px 2px;gap:4px}body.sb
       </div>
     </div>
 
+
+    <div class="panel" style="margin-top:18px" id="g12P">
+      <div class="ctl" style="margin-bottom:8px"><div><h2>Group of 12 &middot; recommended trades and events</h2><span class="muted" id="g12Sub">Merchant members this board recommends, and the events calendar. Both are shared to the strata portal with the minutes.</span></div><button class="btn btn-ghost btn-sm" id="g12Clear" type="button">Clear samples</button></div>
+      <div class="g12">
+        <div class="fbox" style="margin-top:0"><h3>Recommended trades <span class="muted" id="trCount"></span></h3>
+          <ol class="trades" id="trades"></ol>
+          <div class="say tr-add"><input id="trTrade" placeholder="Trade, e.g. Plumbing" style="max-width:140px"><input id="trName" placeholder="Business name"><input id="trContact" placeholder="Phone or https:// link"><input id="trOffer" placeholder="Offer for owners (optional)"><button class="btn btn-ghost btn-sm" id="trAdd" type="button">Add</button></div>
+          <p class="note">A recommendation, not an endorsement or a contract. Owners choose their own trades.</p>
+        </div>
+        <div class="fbox" style="margin-top:0"><h3>Events calendar</h3>
+          <ul class="events" id="events"></ul>
+          <div class="say"><input id="evDate" type="date" style="max-width:150px"><input id="evTitle" placeholder="Event, e.g. Window cleaning, east side"><button class="btn btn-ghost btn-sm" id="evAdd" type="button">Add</button></div>
+          <button class="btn btn-ghost btn-sm" id="evMaint" type="button" style="margin-top:6px">Add maintenance due dates</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="portal" id="portalP">
+      <div class="pt-top"><div><small>strataverse.net &middot; owners&rsquo; portal</small><h2 id="ptName">Your strata</h2></div><span class="pt-badge">Public portal &middot; preview</span></div>
+      <div class="pt-grid">
+        <section><h3>Minutes</h3><ul id="ptMin"></ul></section>
+        <section><h3>Coming up</h3><ul id="ptEv"></ul></section>
+        <section><h3>Recommended trades</h3><ul id="ptTr"></ul></section>
+        <section><h3>News from the board</h3><ul id="ptNews"></ul></section>
+      </div>
+      <p class="pt-note">What owners see. Only what the board has approved or chosen to share appears here; private stays private.</p>
+    </div>
     <div class="panel" style="margin-top:18px" id="orgP">
       <div class="org-h"><span class="org-av" id="orgAv">+</span><div><h2>organize.recomemo.com</h2><span class="muted" id="orgWho">Your recomemo. Keep anything from this board, privately or in public.</span></div><button class="btn btn-ghost btn-sm" id="orgClaire" type="button"><span class="claire">CL<b>ai</b><b>RE</b></span>, organize</button></div>
       <div class="org-make">
@@ -755,7 +826,7 @@ body.sbs-mode .seat.pill{max-width:104px;padding:2px 7px 2px 2px;gap:4px}body.sb
   var EXEC=['President','President-elect','Vice President','Past President','Secretary','Treasurer'];
   var POSC={'President':'#f28c28','President-elect':'#e9b44c','Vice President':'#2a5bd7','Past President':'#6b4fd8','Secretary':'#16a3a6','Treasurer':'#8cc63f','Director':'#e0458f'};
   var HIRE=['Taking the minutes','Arranging Zoom meetings','The to-do list','Decisions and votes','Posting minutes to our strata portal','Strategic planning sessions','Answering routine owner questions'];
-  var S={style:'sketch',seats:8,two:false,people:{},dealer:{name:'',org:'',bg:'',av:''},me:-1,minutes:[],todo:[],chat:[],dec:{pend:[],play:null,done:[]}};
+  var S={style:'sketch',seats:8,two:false,people:{},dealer:{name:'',org:'',bg:'',av:'',title:'',away:false},me:-1,minutes:[],todo:[],chat:[],dec:{pend:[],play:null,done:[]}};
 
   function strata(){return ($('strata').value||'').trim()}
   function positions(n){var arr=[];if(S.two){arr.push('President','President');n-=2;EXEC.slice(1).forEach(function(p){if(n>0){arr.push(p);n--}})}else{EXEC.forEach(function(p){if(n>0){arr.push(p);n--}})}while(n-->0)arr.push('Director');return arr}
@@ -793,8 +864,8 @@ body.sbs-mode .seat.pill{max-width:104px;padding:2px 7px 2px 2px;gap:4px}body.sb
       r.appendChild(b);
     });
     var d=S.dealer;
-    $('dName').textContent=d.name||'The dealer';
-    $('dSub').textContent=(d.org?d.org+' · ':'property manager or partner · ')+'Director';
+    $('dName').textContent=d.name||d.title||'The dealer';
+    $('dSub').textContent=(d.away?'not present · ':'')+(d.title&&d.name?d.title+' · ':'')+(d.org?d.org+' · ':(d.title?'':'property manager or partner · '))+'Director';$('dealer').classList.toggle('away',!!d.away);
     $('dAv').textContent=d.av?'':(d.name?initials(d.name):'PM');$('dAv').style.backgroundImage=d.av?'url('+d.av+')':'';
     $('dealer').style.backgroundImage=d.bg?'url('+d.bg+')':'';$('dealer').classList.toggle('bgimg',!!d.bg);
     var me=S.me>-1?S.people[S.me]:null, mp=$('mePill');
@@ -842,13 +913,13 @@ body.sbs-mode .seat.pill{max-width:104px;padding:2px 7px 2px 2px;gap:4px}body.sb
     c.innerHTML=topBlock(d.bg,d.av,d.name?initials(d.name):'PM')+'<div class="bd">'
       +'<div class="url">profile.recomemo.com'+(d.name?'/'+esc(slug(d.name)):'')+'</div><h4>The dealer</h4><div class="pos">real-world property manager or partner &middot; minted as a Director position</div>'
       +'<div class="cred"><span class="vok">&#10003; recomemo verified</span><span>Director</span><span>Property manager</span></div>'
-      +'<label>Name<input id="dN" value="'+esc(d.name)+'"></label><label>Company<input id="dO" value="'+esc(d.org)+'" placeholder="e.g. your property management company"></label>'
+      +'<label>What to call this seat<input id="dT" value="'+esc(d.title||'')+'" placeholder="The dealer, e.g. Strata manager, Property manager, Partner"></label><label>Name<input id="dN" value="'+esc(d.name)+'"></label><label>Company<input id="dO" value="'+esc(d.org)+'" placeholder="e.g. your property management company"></label>'
       +'<label>Background image for the dealer&rsquo;s recomemo pill<input type="file" id="dBg" accept="image/*"></label><label>Logo or photo<input type="file" id="dAvF" accept="image/*"></label>'
-      +'<button type="button" class="btn btn-sv btn-sm" id="dGo">Seat the dealer</button><div class="note">The dealer holds all the credentials of a recomemo profile pill, and is minted as a Director position at this table.</div><div class="note" id="dErr"></div></div>';
+      +'<label class="dchk"><input type="checkbox" id="dAway"'+(d.away?' checked':'')+'> Not present at this meeting (xo-ai and the directors carry on)</label><button type="button" class="btn btn-sv btn-sm" id="dGo">Save the dealer seat</button><div class="note">The dealer holds all the credentials of a recomemo profile pill, and is minted as a Director position at this table.</div><div class="note" id="dErr"></div></div>';
     c.querySelector('.x').onclick=close;
     $('dBg').onchange=function(){readImg(this.files[0],function(u){S.dealer.bg=u;save();drawRoom();$('dealer').onclick()})};
     $('dAvF').onchange=function(){readImg(this.files[0],function(u){S.dealer.av=u;save();drawRoom();$('dealer').onclick()})};
-    $('dGo').onclick=function(){var was=!!S.dealer.name;S.dealer.name=$('dN').value.trim();S.dealer.org=$('dO').value.trim();save();drawRoom();drawOwners();if(S.dealer.name&&!was)addMin(S.dealer.name+(S.dealer.org?' ('+S.dealer.org+')':'')+' took the dealer seat as a Director.');close()};
+    $('dGo').onclick=function(){var was=!!S.dealer.name,wasAway=!!S.dealer.away;S.dealer.name=$('dN').value.trim();S.dealer.org=$('dO').value.trim();S.dealer.title=$('dT').value.trim();S.dealer.away=$('dAway').checked;save();drawRoom();drawOwners();if(S.dealer.name&&!was&&!S.dealer.away)addMin(S.dealer.name+(S.dealer.org?' ('+S.dealer.org+')':'')+' took the dealer seat as a Director.');if(S.dealer.away&&!wasAway)addMin((S.dealer.name||S.dealer.title||'The dealer')+' is not present. The directors run the meeting; xo-ai keeps the record.');if(!S.pub&&!S.docEdited){S.docHtml=genMinutes();drawDoc()}close()};
     $('seatcard').classList.add('on');
   };
   // ---- styles ----
@@ -860,7 +931,7 @@ body.sbs-mode .seat.pill{max-width:104px;padding:2px 7px 2px 2px;gap:4px}body.sb
   }
   // ---- decisions: pending, in play, decided ----
   // ---- motions: moved (by the President or from the floor), seconded, voted director by director ----
-  function voters(){var v=[];var pos=positions(S.seats);Object.keys(S.people).forEach(function(k){var p=S.people[k];if(!p.ai)v.push({key:'s'+k,name:p.name,pos:p.pos})});if(S.dealer.name)v.push({key:'dealer',name:S.dealer.name,pos:'Director (dealer)'});return v}
+  function voters(){var v=[];var pos=positions(S.seats);Object.keys(S.people).forEach(function(k){var p=S.people[k];if(!p.ai)v.push({key:'s'+k,name:p.name,pos:p.pos})});if(S.dealer.name&&!S.dealer.away)v.push({key:'dealer',name:S.dealer.name,pos:'Director ('+(S.dealer.title||'dealer')+')'});return v}
   function counts(p){var c={for:0,against:0,abstain:0};Object.keys(p.votes||{}).forEach(function(k){c[p.votes[k]]++});return c}
   function myKey(){return S.me>-1&&S.people[S.me]&&!S.people[S.me].ai?'s'+S.me:null}
   function drawPlay(){
@@ -962,7 +1033,7 @@ body.sbs-mode .seat.pill{max-width:104px;padding:2px 7px 2px 2px;gap:4px}body.sb
     $('promo').innerHTML=d+((S.promo||[]).map(function(x){return '<li><span>'+esc(x.text)+'</span><small>'+esc(x.by)+' · '+esc(x.t)+'</small></li>'}).join('')||(d?'':'<li><span class="muted">Nothing shared yet. Agreed decisions appear here as drafts.</span></li>'));
     [].forEach.call($('promo').querySelectorAll('[data-ap]'),function(b){b.onclick=function(){var x=S.promoDrafts.splice(+b.getAttribute('data-ap'),1)[0];postPromo(x.text)}});
   }
-  function postPromo(t){S.promo=S.promo||[];S.promo.unshift({text:t,by:who(),t:stamp()});drawPromo();save();addMin('Shared to SharedPromoPage by '+who()+': '+t);chatAdd('xo-ai','Shared to your SharedPromoPage. Owners and partners will see it there.','xo')}
+  function postPromo(t){S.promo=S.promo||[];S.promo.unshift({text:t,by:who(),t:stamp()});drawPromo();try{drawPortal()}catch(x){}save();addMin('Shared to SharedPromoPage by '+who()+': '+t);chatAdd('xo-ai','Shared to your SharedPromoPage. Owners and partners will see it there.','xo')}
   $('prDraft').onclick=function(){var a=S.dec.done.filter(function(d){return /^Carried/.test(d.result)}).map(function(d){return d.text});$('prText').value=a.length?'Update from '+(strata()||'our board')+': the board approved '+a.join('; ')+'. Thank you to everyone who took part.':'Nothing has been agreed upon yet. Once a motion carries, I can draft the update.'};
   $('prPost').onclick=function(){var t=$('prText').value.trim();if(!t)return;$('prText').value='';postPromo(t)};
 
@@ -1033,7 +1104,7 @@ body.sbs-mode .seat.pill{max-width:104px;padding:2px 7px 2px 2px;gap:4px}body.sb
     var ppl=Object.keys(S.people).map(function(k){return S.people[k]}), hum=ppl.filter(function(p){return !p.ai}), ai=ppl.filter(function(p){return p.ai});
     var call=S.minutes.filter(function(m){return /called the meeting to order|called to order/i.test(m.text)})[0], adj=S.minutes.filter(function(m){return /adjourned/i.test(m.text)}).slice(-1)[0];
     var h='<h4 class="mt">MINUTES OF THE COUNCIL MEETING</h4><p class="mc">'+esc(nm)+'<br>'+esc(date)+' &middot; held by Zoom and in person</p>';
-    h+='<p><b>PRESENT:</b> '+(hum.length?hum.map(function(p){return esc(p.name)+' ('+esc(p.pos)+')'}).join(', '):'[council members]')+(S.dealer.name?'; '+esc(S.dealer.name)+(S.dealer.org?', '+esc(S.dealer.org):'')+' (property manager, Director)':'')+'</p>';
+    h+='<p><b>PRESENT:</b> '+(hum.length?hum.map(function(p){return esc(p.name)+' ('+esc(p.pos)+')'}).join(', '):'[council members]')+(S.dealer.name&&!S.dealer.away?'; '+esc(S.dealer.name)+(S.dealer.org?', '+esc(S.dealer.org):'')+' ('+esc((S.dealer.title||'property manager').toLowerCase())+', Director)':'')+'</p>'+(S.dealer.name&&S.dealer.away?'<p><b>REGRETS:</b> '+esc(S.dealer.name)+(S.dealer.org?', '+esc(S.dealer.org):'')+'</p>':'');
     if(ai.length)h+='<p><b>IN ATTENDANCE (non-voting):</b> '+ai.map(function(p){return esc(p.name)+(p.name==='xo-ai'?' (recording secretary)':' (AI advisor)')}).join(', ')+'</p>';
     var n=0;function sec(t,body){n++;h+='<p><b>'+n+'. '+esc(t.toUpperCase())+'</b><br>'+body+'</p>'}
     var AG=S.agenda||AGENDA0;
@@ -1071,7 +1142,7 @@ body.sbs-mode .seat.pill{max-width:104px;padding:2px 7px 2px 2px;gap:4px}body.sb
   $('docBody').addEventListener('keydown',function(){S.docEdited=true});
   $('docPub').onclick=function(){if(S.pub)return;S.pub=new Date().toLocaleString('en-CA',{month:'long',day:'numeric',hour:'numeric',minute:'2-digit'});
     S.docs=S.docs||[];S.docs.unshift({f:'minutes',name:'Council minutes, '+new Date().toLocaleDateString('en-CA',{year:'numeric',month:'long',day:'numeric'}),type:'PDF',sample:false,approved:null,sum:'Published minutes: '+S.dec.done.length+' motion'+(S.dec.done.length===1?'':'s')+' recorded, '+S.todo.filter(function(t){return !t.done}).length+' action item(s).'});
-    drawDoc();drawAgenda();drawShelf();save();addMin('Minutes published to the strata portal.');chatAdd('xo-ai','Published to the strata portal and filed in the Minutes binder. (Demo: in Strataverse this posts to your owners’ portal.)','xo')};
+    drawDoc();drawAgenda();drawShelf();save();if(typeof drawPortal==='function')drawPortal();addMin('Minutes published to the strata portal.');chatAdd('xo-ai','Published to the strata portal and filed in the Minutes binder. (Demo: in Strataverse this posts to your owners’ portal.)','xo')};
 
   // ---- ask xo-ai: always open for input; every answer shows who asked, current, summary, 3 links and a disclaimer ----
   function requester(){var p=S.me>-1?S.people[S.me]:null;return p?{name:p.name,pos:p.pos,av:p.av}:{name:'Guest',pos:'not seated',av:''}}
@@ -1240,7 +1311,7 @@ body.sbs-mode .seat.pill{max-width:104px;padding:2px 7px 2px 2px;gap:4px}body.sb
   function approveMinutes(name,how,mover,seconder,c){var d=minutesDocs().filter(function(x){return x.name===name})[0];if(!d||d.approved)return;
     d.approved={t:nice(new Date()),how:how,mover:mover||'',seconder:seconder||''};S.adopted={name:name,how:how,mover:mover||'',seconder:seconder||'',c:c||null};if(c)d.approved.c=c;
     addMin('Minutes approved: '+name+(how==='consent'?', as circulated, by general consent.':', adopted by motion.'),'res');
-    if(!S.pub&&!S.docEdited){S.docHtml=genMinutes();drawDoc()}drawShelf();drawLedger();save()}
+    if(!S.pub&&!S.docEdited){S.docHtml=genMinutes();drawDoc()}drawShelf();drawLedger();drawPortal();save()}
 
   // ---- how the board meets: Zoom beside it, or right here at the table ----
   function meet(m){[].forEach.call(document.querySelectorAll('[data-meet]'),function(b){b.classList.toggle('on',b.getAttribute('data-meet')===m)});
@@ -1318,16 +1389,48 @@ body.sbs-mode .seat.pill{max-width:104px;padding:2px 7px 2px 2px;gap:4px}body.sb
     O.pills.forEach(function(o){var name=o.kind==='File'&&o.file?claireFolder(o.file):F[o.kind]||'General';var b=O.boxes.filter(function(x){return x.type==='Folder'&&x.name===name&&x.where==='priv'})[0];
       if(!b){b={id:newId(),type:'Folder',name:name,where:'priv',pills:[]};O.boxes.push(b);made++}if(b.pills.indexOf(o.id)<0){b.pills.push(o.id);filed++}});
     orgSave();drawOrg();chatAdd('CLaiRE',filed?'Filed '+filed+' pill'+(filed===1?'':'s')+' into '+(made?made+' new ':'')+'private folders. Nothing was made public.':'Everything is already in its folder.','xo')};
+
+  // ---- group of 12: recommended trades (merchant members) and the events calendar ----
+  var TR0=[['Plumbing','Harbourline Plumbing','604-555-0142','Free hot water tank check for owners','Pat Morgan'],['Roofing','Summit Roofing','https://example.com/summit','10-year warranty on repairs','Sam Park'],['Window cleaning','ClearView Windows','604-555-0187','10% off for owners: HARBOUR10','The dealer']];
+  function d8(o){var t=new Date();t.setDate(t.getDate()+o);return iso(t)}
+  var EV0=[[7,'Window cleaning, east side'],[21,'Council meeting'],[45,'Fire alarm and sprinkler inspection'],[90,'Annual general meeting']];
+  function G(){if(!S.trades){S.trades=TR0.map(function(t){return {trade:t[0],name:t[1],contact:t[2],offer:t[3],by:t[4],portal:true,sample:true}})}if(!S.events){S.events=EV0.map(function(e){return {date:d8(e[0]),title:e[1],portal:true,sample:true}})}}
+  function drawG12(){G();var n=S.trades.length;
+    $('trCount').textContent=n+' of 12';
+    var rows=S.trades.map(function(t,i){var c=/^https:\/\//.test(t.contact)?'<a href="'+esc(t.contact)+'" target="_blank" rel="noopener">'+esc(t.contact.replace(/^https:\/\//,''))+'</a>':esc(t.contact);
+      return '<li><span class="tn"><span class="tt">'+esc(t.trade)+'</span> <b>'+esc(t.name)+'</b><small>'+c+(t.offer?' · '+esc(t.offer):'')+' · recommended by '+esc(t.by)+(t.sample?' · sample':'')+'</small></span><span class="tx"><button type="button" data-tp="'+i+'" class="'+(t.portal?'on':'')+'">'+(t.portal?'On portal':'Not shared')+'</button><button type="button" data-tr="'+i+'" aria-label="Remove">&times;</button></span></li>'});
+    for(var k=n;k<12;k++)rows.push('<li class="open"><span class="tn">Open seat for a merchant member</span><span></span></li>');
+    $('trades').innerHTML=rows.join('');
+    [].forEach.call($('trades').querySelectorAll('[data-tp]'),function(b){b.onclick=function(){var t=S.trades[+b.getAttribute('data-tp')];t.portal=!t.portal;drawG12();save()}});
+    [].forEach.call($('trades').querySelectorAll('[data-tr]'),function(b){b.onclick=function(){S.trades.splice(+b.getAttribute('data-tr'),1);drawG12();save()}});
+    S.events.sort(function(a,b){return a.date<b.date?-1:1});
+    $('events').innerHTML=S.events.map(function(e,i){var p=e.date.split('-'),dt=new Date(+p[0],+p[1]-1,+p[2]);return '<li><span class="ed"><i>'+dt.toLocaleDateString('en-CA',{month:'short'}).toUpperCase().replace('.','')+'</i><b>'+dt.getDate()+'</b></span><span>'+esc(e.title)+(e.sample?' <small class="muted">sample</small>':'')+'</span><label><input type="checkbox" data-ep="'+i+'"'+(e.portal?' checked':'')+'>portal</label><button type="button" data-er="'+i+'" aria-label="Remove">&times;</button></li>'}).join('')||'<li><small>No events yet.</small></li>';
+    [].forEach.call($('events').querySelectorAll('[data-ep]'),function(x){x.onchange=function(){S.events[+x.getAttribute('data-ep')].portal=x.checked;drawPortal();save()}});
+    [].forEach.call($('events').querySelectorAll('[data-er]'),function(b){b.onclick=function(){S.events.splice(+b.getAttribute('data-er'),1);drawG12();save()}});
+    drawPortal()}
+  $('trAdd').onclick=function(){G();var t=$('trTrade').value.trim(),n=$('trName').value.trim();if(!n)return;if(S.trades.length>=12){$('trName').value='';$('trName').placeholder='The group of 12 is full';return}
+    S.trades.push({trade:t||'Trade',name:n,contact:$('trContact').value.trim(),offer:$('trOffer').value.trim(),by:myName(),portal:true,sample:false});['trTrade','trName','trContact','trOffer'].forEach(function(id){$(id).value=''});addMin('Recommended trade added: '+n+(t?' ('+t+')':'')+'.');drawG12();save()};
+  $('evAdd').onclick=function(){G();var d=$('evDate').value,t=$('evTitle').value.trim();if(!d||!t)return;S.events.push({date:d,title:t,portal:true,sample:false});$('evTitle').value='';drawG12();save()};
+  $('evMaint').onclick=function(){G();var m=M(),n=0;m.items.forEach(function(it){var st=maintStatus(it);if(!st.due)return;var d=iso(st.due<new Date()?new Date(Date.now()+14*864e5):st.due),t=it[0]+': '+it[1].charAt(0).toLowerCase()+it[1].slice(1);if(!S.events.some(function(e){return e.title===t})){S.events.push({date:d,title:t,portal:false,sample:false});n++}});drawG12();save();chatAdd('xo-ai',n?'Added '+n+' maintenance date'+(n===1?'':'s')+' to the events calendar. They stay off the portal until a director ticks "portal".':'The maintenance dates are already on the calendar.','xo')};
+  $('g12Clear').onclick=function(){G();S.trades=S.trades.filter(function(t){return !t.sample});S.events=S.events.filter(function(e){return !e.sample});drawG12();save()};
+  // ---- the public portal: only what the board approved or chose to share ----
+  function drawPortal(){G();$('ptName').textContent=strata()||'Your strata';
+    var mins=(S.docs||[]).filter(function(d){return d.f==='minutes'});
+    $('ptMin').innerHTML=mins.map(function(d){return '<li>'+esc(d.name)+'<small>'+(d.approved?'Approved '+esc(d.approved.t)+(d.approved.c?' · carried '+d.approved.c.for+'-'+d.approved.c.against:''):'Draft, awaiting council approval')+(d.sample?' · sample':'')+'</small></li>'}).join('')||'<li><small>No minutes yet.</small></li>';
+    var today=iso(new Date());
+    $('ptEv').innerHTML=S.events.filter(function(e){return e.portal&&e.date>=today}).slice(0,6).map(function(e){return '<li><span class="ptd">'+esc(nice(e.date))+'</span><br>'+esc(e.title)+'</li>'}).join('')||'<li><small>Nothing scheduled.</small></li>';
+    $('ptTr').innerHTML=S.trades.filter(function(t){return t.portal}).map(function(t){return '<li><b>'+esc(t.name)+'</b> · '+esc(t.trade)+'<small>'+esc(t.contact)+(t.offer?' · '+esc(t.offer):'')+'</small></li>'}).join('')||'<li><small>No recommended trades shared.</small></li>';
+    $('ptNews').innerHTML=(S.promo||[]).slice(0,4).map(function(x){return '<li>'+esc(x.text)+'<small>'+esc(x.t)+'</small></li>'}).join('')||'<li><small>Approved updates from SharedPromoPage appear here.</small></li>'}
   // ---- tabs, controls ----
   function showPane(p){if(p==='doc'){if(!S.pub&&!S.docEdited){S.docHtml=genMinutes();drawDoc()}document.getElementById('agPanel').scrollIntoView({behavior:'smooth',block:'start'});return}[].forEach.call(document.querySelectorAll('#tabs2 button'),function(b){b.classList.toggle('on',b.getAttribute('data-p')===p)});[].forEach.call(document.querySelectorAll('.pane'),function(x){x.classList.toggle('on',x.id==='p-'+p)})}
   [].forEach.call(document.querySelectorAll('#tabs2 button'),function(b){b.onclick=function(){showPane(b.getAttribute('data-p'))}});
   $('seats').onchange=function(){S.seats=+this.value;if(S.two&&S.seats<5){S.two=false;$('twoVotes').checked=false}Object.keys(S.people).forEach(function(k){if(+k>=S.seats)delete S.people[k]});drawRoom();drawOwners();save()};
   $('twoVotes').onchange=function(){S.two=this.checked;S.people={};S.me=-1;drawRoom();drawOwners();save()};
-  $('strata').oninput=function(){var s=strata();$('xoName').textContent='xo-ai · '+(s||'your board');drawRoom();save()};
+  $('strata').oninput=function(){var s=strata();$('xoName').textContent='xo-ai · '+(s||'your board');try{drawPortal()}catch(x){}drawRoom();save()};
   $('joinBtn').onclick=function(){$('room').scrollIntoView({behavior:'smooth'});var pos=positions(S.seats);for(var i=0;i<pos.length;i++){if(S.two&&i===1)continue;if(!S.people[i]){var k=i;setTimeout(function(){openSeat(k,pos[k])},450);return}}};
   function save(){try{localStorage.setItem('coco_sv2',JSON.stringify({S:S,strata:$('strata').value}))}catch(x){}}
   function restore(){try{var o=JSON.parse(localStorage.getItem('coco_sv2')||'null');if(!o)return;for(var k in o.S)S[k]=o.S[k];$('strata').value=o.strata||'';$('seats').value=String(S.seats);$('twoVotes').checked=!!S.two}catch(x){}}
-  restore();if(!S.chat)S.chat=[];if(!S.promo)S.promo=[];if(!S.docs)S.docs=SAMPLE_DOCS.slice();$('strata').oninput();drawStyles();drawRoom();drawOwners();drawMin();drawTodo();drawDec();drawChat();drawPromo();drawShelf();drawAgenda();drawDoc();drawFin();if(!S.ledger){S.ledger=LEDGER_SAMPLE.map(function(r){return {i:r[0],who:r[1],pos:'',av:'',ai:r[3],text:r[2],t:'7:0'+r[0]+' p.m.',sample:true}});S.agi=6}drawLedger();drawMaint();drawOrg();
+  restore();if(!S.chat)S.chat=[];if(!S.promo)S.promo=[];if(!S.docs)S.docs=SAMPLE_DOCS.slice();$('strata').oninput();drawStyles();drawRoom();drawOwners();drawMin();drawTodo();drawDec();drawChat();drawPromo();drawShelf();drawAgenda();drawDoc();drawFin();if(!S.ledger){S.ledger=LEDGER_SAMPLE.map(function(r){return {i:r[0],who:r[1],pos:'',av:'',ai:r[3],text:r[2],t:'7:0'+r[0]+' p.m.',sample:true}});S.agi=6}drawLedger();drawMaint();drawOrg();drawG12();
 })();
 </script>
 </body>
