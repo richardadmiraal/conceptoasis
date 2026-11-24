@@ -41,9 +41,9 @@ body{background:var(--bg);color:var(--txt)}
 .btn-sv{background:#16a3a6;color:#fff!important;border:0}
 .btn-ghost{background:transparent;color:#d7deef!important;border:1px solid #2c3a66}
 .btn-sm{padding:8px 12px;font-size:13px}
-.room{position:relative;border-radius:18px 18px 0 0;overflow:hidden;aspect-ratio:1.5;background:var(--floor);border:1px solid var(--line2);border-bottom:0}
+.room{position:relative;border-radius:18px 18px 0 0;overflow:hidden;aspect-ratio:1.38;background:var(--floor);border:1px solid var(--line2);border-bottom:0}
 @media(max-width:620px){.room{aspect-ratio:.95}}
-.room .tbl{position:absolute;left:19%;right:19%;top:23%;bottom:23%;background:var(--top);border:var(--rim);box-shadow:var(--shadow);border-radius:var(--radius);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:8px}
+.room .tbl{position:absolute;left:21%;right:21%;top:24%;bottom:24%;background:var(--top);border:var(--rim);box-shadow:var(--shadow);border-radius:var(--radius);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:8px}
 .room .tbl b{font:650 14px "Inter Tight",Inter,sans-serif;color:var(--ink2)}
 .room .tbl small{font:500 10px var(--mono);color:var(--ink2);opacity:.8}
 .inplay{margin-top:8px;max-width:90%;padding:8px 10px;border-radius:12px;background:rgba(255,255,255,.95);color:#0f1733;border:1.5px solid #0f1733;box-shadow:0 6px 18px rgba(0,0,0,.2)}
@@ -143,6 +143,50 @@ body{background:var(--bg);color:var(--txt)}
 .chat li.mine{flex-direction:row-reverse}
 .chat li.mine .cb{border-radius:14px 4px 14px 14px;background:#163a43;border-color:#1e5560}
 footer{background:#070b18}
+/* ===== Black text on white, the feathers full view in the background ===== */
+:root{--bg:#ffffff;--panel:rgba(255,255,255,.9);--line2:#0b0b0d;--field:#ffffff;--txt:#0b0b0d;--txt2:#525b6b}
+body{background:#fff;color:#0b0b0d}
+body:before{content:"";position:fixed;inset:0;background:url(../assets/img/coco-feathers.webp) center 58%/min(1100px,140vw) no-repeat;opacity:.16;pointer-events:none;z-index:0}
+.cfh,.sv-hero,.sv,footer{position:relative;z-index:1}
+.cfh{position:sticky;background:rgba(255,255,255,.9);border-bottom:2px solid #0b0b0d}
+.cfh a.lg{color:#0b0b0d}
+.cfh .ver{color:#0b0b0d;border:1.5px solid #0b0b0d}
+.sv-hero h1{color:#0b0b0d}.sv-hero .kick{color:#525b6b}.sv-hero p{color:#2a3140}
+.sv-name label{color:#525b6b}
+.sv-name input{background:#fff;color:#0b0b0d;border:1.5px solid #0b0b0d}
+.xo-id{background:#fff;border:2px solid #0b0b0d;box-shadow:6px 6px 0 #0b0b0d}
+.xo-id b{color:#0b0b0d}.xo-id small{color:#525b6b}.xo-id ul{color:#2a3140}
+.panel{background:rgba(255,255,255,.92);border:2px solid #0b0b0d;box-shadow:6px 6px 0 #0b0b0d}
+.panel h2,.panel h3{color:#0b0b0d}
+.muted,.note{color:#525b6b}
+.ctl select,.say input,.fx input,.fx select,.fx textarea{background:#fff;color:#0b0b0d;border:1.5px solid #0b0b0d}
+.btn-sv{background:#0b0b0d;color:#fff!important}
+.btn-ghost{background:#fff;color:#0b0b0d!important;border:1.5px solid #0b0b0d}
+.tabs2 button{background:#fff;color:#0b0b0d;border:1.5px solid #0b0b0d}
+.tabs2 button.on{background:#0b0b0d;border-color:#0b0b0d;color:#fff}
+.dec .col,.minutes li,.todo li{background:#fff;border:1.5px solid #0b0b0d;color:#0b0b0d}
+.dec li button{background:#fff;color:#0b0b0d;border:1.5px solid #0b0b0d}
+.dec .col.done h4{color:#0d7a5f}.dec .col.todo2 h4{color:#0c6a6c}.dec .col.pend h4{color:#a05a00}
+.dec li small,.minutes li small,.todo li small{color:#525b6b}
+.todo li.done span{color:#8a92a3}
+.invite{background:#fff;border:1.5px dashed #0b0b0d;color:#0b0b0d}
+.sty{background:#fff;color:#0b0b0d;border:1.5px solid #0b0b0d}
+.sty.on{border-color:#0b0b0d;box-shadow:4px 4px 0 #0b0b0d}
+.sty small,.sty-h{color:#525b6b}
+.room{border:2px solid #0b0b0d;border-bottom:0}
+.chat .cb{background:#fff;border:1.5px solid #0b0b0d;color:#0b0b0d}
+.chat .cb small{color:#525b6b}
+.chat li.xo .cb{background:#f2fbfb}
+.chat li.mine .cb{background:#0b0b0d;color:#fff}
+.chat li.mine .cb small{color:#cfd6e6}
+.chat .ca{border:1.5px solid #0b0b0d}
+.hire .ck{color:#0b0b0d}
+.hire .ck input,.todo li input{accent-color:#0b0b0d}
+footer{background:#0b0b0d}
+.room.dense .seat{width:58px}.room.dense .seat .av{width:36px;height:36px;font-size:12px;border-width:2.5px}.room.dense .seat .lb{font-size:8.5px;margin-top:2px}.room.dense .seat .ai{top:-6px}
+.preset{margin-top:12px;display:inline-flex;align-items:center;gap:10px;padding:8px 14px 8px 8px;border:2px solid #0b0b0d;border-radius:999px;background:#fff;box-shadow:4px 4px 0 #0b0b0d;cursor:pointer;font:600 13.5px Inter,sans-serif;color:#0b0b0d}
+.preset img{width:30px;height:30px}
+.seat .ai{position:absolute;top:-4px;left:4px;padding:1px 5px;border-radius:999px;background:#0b0b0d;color:#fff;font:700 8px var(--mono);border:1px solid #fff}
 </style>
 </head>
 <body>
@@ -158,6 +202,7 @@ footer{background:#070b18}
     <h1>Step into the board room.</h1>
     <p>Choose your table and take your seat with your recomemo. The dealer, your property manager or partner, sits at the table too. xo-ai keeps the records: minutes, decisions in play, the to-do list and your Zoom meetings, posted to your strata portal when the board approves them.</p>
     <div class="sv-name"><label>Your strata or board name<input id="strata" placeholder="e.g. Harbour View Strata"></label><button class="btn btn-ghost btn-sm" id="joinBtn" type="button">Join board room in progress &rarr;</button></div>
+    <button class="preset" id="cocoBoard" type="button"><img src="../assets/img/coco-feathers.webp" alt="">Seat the co|co board: you, me and our agents</button>
   </div>
   <div class="xo-id">
     <small>eXecutive Officer AI &middot; strataverse.ai 1.4</small>
@@ -324,7 +369,8 @@ footer{background:#070b18}
     r.style.setProperty('--floor',st.floor);r.style.setProperty('--top',st.top);r.style.setProperty('--rim',st.rim);r.style.setProperty('--radius',st.radius);r.style.setProperty('--ink2',st.ink);r.style.setProperty('--shadow',st.shadow||'0 18px 40px rgba(0,0,0,.45)');
     r.style.setProperty('--lbl',st.mono?'#0b0b0d':(st.lbl||'#e6ebf7'));r.style.setProperty('--lblsh',st.mono?'none':(st.lblsh||'0 1px 2px rgba(0,0,0,.5)'));
     [].forEach.call(r.querySelectorAll('.seat'),function(x){x.remove()});
-    var pos=positions(S.seats), n=pos.length, g=0.9, side=Math.PI-g, span=2*side;
+    r.classList.toggle('dense',S.seats>8);
+    var pos=positions(S.seats), n=pos.length, g=n>8?1.3:1.05, side=Math.PI-g, span=2*side;
     // two arcs: right and left of the table, keeping the top for the dealer and the bottom for you
     var slots=[]; for(var k=0;k<n;k++){var t=(k+0.5)*(span/n);slots.push(t<side? -Math.PI/2+g/2+t : Math.PI/2+g/2+(t-side))}
     // executives take the seats nearest the head of the table, directors fill toward you
@@ -332,13 +378,13 @@ footer{background:#070b18}
     var order=slots.map(function(a,k){return k}).sort(function(x,y){return dTop(slots[x])-dTop(slots[y])});
     pos.forEach(function(p,i){
       var a=slots[order[i]];
-      var x=50+42*Math.cos(a), y=46+38*Math.sin(a);
+      var x=50+44*Math.cos(a), y=50+44*Math.sin(a);
       var key=S.two&&i===1?0:i, person=S.people[key], b=document.createElement('button');
       b.type='button';b.className='seat'+(S.me===key?' me':'');b.style.left=x+'%';b.style.top=y+'%';
       b.style.setProperty('--c',st.mono?'#0b0b0d':POSC[p]);
       var lbl=p==='President'&&S.two?'President · '+(i+1):p.replace('Vice President','Vice Pres').replace('President-elect','Pres-elect').replace('Past President','Past Pres');
       var av=person&&person.av?' style="background-image:url('+person.av+');color:transparent"':'';
-      b.innerHTML='<span class="av'+(person?'':' empty')+'"'+av+'>'+esc(person?initials(person.name):'+')+'</span><span class="lb">'+esc(lbl)+'</span>'+(person&&person.msgs&&person.msgs.length?'<span class="dot" title="'+person.msgs.length+' message(s)"></span>':'');
+      b.innerHTML='<span class="av'+(person?'':' empty')+'"'+av+'>'+esc(person?initials(person.name):'+')+'</span><span class="lb">'+esc(lbl)+'</span>'+(person&&person.ai?'<span class="ai">AI</span>':'')+(person&&person.msgs&&person.msgs.length?'<span class="dot" title="'+person.msgs.length+' message(s)"></span>':'');
       b.setAttribute('aria-label',p+(person?': '+person.name:': open seat, sign in here'));
       b.onclick=function(){openSeat(key,p)};
       r.appendChild(b);
@@ -379,8 +425,8 @@ footer{background:#070b18}
       setTimeout(function(){var f=$('sN');if(f)f.focus()},50);
     } else {
       var msgs=(person.msgs||[]).map(function(m){return '<li><small>'+esc(m.from)+' · '+esc(m.t)+'</small>'+esc(m.text)+'</li>'}).join('');
-      c.innerHTML=topBlock(person.bg,person.av,initials(person.name))+'<div class="bd"><div class="url">profile.recomemo.com/'+esc(slug(person.name))+'</div><h4>'+esc(person.name)+'</h4><div class="pos">'+esc(p)+(S.two&&i===0?' · two votes':'')+(person.unit?' · unit '+esc(person.unit):'')+'</div>'
-        +'<div class="cred"><span class="vok">&#10003; recomemo verified</span><span>'+esc(p)+'</span>'+(strata()?'<span>'+esc(strata())+'</span>':'')+'</div><div class="lines4"><i></i><i></i><i></i><i></i></div>'
+      c.innerHTML=topBlock(person.bg,person.av,initials(person.name))+'<div class="bd"><div class="url">profile.recomemo.com/'+esc(slug(person.name))+'</div><h4>'+esc(person.name)+'</h4><div class="pos">'+esc(p)+(S.two&&i===0?' · two votes':'')+(person.unit&&!person.ai?' · '+(/^[0-9]/.test(person.unit)?'unit ':'')+esc(person.unit):'')+'</div>'
+        +(person.ai?'<div class="note" style="margin-top:6px">AI agent &middot; '+esc(person.unit||'advisory')+'. Suggests and keeps the records; does not vote.</div>':'')+'<div class="cred">'+(person.ai?'<span>AI agent</span>':'<span class="vok">&#10003; recomemo verified</span>')+'<span>'+esc(p)+'</span>'+(strata()?'<span>'+esc(strata())+'</span>':'')+'</div><div class="lines4"><i></i><i></i><i></i><i></i></div>'
         +(S.me===i?'<label>Background image for my recomemo<input type="file" id="sBg" accept="image/*"></label><label>Photo<input type="file" id="sAv" accept="image/*"></label>':'')
         +'<label>Leave '+esc(person.name.split(' ')[0])+' a message<textarea id="sM" rows="2" placeholder="Your message"></textarea></label><button type="button" class="btn btn-sv btn-sm" id="sSend">Leave message</button>'
         +(msgs?'<ul class="msgs">'+msgs+'</ul>':'')+'<div class="note" id="sErr"></div></div>';
@@ -488,6 +534,25 @@ footer{background:#070b18}
   function drawPromo(){$('promo').innerHTML=(S.promo||[]).map(function(x){return '<li><span>'+esc(x.text)+'</span><small>'+esc(x.by)+' · '+esc(x.t)+'</small></li>'}).join('')||'<li><span class="muted">Nothing shared yet.</span></li>'}
   $('prDraft').onclick=function(){var a=S.dec.done.filter(function(d){return /^Carried/.test(d.result)}).map(function(d){return d.text});$('prText').value=a.length?'Update from '+(strata()||'our board')+': the board approved '+a.join('; ')+'. Thank you to everyone who took part.':'Nothing has been agreed upon yet. Once a motion carries, I can draft the update.'};
   $('prPost').onclick=function(){var t=$('prText').value.trim();if(!t)return;S.promo=S.promo||[];S.promo.unshift({text:t,by:who(),t:stamp()});$('prText').value='';drawPromo();save();addMin('Shared to SharedPromoPage by '+who()+': '+t);chatAdd('xo-ai','Shared to your SharedPromoPage. Owners and partners will see it there.','xo')};
+
+  // ---- the co|co board: a group of 12 for Concept Oasis Company ----
+  $('cocoBoard').onclick=function(){
+    $('strata').value='co|co · Concept Oasis Company';S.style='sketch';S.two=false;S.seats=12;$('seats').value='12';$('twoVotes').checked=false;
+    function seat(name,pos,ai,unit){return {name:name,email:'',unit:unit||'',pos:pos,msgs:[],bg:'',av:'',ai:!!ai}}
+    S.people={
+      0:seat('Richard Admiraal','President',false,'Founder'),
+      2:seat('Claude','Vice President',true,'advisory, no vote'),
+      4:seat('xo-ai','Secretary',true,'keeps the records'),
+      6:seat('CLaiRE','Director',true,'File XO'),
+      7:seat('Fil','Director',true,'wisefile'),
+      8:seat('C-KAI','Director',true,'admiraal.ca'),
+      9:seat('Sailz','Director',true,'sales language')
+    };
+    S.me=0;
+    $('strata').oninput();drawStyles();drawRoom();drawOwners();save();
+    chatAdd('xo-ai','Welcome to the co|co board. Richard is in the President’s seat. The AI agents sit as advisors: we suggest and keep the records, and the people at this table make every decision. Five seats are open for the people you bring in.','xo');
+    $('room').scrollIntoView({behavior:'smooth'});
+  };
 
   // ---- tabs, controls ----
   function showPane(p){[].forEach.call(document.querySelectorAll('#tabs2 button'),function(b){b.classList.toggle('on',b.getAttribute('data-p')===p)});[].forEach.call(document.querySelectorAll('.pane'),function(x){x.classList.toggle('on',x.id==='p-'+p)})}
