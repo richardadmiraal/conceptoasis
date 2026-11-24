@@ -275,6 +275,23 @@ footer{background:#0b0b0d}
 .appr.wait{border-color:#e9b44c;background:#fff8e6;color:#7a4a00}
 .lg-list .pa{display:flex;gap:6px;flex-wrap:wrap;margin-top:3px}
 .lg-list .pa button{font:600 11px Inter,sans-serif;text-decoration:none;padding:2px 8px;border:1.2px solid #0b0b0d;border-radius:999px;background:#fff}
+
+/* agenda and minutes side by side */
+.sbs{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:20px;align-items:start}
+@media(max-width:820px){.sbs{grid-template-columns:minmax(0,1fr)}}
+.agbig{list-style:none;margin:0;padding:0;counter-reset:ag}
+.agbig>li{padding:10px 0 12px;border-bottom:1.5px solid #0b0b0d}
+.agbig .agt{display:flex;align-items:baseline;gap:10px;cursor:pointer}
+.agbig .agt b{font:700 clamp(19px,2.2vw,24px)/1.15 "Inter Tight",Inter,sans-serif;letter-spacing:-.02em;color:#0b0b0d;flex:1;min-width:0}
+.agbig .agt .n{font:700 13px var(--mono);color:#8a92a3;min-width:24px}
+.agbig .agt button{border:0;background:none;font-size:14px;cursor:pointer;color:#c3c8d1}
+.agbig li.cur .agt b{color:#0b0b0d;text-decoration:underline;text-decoration-color:#16a3a6;text-decoration-thickness:3px;text-underline-offset:5px}
+.agbig li.cur .agt .n{color:#16a3a6}
+.agbig .now{font:700 9.5px var(--mono);padding:2px 7px;border-radius:999px;background:#16a3a6;color:#fff;align-self:center}
+.agbig .res{margin:8px 0 0 34px;padding:8px 10px;border-left:3px solid #16a3a6;background:#f2fbf9;font:14px/1.5 Georgia,"Times New Roman",serif;color:#0b0b0d}
+.agbig .res small{display:block;font:600 10.5px var(--mono);color:#525b6b;margin-top:3px}
+.agbig .res.def{border-left-color:#e0458f;background:#fdf2f7}
+.sbs-min .docbody{max-height:none;min-height:420px}
 .fbox{padding:12px;border:1.5px solid #0b0b0d;border-radius:14px;background:#fff;margin-top:12px;min-width:0}
 .fgrid .fbox{margin-top:0}
 .tblwrap{overflow-x:auto}
@@ -335,7 +352,7 @@ footer{background:#0b0b0d}
 .ledger .lh.dim{color:#9aa1ae}
 .ledger .lh em{font-style:normal;padding:1px 6px;border-radius:999px;background:#16a3a6;color:#fff;font-size:9px}
 .ledger .le{padding:6px 6px 8px 12px;border-bottom:1px dashed #e1e4ea}
-.ledger .le p{margin:4px 0 2px;font-size:13.5px;color:#0b0b0d;line-height:1.45}
+.ledger .lsig{display:flex;align-items:center;justify-content:flex-end;gap:8px;margin-top:4px}.ledger .le p{margin:2px 0 2px;font-size:13.5px;color:#0b0b0d;line-height:1.45}
 .ledger .le small{font:500 10px var(--mono);color:#8a92a3}
 .ledger .le.smp{opacity:.78}
 .sig{display:inline-flex;align-items:center;gap:5px;padding:1px 8px 1px 1px;border:1.2px solid #0b0b0d;border-radius:999px;font:600 11px Inter,sans-serif;color:#0b0b0d;background:#fff}
@@ -413,6 +430,22 @@ footer{background:#0b0b0d}
       <div class="rr" style="margin-top:8px"><button class="btn btn-ghost btn-sm" data-hand="1" type="button">&#9995; Raise hand</button><button class="btn btn-ghost btn-sm" id="chatToMin" type="button">Add last message to the minutes</button></div>
     </div>
 
+
+    <div class="panel" style="margin-top:18px" id="agPanel">
+      <div class="ctl" style="margin-bottom:8px"><div><h2>Agenda &middot; minutes, side by side</h2><span class="muted">The agenda in large type, with each approved resolution copied under its item. The minutes run alongside, editable until published.</span></div></div>
+      <div class="sbs">
+        <div class="sbs-ag">
+          <ol class="agbig" id="agenda"></ol>
+          <div class="say"><input id="agText" placeholder="Add an agenda item"><button class="btn btn-ghost btn-sm" id="agAdd" type="button">Add</button></div>
+        </div>
+        <div class="sbs-min">
+          <h3 style="margin:0">The minutes <span class="muted" id="docState"></span></h3>
+          <div class="docbody" id="docBody" spellcheck="true"></div>
+          <div class="row" style="margin-top:10px"><button class="btn btn-ghost btn-sm" id="docGen" type="button">xo-ai, write the minutes</button><button class="btn btn-sv btn-sm" id="docPub" type="button">Publish to the strata portal</button></div>
+          <p class="note">xo-ai writes the minutes from the record in Robert&rsquo;s Rules form. Anyone at the table can edit them until they&rsquo;re published; publishing locks them and files them in the Minutes binder.</p>
+        </div>
+      </div>
+    </div>
     <div class="panel" style="margin-top:18px" id="finP">
       <div class="ctl" style="margin-bottom:6px"><div><h2>Financials</h2><span class="muted" id="finSub">Budget against actual, the contingency reserve fund, strata fees and arrears. CLaiRE files the paperwork; xo-ai writes the Treasurer&rsquo;s report.</span></div>
         <div class="row"><label class="muted">Fiscal year <input id="fy" value="2026-27" style="width:90px;padding:6px 8px;border:1.5px solid #0b0b0d;border-radius:8px"></label><button class="btn btn-ghost btn-sm" id="finClear" type="button">Clear sample figures</button></div></div>
@@ -481,7 +514,7 @@ footer{background:#0b0b0d}
       <div class="lg-sub">Past records</div><ul class="lg-list" id="lgPast"></ul>
     </div>
     <div class="panel">
-      <div class="tabs2" id="tabs2"><button class="on" data-p="min">Minutes</button><button data-p="doc">Agenda &amp; document</button><button data-p="rec">Record</button><button data-p="promo">SharedPromoPage</button><button data-p="zoom">Zoom</button></div>
+      <div class="tabs2" id="tabs2"><button class="on" data-p="min">Minutes</button><button data-p="doc">Agenda &amp; minutes &darr;</button><button data-p="rec">Record</button><button data-p="promo">SharedPromoPage</button><button data-p="zoom">Zoom</button></div>
       <div class="pane on" id="p-min">
         <h3>Minutes <span class="muted" id="minDate"></span></h3>
         <div class="dec">
@@ -494,15 +527,6 @@ footer{background:#0b0b0d}
         </div>
         <div class="row" style="margin-top:10px"><button class="btn btn-ghost btn-sm" id="postBtn" type="button">Post minutes to the strata portal</button><button class="btn btn-ghost btn-sm" id="copyMin" type="button">Copy minutes</button></div>
         <p class="note" id="postNote">Minutes post only after the board approves them. This demo shows the flow; nothing is sent.</p>
-      </div>
-      <div class="pane" id="p-doc">
-        <h3>Agenda</h3>
-        <ol class="agenda" id="agenda"></ol>
-        <div class="say"><input id="agText" placeholder="Add an agenda item"><button class="btn btn-ghost btn-sm" id="agAdd" type="button">Add</button></div>
-        <h3 style="margin-top:14px">The document in play <span class="muted" id="docState"></span></h3>
-        <div class="docbody" id="docBody" spellcheck="true"></div>
-        <div class="row" style="margin-top:10px"><button class="btn btn-ghost btn-sm" id="docGen" type="button">xo-ai, write the minutes</button><button class="btn btn-sv btn-sm" id="docPub" type="button">Publish to the strata portal</button></div>
-        <p class="note">xo-ai writes the minutes from the record in Robert&rsquo;s Rules form. Anyone at the table can edit them until they&rsquo;re published; publishing locks them and files them in the Minutes binder.</p>
       </div>
       <div class="pane" id="p-rec">
         <h3>The record</h3>
@@ -723,11 +747,11 @@ footer{background:#0b0b0d}
   }
   function setMover(n,pres){var p=S.dec.play;p.mover=n;addMin((pres?'The President, '+n+', moved':'Motion from the floor: '+n+' moved')+' that '+p.text.charAt(0).toLowerCase()+p.text.slice(1)+'.','mot');drawDec();drawPlay();save()}
   function finish(r){var p=S.dec.play,c=counts(p);
-    S.dec.done.unshift({text:p.text,result:r+' '+c.for+'-'+c.against+(c.abstain?'-'+c.abstain:''),mover:p.mover,seconder:p.seconder,c:c,t:stamp()});
+    S.dec.done.unshift({text:p.text,result:r+' '+c.for+'-'+c.against+(c.abstain?'-'+c.abstain:''),mover:p.mover,seconder:p.seconder,c:c,t:stamp(),i:S.agi||0});
     addMin(r.toUpperCase()+': '+p.text+' (for '+c.for+', against '+c.against+', abstain '+c.abstain+').','res');
     if(r==='Carried'){S.promoDrafts=S.promoDrafts||[];S.promoDrafts.unshift({text:'Update from '+(strata()||'our board')+': '+p.text.replace(/\.$/,'')+' was approved by the board.',t:stamp()});chatAdd('xo-ai','Carried. I’ve drafted a shared promotion for SharedPromoPage; a director approves it before it goes out.','xo')}
-    var am=r==='Carried'&&/^Adopt the minutes of (.+) as circulated/.exec(p.text);if(am)approveMinutes(am[1],'motion',p.mover,p.seconder);
-    S.dec.play=null;drawDec();drawPlay();drawPromo();save()}
+    var am=r==='Carried'&&/^Adopt the minutes of (.+) as circulated/.exec(p.text);if(am)approveMinutes(am[1],'motion',p.mover,p.seconder,c);
+    S.dec.play=null;drawDec();drawPlay();drawPromo();drawAgenda();if(!S.pub&&!S.docEdited){S.docHtml=genMinutes();drawDoc()}save()}
   $('decAdd').onclick=function(){var t=$('decText').value.trim();if(!t)return;S.dec.pend.push(t);$('decText').value='';drawDec();save()};
   $('decText').onkeydown=function(e){if(e.key==='Enter'){e.preventDefault();$('decAdd').onclick()}};
   // ---- minutes ----
@@ -847,8 +871,13 @@ footer{background:#0b0b0d}
 
   // ---- agenda and the minutes document: written by xo-ai, editable until published ----
   var AGENDA0=['Call to order','Approval of the agenda','Adoption of the previous minutes','Business arising','Financial report','Correspondence','New business','Next meeting','Adjournment'];
+  function resItem(d,a){var L=a.map(function(x){return x.toLowerCase()}),nb=L.indexOf('new business'),ad=L.indexOf('adoption of the previous minutes');if(/^Adopt the minutes of/.test(d.text)&&ad>-1)return ad;if(typeof d.i==='number'&&d.i<a.length)return d.i;return nb>-1?nb:a.length-1}
   function drawAgenda(){var a=S.agenda||AGENDA0.slice();S.agenda=a;
-    $('agenda').innerHTML=a.map(function(x,i){return '<li><span>'+(i+1)+'. '+esc(x)+'</span>'+(S.pub?'':'<button type="button" data-ag="'+i+'" aria-label="Remove">&times;</button>')+'</li>'}).join('');
+    function itemOf(d){return resItem(d,a)}
+    $('agenda').innerHTML=a.map(function(x,i){var rs=S.dec.done.filter(function(d){return itemOf(d)===i}).slice().reverse();
+      return '<li class="'+(i===(S.agi||0)?'cur':'')+'"><div class="agt" data-goi="'+i+'"><span class="n">'+(i+1)+'.</span><b>'+esc(x)+'</b>'+(i===(S.agi||0)?'<span class="now">NOW</span>':'')+(S.pub?'':'<button type="button" data-ag="'+i+'" aria-label="Remove">&times;</button>')+'</div>'
+        +rs.map(function(d){var ok=/^Carried/.test(d.result);return '<div class="res'+(ok?'':' def')+'">'+(ok?'<b>RESOLVED:</b> ':'<b>DEFEATED:</b> ')+esc(d.text.replace(/\.$/,''))+'.<small>'+esc(d.result)+(d.c?' · for '+d.c.for+', against '+d.c.against+', abstain '+d.c.abstain:'')+(d.mover?' · moved '+esc(d.mover)+', seconded '+esc(d.seconder||''):'')+'</small></div>'}).join('')+'</li>'}).join('');
+    [].forEach.call($('agenda').querySelectorAll('[data-goi]'),function(el){el.onclick=function(e){if(e.target.closest('[data-ag]'))return;S.agi=+el.getAttribute('data-goi');drawAgenda();if(typeof drawLedger==='function')drawLedger();save()}});
     [].forEach.call($('agenda').querySelectorAll('[data-ag]'),function(b){b.onclick=function(){S.agenda.splice(+b.getAttribute('data-ag'),1);drawAgenda();save()}})}
   $('agAdd').onclick=function(){var t=$('agText').value.trim();if(!t||S.pub)return;var i=S.agenda.indexOf('Next meeting');S.agenda.splice(i>-1?i:S.agenda.length,0,t);$('agText').value='';drawAgenda();save()};
   function genMinutes(){
@@ -859,18 +888,22 @@ footer{background:#0b0b0d}
     h+='<p><b>PRESENT:</b> '+(hum.length?hum.map(function(p){return esc(p.name)+' ('+esc(p.pos)+')'}).join(', '):'[council members]')+(S.dealer.name?'; '+esc(S.dealer.name)+(S.dealer.org?', '+esc(S.dealer.org):'')+' (property manager, Director)':'')+'</p>';
     if(ai.length)h+='<p><b>IN ATTENDANCE (non-voting):</b> '+ai.map(function(p){return esc(p.name)+(p.name==='xo-ai'?' (recording secretary)':' (AI advisor)')}).join(', ')+'</p>';
     var n=0;function sec(t,body){n++;h+='<p><b>'+n+'. '+esc(t.toUpperCase())+'</b><br>'+body+'</p>'}
-    (S.agenda||AGENDA0).forEach(function(item){var k=item.toLowerCase();
+    var AG=S.agenda||AGENDA0;
+    function motionsAt(i){return S.dec.done.filter(function(d){return resItem(d,AG)===i&&!/^Adopt the minutes of/.test(d.text)}).slice().reverse().map(function(d){return 'It was MOVED by '+esc(d.mover||'[mover]')+' and SECONDED by '+esc(d.seconder||'[seconder]')+' that '+esc(d.text.charAt(0).toLowerCase()+d.text.slice(1).replace(/\.$/,''))+'. <b>'+esc((d.result||'').split(' ')[0].toUpperCase())+'</b> ('+(d.c?d.c.for+' in favour, '+d.c.against+' opposed'+(d.c.abstain?', '+d.c.abstain+' abstained':''):esc(d.result))+').'}).join('<br><br>')}
+    var _sec=null;
+    AG.forEach(function(item,ii){var k=item.toLowerCase();var mo=k==='new business'?'':motionsAt(ii);if(mo){var s0=sec;sec=function(t,body){s0(t,body+'<br><br>'+mo)};_sec=s0}
       if(k==='call to order')sec(item,'The meeting was called to order'+(call?' at '+esc(call.t):'')+' and quorum was confirmed.');
       else if(k==='approval of the agenda')sec(item,'It was MOVED and SECONDED to approve the agenda as presented. CARRIED.');
-      else if(k==='adoption of the previous minutes'){var ad=S.adopted;sec(item,ad?(ad.how==='consent'?'There being no corrections, the minutes of '+esc(ad.name)+' were approved as circulated by general consent.':'It was MOVED by '+esc(ad.mover||'[mover]')+' and SECONDED by '+esc(ad.seconder||'[seconder]')+' to adopt the minutes of '+esc(ad.name)+' as circulated. CARRIED.'):'It was MOVED and SECONDED to adopt the minutes of the previous meeting as circulated. CARRIED.')}
+      else if(k==='adoption of the previous minutes'){var ad=S.adopted;sec(item,ad?(ad.how==='consent'?'There being no corrections, the minutes of '+esc(ad.name)+' were approved as circulated by general consent.':'It was MOVED by '+esc(ad.mover||'[mover]')+' and SECONDED by '+esc(ad.seconder||'[seconder]')+' to adopt the minutes of '+esc(ad.name)+' as circulated. CARRIED'+(ad.c?' ('+ad.c.for+' in favour, '+ad.c.against+' opposed'+(ad.c.abstain?', '+ad.c.abstain+' abstained':'')+')':'')+'.'):'The minutes of the previous meeting are before council for approval: the President moves, a director seconds, and council votes.')}
       else if(k==='business arising'&&typeof maintSummary==='function'){var ms=maintSummary();sec(item,(ms.done.length?'Maintenance completed since the last meeting: '+ms.done.map(function(x){return esc(x.c)+' ('+esc(x.task.charAt(0).toLowerCase()+x.task.slice(1))+', '+nice(x.d)+')'}).join('; ')+'.':'No maintenance was recorded since the last meeting.')+(ms.late.length?'<br>Overdue items of maintenance: '+ms.late.map(function(it){return esc(it[0])}).join(', ')+'. Council asked the property manager to schedule them.':''))}
-      else if(k==='new business'){var b=S.dec.done.slice().reverse().map(function(d){return 'It was MOVED by '+esc(d.mover||'[mover]')+' and SECONDED by '+esc(d.seconder||'[seconder]')+' that '+esc(d.text.charAt(0).toLowerCase()+d.text.slice(1).replace(/\.$/,''))+'. <b>'+esc((d.result||'').split(' ')[0].toUpperCase())+'</b> ('+(d.c?d.c.for+' in favour, '+d.c.against+' opposed'+(d.c.abstain?', '+d.c.abstain+' abstained':''):esc(d.result))+').'}).join('<br><br>');
+      else if(k==='new business'){var b=motionsAt(ii);
         var open=S.dec.pend.length?'<br><br>Tabled to the next meeting: '+S.dec.pend.map(esc).join('; ')+'.':'';sec(item,(b||'No motions were brought forward.')+open)}
       else if(k==='correspondence'){var l=(S.docs||[]).filter(function(d){return d.f==='letters'});sec(item,l.length?'Received and filed: '+l.map(function(d){return esc(d.name)}).join('; ')+'.':'No correspondence was received.')}
       else if(k==='financial report')sec(item,(S.treasurer?esc(S.treasurer)+'<br><br>':'The Treasurer presented the financial report. ')+'It was MOVED and SECONDED to receive the report as presented. CARRIED.');
       else if(k==='next meeting')sec(item,'The next council meeting will be held on [date] at [time].');
       else if(k==='adjournment')sec(item,'There being no further business, the meeting was adjourned'+(adj?' at '+esc(adj.t):'')+'.');
       else sec(item,'[Discussion]');
+      if(_sec){sec=_sec;_sec=null}
     });
     var td=S.todo.filter(function(t){return !t.done});
     if(td.length)h+='<p><b>ACTION ITEMS</b><br>'+td.map(function(t){return '&bull; '+esc(t.text)+(t.owner?' ('+esc(t.owner)+')':'')}).join('<br>')+'</p>';
@@ -992,18 +1025,24 @@ footer{background:#0b0b0d}
   function ledgerAdd(who,text,ai,sample){S.ledger=S.ledger||[];var pp=null;Object.keys(S.people).forEach(function(k){if(S.people[k].name===who)pp=S.people[k]});
     S.ledger.push({i:S.agi||0,who:who,pos:pp?pp.pos:(ai?'xo-ai':''),av:pp?pp.av:'',ai:!!ai,text:text,t:stamp(),sample:!!sample});if(S.ledger.length>400)S.ledger.shift();drawLedger();save()}
   function drawLedger(){
+    if($('agenda')&&!drawLedger.busy){drawLedger.busy=true;drawAgenda();drawLedger.busy=false}
     var A=agendaList(), L=S.ledger||[], cur=S.agi||0, sample=L.some(function(x){return x.sample});
     $('lgItem').textContent=(cur+1)+'. '+(A[cur]||'');
     $('lgSample').hidden=!sample;
     $('ledger').innerHTML=A.map(function(item,i){var rows=L.filter(function(x){return x.i===i});if(!rows.length&&i!==cur)return '<li class="lh dim"><span>'+(i+1)+'. '+esc(item)+'</span></li>';
-      return '<li class="lh'+(i===cur?' cur':'')+'"><span>'+(i+1)+'. '+esc(item)+'</span>'+(i===cur?'<em>now</em>':'')+'</li>'+rows.map(function(x){return '<li class="le'+(x.sample?' smp':'')+'"><span class="sig'+(x.ai?' ai':'')+'"><span class="sav"'+(x.av?' style="background-image:url('+x.av+');color:transparent"':'')+'>'+esc(x.ai?'xo':initials(x.who))+'</span>'+esc(x.who)+'</span><p>'+esc(x.text)+'</p><small>'+esc(x.t.replace(/\.$/,''))+(x.sample?' · sample':'')+'</small></li>'}).join('')}).join('');
+      return '<li class="lh'+(i===cur?' cur':'')+'"><span>'+(i+1)+'. '+esc(item)+'</span>'+(i===cur?'<em>now</em>':'')+'</li>'+rows.map(function(x){return '<li class="le'+(x.sample?' smp':'')+'"><p>'+esc(x.text)+'</p><div class="lsig"><span class="sig'+(x.ai?' ai':'')+'"><span class="sav"'+(x.av?' style="background-image:url('+x.av+');color:transparent"':'')+'>'+esc(x.ai?'xo':initials(x.who))+'</span>'+esc(x.who)+'</span><small>'+esc(x.t.replace(/\.$/,''))+(x.sample?' · sample':'')+'</small></div></li>'}).join('')}).join('');
     var el=$('ledger');el.scrollTop=el.scrollHeight;
     // to do and past records under the ledger
     $('lgTodo').innerHTML=S.todo.length?S.todo.map(function(t){return '<li class="'+(t.done?'done':'')+'">'+(t.done?'&#10003; ':'&#9675; ')+esc(t.text)+(t.owner?' <small>'+esc(t.owner)+'</small>':'')+'</li>'}).join(''):'<li><small>No to-dos yet.</small></li>';
     var past=(S.docs||[]).filter(function(d){return d.f==='minutes'});
-    $('lgPast').innerHTML=past.length?past.map(function(d){return '<li><button type="button" data-past="'+esc(d.name)+'">'+esc(d.name)+(d.sample?' <small>sample</small>':'')+'</button>'+(d.approved?'<span class="appr">approved '+esc(d.approved.t)+'</span>':'<span class="appr wait">awaiting approval</span><div class="pa"><button type="button" data-adopt="'+esc(d.name)+'">Move to adopt</button><button type="button" data-consent="'+esc(d.name)+'">Approved as circulated</button></div>')+'</li>'}).join(''):'<li><small>No past records yet.</small></li>';
-    [].forEach.call($('lgPast').querySelectorAll('[data-adopt]'),function(b){b.onclick=function(){var n=b.getAttribute('data-adopt'),t='Adopt the minutes of '+n+' as circulated';if(S.dec.pend.indexOf(t)<0&&!(S.dec.play&&S.dec.play.text===t)){S.dec.pend.unshift(t);drawDec();save()}ledgerAdd('xo-ai','Motion proposed: adopt the minutes of '+n+' as circulated. It needs a mover and a seconder.',true,false)}});
-    [].forEach.call($('lgPast').querySelectorAll('[data-consent]'),function(b){b.onclick=function(){approveMinutes(b.getAttribute('data-consent'),'consent')}});
+    $('lgPast').innerHTML=past.length?past.map(function(d){return '<li><button type="button" data-past="'+esc(d.name)+'">'+esc(d.name)+(d.sample?' <small>sample</small>':'')+'</button>'+(d.approved?'<span class="appr">approved '+esc(d.approved.t)+(d.approved.c?' · '+d.approved.c.for+'-'+d.approved.c.against:'')+'</span>':'<span class="appr wait">awaiting approval</span><div class="pa"><button type="button" data-adopt="'+esc(d.name)+'">Approve: President moves &rarr;</button></div>')+'</li>'}).join(''):'<li><small>No past records yet.</small></li>';
+    [].forEach.call($('lgPast').querySelectorAll('[data-adopt]'),function(b){b.onclick=function(){var n=b.getAttribute('data-adopt'),t='Adopt the minutes of '+n+' as circulated';
+      if(S.dec.play&&S.dec.play.text!==t){ledgerAdd('xo-ai','Finish the motion in play first, then the President can move to adopt the minutes.',true,false);return}
+      var A=agendaList().map(function(x){return x.toLowerCase()}),ai=A.indexOf('adoption of the previous minutes');if(ai>-1)S.agi=ai;
+      if(!S.dec.play){var k=S.dec.pend.indexOf(t);if(k>-1)S.dec.pend.splice(k,1);S.dec.play={text:t,mover:'',seconder:'',votes:{}};addMin('On the table: '+t,'mot')}
+      var pr=voters().filter(function(v){return v.pos==='President'})[0];
+      if(pr&&!S.dec.play.mover)setMover(pr.name,true);else if(!pr)ledgerAdd('xo-ai','No President is seated, so a director moves it from the floor. Then it needs a seconder and a vote.',true,false);
+      drawDec();drawPlay();drawLedger();save();showPane('min');document.getElementById('tabs2').scrollIntoView({behavior:'smooth',block:'start'})}});
     [].forEach.call($('lgPast').querySelectorAll('[data-past]'),function(b){b.onclick=function(){SHELF_F='minutes';drawShelf();showDocs((S.docs||[]).filter(function(d){return d.f==='minutes'}),'Minutes');document.getElementById('shelfP').scrollIntoView({behavior:'smooth'})}});
   }
   function lgSend(){var t=($('lgIn').value||'').trim();if(!t)return;var me=S.me>-1&&S.people[S.me]?S.people[S.me].name:'Guest';ledgerAdd(me,t,false,false);$('lgIn').value=''}
@@ -1049,12 +1088,12 @@ footer{background:#0b0b0d}
 
   // ---- minutes approved: adopt the previous minutes, by motion or general consent ----
   function minutesDocs(){return (S.docs||[]).filter(function(d){return d.f==='minutes'})}
-  function approveMinutes(name,how,mover,seconder){var d=minutesDocs().filter(function(x){return x.name===name})[0];if(!d||d.approved)return;
-    d.approved={t:nice(new Date()),how:how,mover:mover||'',seconder:seconder||''};S.adopted={name:name,how:how,mover:mover||'',seconder:seconder||''};
+  function approveMinutes(name,how,mover,seconder,c){var d=minutesDocs().filter(function(x){return x.name===name})[0];if(!d||d.approved)return;
+    d.approved={t:nice(new Date()),how:how,mover:mover||'',seconder:seconder||''};S.adopted={name:name,how:how,mover:mover||'',seconder:seconder||'',c:c||null};if(c)d.approved.c=c;
     addMin('Minutes approved: '+name+(how==='consent'?', as circulated, by general consent.':', adopted by motion.'),'res');
     if(!S.pub&&!S.docEdited){S.docHtml=genMinutes();drawDoc()}drawShelf();drawLedger();save()}
   // ---- tabs, controls ----
-  function showPane(p){if(p==='doc'&&!S.pub&&!S.docEdited){S.docHtml=genMinutes();drawDoc()}[].forEach.call(document.querySelectorAll('#tabs2 button'),function(b){b.classList.toggle('on',b.getAttribute('data-p')===p)});[].forEach.call(document.querySelectorAll('.pane'),function(x){x.classList.toggle('on',x.id==='p-'+p)})}
+  function showPane(p){if(p==='doc'){if(!S.pub&&!S.docEdited){S.docHtml=genMinutes();drawDoc()}document.getElementById('agPanel').scrollIntoView({behavior:'smooth',block:'start'});return}[].forEach.call(document.querySelectorAll('#tabs2 button'),function(b){b.classList.toggle('on',b.getAttribute('data-p')===p)});[].forEach.call(document.querySelectorAll('.pane'),function(x){x.classList.toggle('on',x.id==='p-'+p)})}
   [].forEach.call(document.querySelectorAll('#tabs2 button'),function(b){b.onclick=function(){showPane(b.getAttribute('data-p'))}});
   $('seats').onchange=function(){S.seats=+this.value;if(S.two&&S.seats<5){S.two=false;$('twoVotes').checked=false}Object.keys(S.people).forEach(function(k){if(+k>=S.seats)delete S.people[k]});drawRoom();drawOwners();save()};
   $('twoVotes').onchange=function(){S.two=this.checked;S.people={};S.me=-1;drawRoom();drawOwners();save()};
