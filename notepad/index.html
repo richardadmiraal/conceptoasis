@@ -128,10 +128,11 @@ label.ck{display:flex;gap:8px;align-items:flex-start;font-size:13px;margin-top:1
       <div class="card">
         <h2>The pad</h2>
         <div class="row2">
-          <label class="f">Coupon pages<select id="pCoup"><option>1</option><option>2</option><option>3</option></select></label>
+          <label class="f">Coupon pages<input id="pCoup" readonly></label>
           <label class="f">Pages per pad<select id="pTotal"><option>10</option><option selected>20</option><option>30</option><option>40</option></select></label>
         </div>
-        <label class="ck"><input type="checkbox" id="pRot"> With 3 coupon pages, rotate the strips so every pad carries all twelve coupons.</label>
+        <p class="hint">Add as many coupon pages as you like with <b>+ Coupon page</b> above the sheet. Each one can carry twelve different coupons.</p>
+        <label class="ck"><input type="checkbox" id="pRot"> Repeat page one on pages 2 and 3, with the strips rotated, so every pad carries all twelve of page one&rsquo;s coupons.</label>
         <label class="f">Header on the note pages<select id="hMode"><option value="org">The organizer</option><option value="text">A custom header</option><option value="coupon">A coupon</option></select></label>
         <label class="f" id="hTextL" hidden>Custom header<input id="hText" maxlength="40" placeholder="e.g. Notes from Sardis"></label>
         <label class="f" id="hCouponL" hidden>Coupon for the header<select id="hCoupon"></select></label>
@@ -144,6 +145,7 @@ label.ck{display:flex;gap:8px;align-items:flex-start;font-size:13px;margin-top:1
         <div class="sheet" id="sheet" aria-label="Page preview"></div>
         <div class="bar">
           <button class="btn" id="clearPage" type="button">Clear this page</button>
+          <button class="btn" id="delPage" type="button">Remove this page</button>
           <span class="sp"></span>
           <span class="msg" id="pdfMsg"></span>
           <button class="btn dark" id="pdfBtn" type="button">Download print-ready PDF</button>
@@ -197,7 +199,7 @@ label.ck{display:flex;gap:8px;align-items:flex-start;font-size:13px;margin-top:1
     return '<svg viewBox="0 0 '+n+' '+n+'" aria-hidden="true" shape-rendering="crispEdges">'+r+'</svg>'; }
   // slot index i: strip = floor(i/4), row = i%4. Rotated pages shift strips so each pad sees all twelve.
   function pageSlots(p){
-    if(S.rot&&S.pages===3&&p>1){ var base=S.slots[1]||[], out=[]; for(var st=0;st<3;st++){ var src=(st+p-1)%3; for(var r=0;r<ROWS;r++) out[st*ROWS+r]=base[src*ROWS+r]||null; } return out; }
+    if(S.rot&&(p===2||p===3)){ var base=S.slots[1]||[], out=[]; for(var st=0;st<3;st++){ var src=(st+p-1)%3; for(var r=0;r<ROWS;r++) out[st*ROWS+r]=base[src*ROWS+r]||null; } return out; }
     return S.slots[p]||[];
   }
 
@@ -211,10 +213,10 @@ label.ck{display:flex;gap:8px;align-items:flex-start;font-size:13px;margin-top:1
   $('hMode').onchange=function(){ S.hdr.mode=this.value; hdrUI(); save(); S.cur=0; drawTabs(); drawSheet(); };
   $('hText').oninput=function(){ S.hdr.text=this.value; save(); drawSheet(); };
   $('hCoupon').onchange=function(){ S.hdr.coupon=this.value; save(); drawSheet(); };
-  $('pCoup').value=String(S.pages); $('pTotal').value=String(S.total); $('pRot').checked=!!S.rot;
-  $('pCoup').onchange=function(){ S.pages=+this.value; if(S.cur>S.pages) S.cur=S.pages; save(); drawTabs(); drawSheet(); specs(); };
-  $('pTotal').onchange=function(){ S.total=+this.value; save(); drawTabs(); specs(); };
-  $('pRot').onchange=function(){ S.rot=this.checked; save(); drawSheet(); };
+  $('pCoup').value=S.pages+' of '+S.total; $('pTotal').value=String(S.total); $('pRot').checked=!!S.rot;
+  function setPages(n){ S.pages=Math.max(1,Math.min(n,S.total-1)); if(S.cur>S.pages) S.cur=S.pages; $('pCoup').value=S.pages+' of '+S.total; save(); drawTabs(); drawSheet(); specs(); drawLib(); }
+  $('pTotal').onchange=function(){ S.total=+this.value; setPages(S.pages); };
+  $('pRot').onchange=function(){ S.rot=this.checked; if(S.rot&&S.pages<3) setPages(3); else { save(); drawTabs(); drawSheet(); } };
   $('qty').value=S.qty; $('qty').oninput=function(){ S.qty=Math.max(1,parseInt(this.value)||1); save(); specs(); };
   function specs(){ $('spec1').textContent=S.total; $('pads').value=(S.qty*3)+' notepads of '+S.total+' pages'; }
 
@@ -236,19 +238,21 @@ label.ck{display:flex;gap:8px;align-items:flex-start;font-size:13px;margin-top:1
       Object.keys(S.slots).forEach(function(k){ S.slots[k]=(S.slots[k]||[]).map(function(x){return x===id?null:x}); });
       save(); drawLib(); drawSheet(); }; });
   }
-  function editable(){ return S.cur>0 && !(S.rot&&S.pages===3&&S.cur>1); }
+  function editable(){ return S.cur>0 && !(S.rot&&(S.cur===2||S.cur===3)); }
   function place(id){
     if(S.cur===0){ S.cur=1; drawTabs(); }
-    if(!editable()){ $('pdfMsg').textContent='Rotated pages follow page one. Place coupons on page one.'; return; }
+    if(!editable()){ $('pdfMsg').textContent='Pages 2 and 3 repeat page one, rotated. Place coupons on page one or page 4 onward.'; return; }
     var arr=S.slots[S.cur]=S.slots[S.cur]||[];
     var i=S.sel!=null?S.sel:(function(){ for(var k=0;k<PER;k++) if(!arr[k]) return k; return -1; })();
-    if(i<0){ $('pdfMsg').textContent='This page is full. Clear a spot or use the next coupon page.'; return; }
+    if(i<0){ $('pdfMsg').textContent='This page is full. Clear a spot, or add a coupon page with + Coupon page.'; return; }
     arr[i]=id; S.sel=null; save(); drawSheet(); drawLib();
   }
   function drawTabs(){
-    var h=''; for(var p=1;p<=S.pages;p++) h+='<button type="button" role="tab" aria-selected="'+(S.cur===p)+'" class="'+(S.cur===p?'on':'')+'" data-p="'+p+'">Coupon page '+p+'</button>';
+    var h=''; for(var p=1;p<=S.pages;p++) h+='<button type="button" role="tab" aria-selected="'+(S.cur===p)+'" class="'+(S.cur===p?'on':'')+'" data-p="'+p+'">Coupon page '+p+(S.rot&&(p===2||p===3)?' &#8635;':'')+'</button>';
+    h+='<button type="button" id="addPage" title="Add a coupon page">+ Coupon page</button>';
     h+='<button type="button" class="'+(S.cur===0?'on':'')+'" data-p="0">Note pages ('+(S.total-S.pages)+')</button>';
     $('tabs').innerHTML=h;
+    $('addPage').onclick=function(){ if(S.pages>=S.total-1){ $('pdfMsg').textContent='Every page is a coupon page. Raise the pages per pad first.'; return; } setPages(S.pages+1); S.cur=S.pages; S.slots[S.cur]=S.slots[S.cur]||[]; save(); drawTabs(); drawSheet(); };
     [].forEach.call($('tabs').querySelectorAll('[data-p]'),function(b){ b.onclick=function(){ S.cur=+b.dataset.p; S.sel=null; save(); drawTabs(); drawSheet(); }; });
   }
   function orgHead(){ var o=S.org;
@@ -265,9 +269,9 @@ label.ck{display:flex;gap:8px;align-items:flex-start;font-size:13px;margin-top:1
     if(S.cur===0){
       var foot=S.hdr.mode==='org'?'notepad.recomemo.com':[S.org.name,S.org.brok].filter(Boolean).join(' · ');
       for(var st=0;st<3;st++) h+='<div class="strip">'+noteHead()+'<div class="lines"></div><div class="foot">'+esc(foot||'notepad.recomemo.com')+'</div></div>';
-      sh.innerHTML=h; $('clearPage').disabled=true; return;
+      sh.innerHTML=h; $('clearPage').disabled=true; $('delPage').hidden=true; return;
     }
-    var arr=pageSlots(S.cur), ed=editable(); $('clearPage').disabled=!ed;
+    var arr=pageSlots(S.cur), ed=editable(); $('clearPage').disabled=!ed; $('delPage').hidden=S.pages<2;
     for(var s=0;s<3;s++){
       h+='<div class="strip">'+orgHead()+'<div class="slots">';
       for(var r=0;r<ROWS;r++){ var i=s*ROWS+r, c=arr[i]?byId(arr[i]):null;
@@ -286,6 +290,7 @@ label.ck{display:flex;gap:8px;align-items:flex-start;font-size:13px;margin-top:1
     });
     [].forEach.call(sh.querySelectorAll('[data-clr]'),function(b){ b.onclick=function(e){ e.stopPropagation(); (S.slots[S.cur]||[])[+b.dataset.clr]=null; save(); drawSheet(); drawLib(); }; });
   }
+  $('delPage').onclick=function(){ if(S.cur<1||S.pages<2) return; for(var q=S.cur;q<S.pages;q++) S.slots[q]=S.slots[q+1]||[]; delete S.slots[S.pages]; var c=S.cur; setPages(S.pages-1); S.cur=Math.min(c,S.pages); save(); drawTabs(); drawSheet(); drawLib(); };
   $('clearPage').onclick=function(){ if(editable()){ S.slots[S.cur]=[]; save(); drawSheet(); drawLib(); } };
   $('cAdd').onclick=function(){
     var off=$('cOff').value.trim(), mer=$('cMer').value.trim();
