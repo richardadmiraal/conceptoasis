@@ -1,0 +1,340 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Strataverse · The board room, with xo-ai | ConceptOasis</title>
+<meta name="description" content="Strataverse: step into your board of directors room. Choose your table, seat your executive, and let xo-ai keep the records: minutes, motions, to-dos and Zoom meetings. All across the Strataverse.">
+<link rel="icon" href="../favicon.png" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Inter+Tight:wght@500;600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/site.css">
+<style>
+body{background:#0b1022;color:#d7deef}
+.nav{background:rgba(11,16,34,.88)}
+.nav .brand,.nav nav a{color:#e9eefb}
+.sv-hero .wrap{padding-block:34px 18px;display:grid;grid-template-columns:1.1fr .9fr;gap:28px;align-items:end}
+@media(max-width:900px){.sv-hero .wrap{grid-template-columns:1fr}}
+.sv-hero h1{color:#fff;font-size:clamp(30px,4vw,46px);margin:4px 0 8px}
+.sv-hero .kick{color:#9fdcd6}
+.sv-hero p{color:#b9c3dc;max-width:60ch;margin:0}
+.sv-name{display:flex;gap:10px;align-items:end;flex-wrap:wrap;margin-top:16px}
+.sv-name label{font:600 12px var(--mono);color:#9aa6c4;letter-spacing:.06em;text-transform:uppercase}
+.sv-name input{display:block;margin-top:6px;padding:10px 12px;border-radius:10px;border:1px solid #2c3a66;background:#121a36;color:#fff;font:500 15px Inter,sans-serif;min-width:260px}
+.xo-id{border:1px solid #26335c;border-radius:16px;padding:16px;background:linear-gradient(180deg,#121a36,#0e152c)}
+.xo-id b{display:block;color:#fff;font:650 18px "Inter Tight",Inter,sans-serif}
+.xo-id small{font:500 11px var(--mono);color:#9fdcd6;letter-spacing:.06em}
+.xo-id ul{margin:10px 0 0;padding-left:18px;font-size:13.5px;line-height:1.8;color:#c7d0e6}
+.sv{display:grid;grid-template-columns:minmax(0,1fr) 360px;gap:22px;padding-block:10px 60px}
+@media(max-width:1060px){.sv{grid-template-columns:1fr}}
+.panel{background:#11182f;border:1px solid #233056;border-radius:18px;padding:18px}
+.panel h2{color:#fff;font-size:18px;margin:0 0 4px}
+.panel h3{color:#fff;font-size:15px;margin:0 0 8px}
+.muted{color:#8f9bb9;font-size:13px}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.ctl{display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:12px}
+.ctl select,.ctl input{padding:8px 10px;border-radius:10px;border:1px solid #2c3a66;background:#0e1530;color:#fff;font:500 14px Inter,sans-serif}
+.btn-sv{background:#16a3a6;color:#fff!important;border:0}
+.btn-ghost{background:transparent;color:#d7deef!important;border:1px solid #2c3a66}
+.btn-sm{padding:8px 12px;font-size:13px}
+/* room */
+.room{position:relative;border-radius:18px;overflow:hidden;aspect-ratio:1.55;background:var(--floor);border:1px solid #233056}
+@media(max-width:620px){.room{aspect-ratio:1}}
+.room .tbl{position:absolute;left:18%;right:18%;top:22%;bottom:22%;background:var(--top);border:var(--rim);box-shadow:var(--shadow);border-radius:var(--radius);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+.room .tbl b{font:650 14px "Inter Tight",Inter,sans-serif;color:var(--ink2)}
+.room .tbl small{font:500 10px var(--mono);color:var(--ink2);opacity:.8}
+.room .tbl .devs{display:flex;gap:8px;margin-top:8px}
+.room .tbl .devs i{width:18px;height:24px;border-radius:3px;background:rgba(255,255,255,.85);box-shadow:0 1px 0 rgba(0,0,0,.2)}
+.room .tbl .devs i:nth-child(2){width:26px;height:18px;margin-top:3px;background:#0f1733;border:2px solid #9aa6c4}
+.seat{position:absolute;transform:translate(-50%,-50%);width:64px;text-align:center;background:none;border:0;padding:0;cursor:pointer}
+.seat .av{display:grid;place-items:center;width:44px;height:44px;margin:0 auto;border-radius:50%;background:#fff;color:#0f1733;font:700 13px Inter,sans-serif;border:3px solid var(--c,#9aa6c4);box-shadow:0 4px 12px rgba(0,0,0,.35);transition:transform .15s}
+.seat .av.empty{background:rgba(255,255,255,.12);color:#cfd6e6;border-style:dashed}
+.seat .lb{display:block;margin-top:4px;font:600 9.5px var(--mono);color:var(--lbl,#e6ebf7);text-shadow:0 1px 2px rgba(0,0,0,.5);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.seat:hover .av{transform:scale(1.08)}
+.seat.me .av{box-shadow:0 0 0 4px rgba(46,196,198,.5),0 4px 12px rgba(0,0,0,.35)}
+.seat.speaking .av{animation:pulse 1.2s infinite}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(46,196,198,.6)}50%{box-shadow:0 0 0 8px rgba(46,196,198,0)}}
+@media(max-width:620px){.seat{width:48px}.seat .av{width:32px;height:32px;font-size:11px;border-width:2px}.seat .lb{font-size:8px}}
+.xo-chip{position:absolute;right:12px;top:12px;display:flex;align-items:center;gap:8px;padding:6px 10px;border-radius:999px;background:rgba(15,23,51,.85);border:1px solid #2c3a66;font:600 11px var(--mono);color:#9fdcd6}
+.xo-chip i{width:8px;height:8px;border-radius:50%;background:#2ec4c6;animation:pulse 1.6s infinite}
+/* styles picker */
+.styles{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px;margin-top:10px}
+.sty{border:1px solid #2c3a66;border-radius:14px;padding:8px;background:#0e1530;cursor:pointer;text-align:left;color:#d7deef}
+.sty.on{border-color:#2ec4c6;box-shadow:0 0 0 2px rgba(46,196,198,.35)}
+.sty .smini{display:block;position:relative;height:62px;border-radius:10px;background:var(--floor);overflow:hidden}
+.sty .smini span{position:absolute;left:20%;right:20%;top:24%;bottom:24%;background:var(--top);border:var(--rim);border-radius:var(--radius)}
+.sty b{display:block;font:600 12.5px Inter,sans-serif;margin-top:6px}
+.sty small{font:500 10px var(--mono);color:#8f9bb9}
+/* side */
+.tabs2{display:flex;gap:4px;margin-bottom:10px;flex-wrap:wrap}
+.tabs2 button{padding:7px 11px;border-radius:999px;border:1px solid #2c3a66;background:transparent;color:#c7d0e6;font:600 12.5px Inter,sans-serif;cursor:pointer}
+.tabs2 button.on{background:#16a3a6;border-color:#16a3a6;color:#fff}
+.pane{display:none}.pane.on{display:block}
+.minutes{list-style:none;margin:0;padding:0;display:grid;gap:6px;max-height:280px;overflow:auto}
+.minutes li{padding:8px 10px;border-radius:10px;background:#0e1530;border:1px solid #1f2b50;font-size:13px;line-height:1.45}
+.minutes li small{display:block;font:500 10.5px var(--mono);color:#8f9bb9}
+.minutes li.mot{border-color:#3a4f8f}.minutes li.res{border-color:#2ec4c6}
+.say{display:flex;gap:8px;margin-top:10px}
+.say input,.fx input,.fx select,.fx textarea{flex:1;min-width:0;padding:9px 11px;border-radius:10px;border:1px solid #2c3a66;background:#0e1530;color:#fff;font:400 14px Inter,sans-serif;width:100%;box-sizing:border-box}
+.rr{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.todo{list-style:none;margin:8px 0 0;padding:0;display:grid;gap:6px}
+.todo li{display:flex;gap:8px;align-items:center;padding:8px 10px;border-radius:10px;background:#0e1530;border:1px solid #1f2b50;font-size:13.5px}
+.todo li input{accent-color:#16a3a6;width:16px;height:16px}
+.todo li.done span{text-decoration:line-through;color:#7d88a6}
+.todo li small{margin-left:auto;font:500 10.5px var(--mono);color:#9fdcd6}
+.fx{display:grid;gap:8px}
+.fx label{font:600 12px Inter,sans-serif;color:#c7d0e6}
+.invite{white-space:pre-wrap;font:500 12.5px var(--mono);background:#0e1530;border:1px dashed #2c3a66;border-radius:10px;padding:10px;color:#cfe9e4;margin-top:8px}
+.note{font-size:12px;color:#8f9bb9;margin-top:10px;line-height:1.5}
+.signin{margin-top:16px}
+.signin .fx{grid-template-columns:1fr 1fr}
+@media(max-width:620px){.signin .fx{grid-template-columns:1fr}}
+.rm{display:flex;gap:10px;align-items:flex-start;margin-top:10px;padding:10px 12px;border-radius:12px;background:#0e1530;border:1px solid #233056;font-size:12.5px;color:#c7d0e6}
+.rm b{font-family:var(--mono);color:#fff}
+footer{background:#070b18}
+</style>
+</head>
+<body>
+
+<header class="nav"><div class="wrap">
+  <a class="brand" href="../"><img src="../assets/img/coco-logo.webp" alt="" width="34" height="34">ConceptOasis</a>
+  <nav>
+    <a href="../#services">Services</a>
+    <a href="../#agents">AI agents</a>
+    <a href="../#projects">Projects</a>
+    <a class="btn btn-sv" href="#room">Board room</a>
+  </nav>
+</div></header>
+
+<section class="sv-hero"><div class="wrap">
+  <div>
+    <span class="kick">Strataverse &middot; all across the Strataverse</span>
+    <h1>Step into the board room.</h1>
+    <p>Choose your table, seat your executive and let xo-ai keep the records: minutes, motions, the to-do list and your Zoom meetings, posted to your strata portal when the board approves them. For condo and strata boards, and any other board for that matter.</p>
+    <div class="sv-name"><label>Your strata or board name<input id="strata" placeholder="e.g. Harbour View Strata" value=""></label><button class="btn btn-ghost btn-sm" id="joinBtn" type="button">Join board room in progress &rarr;</button></div>
+  </div>
+  <div class="xo-id">
+    <small>eXecutive Officer AI</small>
+    <b id="xoName">xo-ai &middot; your board</b>
+    <ul>
+      <li>Takes the minutes, in Robert&rsquo;s Rules order</li>
+      <li>Arranges your Zoom meeting and sends the invite</li>
+      <li>Keeps the to-do list, with owners and dates</li>
+      <li>Posts approved minutes to your strata portal</li>
+      <li>Mindful of directors&rsquo; fiduciary duties; never gives legal advice</li>
+    </ul>
+  </div>
+</div></section>
+
+<div class="wrap sv" id="room">
+  <div>
+    <div class="panel">
+      <div class="ctl">
+        <div><h2 id="roomTitle">The board of directors room</h2><span class="muted" id="roomSub">Classic boardroom &middot; 8 seats</span></div>
+        <div class="row">
+          <label class="muted">Seats <select id="seats"><option>4</option><option>5</option><option>6</option><option>7</option><option selected>8</option><option>9</option><option>10</option><option>11</option><option>12</option></select></label>
+          <label class="muted"><input type="checkbox" id="twoVotes"> President holds two seats (per your bylaws)</label>
+        </div>
+      </div>
+      <div class="room" id="roomEl">
+        <div class="tbl"><b id="tblLabel">Board table</b><small id="tblSub">notepads &amp; devices are the cards</small><div class="devs"><i></i><i></i><i></i></div></div>
+        <div class="xo-chip"><i></i><span id="xoChip">xo-ai is keeping the minutes</span></div>
+      </div>
+      <p class="note">Tap a seat to sit there or name the director. Executive positions: President, President-elect, Vice President and Past President, then Secretary, Treasurer and directors.</p>
+    </div>
+
+    <div class="panel" style="margin-top:18px">
+      <h2>Choose your board room style</h2>
+      <span class="muted">Poker table style, every one: everyone faces in, with talk or text entry at the table.</span>
+      <div class="styles" id="styles"></div>
+    </div>
+  </div>
+
+  <aside>
+    <div class="panel">
+      <div class="tabs2" id="tabs2"><button class="on" data-p="min">Minutes</button><button data-p="todo">To do</button><button data-p="zoom">Zoom</button><button data-p="in">Sign in</button></div>
+
+      <div class="pane on" id="p-min">
+        <h3>Minutes <span class="muted" id="minDate"></span></h3>
+        <ul class="minutes" id="minutes"></ul>
+        <div class="rr">
+          <button class="btn btn-ghost btn-sm" data-act="call">Call to order</button>
+          <button class="btn btn-ghost btn-sm" data-act="move">Motion</button>
+          <button class="btn btn-ghost btn-sm" data-act="second">Second</button>
+          <button class="btn btn-ghost btn-sm" data-act="carried">Carried</button>
+          <button class="btn btn-ghost btn-sm" data-act="defeated">Defeated</button>
+          <button class="btn btn-ghost btn-sm" data-act="adjourn">Adjourn</button>
+        </div>
+        <div class="say"><input id="say" placeholder="Speak or type: e.g. Motion to approve the roof quote"><button class="btn btn-sv btn-sm" id="sayBtn" type="button">Add</button></div>
+        <div class="row" style="margin-top:10px"><button class="btn btn-ghost btn-sm" id="postBtn" type="button">Post minutes to the strata portal</button><button class="btn btn-ghost btn-sm" id="copyMin" type="button">Copy minutes</button></div>
+        <p class="note" id="postNote">Minutes post only after the board approves them. This demo shows the flow; nothing is sent.</p>
+      </div>
+
+      <div class="pane" id="p-todo">
+        <h3>To-do list</h3>
+        <div class="fx" style="grid-template-columns:1fr 1fr"><input id="tdText" placeholder="Task"><select id="tdOwner"></select></div>
+        <button class="btn btn-sv btn-sm" id="tdAdd" type="button" style="margin-top:8px">Add task</button>
+        <ul class="todo" id="todo"></ul>
+      </div>
+
+      <div class="pane" id="p-zoom">
+        <h3>Arrange a Zoom meeting</h3>
+        <div class="fx">
+          <label>Meeting<input id="zTitle" value="Monthly board meeting"></label>
+          <label>Date and time<input id="zWhen" type="datetime-local"></label>
+          <label>Agenda<textarea id="zAgenda" rows="3">1. Call to order
+2. Approve last minutes
+3. Reports
+4. New business
+5. Adjourn</textarea></label>
+        </div>
+        <button class="btn btn-sv btn-sm" id="zMake" type="button" style="margin-top:8px">Draft the invite</button>
+        <div class="invite" id="invite" hidden></div>
+        <p class="note">xo-ai drafts the invite and agenda; your Zoom link is added from your board&rsquo;s Zoom account when Strataverse is connected.</p>
+      </div>
+
+      <div class="pane" id="p-in">
+        <h3>Board member: sign in</h3>
+        <div class="signin">
+          <div class="fx">
+            <label>Full name<input id="inName" autocomplete="name"></label>
+            <label>Email<input id="inEmail" type="email" autocomplete="email"></label>
+            <label>Unit or lot<input id="inUnit" placeholder="e.g. 304"></label>
+            <label>Position<select id="inPos"></select></label>
+          </div>
+          <button class="btn btn-sv btn-sm" id="inBtn" type="button" style="margin-top:10px">Sign in and take my seat</button>
+          <div class="rm"><span>&#128274;</span><span>Please note: we use <b>profile.recomemo.com</b> to help verify identity and key details. Signing in automatically creates a private recomemo account you can use to sign in and authenticate across the co|co network. Please type clearly so details are understood quickly.</span></div>
+          <p class="note" id="inNote"></p>
+        </div>
+      </div>
+    </div>
+    <div class="panel" style="margin-top:18px">
+      <h3>Keeping the records, nothing more</h3>
+      <p class="muted" style="margin:0">xo-ai is here to keep the records. The board makes every decision. It&rsquo;s mindful of directors&rsquo; duties to act honestly and in the best interest of the owners, and points you to your lawyer or property manager for legal or financial questions. AI can make mistakes; minutes are reviewed and approved by the board.</p>
+      <a class="btn btn-sv btn-sm" style="margin-top:12px" href="../start/">Bring Strataverse to your board &rarr;</a>
+    </div>
+  </aside>
+</div>
+
+<footer><div class="wrap">
+  <a class="brand" href="../"><img src="../assets/img/coco-logo.webp" alt="" width="30" height="30">ConceptOasis</a>
+  <span class="cocobar">Strataverse &middot; all across the Strataverse</span>
+  <span><a href="mailto:info@conceptoasis.com">info@conceptoasis.com</a> · &copy; 2026 ConceptOasis, an ideas company</span>
+</div></footer>
+
+<script>
+(function(){
+  var $=function(id){return document.getElementById(id)};
+  function esc(t){var d=document.createElement('div');d.textContent=t==null?'':t;return d.innerHTML}
+  // Board room styles: floor, table top, rim, radius, shadow, table ink, seat ring colour
+  var STYLES=[
+    {id:'classic',name:'Classic boardroom',sub:'walnut oval',floor:'radial-gradient(ellipse at 50% 40%,#2a3352,#141a30)',top:'linear-gradient(135deg,#6b4226,#4a2c18)',rim:'6px solid #2d1a0e',radius:'999px',ink:'#f3e4d2',ring:'#c69c6d'},
+    {id:'poker',name:'Poker felt',sub:'green felt, padded rail',floor:'radial-gradient(ellipse at 50% 40%,#1c2a22,#0d1611)',top:'radial-gradient(ellipse at 50% 45%,#1f7a4a,#125334)',rim:'10px solid #3b2416',radius:'999px',ink:'#e6f6ec',ring:'#e9b44c'},
+    {id:'glass',name:'Glass round',sub:'modern, light',floor:'radial-gradient(circle at 50% 40%,#e9eef7,#c9d3e6)',top:'linear-gradient(135deg,rgba(255,255,255,.75),rgba(200,225,240,.55))',rim:'2px solid rgba(255,255,255,.9)',radius:'50%',ink:'#0f1733',ring:'#2a5bd7',lbl:'#0f1733'},
+    {id:'harbour',name:'Harbour view',sub:'ocean blue',floor:'linear-gradient(180deg,#0d2a44,#0a1a2c)',top:'linear-gradient(135deg,#1c5d8a,#0f3d5e)',rim:'6px solid #c9b48a',radius:'999px',ink:'#e8f4fb',ring:'#2ec4c6'},
+    {id:'night',name:'Night tech',sub:'dark, neon feather edge',floor:'radial-gradient(ellipse at 50% 40%,#151a3a,#05070f)',top:'linear-gradient(135deg,#0f1733,#1a1f45)',rim:'3px solid #2ec4c6',radius:'26px',ink:'#9fdcd6',ring:'#e0458f',shadow:'0 0 24px rgba(46,196,198,.45)'},
+    {id:'horseshoe',name:'Horseshoe',sub:'chair at the open end',floor:'radial-gradient(ellipse at 50% 40%,#2c2a3f,#16141f)',top:'linear-gradient(135deg,#4b5361,#2d333d)',rim:'5px solid #8a93a8',radius:'999px 999px 18px 18px',ink:'#f1f3f8',ring:'#8cc63f'},
+    {id:'terrace',name:'Garden terrace',sub:'outdoor, warm wood',floor:'linear-gradient(180deg,#2f4a2a,#1d2f1a)',top:'linear-gradient(135deg,#b88a55,#8a6438)',rim:'5px solid #5c4022',radius:'40px',ink:'#fff7ea',ring:'#8cc63f'},
+    {id:'royal',name:'Round table',sub:'everyone equal',floor:'radial-gradient(circle at 50% 40%,#3a2140,#1b0f20)',top:'radial-gradient(circle,#7a3c8c,#4a1f57)',rim:'7px solid #e9b44c',radius:'50%',ink:'#fbeefe',ring:'#e9b44c'},
+    {id:'board',name:'Long boardroom',sub:'rectangular, executive',floor:'linear-gradient(180deg,#20263b,#121624)',top:'linear-gradient(90deg,#343b52,#262c40)',rim:'4px solid #6b7891',radius:'14px',ink:'#e6ebf7',ring:'#f28c28'},
+    {id:'feather',name:'Birds of a feather',sub:'co|co colours',floor:'radial-gradient(ellipse at 50% 40%,#1a2140,#0b1022)',top:'linear-gradient(135deg,#2a5bd7,#16a3a6 40%,#8cc63f 65%,#f28c28 85%,#e0458f)',rim:'4px solid #fff',radius:'999px',ink:'#fff',ring:'#ffffff'}
+  ];
+  var EXEC=['President','President-elect','Vice President','Past President','Secretary','Treasurer'];
+  var POSC={'President':'#f28c28','President-elect':'#e9b44c','Vice President':'#2a5bd7','Past President':'#6b4fd8','Secretary':'#16a3a6','Treasurer':'#8cc63f','Director':'#e0458f'};
+  var S={style:'classic',seats:8,two:false,names:{},me:-1,minutes:[],todo:[],motion:null};
+
+  function positions(n){
+    var arr=[];
+    if(S.two){arr.push('President','President');n-=2;EXEC.slice(1).forEach(function(p){if(n>0){arr.push(p);n--}})}
+    else{EXEC.forEach(function(p){if(n>0){arr.push(p);n--}})}
+    while(n-->0)arr.push('Director');
+    return arr;
+  }
+  function strata(){return ($('strata').value||'').trim()}
+  function drawRoom(){
+    var st=STYLES.filter(function(x){return x.id===S.style})[0], r=$('roomEl');
+    r.style.setProperty('--floor',st.floor);r.style.setProperty('--top',st.top);r.style.setProperty('--rim',st.rim);r.style.setProperty('--radius',st.radius);r.style.setProperty('--ink2',st.ink);r.style.setProperty('--shadow',st.shadow||'0 18px 40px rgba(0,0,0,.45)');r.style.setProperty('--lbl',st.lbl||'#e6ebf7');
+    [].forEach.call(r.querySelectorAll('.seat'),function(x){x.remove()});
+    var pos=positions(S.seats), n=pos.length;
+    pos.forEach(function(p,i){
+      var a=-Math.PI/2+(i-(S.two?0.5:0))*(2*Math.PI/n), x=50+42*Math.cos(a), y=50+40*Math.sin(a);
+      var nm=S.names[i]||'', b=document.createElement('button');
+      b.type='button';b.className='seat'+(S.me===i?' me':'');b.style.left=x+'%';b.style.top=y+'%';b.style.setProperty('--c',POSC[p]);
+      var ini=nm?nm.split(/\s+/).map(function(w){return w.charAt(0)}).join('').slice(0,2).toUpperCase():'+';
+      var lbl=p==='President'&&S.two?'President · '+(i+1):p.replace('Vice President','Vice Pres').replace('President-elect','Pres-elect').replace('Past President','Past Pres');
+      b.innerHTML='<span class="av'+(nm?'':' empty')+'">'+esc(ini)+'</span><span class="lb">'+esc(lbl)+'</span>';
+      b.setAttribute('aria-label',p+(nm?': '+nm:': open seat'));
+      b.onclick=function(){openSeat(i,p)};
+      r.appendChild(b);
+    });
+    $('roomSub').textContent=st.name+' · '+n+' seats';
+    $('tblLabel').textContent=strata()||'Board table';
+    $('roomTitle').textContent=(strata()?strata()+' · ':'')+'board of directors room';
+  }
+  function openSeat(i,p){ // switch to sign-in tab with that position selected
+    showPane('in'); $('inPos').value=String(i); $('inName').focus();
+  }
+  function drawStyles(){
+    $('styles').innerHTML=STYLES.map(function(st){return '<button type="button" class="sty'+(st.id===S.style?' on':'')+'" data-s="'+st.id+'" style="--floor:'+st.floor+';--top:'+st.top+';--rim:'+st.rim.replace(/\d+px/,function(m){return Math.max(2,Math.round(parseInt(m)/2))+'px'})+';--radius:'+st.radius+'"><span class="smini"><span></span></span><b>'+esc(st.name)+'</b><small>'+esc(st.sub)+'</small></button>'}).join('');
+    [].forEach.call($('styles').children,function(b){b.onclick=function(){S.style=b.getAttribute('data-s');drawStyles();drawRoom();save()}});
+  }
+  function drawPosSelect(){
+    var pos=positions(S.seats);
+    var opts=pos.map(function(p,i){if(S.two&&i===1)return '';return '<option value="'+i+'">'+esc(p+(S.two&&i===0?' (two seats, two votes)':'')+' · seat '+(i+1))+'</option>'}).join('');
+    $('inPos').innerHTML=opts;
+    var names=pos.map(function(p,i){return S.names[i]?S.names[i]+' ('+p+')':null}).filter(Boolean);
+    $('tdOwner').innerHTML='<option value="">Owner</option>'+names.map(function(n){return '<option>'+esc(n)+'</option>'}).join('');
+  }
+  // minutes
+  function stamp(){return new Date().toLocaleTimeString('en-CA',{hour:'numeric',minute:'2-digit'})}
+  function addMin(text,cls){S.minutes.push({t:stamp(),text:text,cls:cls||''});drawMin();save()}
+  function drawMin(){
+    $('minDate').textContent=new Date().toLocaleDateString('en-CA',{year:'numeric',month:'long',day:'numeric'});
+    $('minutes').innerHTML=S.minutes.length?S.minutes.map(function(m){return '<li class="'+m.cls+'"><small>'+esc(m.t)+'</small>'+esc(m.text)+'</li>'}).join(''):'<li><small>xo-ai</small>Ready when you are. Call the meeting to order to begin the minutes.</li>';
+    var el=$('minutes');el.scrollTop=el.scrollHeight;
+  }
+  function who(){return S.me>-1&&S.names[S.me]?S.names[S.me]:'A director'}
+  [].forEach.call(document.querySelectorAll('[data-act]'),function(b){b.onclick=function(){
+    var a=b.getAttribute('data-act'), txt=($('say').value||'').trim();
+    if(a==='call')addMin('Meeting called to order'+(strata()?' for '+strata():'')+'. Quorum confirmed by the chair.');
+    if(a==='move'){S.motion=txt||'(motion wording)';addMin('Motion by '+who()+': '+S.motion,'mot');$('say').value=''}
+    if(a==='second')addMin('Seconded'+(S.motion?': '+S.motion:'')+'.','mot');
+    if(a==='carried'){addMin('CARRIED'+(S.motion?': '+S.motion:'')+'.','res');S.motion=null}
+    if(a==='defeated'){addMin('DEFEATED'+(S.motion?': '+S.motion:'')+'.','res');S.motion=null}
+    if(a==='adjourn')addMin('Meeting adjourned.');
+  }});
+  function say(){var t=($('say').value||'').trim();if(!t)return;addMin(who()+': '+t);$('say').value=''}
+  $('sayBtn').onclick=say;$('say').onkeydown=function(e){if(e.key==='Enter'){e.preventDefault();say()}};
+  $('postBtn').onclick=function(){$('postNote').textContent=S.minutes.length?'Ready to post: '+S.minutes.length+' lines. In Strataverse these go to your strata portal once the board approves them. (Demo: nothing was sent.)':'Add some minutes first.'};
+  $('copyMin').onclick=function(){var t=(strata()||'Board')+' minutes, '+$('minDate').textContent+'\n'+S.minutes.map(function(m){return m.t+'  '+m.text}).join('\n');
+    if(navigator.clipboard)navigator.clipboard.writeText(t).then(function(){$('postNote').textContent='Minutes copied.'},function(){$('postNote').textContent='Could not copy; select the minutes instead.'})};
+  // to-do
+  function drawTodo(){$('todo').innerHTML=S.todo.map(function(t,i){return '<li class="'+(t.done?'done':'')+'"><input type="checkbox" data-i="'+i+'"'+(t.done?' checked':'')+'><span>'+esc(t.text)+'</span><small>'+esc(t.owner||'')+'</small></li>'}).join('')||'<li><span class="muted">No tasks yet. Add one, or xo-ai adds them from the minutes.</span></li>';
+    [].forEach.call($('todo').querySelectorAll('input'),function(c){c.onchange=function(){S.todo[+c.getAttribute('data-i')].done=c.checked;drawTodo();save()}})}
+  $('tdAdd').onclick=function(){var t=($('tdText').value||'').trim();if(!t)return;S.todo.push({text:t,owner:$('tdOwner').value,done:false});$('tdText').value='';drawTodo();save();addMin('Action item: '+t+($('tdOwner').value?' ('+$('tdOwner').value+')':''))};
+  // zoom
+  $('zMake').onclick=function(){var w=$('zWhen').value?new Date($('zWhen').value).toLocaleString('en-CA',{weekday:'long',month:'long',day:'numeric',hour:'numeric',minute:'2-digit'}):'(date and time)';
+    var inv=(strata()||'Our board')+': '+($('zTitle').value||'Board meeting')+'\n'+w+'\nZoom link: added from your board’s Zoom account\n\nAgenda\n'+$('zAgenda').value+'\n\nMinutes will be kept by xo-ai and posted after board approval.';
+    $('invite').hidden=false;$('invite').textContent=inv};
+  // sign in
+  $('inBtn').onclick=function(){var n=($('inName').value||'').trim(), e=($('inEmail').value||'').trim();
+    if(!n){$('inNote').textContent='Please add your full name.';return}
+    if(!/^\S+@\S+\.\S+$/.test(e)){$('inNote').textContent='Please add your email.';return}
+    var i=+$('inPos').value;S.names[i]=n;S.me=i;if(S.two&&i===0)S.names[1]=n;
+    $('inNote').textContent='Welcome, '+n+'. You’re seated. (Demo: in Strataverse this creates your private recomemo profile and verifies you.)';
+    drawRoom();drawPosSelect();save();addMin(n+' joined the meeting.')};
+  // tabs
+  function showPane(p){[].forEach.call(document.querySelectorAll('#tabs2 button'),function(b){b.classList.toggle('on',b.getAttribute('data-p')===p)});[].forEach.call(document.querySelectorAll('.pane'),function(x){x.classList.toggle('on',x.id==='p-'+p)})}
+  [].forEach.call(document.querySelectorAll('#tabs2 button'),function(b){b.onclick=function(){showPane(b.getAttribute('data-p'))}});
+  // controls
+  $('seats').onchange=function(){S.seats=+this.value;if(S.two&&S.seats<5){S.two=false;$('twoVotes').checked=false}drawRoom();drawPosSelect();save()};
+  $('twoVotes').onchange=function(){S.two=this.checked;S.names={};S.me=-1;drawRoom();drawPosSelect();save()};
+  $('strata').oninput=function(){var s=strata();$('xoName').textContent='xo-ai · '+(s||'your board');$('xoChip').textContent='xo-ai'+(s?' for '+s:'')+' is keeping the minutes';drawRoom();save()};
+  $('joinBtn').onclick=function(){document.getElementById('room').scrollIntoView({behavior:'smooth'});showPane('in');setTimeout(function(){$('inName').focus()},500)};
+  function save(){try{localStorage.setItem('coco_sv',JSON.stringify({S:S,strata:$('strata').value}))}catch(x){}}
+  function restore(){try{var o=JSON.parse(localStorage.getItem('coco_sv')||'null');if(!o)return;for(var k in o.S)S[k]=o.S[k];$('strata').value=o.strata||'';$('seats').value=String(S.seats);$('twoVotes').checked=!!S.two}catch(x){}}
+  restore();$('strata').oninput();drawStyles();drawRoom();drawPosSelect();drawMin();drawTodo();
+})();
+</script>
+</body>
+</html>

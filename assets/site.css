@@ -356,3 +356,4 @@ footer:before{content:"";position:absolute;left:0;right:0;top:0;height:2px;backg
 .ag .role{font:600 12px var(--mono);color:var(--char2);margin:2px 0 8px!important}
 .ag p{margin:0 0 10px}
 .agx{font:700 22px var(--mono);letter-spacing:-.04em}
+.aglink{font-size:13px;font-weight:600;margin-left:6px}
