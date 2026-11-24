@@ -344,3 +344,16 @@ footer:before{content:"";position:absolute;left:0;right:0;top:0;height:2px;backg
 .cm.h .who{background:#fff;color:var(--ink);border:1px solid #cdd3dd}
 .cm h3{font-size:16px}
 .cm p{font-size:14px}
+
+/* v10: AI agents roster */
+.roster{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:16px;margin-top:22px}
+.ag{display:flex;gap:16px;align-items:flex-start}
+.agi{flex:none;width:58px;height:58px;border-radius:16px;display:grid;place-items:center;color:var(--c);background:color-mix(in srgb,var(--c) 12%,#fff);border:1px solid color-mix(in srgb,var(--c) 35%,#fff)}
+.agi svg{width:34px;height:34px}
+.ag h3{display:flex;align-items:baseline;gap:6px;margin-bottom:0}
+.ag h3 b{font-weight:800}
+.ag h3 small{font:500 11px var(--mono);color:var(--char2)}
+.ag .role{font:600 12px var(--mono);color:var(--char2);margin:2px 0 8px!important}
+.ag p{margin:0 0 10px}
+.agx{font:700 22px var(--mono);letter-spacing:-.04em}
+.aglink{font-size:13px;font-weight:600;margin-left:6px}
