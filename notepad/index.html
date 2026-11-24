@@ -288,9 +288,10 @@ label.ck{display:flex;gap:8px;align-items:flex-start;font-size:13px;margin-top:1
     var placed={}; Object.keys(S.slots).forEach(function(k){ (S.slots[k]||[]).forEach(function(id){ if(id) placed[id]=1; }); });
     var merchants={}; S.coupons.forEach(function(c){ if(placed[c.id]) merchants[c.mer]=1; });
     $('partners').textContent=Object.keys(merchants).length+' of 11 merchant partners placed';
-    $('lib').innerHTML=S.coupons.map(function(c){
+    var parked=S.coupons.filter(function(c){return c.lane==='later'}).length;
+    $('lib').innerHTML=S.coupons.filter(function(c){return c.lane!=='later'}).map(function(c){
       return '<div class="rp" draggable="true" data-id="'+c.id+'" style="--c:'+c.col+'" tabindex="0" role="button" aria-label="Coupon: '+esc(c.off)+'">'+dotHtml(c,ini(c.mer))+'<span class="tx"><small>'+esc(c.mer)+(c.sample?' · sample':'')+(placed[c.id]?' · placed':'')+'</small><b>'+esc(c.off)+'</b></span><button class="ed" type="button" data-edit="'+c.id+'" aria-label="Edit coupon">&#9998;</button><button class="x" type="button" data-del="'+c.id+'" aria-label="Delete coupon">&times;</button></div>';
-    }).join('') || '<p class="hint">No coupon pills yet. Make one below.</p>';
+    }).join('') + (parked?'<p class="hint">'+parked+' more kept private for later in <a href="../coupon/">coupon.recomemo</a>.</p>':'') || '<p class="hint">No coupons yet. Make one below.</p>';
     [].forEach.call($('lib').querySelectorAll('.rp'),function(el){
       el.addEventListener('dragstart',function(e){ e.dataTransfer.setData('text/plain',el.dataset.id); });
       el.addEventListener('click',function(e){ if(e.target.closest('[data-del],[data-edit]')) return; place(el.dataset.id); });
