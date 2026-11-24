@@ -1,0 +1,462 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>coupon.recomemo · coupons that live in a pill</title>
+<meta name="description" content="Agents sign up local merchants. Every merchant gets a recomemo constructor to make and edit coupon pills, place them on notepads, and redeem them with a scan.">
+<link rel="icon" href="../favicon.png" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Inter+Tight:wght@600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#0b0b0d;--mute:#5b6475;--line:#dfe3ea;--teal:#16a3a6;--gold:#e9b44c;--pink:#e0458f;--blue:#2a5bd7;--ok:#0b6b5c;--bad:#b42318;--bg:#f6f7fb;--mono:"JetBrains Mono",ui-monospace,monospace}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 Inter,system-ui,sans-serif}
+a{color:var(--blue)}
+[hidden]{display:none!important}
+.top{display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding:14px max(16px,env(safe-area-inset-left,0px));background:#fff;border-bottom:1px solid var(--line)}
+.top b{font:800 18px "Inter Tight",Inter,sans-serif}.top .k{font:600 12px var(--mono);color:var(--mute)}.top .sp{flex:1}
+.wrap{max-width:1180px;margin:0 auto;padding:20px max(16px,env(safe-area-inset-right,0px)) 60px max(16px,env(safe-area-inset-left,0px))}
+h1{font:800 clamp(26px,3.4vw,38px)/1.1 "Inter Tight",Inter,sans-serif;letter-spacing:-.02em;margin:0 0 6px;text-wrap:balance}
+.lead{color:var(--mute);max-width:72ch;margin:0 0 16px}
+.btn{display:inline-flex;align-items:center;gap:6px;border:1.5px solid var(--ink);background:#fff;color:var(--ink);border-radius:999px;padding:8px 14px;font:600 13px Inter,sans-serif;cursor:pointer;text-decoration:none}
+.btn.dark{background:var(--ink);color:#fff}.btn.sm{padding:5px 11px;font-size:12px}
+.btn:disabled{opacity:.5;cursor:default}
+.who{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600}
+.who select{border:1.5px solid var(--ink);border-radius:999px;padding:6px 10px;font:600 13px Inter,sans-serif;background:#fff}
+.tabs{display:flex;gap:6px;flex-wrap:wrap;margin:0 0 16px}
+.tabs button{border:1.5px solid var(--ink);background:#fff;border-radius:999px;padding:7px 14px;font:600 13px Inter,sans-serif;cursor:pointer}
+.tabs button.on{background:var(--ink);color:#fff}
+.card{background:#fff;border:1.5px solid var(--ink);border-radius:16px;padding:16px;box-shadow:4px 4px 0 var(--ink)}
+.card h2{font:700 16px "Inter Tight",Inter,sans-serif;margin:0 0 10px}
+.card+.card{margin-top:16px}
+.grid{display:grid;grid-template-columns:minmax(0,1fr) 380px;gap:20px;align-items:start}
+@media(max-width:920px){.grid{grid-template-columns:minmax(0,1fr)}}
+label.f{display:block;font-size:12px;font-weight:600;color:var(--mute);margin-top:8px}
+label.f input,label.f select,label.f textarea{display:block;width:100%;margin-top:3px;padding:8px 10px;border:1.5px solid var(--line);border-radius:10px;font:14px Inter,sans-serif;color:var(--ink);background:#fff}
+label.f input:focus,label.f select:focus,label.f textarea:focus{outline:0;border-color:var(--ink)}
+label.ck{display:flex;gap:8px;align-items:flex-start;font-size:13px;margin-top:10px}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.hint{font-size:12.5px;color:var(--mute);margin:6px 0 0}
+.msg{font-size:13px;color:var(--ok);min-height:1.2em}
+.msg.bad{color:var(--bad)}
+.bar{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:12px}
+.pilltag{display:inline-block;font:700 10px var(--mono);padding:2px 8px;border-radius:999px;border:1px solid #bfe6d6;background:#f2fbf7;color:var(--ok);text-transform:uppercase;letter-spacing:.05em}
+/* the recomemo coupon pill */
+.cp{--c:#16a3a6;position:relative;display:flex;align-items:center;gap:12px;padding:10px 14px 10px 10px;border:1.5px dashed var(--ink);border-radius:999px;background:linear-gradient(115deg,color-mix(in srgb,var(--c) 22%,#fff),#fff 72%);min-width:0}
+.cp.bg{background:linear-gradient(90deg,rgba(255,255,255,.94),rgba(255,255,255,.8) 55%,rgba(255,255,255,.4)),var(--bgi) center/cover}
+.cp .dot{width:52px;height:52px;border-radius:50%;background:var(--c);color:#fff;display:grid;place-items:center;font:800 16px Inter,sans-serif;flex:none;overflow:hidden}
+.cp .dot.img{background:#fff;border:1px solid var(--line)}.cp .dot img{width:100%;height:100%;object-fit:contain}
+.cp .t{flex:1;min-width:0}
+.cp small{display:block;font:700 10.5px var(--mono);color:var(--mute);text-transform:uppercase;letter-spacing:.04em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cp b{display:block;font:800 17px/1.15 "Inter Tight",Inter,sans-serif}
+.cp i{display:block;font-style:normal;font-size:12px;color:var(--mute)}
+.cp em{display:block;font-style:normal;font:700 11px var(--mono);margin-top:2px}
+.cp .q{width:64px;flex:none;background:#fff;border-radius:10px;padding:4px;display:flex;flex-direction:column;align-items:center}
+.cp .q svg{width:100%;height:auto}.cp .q span{font:600 9px var(--mono)}
+.inbox{display:flex;flex-direction:column;gap:12px}
+.item{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;align-items:center}
+.item .meta{display:flex;flex-direction:column;align-items:flex-end;gap:6px;font:600 11px var(--mono);color:var(--mute);text-align:right}
+@media(max-width:600px){.item{grid-template-columns:minmax(0,1fr)}.item .meta{flex-direction:row;flex-wrap:wrap;align-items:center;justify-content:flex-start}.cp .q{width:52px}.cp .dot{width:42px;height:42px}}
+.bar2{display:flex;gap:6px;flex-wrap:wrap}
+.count{display:inline-flex;gap:4px;align-items:center;padding:2px 8px;border-radius:999px;background:#f3f4f7;color:var(--ink)}
+.count.full{background:#fdecea;color:var(--bad)}
+.filters{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}
+.filters button{border:1px solid var(--line);background:#fff;border-radius:999px;padding:4px 11px;font:600 12px Inter,sans-serif;cursor:pointer;color:var(--mute)}
+.filters button.on{border-color:var(--ink);color:var(--ink)}
+.imgrow{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:8px}
+.imgrow .th{width:34px;height:34px;border-radius:8px;border:1px solid var(--line);background:#f3f4f7 center/cover;flex:none}
+.imgrow input{display:none}.imgrow button.lnk{border:0;background:none;color:var(--mute);cursor:pointer;font-size:12px;text-decoration:underline}
+table.m{width:100%;border-collapse:collapse;font-size:13.5px}
+table.m th,table.m td{text-align:left;padding:8px 6px;border-bottom:1px solid var(--line);vertical-align:middle}
+table.m th{font:700 11px var(--mono);color:var(--mute);text-transform:uppercase;letter-spacing:.04em}
+.st{font:700 10.5px var(--mono);padding:2px 8px;border-radius:999px;text-transform:uppercase}
+.st.inv{background:#fff8e6;color:#7a4a00}.st.on{background:#f2fbf7;color:var(--ok)}
+.code{font:600 13px var(--mono);background:#f3f4f7;border-radius:8px;padding:8px 10px;word-break:break-all}
+.big{font:800 26px "Inter Tight",Inter,sans-serif;margin:0}
+.result{border-radius:14px;padding:14px;margin-top:12px;border:1.5px solid var(--line)}
+.result.ok{border-color:var(--ok);background:#f2fbf7}.result.no{border-color:var(--bad);background:#fdecea}
+video{width:100%;border-radius:12px;background:#000;margin-top:10px}
+.ledger{font-size:13px;max-height:280px;overflow:auto}
+.ledger div{display:flex;justify-content:space-between;gap:10px;padding:6px 0;border-bottom:1px solid var(--line)}
+.ledger span{font:600 11.5px var(--mono);color:var(--mute)}
+.hh{max-width:520px;margin:0 auto}
+.hh .cp{border-radius:28px;flex-wrap:wrap}
+.adbox{border:1.5px solid var(--ink);border-radius:14px;padding:12px;margin-top:8px;background:#fffdf6}
+.adbox h3{font:700 14px "Inter Tight",Inter,sans-serif;margin:0 0 4px}
+.places{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:4px 10px;margin-top:6px}
+.places label{display:flex;gap:6px;align-items:center;font-size:13px}
+.adtag{font:700 10px var(--mono);padding:2px 8px;border-radius:999px;background:#2a5bd7;color:#fff;text-transform:uppercase}
+.vs{font-size:12.5px;margin-top:4px}.vs s{color:var(--mute)}
+.hist{font:600 11px var(--mono);color:var(--mute);margin-top:6px}
+#sheetPrint{display:none}
+@media print{body>*:not(#sheetPrint){display:none!important}#sheetPrint{display:block;font:11pt Inter,Arial,sans-serif;color:#000}
+ #sheetPrint h1{font:800 20pt Arial,sans-serif;margin:0}#sheetPrint table{width:100%;border-collapse:collapse;margin-top:10pt}
+ #sheetPrint th,#sheetPrint td{border:1px solid #000;padding:5pt;text-align:left;vertical-align:top;font-size:9pt}#sheetPrint td{height:42pt}
+ @page{size:letter landscape;margin:.4in}}
+.road{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin-top:14px}
+.road div{background:#fff;border:1.5px solid var(--line);border-radius:14px;padding:12px;font-size:13px}
+.road b:first-child{display:block;font:700 14px "Inter Tight",Inter,sans-serif;margin-bottom:2px}
+</style>
+</head>
+<body>
+<div class="top">
+  <b>coupon.recomemo</b><span class="k">every coupon lives in a pill · co | co</span><span class="sp"></span>
+  <label class="who" id="whoL">Signed in as <select id="who" aria-label="Who is using the constructor"></select></label>
+  <a class="btn" href="../notepad/">Notepad builder</a>
+</div>
+
+<!-- what a household sees after scanning a QR code -->
+<div class="wrap" id="household" hidden>
+  <div class="hh">
+    <p class="pilltag" style="margin:0 0 10px">your coupon</p>
+    <div id="hhCard"></div>
+    <div class="card" style="margin-top:16px">
+      <h2 id="hhHow">Show this at the shop</h2>
+      <p class="hint" id="hhRule" style="margin-top:0"></p>
+      <p class="hint">The merchant scans the code to redeem it. The RCM ledger counts each use.</p>
+    </div>
+    <div class="card">
+      <h2>Keep it in your own recomemo</h2>
+      <p class="hint" style="margin-top:0">Build a free profile at recomemo and keep the coupons from your neighbourhood pads in one place, with the merchants you like and your own mall.</p>
+      <div class="bar"><a class="btn dark" href="../start/">Build my recomemo</a><a class="btn" href="./">What is coupon.recomemo?</a></div>
+    </div>
+  </div>
+</div>
+
+<div class="wrap" id="app">
+  <h1 id="hTitle">Every coupon lives in a pill.</h1>
+  <p class="lead" id="hLead">An agent signs up the merchants in their neighbourhood. Each merchant gets a recomemo constructor to make coupon pills, keep them private until they are used, put them on a notepad, and redeem them with a scan.</p>
+
+  <div class="tabs" role="tablist" aria-label="Sections">
+    <button type="button" data-tab="inbox" class="on">Inbox</button>
+    <button type="button" data-tab="make">Make a coupon</button>
+    <button type="button" data-tab="merchants" id="tabMer">Merchants</button>
+    <button type="button" data-tab="redeem">Redeem</button>
+  </div>
+
+  <!-- INBOX -->
+  <section data-pane="inbox">
+    <div class="grid">
+      <div class="card">
+        <h2>Coupon inbox <span class="pilltag" id="inCount"></span></h2>
+        <div class="filters" id="filters">
+          <button type="button" data-f="all" class="on">All</button>
+          <button type="button" data-f="pad">On a notepad</button>
+          <button type="button" data-f="private">Private</button>
+          <button type="button" data-f="used">Redeemed</button>
+          <button type="button" data-f="ad">Running as an ad</button>
+        </div>
+        <div class="inbox" id="inbox"></div>
+      </div>
+      <div>
+        <div class="card">
+          <h2>Where a pill can go</h2>
+          <div class="road" style="grid-template-columns:1fr">
+            <div><b>notepad.recomemo</b>One of the twelve spots on a neighbourhood pad. Every pill here shows up in the notepad builder on this device.</div>
+            <div><b>An ad across the network</b>Press <b>Make it an ad</b>: the online offer can be worth more than the printed one, and you can change it any time. Choose where it runs: recomemo, affiliates.recomemo, SharedPromoPage, Netrotown malls, admiraal.ca.</div>
+            <div><b>Printed is fixed, online keeps moving</b>Once a pad prints, its offer is set. The ad version can grow, run a weekend special, or end, and the ledger keeps every change.</div>
+          </div>
+        </div>
+        <div class="card">
+          <h2>This is a working prototype</h2>
+          <p class="hint" style="margin-top:0">Everything here is saved in this browser only. The shared RCM ledger, merchant logins and live QR redemption come with the recomemo backend. Sample pills are made up.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MAKE -->
+  <section data-pane="make" hidden>
+    <div class="grid">
+      <div class="card">
+        <h2 id="mkTitle">The constructor</h2>
+        <label class="f">Merchant<input id="cMer" placeholder="e.g. Corner Barber Shop"></label>
+        <label class="f">The offer<input id="cOff" maxlength="70" placeholder="e.g. $10 off a haircut" data-mic></label>
+        <label class="f">Details or disclaimer<input id="cDet" maxlength="90" placeholder="e.g. 123 Main St · restrictions may apply" data-mic></label>
+        <div class="row2">
+          <label class="f">Use<select id="cUse"><option value="once">Once</option><option value="twice">Up to twice</option><option value="again">Again and again</option></select></label>
+          <label class="f">Expires<input id="cExp" type="date"></label>
+        </div>
+        <label class="f">Colour<select id="cCol"><option value="#16a3a6">Teal</option><option value="#e9b44c">Gold</option><option value="#e0458f">Pink</option><option value="#2a5bd7">Blue</option><option value="#8cc63f">Lime</option><option value="#6b4fd8">Violet</option><option value="#f28c28">Orange</option><option value="#0b0b0d">Black</option></select></label>
+        <div class="imgrow"><span class="th" id="cLogoTh"></span><label class="btn sm">Logo<input type="file" id="cLogo" accept="image/*"></label><button type="button" class="lnk" data-clear="logo">remove</button>
+          <span class="th" id="cBgTh"></span><label class="btn sm">Background<input type="file" id="cBg" accept="image/*"></label><button type="button" class="lnk" data-clear="bg">remove</button></div>
+        <label class="ck" id="okL"><input type="checkbox" id="cOk"> The merchant has agreed to this offer.</label>
+        <div class="bar"><button class="btn dark" id="cSave" type="button">Save coupon pill</button><button class="btn" id="cCancel" type="button" hidden>Cancel</button><span class="msg" id="cMsg"></span></div>
+      </div>
+      <div class="card">
+        <h2>Preview</h2>
+        <div id="preview"></div>
+        <p class="hint">The pill stays private until it is placed on a notepad, an ad or a promo page.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- MERCHANTS -->
+  <section data-pane="merchants" hidden>
+    <div class="grid">
+      <div class="card">
+        <h2>Your merchant partners <span class="pilltag" id="merCount"></span></h2>
+        <div style="overflow-x:auto"><table class="m" id="merTable"></table></div>
+        <p class="hint">One agent, three to eleven merchants: with you in the twelfth spot, that&rsquo;s a full page of the notepad.</p>
+      </div>
+      <div class="card">
+        <h2>Sign up a merchant</h2>
+        <label class="f">Business name<input id="mName" placeholder="e.g. Corner Barber Shop"></label>
+        <label class="f">Owner or contact<input id="mWho" placeholder="Their name"></label>
+        <div class="row2">
+          <label class="f">Phone<input id="mPhone" inputmode="tel" placeholder="604-555-0100"></label>
+          <label class="f">Email<input id="mEmail" type="email" placeholder="owner@shop.ca"></label>
+        </div>
+        <label class="f">Address<input id="mAddr" placeholder="Street, city"></label>
+        <h3 style="font:700 14px 'Inter Tight',Inter,sans-serif;margin:14px 0 0">Their first coupon pill</h3>
+        <label class="f">Printed offer<input id="mOff" maxlength="70" placeholder="e.g. $10 off a haircut" data-mic></label>
+        <div class="row2">
+          <label class="f">Online offer (can be worth more)<input id="mOn" maxlength="70" placeholder="e.g. $15 off a haircut" data-mic></label>
+          <label class="f">Use<select id="mUse"><option value="once">Once</option><option value="twice">Up to twice</option><option value="again">Again and again</option></select></label>
+        </div>
+        <label class="ck"><input type="checkbox" id="mOk"> They agreed to join, to these offers, and to share notepad printing costs.</label>
+        <div class="bar"><button class="btn dark" id="mAdd" type="button">Sign them up</button><button class="btn" id="mPrint" type="button">Print a paper sign-up sheet</button><span class="msg" id="mMsg"></span></div>
+        <p class="hint">Going door to door? Print the sheet, collect sign-ups on paper, and enter them here later.</p>
+        <div id="invite" hidden>
+          <p class="hint">Send them this invitation. When merchant logins open, it gives them their own recomemo constructor.</p>
+          <div class="code" id="invLink"></div>
+          <div class="bar"><button class="btn sm" id="invCopy" type="button">Copy invitation</button></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- REDEEM -->
+  <section data-pane="redeem" hidden>
+    <div class="grid">
+      <div class="card">
+        <h2>Redeem a coupon</h2>
+        <p class="hint" style="margin-top:0">Scan the QR code on the notepad, or type the short code printed under it.</p>
+        <label class="f">Coupon code<input id="rCode" maxlength="40" placeholder="e.g. K7Q2MX" autocomplete="off" style="font-family:var(--mono);text-transform:uppercase"></label>
+        <div class="bar"><button class="btn dark" id="rGo" type="button">Check and redeem</button><button class="btn" id="rScan" type="button" hidden>Scan with camera</button></div>
+        <video id="rVid" playsinline muted hidden></video>
+        <div id="rOut"></div>
+      </div>
+      <div class="card">
+        <h2>RCM ledger <span class="pilltag">this device</span></h2>
+        <div class="ledger" id="ledger"></div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<div id="sheetPrint">
+  <h1>coupon.recomemo &middot; merchant sign-up</h1>
+  <p id="spOrg"></p>
+  <p>Join our neighbourhood notepad: one of twelve coupon spots, delivered door to door. Every merchant gets a recomemo constructor to make and edit their coupons online, where the offer can be worth more than the printed one and runs as an ad across the recomemo network. Printing and delivery costs are shared among the partners.</p>
+  <table><thead><tr><th style="width:15%">Business</th><th style="width:13%">Owner or contact</th><th style="width:15%">Phone and email</th><th style="width:17%">Printed offer</th><th style="width:17%">Online offer (can be more)</th><th style="width:8%">Use: once / twice / always</th><th style="width:15%">Signature and date</th></tr></thead>
+  <tbody><tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr></tbody></table>
+  <p style="font-size:8.5pt">By signing, the merchant agrees to honour the offers above until they expire or are changed online, and to share the agreed printing cost. coupon.recomemo by co|co &middot; conceptoasis.com</p>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.js"></script>
+<script>
+(function(){
+  // Coupon pills are shared with the notepad builder (same store), so a pill made here shows up there.
+  var PAD='coco_notepad_v2', KEY='coco_coupon_v1';
+  function load(k){ try{ return JSON.parse(localStorage.getItem(k)||'null'); }catch(e){ return null; } }
+  function store(k,v){ try{ localStorage.setItem(k,JSON.stringify(v)); return true; }catch(e){ return false; } }
+  function code(){ var a='ABCDEFGHJKLMNPQRSTUVWXYZ23456789', s=''; for(var i=0;i<6;i++) s+=a[Math.floor(Math.random()*a.length)]; return s; }
+  var pad=load(PAD)||{}, C=load(KEY)||{};
+  if(!pad.coupons) pad.coupons=[
+    {id:'s1',mer:'Your phone repair shop',off:'$50 towards computer or phone repair',det:'Sample. Any repair over $150',use:'once',exp:'',col:'#2a5bd7',code:code(),sample:true},
+    {id:'s2',mer:'Your corner barber',off:'$10 off a haircut',det:'Sample. One per visit',use:'twice',exp:'',col:'#e0458f',code:code(),sample:true},
+    {id:'s3',mer:'Your skate shop',off:'$2 off skate sharpening',det:'Sample. Every time you come in',use:'again',exp:'',col:'#16a3a6',code:code(),sample:true}];
+  C.merchants=C.merchants||[]; C.ledger=C.ledger||[]; C.who=C.who||'org';
+  function savePad(){ var cur=load(PAD)||{}; cur.coupons=pad.coupons; if(!store(PAD,cur)){ say('cMsg','This browser is out of room for pictures. Use smaller images.',true); return false; } return true; }
+  function save(){ store(KEY,C); }
+  var $=function(id){return document.getElementById(id)};
+  function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+  function ini(s){return String(s||'?').split(/\s+/).map(function(w){return w[0]||''}).join('').slice(0,2).toUpperCase()}
+  function limit(u){ return u==='once'?1:u==='twice'?2:Infinity; }
+  function useLabel(u){ return u==='once'?'Use once':u==='twice'?'Use up to twice':'Use again and again'; }
+  function say(id,t,bad){ var m=$(id); m.textContent=t; m.classList.toggle('bad',!!bad); }
+  function byCode(k){ k=String(k||'').trim().toUpperCase().replace(/.*\/R\//,'').replace(/[^A-Z0-9]/g,''); return pad.coupons.filter(function(c){return c.code===k})[0]; }
+  function uses(c){ return C.ledger.filter(function(l){return l.code===c.code}).length; }
+  function onPad(c){ var cur=load(PAD)||{}, sl=cur.slots||{}, hit=false; Object.keys(sl).forEach(function(k){ (sl[k]||[]).forEach(function(x){ if(x===c.id) hit=true; }); }); return hit; }
+  function link(c){ return 'https://coupon.recomemo.com/r/'+c.code; }
+  function qrSvg(t){ if(!window.qrcode) return '<svg viewBox="0 0 1 1"><rect width="1" height="1" fill="#eee"/></svg>'; var q=qrcode(0,'M'); q.addData(t); q.make(); var n=q.getModuleCount(), r='';
+    for(var y=0;y<n;y++) for(var x=0;x<n;x++) if(q.isDark(y,x)) r+='<rect x="'+x+'" y="'+y+'" width="1" height="1"/>';
+    return '<svg viewBox="0 0 '+n+' '+n+'" aria-hidden="true" shape-rendering="crispEdges">'+r+'</svg>'; }
+  function pill(c){
+    return '<div class="cp'+(c.bg?' bg':'')+'" style="--c:'+(c.col||'#16a3a6')+(c.bg?';--bgi:url('+c.bg+')':'')+'">'+
+      (c.logo?'<span class="dot img"><img src="'+c.logo+'" alt=""></span>':'<span class="dot">'+esc(ini(c.mer))+'</span>')+
+      '<span class="t"><small>'+esc(c.mer)+'</small><b>'+esc(c.off||'Your offer')+'</b>'+(c.det?'<i>'+esc(c.det)+'</i>':'')+'<em>'+esc(useLabel(c.use))+(c.exp?' · until '+esc(c.exp):'')+'</em></span>'+
+      '<span class="q">'+qrSvg(link(c))+'<span>'+esc(c.code)+'</span></span></div>';
+  }
+
+  // ---------- household view: coupon.recomemo.com/r/CODE, or ?r=CODE here ----------
+  var qs=new URLSearchParams(location.search), rc=qs.get('r')||(location.hash.match(/^#r=?([A-Za-z0-9]+)/)||[])[1];
+  if(rc){
+    $('app').hidden=true; $('whoL').hidden=true; $('household').hidden=false;
+    var hc=byCode(rc);
+    if(hc){ $('hhCard').innerHTML=pill(hc)+(hc.ad&&hc.ad.on&&hc.ad.off!==hc.off?'<p class="vs" style="margin-top:10px"><span class="adtag">online now</span> <b>'+esc(hc.ad.off)+'</b>: '+esc(hc.mer)+' raised this offer online.</p>':''); $('hhHow').textContent='Show this at '+hc.mer;
+      var left=limit(hc.use)-uses(hc), exp=hc.exp&&hc.exp<new Date().toISOString().slice(0,10);
+      $('hhRule').textContent=exp?'This coupon has expired.':(limit(hc.use)===Infinity?'Use it again and again.':(left>0?left+' use'+(left>1?'s':'')+' left.':'This coupon has been used.')); }
+    else { $('hhCard').innerHTML='<div class="card"><h2>We could not find that coupon</h2><p class="hint" style="margin-top:0">Coupon <b>'+esc(rc)+'</b> is not on this device yet. When coupon.recomemo opens to everyone, every pad&rsquo;s coupons will show up here.</p></div>'; $('hhHow').textContent='Coupons from your neighbourhood pad'; }
+    return;
+  }
+
+  // ---------- who is using the constructor ----------
+  function drawWho(){
+    $('who').innerHTML='<option value="org">Organizer (agent)</option>'+C.merchants.map(function(m){return '<option value="'+m.id+'">'+esc(m.name)+' (merchant)</option>'}).join('');
+    $('who').value=C.who; if($('who').value!==C.who){ C.who='org'; $('who').value='org'; }
+    var m=me();
+    $('tabMer').hidden=!!m;
+    $('hTitle').textContent=m?m.name+'’s coupons':'Every coupon lives in a pill.';
+    $('hLead').textContent=m?'This is your recomemo constructor. Make and edit your coupon pills, see where they are placed, and redeem them when customers bring them in.':'An agent signs up the merchants in their neighbourhood. Each merchant gets a recomemo constructor to make coupon pills, keep them private until they are used, put them on a notepad, and redeem them with a scan.';
+    $('cMer').readOnly=!!m; $('okL').hidden=!!m; if(m&&!editing) $('cMer').value=m.name;
+    if(m&&cur==='merchants') tab('inbox');
+  }
+  function me(){ return C.merchants.filter(function(m){return m.id===C.who})[0]||null; }
+  function mine(){ var m=me(); return pad.coupons.filter(function(c){ return !m||c.mer===m.name; }); }
+  $('who').onchange=function(){ C.who=this.value; save(); resetForm(); drawWho(); drawAll(); };
+
+  // ---------- tabs ----------
+  var cur='inbox';
+  function tab(t){ cur=t; [].forEach.call(document.querySelectorAll('[data-tab]'),function(b){ b.classList.toggle('on',b.dataset.tab===t); b.setAttribute('aria-selected',b.dataset.tab===t); });
+    [].forEach.call(document.querySelectorAll('[data-pane]'),function(p){ p.hidden=p.dataset.pane!==t; }); if(t!=='redeem') stopCam(); }
+  [].forEach.call(document.querySelectorAll('[data-tab]'),function(b){ b.onclick=function(){ tab(b.dataset.tab); }; });
+
+  // ---------- inbox ----------
+  var filt='all';
+  [].forEach.call(document.querySelectorAll('[data-f]'),function(b){ b.onclick=function(){ filt=b.dataset.f; [].forEach.call(document.querySelectorAll('[data-f]'),function(x){x.classList.toggle('on',x===b)}); drawInbox(); }; });
+  function drawInbox(){
+    var list=mine().filter(function(c){ var p=onPad(c), u=uses(c); return filt==='all'||(filt==='pad'&&p)||(filt==='private'&&!p)||(filt==='used'&&u>0)||(filt==='ad'&&c.ad&&c.ad.on); });
+    $('inCount').textContent=mine().length+' pill'+(mine().length===1?'':'s');
+    $('inbox').innerHTML=list.map(function(c){ var u=uses(c), L=limit(c.use), p=onPad(c);
+      var ad=c.ad&&c.ad.on;
+      return '<div class="item"><div>'+pill(c)+(ad?'<div class="vs"><span class="adtag">ad</span> Online now: <b>'+esc(c.ad.off||c.off)+'</b>'+(c.ad.off&&c.ad.off!==c.off?' · printed: <s>'+esc(c.off)+'</s>':'')+' · '+esc((c.ad.places||[]).join(', '))+'</div>':'')+'<div id="ad_'+c.id+'"></div></div><div class="meta"><span>'+(c.sample?'sample · ':'')+(p?'on a notepad':'private')+'</span>'+
+        '<span class="count'+(u>=L?' full':'')+'">'+u+(L===Infinity?'':' / '+L)+' redeemed</span>'+
+        '<span class="bar2"><button class="btn sm" type="button" data-ad="'+c.id+'">'+(ad?'Change the ad':'Make it an ad')+'</button><button class="btn sm" type="button" data-edit="'+c.id+'">Edit</button><a class="btn sm" href="?r='+esc(c.code)+'" target="_blank" rel="noopener">Customer view</a><button class="btn sm" type="button" data-del="'+c.id+'">Delete</button></span></div></div>';
+    }).join('')||'<p class="hint">No pills here yet. Make one under <b>Make a coupon</b>.</p>';
+    [].forEach.call($('inbox').querySelectorAll('[data-edit]'),function(b){ b.onclick=function(){ edit(b.dataset.edit); }; });
+    [].forEach.call($('inbox').querySelectorAll('[data-ad]'),function(b){ b.onclick=function(){ adEditor(b.dataset.ad); }; });
+    [].forEach.call($('inbox').querySelectorAll('[data-del]'),function(b){ b.onclick=function(){
+      if(b.dataset.armed!=='1'){ b.dataset.armed='1'; b.textContent='Delete for good?'; return; }
+      var id=b.dataset.del; pad.coupons=pad.coupons.filter(function(c){return c.id!==id});
+      var curp=load(PAD)||{}; Object.keys(curp.slots||{}).forEach(function(k){ curp.slots[k]=(curp.slots[k]||[]).map(function(x){return x===id?null:x}); }); curp.coupons=pad.coupons; store(PAD,curp);
+      drawAll(); }; });
+  }
+
+  // ---------- affiliate ad: the online version, whose value can change ----------
+  var PLACES=['recomemo profiles','affiliates.recomemo','SharedPromoPage','Netrotown malls','admiraal.ca','conceptoasis.com'];
+  function adEditor(id){
+    var c=pad.coupons.filter(function(x){return x.id===id})[0], box=$('ad_'+id); if(!c||!box) return;
+    if(box.innerHTML){ box.innerHTML=''; return; }
+    var a=c.ad||{on:false,off:c.off,places:['recomemo profiles','affiliates.recomemo'],hist:[]};
+    box.innerHTML='<div class="adbox"><h3>The ad version</h3><p class="hint" style="margin-top:0">Printed: <b>'+esc(c.off)+'</b>. The online offer can be worth more, and you can change it any time.</p>'+
+      '<label class="f">Online offer<input data-k="off" maxlength="70" value="'+esc(a.off||c.off)+'"></label>'+
+      '<div class="places">'+PLACES.map(function(pl){ return '<label><input type="checkbox" data-pl="'+esc(pl)+'"'+((a.places||[]).indexOf(pl)>=0?' checked':'')+'> '+esc(pl)+'</label>'; }).join('')+'</div>'+
+      '<div class="bar"><button class="btn dark sm" type="button" data-go>'+(a.on?'Save the ad':'Run the ad')+'</button>'+(a.on?'<button class="btn sm" type="button" data-stop>Stop the ad</button>':'')+'</div>'+
+      ((a.hist||[]).length?'<div class="hist">'+a.hist.slice(0,5).map(function(h){return esc(new Date(h.at).toLocaleDateString())+' · '+esc(h.off)}).join('<br>')+'</div>':'')+'</div>';
+    box.querySelector('[data-go]').onclick=function(){
+      var off=box.querySelector('[data-k=off]').value.trim()||c.off, pl=[].map.call(box.querySelectorAll('[data-pl]:checked'),function(x){return x.dataset.pl});
+      if(!pl.length){ alertIn(box,'Choose at least one place for it to run.'); return; }
+      var h=(a.hist||[]); if(!a.on||a.off!==off) h.unshift({at:new Date().toISOString(),off:off});
+      c.ad={on:true,off:off,places:pl,hist:h.slice(0,50)}; if(savePad()) drawInbox(); };
+    var st=box.querySelector('[data-stop]'); if(st) st.onclick=function(){ c.ad.on=false; c.ad.hist.unshift({at:new Date().toISOString(),off:'stopped'}); if(savePad()) drawInbox(); };
+  }
+  function alertIn(box,t){ var m=box.querySelector('.msg'); if(!m){ m=document.createElement('p'); m.className='msg bad'; box.firstChild.appendChild(m); } m.textContent=t; }
+
+  // ---------- constructor ----------
+  var editing=null, draft={logo:'',bg:''};
+  function shrink(file,max,type){ return new Promise(function(ok,no){ var fr=new FileReader(); fr.onload=function(){ var im=new Image(); im.onload=function(){
+      var k=Math.min(1,max/Math.max(im.width,im.height)), cv=document.createElement('canvas'); cv.width=Math.round(im.width*k); cv.height=Math.round(im.height*k);
+      cv.getContext('2d').drawImage(im,0,0,cv.width,cv.height); ok(cv.toDataURL(type,.8)); }; im.onerror=no; im.src=fr.result; }; fr.onerror=no; fr.readAsDataURL(file); }); }
+  function thumbs(){ $('cLogoTh').style.backgroundImage=draft.logo?'url('+draft.logo+')':''; $('cBgTh').style.backgroundImage=draft.bg?'url('+draft.bg+')':''; }
+  [['cLogo','logo',300,'image/png'],['cBg','bg',1000,'image/jpeg']].forEach(function(p){ $(p[0]).onchange=function(){ var f=this.files[0]; this.value=''; if(!f) return;
+    shrink(f,p[2],p[3]).then(function(u){ draft[p[1]]=u; thumbs(); preview(); }).catch(function(){ say('cMsg','That picture could not be read. Try a PNG or JPG.',true); }); }; });
+  [].forEach.call(document.querySelectorAll('[data-clear]'),function(b){ b.onclick=function(){ draft[b.dataset.clear]=''; thumbs(); preview(); }; });
+  function formVal(){ return {mer:$('cMer').value.trim(),off:$('cOff').value.trim(),det:$('cDet').value.trim(),use:$('cUse').value,exp:$('cExp').value,col:$('cCol').value,logo:draft.logo,bg:draft.bg}; }
+  function preview(){ var v=formVal(), c=editing&&pad.coupons.filter(function(x){return x.id===editing})[0]; v.code=c?c.code:'NEWPIL'; if(!v.mer) v.mer='Merchant'; $('preview').innerHTML=pill(v); }
+  ['cMer','cOff','cDet','cUse','cExp','cCol'].forEach(function(id){ $(id).addEventListener('input',preview); });
+  function resetForm(){ editing=null; draft={logo:'',bg:''}; ['cOff','cDet','cExp'].forEach(function(id){$(id).value='';}); if(!me()) $('cMer').value=''; $('cOk').checked=false;
+    $('cCancel').hidden=true; $('mkTitle').textContent='The constructor'; $('cSave').textContent='Save coupon pill'; thumbs(); preview(); }
+  function edit(id){ var c=pad.coupons.filter(function(x){return x.id===id})[0]; if(!c) return; editing=id; draft={logo:c.logo||'',bg:c.bg||''};
+    $('cMer').value=c.mer; $('cOff').value=c.off; $('cDet').value=c.det||''; $('cUse').value=c.use; $('cExp').value=c.exp||''; $('cCol').value=c.col||'#16a3a6'; $('cOk').checked=true;
+    $('cCancel').hidden=false; $('mkTitle').textContent='Edit: '+c.off; $('cSave').textContent='Save changes'; thumbs(); preview(); say('cMsg',''); tab('make'); }
+  $('cCancel').onclick=function(){ resetForm(); say('cMsg',''); };
+  $('cSave').onclick=function(){
+    var v=formVal();
+    if(!v.mer||!v.off){ say('cMsg','Add the merchant and the offer.',true); return; }
+    if(!me()&&!$('cOk').checked){ say('cMsg','Tick the box once the merchant has agreed.',true); return; }
+    var c=editing&&pad.coupons.filter(function(x){return x.id===editing})[0];
+    if(c){ Object.assign(c,v); delete c.sample; } else pad.coupons.unshift(Object.assign({id:'c'+Date.now(),code:code()},v));
+    if(!savePad()) return;
+    var was=!!c; resetForm(); say('cMsg',was?'Saved. Every notepad page with this pill is updated.':'Saved to the inbox. It is private until you place it.'); drawAll();
+  };
+
+  // ---------- merchants ----------
+  function drawMer(){
+    $('merCount').textContent=C.merchants.length+' of 11';
+    $('merTable').innerHTML='<thead><tr><th>Merchant</th><th>Contact</th><th>Pills</th><th>Status</th><th></th></tr></thead><tbody>'+
+      (C.merchants.map(function(m){ var n=pad.coupons.filter(function(c){return c.mer===m.name}).length;
+        return '<tr><td><b>'+esc(m.name)+'</b><br><span class="hint">'+esc(m.addr||'')+'</span></td><td>'+esc(m.who||'')+'<br><span class="hint">'+esc([m.phone,m.email].filter(Boolean).join(' · '))+'</span></td><td>'+n+'</td><td><span class="st inv">invited</span></td><td><button class="btn sm" type="button" data-as="'+m.id+'">Open their constructor</button></td></tr>'; }).join('')||'<tr><td colspan="5" class="hint">No merchants yet. Sign one up on the right.</td></tr>')+'</tbody>';
+    [].forEach.call($('merTable').querySelectorAll('[data-as]'),function(b){ b.onclick=function(){ C.who=b.dataset.as; save(); resetForm(); drawWho(); drawAll(); tab('make'); }; });
+  }
+  $('mAdd').onclick=function(){
+    var name=$('mName').value.trim(); if(!name){ say('mMsg','Add the business name.',true); return; }
+    if(!$('mOk').checked){ say('mMsg','Tick the box once they have agreed.',true); return; }
+    if(C.merchants.length>=11){ say('mMsg','Eleven merchants fill a pad. Start a second group of 12 for more.',true); return; }
+    var m={id:'m'+Date.now(),name:name,who:$('mWho').value.trim(),phone:$('mPhone').value.trim(),email:$('mEmail').value.trim(),addr:$('mAddr').value.trim(),invite:code()+code()};
+    C.merchants.push(m); save();
+    var off=$('mOff').value.trim(), on=$('mOn').value.trim();
+    if(off){ var nc={id:'c'+Date.now(),code:code(),mer:name,off:off,det:m.addr,use:$('mUse').value,exp:'',col:'#16a3a6',logo:'',bg:''};
+      if(on&&on!==off) nc.ad={on:true,off:on,places:['recomemo profiles','affiliates.recomemo'],hist:[{at:new Date().toISOString(),off:on}]};
+      pad.coupons.unshift(nc); savePad(); }
+    ['mName','mWho','mPhone','mEmail','mAddr','mOff','mOn'].forEach(function(id){$(id).value='';}); $('mOk').checked=false;
+    $('invLink').textContent='You’re invited to coupon.recomemo: make and edit your own coupon pills for our neighbourhood notepad. https://coupon.recomemo.com/join/'+m.invite;
+    $('invite').hidden=false; say('mMsg',name+' is signed up'+(off?', with their first coupon pill in the inbox.':'.')); drawWho(); drawAll();
+  };
+  $('invCopy').onclick=function(){ var t=$('invLink').textContent, b=this;
+    var done=function(){ b.textContent='Copied'; setTimeout(function(){ b.textContent='Copy invitation'; },1500); };
+    try{ navigator.clipboard.writeText(t).then(done,function(){ sel(); }); }catch(e){ sel(); }
+    function sel(){ var r=document.createRange(); r.selectNodeContents($('invLink')); var s=getSelection(); s.removeAllRanges(); s.addRange(r); b.textContent='Selected: press copy'; } };
+
+  $('mPrint').onclick=function(){ var o=(load(PAD)||{}).org||{}; var who=[o.name,o.brok,o.phone].filter(Boolean).join(' · '); $('spOrg').textContent='Organizer: '+(who||'______________________________');
+    window.print(); };
+
+  // ---------- redeem ----------
+  function redeem(k){
+    var c=byCode(k), out=$('rOut'), m=me();
+    if(!c){ out.innerHTML='<div class="result no"><p class="big">Not found</p><p class="hint">No coupon with code '+esc(String(k).toUpperCase())+' on this device.</p></div>'; return; }
+    if(m&&c.mer!==m.name){ out.innerHTML='<div class="result no"><p class="big">Not your coupon</p><p class="hint">This one belongs to '+esc(c.mer)+'.</p></div>'+pill(c); return; }
+    var today=new Date().toISOString().slice(0,10);
+    if(c.exp&&c.exp<today){ out.innerHTML='<div class="result no"><p class="big">Expired</p><p class="hint">It ran until '+esc(c.exp)+'.</p></div>'+pill(c); return; }
+    var u=uses(c), L=limit(c.use);
+    if(u>=L){ out.innerHTML='<div class="result no"><p class="big">Already used</p><p class="hint">'+u+' of '+L+' uses are on the ledger.</p></div>'+pill(c); return; }
+    C.ledger.unshift({code:c.code,off:c.off,mer:c.mer,at:new Date().toISOString(),by:m?m.name:'Organizer'}); save();
+    out.innerHTML='<div class="result ok"><p class="big">Redeemed</p><p class="hint">'+esc(c.ad&&c.ad.on?c.ad.off+' (online offer)':c.off)+' · use '+(u+1)+(L===Infinity?'':' of '+L)+'. Recorded on the ledger.</p></div>'+pill(c);
+    $('rCode').value=''; drawLedger(); drawInbox();
+  }
+  $('rGo').onclick=function(){ var k=$('rCode').value.trim(); if(k) redeem(k); };
+  $('rCode').addEventListener('keydown',function(e){ if(e.key==='Enter'){ e.preventDefault(); $('rGo').click(); } });
+  var stream=null, scanning=false;
+  if('BarcodeDetector' in window&&navigator.mediaDevices) $('rScan').hidden=false;
+  function stopCam(){ scanning=false; if(stream){ stream.getTracks().forEach(function(t){t.stop()}); stream=null; } $('rVid').hidden=true; $('rScan').textContent='Scan with camera'; }
+  $('rScan').onclick=async function(){
+    if(stream){ stopCam(); return; }
+    try{ stream=await navigator.mediaDevices.getUserMedia({video:{facingMode:'environment'}}); }catch(e){ $('rOut').innerHTML='<div class="result no"><p class="hint">The camera did not open. Type the code instead.</p></div>'; return; }
+    var v=$('rVid'); v.srcObject=stream; v.hidden=false; await v.play(); this.textContent='Stop camera'; scanning=true;
+    var det=new BarcodeDetector({formats:['qr_code']});
+    (async function loop(){ if(!scanning) return; try{ var r=await det.detect(v); if(r[0]){ var val=r[0].rawValue; stopCam(); redeem(val); return; } }catch(e){} requestAnimationFrame(loop); })();
+  };
+  function drawLedger(){
+    var m=me(), rows=C.ledger.filter(function(l){ return !m||l.mer===m.name; });
+    $('ledger').innerHTML=rows.map(function(l){ return '<div><b>'+esc(l.off)+'<br><span>'+esc(l.mer)+' · '+esc(l.code)+'</span></b><span>'+new Date(l.at).toLocaleString()+'<br>'+esc(l.by)+'</span></div>'; }).join('')||'<p class="hint">Nothing redeemed yet. Try a code from the inbox.</p>';
+  }
+
+  function drawAll(){ drawInbox(); drawMer(); drawLedger(); preview(); }
+  savePad(); drawWho(); drawAll();
+})();
+</script>
+<script src="../assets/js/coco-mic.js"></script>
+</body>
+</html>
