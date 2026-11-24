@@ -131,6 +131,15 @@ body{background:var(--bg);color:var(--txt)}
 .note{font-size:12px;color:var(--txt2);margin-top:10px;line-height:1.5}
 .hire .ck{display:flex;gap:8px;align-items:flex-start;font-size:13.5px;color:#d7deef;padding:5px 0}
 .hire .ck input{accent-color:#16a3a6;width:16px;height:16px;margin-top:2px}
+.chat{list-style:none;margin:0;padding:0;display:grid;gap:8px;max-height:300px;overflow:auto;padding-right:4px}
+.chat li{display:flex;gap:10px;align-items:flex-start}
+.chat .ca{flex:none;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:#fff center/cover;color:#0f1733;font:700 11px Inter,sans-serif}
+.chat .cb{min-width:0;padding:8px 11px;border-radius:4px 14px 14px 14px;background:var(--field);border:1px solid #1f2b50;font-size:13.5px;line-height:1.45}
+.chat .cb small{display:block;font:600 10.5px var(--mono);color:var(--txt2)}
+.chat li.xo .ca{background:linear-gradient(135deg,#2a5bd7,#16a3a6);color:#fff}
+.chat li.xo .cb{border-color:#2ec4c6;background:#0f1f33}
+.chat li.mine{flex-direction:row-reverse}
+.chat li.mine .cb{border-radius:14px 4px 14px 14px;background:#163a43;border-color:#1e5560}
 footer{background:#070b18}
 </style>
 </head>
@@ -152,6 +161,7 @@ footer{background:#070b18}
     <small>eXecutive Officer AI &middot; strataverse.ai 1.4</small>
     <b id="xoName">xo-ai &middot; your board</b>
     <ul>
+      <li>Calls the meeting to order, with good board manners</li>
       <li>Takes the minutes, in Robert&rsquo;s Rules order</li>
       <li>Puts each decision in play, records the vote, files it</li>
       <li>Runs the to-do list, with owners and dates</li>
@@ -179,6 +189,14 @@ footer{background:#070b18}
       </div>
       <div class="feathers" aria-hidden="true"></div>
       <p class="note">Tap any seat: sign in right at the table, or open that director&rsquo;s recomemo and leave them a message. Executive positions: President, President-elect, Vice President, Past President, then Secretary, Treasurer and directors. The dealer sits at the table edge.</p>
+    </div>
+
+    <div class="panel chatp" style="margin-top:18px">
+      <div class="ctl" style="margin-bottom:8px"><div><h2>Board room chat</h2><span class="muted">Everyone at the table, plus xo-ai. Chat is not part of the minutes unless xo-ai is asked to add it.</span></div>
+        <button class="btn btn-sv btn-sm" id="xoCall" type="button">xo-ai, call the meeting to order</button></div>
+      <ul class="chat" id="chat"></ul>
+      <div class="say"><input id="chatIn" placeholder="Message the board"><button class="btn btn-sv btn-sm" id="chatSend" type="button">Send</button></div>
+      <div class="rr" style="margin-top:8px"><button class="btn btn-ghost btn-sm" data-hand="1" type="button">&#9995; Raise hand</button><button class="btn btn-ghost btn-sm" id="chatToMin" type="button">Add last message to the minutes</button></div>
     </div>
 
     <div class="panel" style="margin-top:18px">
@@ -282,7 +300,7 @@ footer{background:#070b18}
   var EXEC=['President','President-elect','Vice President','Past President','Secretary','Treasurer'];
   var POSC={'President':'#f28c28','President-elect':'#e9b44c','Vice President':'#2a5bd7','Past President':'#6b4fd8','Secretary':'#16a3a6','Treasurer':'#8cc63f','Director':'#e0458f'};
   var HIRE=['Taking the minutes','Arranging Zoom meetings','The to-do list','Decisions and votes','Posting minutes to our strata portal','Strategic planning sessions','Answering routine owner questions'];
-  var S={style:'sketch',seats:8,two:false,people:{},dealer:{name:'',org:'',bg:'',av:''},me:-1,minutes:[],todo:[],dec:{pend:[],play:null,done:[]}};
+  var S={style:'sketch',seats:8,two:false,people:{},dealer:{name:'',org:'',bg:'',av:''},me:-1,minutes:[],todo:[],chat:[],dec:{pend:[],play:null,done:[]}};
 
   function strata(){return ($('strata').value||'').trim()}
   function positions(n){var arr=[];if(S.two){arr.push('President','President');n-=2;EXEC.slice(1).forEach(function(p){if(n>0){arr.push(p);n--}})}else{EXEC.forEach(function(p){if(n>0){arr.push(p);n--}})}while(n-->0)arr.push('Director');return arr}
@@ -344,7 +362,7 @@ footer{background:#070b18}
         +'<button type="button" class="btn btn-sv btn-sm" id="sGo">Sign in and take my seat</button><div class="note">We use profile.recomemo.com to help verify identity and key details. Signing in automatically creates a private recomemo account you can use to sign in and authenticate. Please type clearly so details are understood quickly.</div><div class="note" id="sErr"></div></div>';
       $('sGo').onclick=function(){var n=$('sN').value.trim(),e=$('sE').value.trim();if(!n){$('sErr').textContent='Please add your full name.';return}if(!/^\S+@\S+\.\S+$/.test(e)){$('sErr').textContent='Please add your email.';return}
         S.people[i]={name:n,email:e,unit:$('sU').value.trim(),pos:p,msgs:[],bg:'',av:''};S.me=i;save();drawRoom();drawOwners();addMin(n+' signed in and took the '+p+' seat.');openSeat(i,p)};
-      setTimeout(function(){$('sN').focus()},50);
+      setTimeout(function(){var f=$('sN');if(f)f.focus()},50);
     } else {
       var msgs=(person.msgs||[]).map(function(m){return '<li><small>'+esc(m.from)+' · '+esc(m.t)+'</small>'+esc(m.text)+'</li>'}).join('');
       c.innerHTML=topBlock(person.bg,person.av,initials(person.name))+'<div class="bd"><div class="url">profile.recomemo.com/'+esc(slug(person.name))+'</div><h4>'+esc(person.name)+'</h4><div class="pos">'+esc(p)+(S.two&&i===0?' · two votes':'')+(person.unit?' · unit '+esc(person.unit):'')+'</div>'
@@ -403,7 +421,7 @@ footer{background:#070b18}
     var el=$('minutes');el.scrollTop=el.scrollHeight;
   }
   [].forEach.call(document.querySelectorAll('[data-act]'),function(b){b.onclick=function(){var a=b.getAttribute('data-act');
-    if(a==='call')addMin('Meeting called to order'+(strata()?' for '+strata():'')+'. Quorum confirmed by the chair.');
+    if(a==='call'){$('xoCall').click();return}
     if(a==='adjourn')addMin('Meeting adjourned.')}});
   function say(){var t=($('say').value||'').trim();if(!t)return;addMin(who()+': '+t);$('say').value=''}
   $('sayBtn').onclick=say;$('say').onkeydown=function(e){if(e.key==='Enter'){e.preventDefault();say()}};
@@ -426,6 +444,30 @@ footer{background:#070b18}
     var body='I would like to hire xo-ai for:\n- '+(jobs.join('\n- ')||'(not chosen yet)')+'\n\nName: '+n+'\nEmail: '+em+'\nBoard: '+($('hBoard').value.trim()||strata()||'-');
     location.href='mailto:'+TO+'?subject='+encodeURIComponent('Hire xo-ai: '+($('hBoard').value.trim()||strata()||n))+'&body='+encodeURIComponent(body);
     $('hNote').textContent='Thank you! Your email is ready to send. We’ll reply with next steps.'});
+  // ---- board room chat, with xo-ai's board manners ----
+  var MANNERS=['Please address your comments through the chair.','One speaker at a time; raise your hand to be recognized.','Keep discussion to the motion on the table.','Declare any conflict of interest before discussion.','Keep it courteous: debate ideas, not people.','Decisions are made by motion and vote, not in chat.'];
+  function chatAdd(from,text,kind){S.chat.push({from:from,text:text,kind:kind||'',t:stamp(),av:(kind==='mine'&&S.me>-1&&S.people[S.me])?S.people[S.me].av:''});if(S.chat.length>200)S.chat.shift();drawChat();save()}
+  function drawChat(){
+    $('chat').innerHTML=S.chat.length?S.chat.map(function(m){var ini=m.kind==='xo'?'xo':initials(m.from)||'?';return '<li class="'+m.kind+'"><span class="ca"'+(m.av?' style="background-image:url('+m.av+');color:transparent"':'')+'>'+esc(ini)+'</span><span class="cb"><small>'+esc(m.from)+' · '+esc(m.t)+'</small>'+esc(m.text)+'</span></li>'}).join(''):'<li class="xo"><span class="ca">xo</span><span class="cb"><small>xo-ai</small>Welcome to the board room'+(strata()?' of '+esc(strata()):'')+'. When everyone is seated, ask me to call the meeting to order.</span></li>';
+    var el=$('chat');el.scrollTop=el.scrollHeight;
+  }
+  function seatedCount(){var c=Object.keys(S.people).length;if(S.two&&S.people[0])c+=0;return c+(S.dealer.name?1:0)}
+  $('xoCall').onclick=function(){
+    var n=positions(S.seats).length+(S.two?-1:0)+1, here=seatedCount(), q=Math.floor(n/2)+1;
+    var t=new Date().toLocaleTimeString('en-CA',{hour:'numeric',minute:'2-digit'});
+    chatAdd('xo-ai','Good evening, everyone. This meeting'+(strata()?' of '+strata():'')+' is called to order at '+t.replace(/\.$/,'')+'. '+here+' of '+n+' members are present'+(here>=q?', so we have quorum.':'; quorum is '+q+', so we can discuss but not vote yet.')+' A few board manners: '+MANNERS.slice(0,3).join(' '),'xo');
+    addMin('xo-ai called the meeting to order at '+t+'. Present: '+here+' of '+n+(here>=q?'; quorum confirmed.':'; quorum not yet reached.'));
+  };
+  function chatSend(){var t=($('chatIn').value||'').trim();if(!t)return;var me=S.me>-1&&S.people[S.me]?S.people[S.me].name:'Guest';chatAdd(me,t,'mine');$('chatIn').value='';
+    // xo-ai's gentle board-manners nudges
+    if(/\b(i move|motion|move that)\b/i.test(t))setTimeout(function(){chatAdd('xo-ai','To make that a formal motion, add it under Decisions and put it in play. I will record the mover, the seconder and the vote.','xo')},500);
+    else if(/\b(vote|voting)\b/i.test(t)&&!S.dec.play)setTimeout(function(){chatAdd('xo-ai','There is no motion on the table yet. '+MANNERS[5],'xo')},500);
+    else if(/\b(stupid|idiot|shut up)\b/i.test(t))setTimeout(function(){chatAdd('xo-ai',MANNERS[4],'xo')},500);
+  }
+  $('chatSend').onclick=chatSend;$('chatIn').onkeydown=function(e){if(e.key==='Enter'){e.preventDefault();chatSend()}};
+  document.querySelector('[data-hand]').onclick=function(){var me=S.me>-1&&S.people[S.me]?S.people[S.me].name:'Guest';chatAdd(me,'\u270b raised a hand to speak','mine');setTimeout(function(){chatAdd('xo-ai','Noted, '+me.split(' ')[0]+'. The chair will recognize you next.','xo')},400)};
+  $('chatToMin').onclick=function(){var m=S.chat.filter(function(x){return x.kind!=='xo'}).slice(-1)[0];if(!m)return;addMin(m.from+' (from chat): '+m.text);chatAdd('xo-ai','Added to the minutes.','xo')};
+
   // ---- tabs, controls ----
   function showPane(p){[].forEach.call(document.querySelectorAll('#tabs2 button'),function(b){b.classList.toggle('on',b.getAttribute('data-p')===p)});[].forEach.call(document.querySelectorAll('.pane'),function(x){x.classList.toggle('on',x.id==='p-'+p)})}
   [].forEach.call(document.querySelectorAll('#tabs2 button'),function(b){b.onclick=function(){showPane(b.getAttribute('data-p'))}});
@@ -435,7 +477,7 @@ footer{background:#070b18}
   $('joinBtn').onclick=function(){$('room').scrollIntoView({behavior:'smooth'});var pos=positions(S.seats);for(var i=0;i<pos.length;i++){if(S.two&&i===1)continue;if(!S.people[i]){var k=i;setTimeout(function(){openSeat(k,pos[k])},450);return}}};
   function save(){try{localStorage.setItem('coco_sv2',JSON.stringify({S:S,strata:$('strata').value}))}catch(x){}}
   function restore(){try{var o=JSON.parse(localStorage.getItem('coco_sv2')||'null');if(!o)return;for(var k in o.S)S[k]=o.S[k];$('strata').value=o.strata||'';$('seats').value=String(S.seats);$('twoVotes').checked=!!S.two}catch(x){}}
-  restore();$('strata').oninput();drawStyles();drawRoom();drawOwners();drawMin();drawTodo();drawDec();
+  restore();if(!S.chat)S.chat=[];$('strata').oninput();drawStyles();drawRoom();drawOwners();drawMin();drawTodo();drawDec();drawChat();
 })();
 </script>
 </body>
