@@ -283,6 +283,51 @@ footer{background:#0b0b0d}
 .watch li{border-color:#f3c9a8;background:#fff8f2}
 .watch li.ok{border-color:#bfe6d6;background:#f2fbf7}
 .trep{font:14px/1.6 Georgia,serif;color:#0b0b0d;padding:10px 12px;border:1px solid #dfe3ea;border-radius:10px;background:#fcfcfc}
+
+/* members around the table as recomemo pill profiles */
+.seat.pill{width:auto;display:flex;align-items:center;gap:6px;padding:3px 10px 3px 3px;border:1.5px solid var(--c,#0b0b0d);border-radius:999px;background:#fff;box-shadow:3px 3px 0 #0b0b0d;max-width:150px;text-align:left}
+.seat.pill .av{width:30px;height:30px;border-width:0;box-shadow:none;margin:0;flex:none;background-color:var(--c,#0b0b0d);color:#fff;font-size:11px}
+.seat.pill .av.empty{background:#fff;color:#0b0b0d;border:1.5px dashed #0b0b0d}
+.seat.pill .pt{display:block;min-width:0}
+.seat.pill .pt b{display:block;font:650 12px "Inter Tight",Inter,sans-serif;color:#0b0b0d;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.seat.pill .pt small{display:block;font:600 9px var(--mono);color:#525b6b;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.seat.pill.open{border-style:dashed;box-shadow:none;background:rgba(255,255,255,.85)}
+.seat.pill:hover{transform:translate(-50%,-50%) scale(1.04)}
+.seat.pill:hover .av{transform:none}
+.seat.pill.me{box-shadow:0 0 0 3px rgba(22,163,166,.45),3px 3px 0 #0b0b0d}
+.seat.pill .ai{top:-7px;left:auto;right:-4px}
+.seat.pill .dot{top:-4px;right:-4px}
+.room.dense .seat.pill{max-width:128px;padding:2px 8px 2px 2px}.room.dense .seat.pill .av{width:26px;height:26px}.room.dense .seat.pill .pt b{font-size:11px}
+@media(max-width:620px){.seat.pill{max-width:88px;padding:2px 6px 2px 2px;gap:4px}.seat.pill .av{width:22px;height:22px;font-size:9px}.seat.pill .pt b{font-size:9.5px}.seat.pill .pt small{font-size:7.5px}}
+/* the ledger */
+.ledgerP{padding:14px}
+.lg-top{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.lg-top h2{margin:0;flex:1}
+.lg-now{display:flex;align-items:center;gap:6px;margin:8px 0;padding:6px 8px;border:2px solid #0b0b0d;border-radius:10px;background:#fffbe8;font:600 12.5px Inter,sans-serif}
+.lg-now b{flex:1;min-width:0}
+.lg-now button{padding:3px 9px;border-radius:999px;border:1.5px solid #0b0b0d;background:#fff;font:600 11px Inter,sans-serif;cursor:pointer}
+.lg-smp{display:flex;align-items:center;gap:8px;padding:6px 8px;border:1px dashed #a05a00;border-radius:8px;background:#fff8ee;font-size:11.5px;color:#7a4a00}
+.lg-smp button{margin-left:auto;border:1px solid #a05a00;background:#fff;border-radius:999px;font:600 10.5px Inter,sans-serif;padding:2px 8px;cursor:pointer;color:#7a4a00}
+.ledger{list-style:none;margin:8px 0 0;padding:0 2px 0 0;max-height:540px;overflow:auto;border-left:2px solid #0b0b0d}
+.ledger .lh{display:flex;align-items:center;gap:6px;padding:6px 0 4px 10px;font:700 11px var(--mono);letter-spacing:.04em;text-transform:uppercase;color:#0b0b0d;position:relative}
+.ledger .lh:before{content:"";position:absolute;left:-6px;top:9px;width:10px;height:10px;border-radius:50%;background:#fff;border:2px solid #0b0b0d}
+.ledger .lh.cur:before{background:#16a3a6}
+.ledger .lh.dim{color:#9aa1ae}
+.ledger .lh em{font-style:normal;padding:1px 6px;border-radius:999px;background:#16a3a6;color:#fff;font-size:9px}
+.ledger .le{padding:6px 6px 8px 12px;border-bottom:1px dashed #e1e4ea}
+.ledger .le p{margin:4px 0 2px;font-size:13.5px;color:#0b0b0d;line-height:1.45}
+.ledger .le small{font:500 10px var(--mono);color:#8a92a3}
+.ledger .le.smp{opacity:.78}
+.sig{display:inline-flex;align-items:center;gap:5px;padding:1px 8px 1px 1px;border:1.2px solid #0b0b0d;border-radius:999px;font:600 11px Inter,sans-serif;color:#0b0b0d;background:#fff}
+.sig .sav{width:18px;height:18px;border-radius:50%;display:grid;place-items:center;background:#0b0b0d center/cover;color:#fff;font:700 8px Inter,sans-serif}
+.sig.ai .sav{background:linear-gradient(135deg,#2a5bd7,#16a3a6)}
+.lg-in{display:flex;gap:6px;margin-top:8px;padding:6px;border:2px solid #0b0b0d;border-radius:12px;background:#fff}
+.lg-in input{flex:1;min-width:0;border:0;font:14px Inter,sans-serif;outline:0;background:transparent}
+.lg-sub{margin:12px 0 4px;font:700 10.5px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:#525b6b}
+.lg-list{list-style:none;margin:0;padding:0;display:grid;gap:4px;font-size:13px}
+.lg-list li.done{color:#8a92a3;text-decoration:line-through}
+.lg-list small{color:#525b6b}
+.lg-list button{border:0;background:none;padding:0;font:600 13px Inter,sans-serif;color:#0b0b0d;text-decoration:underline;cursor:pointer;text-align:left}
 .preset{margin-top:12px;display:inline-flex;align-items:center;gap:10px;padding:8px 14px 8px 8px;border:2px solid #0b0b0d;border-radius:999px;background:#fff;box-shadow:4px 4px 0 #0b0b0d;cursor:pointer;font:600 13.5px Inter,sans-serif;color:#0b0b0d}
 .preset img{width:30px;height:30px}
 .seat .ai{position:absolute;top:-4px;left:4px;padding:1px 5px;border-radius:999px;background:#0b0b0d;color:#fff;font:700 8px var(--mono);border:1px solid #fff}
@@ -397,6 +442,15 @@ footer{background:#0b0b0d}
   </div>
 
   <aside>
+    <div class="panel ledgerP" id="ledgerP">
+      <div class="lg-top"><h2>The ledger</h2><span class="muted" style="font-size:12px">following the agenda</span></div>
+      <div class="lg-now"><button type="button" id="lgPrev" aria-label="Previous agenda item">&larr;</button><b id="lgItem"></b><button type="button" id="lgNext">Next item &rarr;</button></div>
+      <div class="lg-smp" id="lgSample"><span>Sample dialogue to show how it reads. Type below to add real entries.</span><button type="button" id="lgClear">Clear sample</button></div>
+      <ol class="ledger" id="ledger"></ol>
+      <div class="lg-in"><input id="lgIn" placeholder="Speak to the current item: this is live, type here"><button class="btn btn-sv btn-sm" id="lgSend" type="button">Add</button></div>
+      <div class="lg-sub">To do list</div><ul class="lg-list" id="lgTodo"></ul>
+      <div class="lg-sub">Past records</div><ul class="lg-list" id="lgPast"></ul>
+    </div>
     <div class="panel">
       <div class="tabs2" id="tabs2"><button class="on" data-p="min">Minutes</button><button data-p="doc">Agenda &amp; document</button><button data-p="rec">Record</button><button data-p="promo">SharedPromoPage</button><button data-p="zoom">Zoom</button></div>
       <div class="pane on" id="p-min">
@@ -508,7 +562,7 @@ footer{background:#0b0b0d}
   function initials(n){return n?n.split(/\s+/).map(function(w){return w.charAt(0)}).join('').slice(0,2).toUpperCase():''}
   function slug(n){return (n||'').toLowerCase().replace(/[^a-z0-9]+/g,'')}
   function stamp(){return new Date().toLocaleTimeString('en-CA',{hour:'numeric',minute:'2-digit'})}
-  function addMin(text,cls){S.minutes.push({t:stamp(),text:text,cls:cls||''});drawMin();save()}
+  function addMin(text,cls){S.minutes.push({t:stamp(),text:text,cls:cls||''});drawMin();if(typeof drawLedger==='function'&&$('ledger')){S.ledger=S.ledger||[];S.ledger.push({i:S.agi||0,who:'xo-ai',pos:'xo-ai',av:'',ai:true,text:text,t:stamp(),sample:false});drawLedger()}save()}
   function who(){return S.me>-1&&S.people[S.me]?S.people[S.me].name:'A director'}
 
   // ---- room: seats spread around the table, the bottom centre kept for the dealer ----
@@ -532,7 +586,8 @@ footer{background:#0b0b0d}
       b.style.setProperty('--c',st.mono?'#0b0b0d':POSC[p]);
       var lbl=p==='President'&&S.two?'President · '+(i+1):p.replace('Vice President','Vice Pres').replace('President-elect','Pres-elect').replace('Past President','Past Pres');
       var av=person&&person.av?' style="background-image:url('+person.av+');color:transparent"':'';
-      b.innerHTML='<span class="av'+(person?'':' empty')+'"'+av+'>'+esc(person?initials(person.name):'+')+'</span><span class="lb">'+esc(lbl)+'</span>'+(person&&person.ai?'<span class="ai">AI</span>':'')+(person&&person.msgs&&person.msgs.length?'<span class="dot" title="'+person.msgs.length+' message(s)"></span>':'');
+      b.className+=' pill'+(person?'':' open');
+      b.innerHTML='<span class="av'+(person?'':' empty')+'"'+av+'>'+esc(person?initials(person.name):'+')+'</span><span class="pt"><b>'+esc(person?person.name:'Open seat')+'</b><small>'+esc(lbl)+'</small></span>'+(person&&person.ai?'<span class="ai">AI</span>':'')+(person&&person.msgs&&person.msgs.length?'<span class="dot" title="'+person.msgs.length+' message(s)"></span>':'');
       b.setAttribute('aria-label',p+(person?': '+person.name:': open seat, sign in here'));
       b.onclick=function(){openSeat(key,p)};
       r.appendChild(b);
@@ -661,7 +716,7 @@ footer{background:#0b0b0d}
     if(navigator.clipboard)navigator.clipboard.writeText(t).then(function(){$('postNote').textContent='Minutes copied.'},function(){$('postNote').textContent='Could not copy; select the minutes instead.'})};
   // ---- to-do ----
   function drawOwners(){var o=Object.keys(S.people).map(function(k){var p=S.people[k];return p.name+' ('+p.pos+')'});if(S.dealer.name)o.push(S.dealer.name+' (dealer)');$('tdOwner').innerHTML='<option value="">Owner</option>'+o.map(function(n){return '<option>'+esc(n)+'</option>'}).join('')}
-  function drawTodo(){$('todo').innerHTML=S.todo.map(function(t,i){return '<li class="'+(t.done?'done':'')+'"><input type="checkbox" data-i="'+i+'"'+(t.done?' checked':'')+'><span>'+esc(t.text)+'</span><small>'+esc(t.owner||'')+'</small></li>'}).join('')||'<li><span class="muted">No tasks yet. Add one, or xo-ai adds them from the minutes.</span></li>';
+  function drawTodo(){if($('lgTodo'))setTimeout(drawLedger,0);$('todo').innerHTML=S.todo.map(function(t,i){return '<li class="'+(t.done?'done':'')+'"><input type="checkbox" data-i="'+i+'"'+(t.done?' checked':'')+'><span>'+esc(t.text)+'</span><small>'+esc(t.owner||'')+'</small></li>'}).join('')||'<li><span class="muted">No tasks yet. Add one, or xo-ai adds them from the minutes.</span></li>';
     [].forEach.call($('todo').querySelectorAll('input'),function(c){c.onchange=function(){S.todo[+c.getAttribute('data-i')].done=c.checked;drawTodo();save()}})}
   $('tdAdd').onclick=function(){var t=($('tdText').value||'').trim();if(!t)return;S.todo.push({text:t,owner:$('tdOwner').value,done:false});$('tdText').value='';drawTodo();save();addMin('Action item: '+t+($('tdOwner').value?' ('+$('tdOwner').value+')':''))};
   // ---- zoom ----
@@ -893,6 +948,37 @@ footer{background:#0b0b0d}
   $('crfGo').onclick=function(){var a=num($('crfAmt').value),w=$('crfFor').value.trim();if(!a||!w)return;S.dec.pend.push('Approve the expenditure of '+money(a)+' from the contingency reserve fund for '+w);$('crfAmt').value='';$('crfFor').value='';$('crfForm').hidden=true;drawDec();save();
     chatAdd('xo-ai','Added to Proposed. A reminder before the vote: spending from the contingency reserve fund generally needs owner approval at a general meeting, usually by a 3/4 vote, unless an exception in BC’s Strata Property Act applies (for example an emergency, or a depreciation report expense). Please check with your strata manager or lawyer.','xo')};
 
+  // ---- the ledger: long and narrow, following the agenda ----
+  var LEDGER_SAMPLE=[
+    [0,'xo-ai','Meeting called to order. Quorum confirmed.',true],
+    [2,'Pat Morgan','The previous minutes are in the Minutes binder. Any corrections?',false],
+    [2,'Jordan Lee','None from me. I move we adopt them as circulated.',false],
+    [4,'Ava Chen','Spending is on track except repairs, which are close to budget after the roof work.',false],
+    [6,'Sam Park','We have three roofing quotes now. Summit Roofing includes a 10-year warranty.',false],
+    [6,'xo-ai','Motion on the table: approve the roof repair quote from Summit Roofing.',true]
+  ];
+  function agendaList(){return S.agenda||AGENDA0}
+  function ledgerAdd(who,text,ai,sample){S.ledger=S.ledger||[];var pp=null;Object.keys(S.people).forEach(function(k){if(S.people[k].name===who)pp=S.people[k]});
+    S.ledger.push({i:S.agi||0,who:who,pos:pp?pp.pos:(ai?'xo-ai':''),av:pp?pp.av:'',ai:!!ai,text:text,t:stamp(),sample:!!sample});if(S.ledger.length>400)S.ledger.shift();drawLedger();save()}
+  function drawLedger(){
+    var A=agendaList(), L=S.ledger||[], cur=S.agi||0, sample=L.some(function(x){return x.sample});
+    $('lgItem').textContent=(cur+1)+'. '+(A[cur]||'');
+    $('lgSample').hidden=!sample;
+    $('ledger').innerHTML=A.map(function(item,i){var rows=L.filter(function(x){return x.i===i});if(!rows.length&&i!==cur)return '<li class="lh dim"><span>'+(i+1)+'. '+esc(item)+'</span></li>';
+      return '<li class="lh'+(i===cur?' cur':'')+'"><span>'+(i+1)+'. '+esc(item)+'</span>'+(i===cur?'<em>now</em>':'')+'</li>'+rows.map(function(x){return '<li class="le'+(x.sample?' smp':'')+'"><span class="sig'+(x.ai?' ai':'')+'"><span class="sav"'+(x.av?' style="background-image:url('+x.av+');color:transparent"':'')+'>'+esc(x.ai?'xo':initials(x.who))+'</span>'+esc(x.who)+'</span><p>'+esc(x.text)+'</p><small>'+esc(x.t.replace(/\.$/,''))+(x.sample?' · sample':'')+'</small></li>'}).join('')}).join('');
+    var el=$('ledger');el.scrollTop=el.scrollHeight;
+    // to do and past records under the ledger
+    $('lgTodo').innerHTML=S.todo.length?S.todo.map(function(t){return '<li class="'+(t.done?'done':'')+'">'+(t.done?'&#10003; ':'&#9675; ')+esc(t.text)+(t.owner?' <small>'+esc(t.owner)+'</small>':'')+'</li>'}).join(''):'<li><small>No to-dos yet.</small></li>';
+    var past=(S.docs||[]).filter(function(d){return d.f==='minutes'});
+    $('lgPast').innerHTML=past.length?past.map(function(d){return '<li><button type="button" data-past="'+esc(d.name)+'">'+esc(d.name)+(d.sample?' <small>sample</small>':'')+'</button></li>'}).join(''):'<li><small>No past records yet.</small></li>';
+    [].forEach.call($('lgPast').querySelectorAll('[data-past]'),function(b){b.onclick=function(){SHELF_F='minutes';drawShelf();showDocs((S.docs||[]).filter(function(d){return d.f==='minutes'}),'Minutes');document.getElementById('shelfP').scrollIntoView({behavior:'smooth'})}});
+  }
+  function lgSend(){var t=($('lgIn').value||'').trim();if(!t)return;var me=S.me>-1&&S.people[S.me]?S.people[S.me].name:'Guest';ledgerAdd(me,t,false,false);$('lgIn').value=''}
+  $('lgSend').onclick=lgSend;$('lgIn').onkeydown=function(e){if(e.key==='Enter'){e.preventDefault();lgSend()}};
+  $('lgNext').onclick=function(){var A=agendaList();if((S.agi||0)<A.length-1){S.agi=(S.agi||0)+1;ledgerAdd('xo-ai','Moving to item '+(S.agi+1)+': '+A[S.agi]+'.',true,false)}};
+  $('lgPrev').onclick=function(){if((S.agi||0)>0){S.agi--;drawLedger();save()}};
+  $('lgClear').onclick=function(){S.ledger=(S.ledger||[]).filter(function(x){return !x.sample});drawLedger();save()};
+
   // ---- tabs, controls ----
   function showPane(p){if(p==='doc'&&!S.pub&&!S.docEdited){S.docHtml=genMinutes();drawDoc()}[].forEach.call(document.querySelectorAll('#tabs2 button'),function(b){b.classList.toggle('on',b.getAttribute('data-p')===p)});[].forEach.call(document.querySelectorAll('.pane'),function(x){x.classList.toggle('on',x.id==='p-'+p)})}
   [].forEach.call(document.querySelectorAll('#tabs2 button'),function(b){b.onclick=function(){showPane(b.getAttribute('data-p'))}});
@@ -902,7 +988,7 @@ footer{background:#0b0b0d}
   $('joinBtn').onclick=function(){$('room').scrollIntoView({behavior:'smooth'});var pos=positions(S.seats);for(var i=0;i<pos.length;i++){if(S.two&&i===1)continue;if(!S.people[i]){var k=i;setTimeout(function(){openSeat(k,pos[k])},450);return}}};
   function save(){try{localStorage.setItem('coco_sv2',JSON.stringify({S:S,strata:$('strata').value}))}catch(x){}}
   function restore(){try{var o=JSON.parse(localStorage.getItem('coco_sv2')||'null');if(!o)return;for(var k in o.S)S[k]=o.S[k];$('strata').value=o.strata||'';$('seats').value=String(S.seats);$('twoVotes').checked=!!S.two}catch(x){}}
-  restore();if(!S.chat)S.chat=[];if(!S.promo)S.promo=[];if(!S.docs)S.docs=SAMPLE_DOCS.slice();$('strata').oninput();drawStyles();drawRoom();drawOwners();drawMin();drawTodo();drawDec();drawChat();drawPromo();drawShelf();drawAgenda();drawDoc();drawFin();
+  restore();if(!S.chat)S.chat=[];if(!S.promo)S.promo=[];if(!S.docs)S.docs=SAMPLE_DOCS.slice();$('strata').oninput();drawStyles();drawRoom();drawOwners();drawMin();drawTodo();drawDec();drawChat();drawPromo();drawShelf();drawAgenda();drawDoc();drawFin();if(!S.ledger){S.ledger=LEDGER_SAMPLE.map(function(r){return {i:r[0],who:r[1],pos:'',av:'',ai:r[3],text:r[2],t:'7:0'+r[0]+' p.m.',sample:true}});S.agi=6}drawLedger();
 })();
 </script>
 </body>
