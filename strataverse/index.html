@@ -255,6 +255,26 @@ footer{background:#0b0b0d}
 .kpi.warn{border-color:#c2410c}.kpi.warn b{color:#c2410c}
 .fgrid{display:grid;grid-template-columns:1fr;gap:12px}
 [hidden]{display:none!important}
+
+/* depreciation report & maintenance */
+.dep-h{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.dep-meta{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:8px 0;font-size:13px}
+.dep-meta input{padding:5px 7px;border:1.5px solid #0b0b0d;border-radius:8px;font:inherit}
+.dep-meta button{margin-left:auto}
+.dtab td{font-size:13px;vertical-align:middle;white-space:normal}.dtab td:nth-child(2){min-width:150px}
+.dtab .due{font:600 11px var(--mono);padding:2px 7px;border-radius:999px;border:1px solid #bfe6d6;background:#f2fbf7;white-space:nowrap}
+.dtab .due.soon{border-color:#e9b44c;background:#fff8e6}
+.dtab .due.late{border-color:#e0458f;background:#fdeaf4}
+.dtab .chk{padding:4px 10px;border-radius:999px;border:1.5px solid #0b0b0d;background:#fff;color:#0b0b0d;font:600 12px Inter,sans-serif;cursor:pointer;white-space:nowrap}
+.dtab .chk:hover{background:#0b0b0d;color:#fff}
+.mlog{list-style:none;margin:8px 0 0;padding:0;display:grid;gap:6px;max-height:260px;overflow:auto}
+.mlog li{display:flex;gap:8px;align-items:center;flex-wrap:wrap;padding:7px 10px;border:1px solid #dfe3ea;border-radius:10px;font-size:13px}
+.mlog li .ck{color:#16a3a6;font-weight:800}
+.mlog li small{margin-left:auto;font:500 10.5px var(--mono);color:#8a92a3}
+.appr{display:inline-block;margin-left:6px;font:700 9.5px var(--mono);padding:1px 6px;border-radius:999px;border:1px solid #bfe6d6;background:#f2fbf7;color:#0b6b5c;text-transform:uppercase;letter-spacing:.04em}
+.appr.wait{border-color:#e9b44c;background:#fff8e6;color:#7a4a00}
+.lg-list .pa{display:flex;gap:6px;flex-wrap:wrap;margin-top:3px}
+.lg-list .pa button{font:600 11px Inter,sans-serif;text-decoration:none;padding:2px 8px;border:1.2px solid #0b0b0d;border-radius:999px;background:#fff}
 .fbox{padding:12px;border:1.5px solid #0b0b0d;border-radius:14px;background:#fff;margin-top:12px;min-width:0}
 .fgrid .fbox{margin-top:0}
 .tblwrap{overflow-x:auto}
@@ -420,6 +440,15 @@ footer{background:#0b0b0d}
         <div class="row" style="margin-top:8px"><button class="btn btn-sv btn-sm" id="repUse" type="button">Use in the minutes</button><button class="btn btn-ghost btn-sm" id="crfMotion" type="button">Propose a reserve fund expenditure</button></div>
         <div class="say" id="crfForm" hidden><input id="crfAmt" inputmode="decimal" placeholder="$ amount" style="max-width:120px"><input id="crfFor" placeholder="for, e.g. the roof repair"><button class="btn btn-ghost btn-sm" id="crfGo" type="button">Propose</button></div>
         <p class="note">Figures you enter here are for the board&rsquo;s discussion; your strata manager&rsquo;s statements are the official record. Not accounting or legal advice.</p>
+      </div>
+      <div class="fbox" id="depBox"><div class="dep-h"><h3 style="margin:0">Depreciation report &middot; items of maintenance</h3><span class="muted" id="depSub"></span></div>
+        <div class="dep-meta"><label>Last depreciation report <input id="depYear" inputmode="numeric" style="width:70px"></label><span id="depNext"></span><button class="btn btn-ghost btn-sm" id="depClear" type="button">Clear sample items</button></div>
+        <div class="tblwrap"><table class="ftab dtab" id="dtab"><thead><tr><th>Component</th><th>Task</th><th>Every</th><th>Last done</th><th>Next due</th><th></th></tr></thead><tbody></tbody></table></div>
+        <div class="say"><input id="dmComp" placeholder="Component, e.g. Parkade gate"><input id="dmTask" placeholder="Task, e.g. Service the motor"><input id="dmEvery" inputmode="numeric" placeholder="Every (months)" style="max-width:120px"><button class="btn btn-ghost btn-sm" id="dmAdd" type="button">Add item</button></div>
+        <h3 style="margin-top:14px">Maintenance record <span class="muted">every check-off, dated and signed</span></h3>
+        <ul class="mlog" id="mlog"></ul>
+        <div class="row" style="margin-top:8px"><button class="btn btn-sv btn-sm" id="depFile" type="button">File the maintenance record on the shelf</button><button class="btn btn-ghost btn-sm" id="depMin" type="button">Use in the minutes</button></div>
+        <p class="note">In BC, strata corporations generally need a depreciation report every five years. This record helps the board keep track; your depreciation report and your strata manager&rsquo;s records are the official ones.</p>
       </div>
     </div>
 
@@ -697,6 +726,7 @@ footer{background:#0b0b0d}
     S.dec.done.unshift({text:p.text,result:r+' '+c.for+'-'+c.against+(c.abstain?'-'+c.abstain:''),mover:p.mover,seconder:p.seconder,c:c,t:stamp()});
     addMin(r.toUpperCase()+': '+p.text+' (for '+c.for+', against '+c.against+', abstain '+c.abstain+').','res');
     if(r==='Carried'){S.promoDrafts=S.promoDrafts||[];S.promoDrafts.unshift({text:'Update from '+(strata()||'our board')+': '+p.text.replace(/\.$/,'')+' was approved by the board.',t:stamp()});chatAdd('xo-ai','Carried. I’ve drafted a shared promotion for SharedPromoPage; a director approves it before it goes out.','xo')}
+    var am=r==='Carried'&&/^Adopt the minutes of (.+) as circulated/.exec(p.text);if(am)approveMinutes(am[1],'motion',p.mover,p.seconder);
     S.dec.play=null;drawDec();drawPlay();drawPromo();save()}
   $('decAdd').onclick=function(){var t=$('decText').value.trim();if(!t)return;S.dec.pend.push(t);$('decText').value='';drawDec();save()};
   $('decText').onkeydown=function(e){if(e.key==='Enter'){e.preventDefault();$('decAdd').onclick()}};
@@ -788,7 +818,7 @@ footer{background:#0b0b0d}
   var BINDERS=[['minutes','Minutes','#16a3a6'],['bylaws','Bylaws & rules','#2a5bd7'],['budget','Budget & financials','#8cc63f'],['insurance','Insurance','#f28c28'],['depreciation','Depreciation report','#6b4fd8'],['contracts','Contracts & quotes','#e0458f'],['agm','AGM & SGM','#e9b44c'],['letters','Correspondence','#525b6b']];
   // sample records so the shelf isn't empty; summaries are examples of what xo-ai writes
   var SAMPLE_DOCS=[
-    {f:'minutes',name:'Board minutes, October 2026',type:'PDF',sample:true,sum:'Five directors present. Approved the snow removal contract (carried 5-0). Tabled the lobby painting until three quotes are in. Next meeting November 20.'},
+    {f:'minutes',name:'Board minutes, October 2026',type:'PDF',sample:true,approved:null,sum:'Five directors present. Approved the snow removal contract (carried 5-0). Tabled the lobby painting until three quotes are in. Next meeting November 20.'},
     {f:'bylaws',name:'Strata bylaws (consolidated)',type:'PDF',sample:true,sum:'Covers pets (two per strata lot), rentals, quiet hours (10 p.m. to 7 a.m.) and how fines are applied after written notice.'},
     {f:'insurance',name:'Building insurance policy 2026-27',type:'PDF',sample:true,sum:'Full replacement cost policy, renews June 30. Water damage deductible is the largest; owners are encouraged to carry their own deductible coverage.'},
     {f:'contracts',name:'Roof repair quote: three bids',type:'PDF',sample:true,sum:'Three bids for the east roof section. The middle bid includes a 10-year warranty; the lowest excludes flashing repairs.'},
@@ -832,7 +862,8 @@ footer{background:#0b0b0d}
     (S.agenda||AGENDA0).forEach(function(item){var k=item.toLowerCase();
       if(k==='call to order')sec(item,'The meeting was called to order'+(call?' at '+esc(call.t):'')+' and quorum was confirmed.');
       else if(k==='approval of the agenda')sec(item,'It was MOVED and SECONDED to approve the agenda as presented. CARRIED.');
-      else if(k==='adoption of the previous minutes')sec(item,'It was MOVED and SECONDED to adopt the minutes of the previous meeting as circulated. CARRIED.');
+      else if(k==='adoption of the previous minutes'){var ad=S.adopted;sec(item,ad?(ad.how==='consent'?'There being no corrections, the minutes of '+esc(ad.name)+' were approved as circulated by general consent.':'It was MOVED by '+esc(ad.mover||'[mover]')+' and SECONDED by '+esc(ad.seconder||'[seconder]')+' to adopt the minutes of '+esc(ad.name)+' as circulated. CARRIED.'):'It was MOVED and SECONDED to adopt the minutes of the previous meeting as circulated. CARRIED.')}
+      else if(k==='business arising'&&typeof maintSummary==='function'){var ms=maintSummary();sec(item,(ms.done.length?'Maintenance completed since the last meeting: '+ms.done.map(function(x){return esc(x.c)+' ('+esc(x.task.charAt(0).toLowerCase()+x.task.slice(1))+', '+nice(x.d)+')'}).join('; ')+'.':'No maintenance was recorded since the last meeting.')+(ms.late.length?'<br>Overdue items of maintenance: '+ms.late.map(function(it){return esc(it[0])}).join(', ')+'. Council asked the property manager to schedule them.':''))}
       else if(k==='new business'){var b=S.dec.done.slice().reverse().map(function(d){return 'It was MOVED by '+esc(d.mover||'[mover]')+' and SECONDED by '+esc(d.seconder||'[seconder]')+' that '+esc(d.text.charAt(0).toLowerCase()+d.text.slice(1).replace(/\.$/,''))+'. <b>'+esc((d.result||'').split(' ')[0].toUpperCase())+'</b> ('+(d.c?d.c.for+' in favour, '+d.c.against+' opposed'+(d.c.abstain?', '+d.c.abstain+' abstained':''):esc(d.result))+').'}).join('<br><br>');
         var open=S.dec.pend.length?'<br><br>Tabled to the next meeting: '+S.dec.pend.map(esc).join('; ')+'.':'';sec(item,(b||'No motions were brought forward.')+open)}
       else if(k==='correspondence'){var l=(S.docs||[]).filter(function(d){return d.f==='letters'});sec(item,l.length?'Received and filed: '+l.map(function(d){return esc(d.name)}).join('; ')+'.':'No correspondence was received.')}
@@ -858,7 +889,7 @@ footer{background:#0b0b0d}
   $('docGen').onclick=function(){if(S.pub)return;if(S.docEdited&&!regenArmed){regenArmed=true;$('docState').textContent='Rewriting replaces your edits. Tap again to confirm.';return}regenArmed=false;S.docHtml=genMinutes();S.docEdited=false;drawDoc();save();chatAdd('xo-ai','The minutes are written from the record, in Robert’s Rules form. Edit anything before you publish.','xo')};
   $('docBody').addEventListener('keydown',function(){S.docEdited=true});
   $('docPub').onclick=function(){if(S.pub)return;S.pub=new Date().toLocaleString('en-CA',{month:'long',day:'numeric',hour:'numeric',minute:'2-digit'});
-    S.docs=S.docs||[];S.docs.unshift({f:'minutes',name:'Council minutes, '+new Date().toLocaleDateString('en-CA',{year:'numeric',month:'long',day:'numeric'}),type:'PDF',sample:false,sum:'Published minutes: '+S.dec.done.length+' motion'+(S.dec.done.length===1?'':'s')+' recorded, '+S.todo.filter(function(t){return !t.done}).length+' action item(s).'});
+    S.docs=S.docs||[];S.docs.unshift({f:'minutes',name:'Council minutes, '+new Date().toLocaleDateString('en-CA',{year:'numeric',month:'long',day:'numeric'}),type:'PDF',sample:false,approved:null,sum:'Published minutes: '+S.dec.done.length+' motion'+(S.dec.done.length===1?'':'s')+' recorded, '+S.todo.filter(function(t){return !t.done}).length+' action item(s).'});
     drawDoc();drawAgenda();drawShelf();save();addMin('Minutes published to the strata portal.');chatAdd('xo-ai','Published to the strata portal and filed in the Minutes binder. (Demo: in Strataverse this posts to your owners’ portal.)','xo')};
 
   // ---- ask xo-ai: always open for input; every answer shows who asked, current, summary, 3 links and a disclaimer ----
@@ -970,7 +1001,9 @@ footer{background:#0b0b0d}
     // to do and past records under the ledger
     $('lgTodo').innerHTML=S.todo.length?S.todo.map(function(t){return '<li class="'+(t.done?'done':'')+'">'+(t.done?'&#10003; ':'&#9675; ')+esc(t.text)+(t.owner?' <small>'+esc(t.owner)+'</small>':'')+'</li>'}).join(''):'<li><small>No to-dos yet.</small></li>';
     var past=(S.docs||[]).filter(function(d){return d.f==='minutes'});
-    $('lgPast').innerHTML=past.length?past.map(function(d){return '<li><button type="button" data-past="'+esc(d.name)+'">'+esc(d.name)+(d.sample?' <small>sample</small>':'')+'</button></li>'}).join(''):'<li><small>No past records yet.</small></li>';
+    $('lgPast').innerHTML=past.length?past.map(function(d){return '<li><button type="button" data-past="'+esc(d.name)+'">'+esc(d.name)+(d.sample?' <small>sample</small>':'')+'</button>'+(d.approved?'<span class="appr">approved '+esc(d.approved.t)+'</span>':'<span class="appr wait">awaiting approval</span><div class="pa"><button type="button" data-adopt="'+esc(d.name)+'">Move to adopt</button><button type="button" data-consent="'+esc(d.name)+'">Approved as circulated</button></div>')+'</li>'}).join(''):'<li><small>No past records yet.</small></li>';
+    [].forEach.call($('lgPast').querySelectorAll('[data-adopt]'),function(b){b.onclick=function(){var n=b.getAttribute('data-adopt'),t='Adopt the minutes of '+n+' as circulated';if(S.dec.pend.indexOf(t)<0&&!(S.dec.play&&S.dec.play.text===t)){S.dec.pend.unshift(t);drawDec();save()}ledgerAdd('xo-ai','Motion proposed: adopt the minutes of '+n+' as circulated. It needs a mover and a seconder.',true,false)}});
+    [].forEach.call($('lgPast').querySelectorAll('[data-consent]'),function(b){b.onclick=function(){approveMinutes(b.getAttribute('data-consent'),'consent')}});
     [].forEach.call($('lgPast').querySelectorAll('[data-past]'),function(b){b.onclick=function(){SHELF_F='minutes';drawShelf();showDocs((S.docs||[]).filter(function(d){return d.f==='minutes'}),'Minutes');document.getElementById('shelfP').scrollIntoView({behavior:'smooth'})}});
   }
   function lgSend(){var t=($('lgIn').value||'').trim();if(!t)return;var me=S.me>-1&&S.people[S.me]?S.people[S.me].name:'Guest';ledgerAdd(me,t,false,false);$('lgIn').value=''}
@@ -979,6 +1012,47 @@ footer{background:#0b0b0d}
   $('lgPrev').onclick=function(){if((S.agi||0)>0){S.agi--;drawLedger();save()}};
   $('lgClear').onclick=function(){S.ledger=(S.ledger||[]).filter(function(x){return !x.sample});drawLedger();save()};
 
+
+  // ---- depreciation report: items of maintenance, checked off and when ----
+  var MAINT0={sample:true,year:2024,items:[
+    ['Roof & gutters','Inspect the roof and clear the gutters',6,'2026-05-12'],
+    ['Elevator','Annual safety inspection and certificate',12,'2025-11-03'],
+    ['Fire safety','Fire alarm and sprinkler annual inspection',12,'2026-02-18'],
+    ['Dryer vents','Clean every dryer vent',12,'2025-10-15'],
+    ['Parkade membrane','Inspect the membrane and clean the drains',12,'2026-04-22'],
+    ['Boiler & hot water','Service the boiler and hot water tanks',12,'2026-09-08'],
+    ['Exterior paint & caulking','Inspect caulking; touch up paint',24,'2025-06-10']],log:[
+    {c:'Boiler & hot water',task:'Service the boiler and hot water tanks',d:'2026-09-08',by:'Pat Morgan',sample:true},
+    {c:'Roof & gutters',task:'Inspect the roof and clear the gutters',d:'2026-05-12',by:'The dealer',sample:true}]};
+  function M(){if(!S.maint)S.maint=JSON.parse(JSON.stringify(MAINT0));return S.maint}
+  function iso(d){return d.getFullYear()+'-'+('0'+(d.getMonth()+1)).slice(-2)+'-'+('0'+d.getDate()).slice(-2)}
+  function addMonths(isoD,m){var p=isoD.split('-'),d=new Date(+p[0],+p[1]-1+m,+p[2]);return d}
+  function nice(d){if(typeof d==='string'){var p=d.split('-');d=new Date(+p[0],+p[1]-1,+p[2])}return d.toLocaleDateString('en-CA',{year:'numeric',month:'short',day:'numeric'})}
+  function maintStatus(it){if(!it[3])return {cls:'late',txt:'not recorded',days:-1};var due=addMonths(it[3],it[2]),days=Math.round((due-new Date())/864e5);return {due:due,days:days,cls:days<0?'late':days<=60?'soon':'',txt:days<0?'overdue '+(-days)+' days':days<=60?'due '+nice(due):nice(due)}}
+  function myName(){return S.me>-1&&S.people[S.me]?S.people[S.me].name:'Guest'}
+  function drawMaint(){var m=M(),late=0,soon=0;
+    $('dtab').querySelector('tbody').innerHTML=m.items.map(function(it,i){var st=maintStatus(it);if(st.cls==='late')late++;if(st.cls==='soon')soon++;
+      return '<tr><td><b>'+esc(it[0])+'</b></td><td>'+esc(it[1])+'</td><td>'+(it[2]>=12&&it[2]%12===0?(it[2]/12)+' yr':it[2]+' mo')+'</td><td>'+(it[3]?nice(it[3]):'&mdash;')+'</td><td><span class="due '+st.cls+'">'+esc(st.txt)+'</span></td><td><button type="button" class="chk" data-chk="'+i+'">&#10003; Done today</button></td></tr>'}).join('')||'<tr><td colspan="6"><small>No items yet. Add the components from your depreciation report.</small></td></tr>';
+    [].forEach.call($('dtab').querySelectorAll('[data-chk]'),function(b){b.onclick=function(){var it=m.items[+b.getAttribute('data-chk')],t=iso(new Date()),by=myName();it[3]=t;m.log.unshift({c:it[0],task:it[1],d:t,by:by,sample:false});
+      addMin('Maintenance checked off: '+it[0]+', '+it[1].charAt(0).toLowerCase()+it[1].slice(1)+' ('+by+').');drawMaint();save()}});
+    $('mlog').innerHTML=m.log.map(function(x){return '<li><span class="ck">&#10003;</span><b>'+esc(x.c)+'</b><span>'+esc(x.task)+'</span><small>'+nice(x.d)+' &middot; '+esc(x.by)+(x.sample?' &middot; sample':'')+'</small></li>'}).join('')||'<li><small>Nothing checked off yet.</small></li>';
+    $('depYear').value=m.year||'';var nx=m.year?(+m.year+5):0;$('depNext').innerHTML=nx?'Next report due <b>'+nx+'</b>'+(nx<=new Date().getFullYear()?' <span class="due late" style="font:600 11px var(--mono);padding:2px 7px;border-radius:999px">due now</span>':''):'';
+    $('depSub').textContent=(m.sample?'Sample items. ':'')+m.items.length+' items · '+late+' overdue · '+soon+' due in 60 days';
+  }
+  function maintSummary(){var m=M(),late=m.items.filter(function(it){return maintStatus(it).cls==='late'}),recent=m.log.filter(function(x){return !x.sample}).slice(0,8);
+    return {done:recent,late:late}}
+  $('dmAdd').onclick=function(){var c=$('dmComp').value.trim(),t=$('dmTask').value.trim(),e=parseInt($('dmEvery').value)||12;if(!c)return;var m=M();m.items.push([c,t||'Inspect',e,'']);m.sample=false;$('dmComp').value='';$('dmTask').value='';$('dmEvery').value='';drawMaint();save()};
+  $('depYear').onchange=function(){M().year=parseInt(this.value)||0;drawMaint();save()};
+  $('depClear').onclick=function(){var m=M();m.items=m.items.map(function(it){return [it[0],it[1],it[2],'']});m.log=m.log.filter(function(x){return !x.sample});m.sample=false;drawMaint();save()};
+  $('depFile').onclick=function(){var m=M(),n=m.log.length;(S.docs=S.docs||[]).unshift({f:'depreciation',name:'Maintenance record, '+nice(new Date()),type:'PDF',sample:false,sum:n+' check-off'+(n===1?'':'s')+' on record. '+m.log.slice(0,4).map(function(x){return x.c+' ('+nice(x.d)+')'}).join('; ')+(n>4?'…':'')+'.'});drawShelf();save();addMin('Maintenance record filed in the Depreciation binder.');chatAdd('xo-ai','The maintenance record is on the shelf in the Depreciation binder, dated today.','xo')};
+  $('depMin').onclick=function(){S.useMaint=true;S.docEdited=false;S.docHtml=null;if(!S.pub){S.docHtml=genMinutes();drawDoc()}save();chatAdd('xo-ai','Maintenance is in the minutes under Business arising.','xo');showPane('doc')};
+
+  // ---- minutes approved: adopt the previous minutes, by motion or general consent ----
+  function minutesDocs(){return (S.docs||[]).filter(function(d){return d.f==='minutes'})}
+  function approveMinutes(name,how,mover,seconder){var d=minutesDocs().filter(function(x){return x.name===name})[0];if(!d||d.approved)return;
+    d.approved={t:nice(new Date()),how:how,mover:mover||'',seconder:seconder||''};S.adopted={name:name,how:how,mover:mover||'',seconder:seconder||''};
+    addMin('Minutes approved: '+name+(how==='consent'?', as circulated, by general consent.':', adopted by motion.'),'res');
+    if(!S.pub&&!S.docEdited){S.docHtml=genMinutes();drawDoc()}drawShelf();drawLedger();save()}
   // ---- tabs, controls ----
   function showPane(p){if(p==='doc'&&!S.pub&&!S.docEdited){S.docHtml=genMinutes();drawDoc()}[].forEach.call(document.querySelectorAll('#tabs2 button'),function(b){b.classList.toggle('on',b.getAttribute('data-p')===p)});[].forEach.call(document.querySelectorAll('.pane'),function(x){x.classList.toggle('on',x.id==='p-'+p)})}
   [].forEach.call(document.querySelectorAll('#tabs2 button'),function(b){b.onclick=function(){showPane(b.getAttribute('data-p'))}});
@@ -988,7 +1062,7 @@ footer{background:#0b0b0d}
   $('joinBtn').onclick=function(){$('room').scrollIntoView({behavior:'smooth'});var pos=positions(S.seats);for(var i=0;i<pos.length;i++){if(S.two&&i===1)continue;if(!S.people[i]){var k=i;setTimeout(function(){openSeat(k,pos[k])},450);return}}};
   function save(){try{localStorage.setItem('coco_sv2',JSON.stringify({S:S,strata:$('strata').value}))}catch(x){}}
   function restore(){try{var o=JSON.parse(localStorage.getItem('coco_sv2')||'null');if(!o)return;for(var k in o.S)S[k]=o.S[k];$('strata').value=o.strata||'';$('seats').value=String(S.seats);$('twoVotes').checked=!!S.two}catch(x){}}
-  restore();if(!S.chat)S.chat=[];if(!S.promo)S.promo=[];if(!S.docs)S.docs=SAMPLE_DOCS.slice();$('strata').oninput();drawStyles();drawRoom();drawOwners();drawMin();drawTodo();drawDec();drawChat();drawPromo();drawShelf();drawAgenda();drawDoc();drawFin();if(!S.ledger){S.ledger=LEDGER_SAMPLE.map(function(r){return {i:r[0],who:r[1],pos:'',av:'',ai:r[3],text:r[2],t:'7:0'+r[0]+' p.m.',sample:true}});S.agi=6}drawLedger();
+  restore();if(!S.chat)S.chat=[];if(!S.promo)S.promo=[];if(!S.docs)S.docs=SAMPLE_DOCS.slice();$('strata').oninput();drawStyles();drawRoom();drawOwners();drawMin();drawTodo();drawDec();drawChat();drawPromo();drawShelf();drawAgenda();drawDoc();drawFin();if(!S.ledger){S.ledger=LEDGER_SAMPLE.map(function(r){return {i:r[0],who:r[1],pos:'',av:'',ai:r[3],text:r[2],t:'7:0'+r[0]+' p.m.',sample:true}});S.agi=6}drawLedger();drawMaint();
 })();
 </script>
 </body>
