@@ -10,7 +10,7 @@
 <style>
 :root{--n:#161e4a;--m:#5b6b85;--l:#e3e7f1;--g:#12a150;--gh:#0e8a44;--f:#d61e6e}
 *{box-sizing:border-box;min-width:0}
-body{margin:0;font:16px/1.55 Poppins,Arial,sans-serif;color:var(--n);background:#eef1f7}
+body{margin:0;font:16px/1.55 Poppins,Arial,sans-serif;color:var(--n);background:#fff}
 a{color:var(--n)}
 header{background:var(--n);color:#fff;padding:14px max(5vw,16px);display:flex;align-items:center;gap:14px;flex-wrap:wrap}
 header img.l{height:26px;filter:brightness(0) invert(1)}
@@ -38,7 +38,8 @@ input:focus,button:focus-visible{outline:3px solid #9fd8b8;outline-offset:1px}
 .rep b{display:block;font-size:17px}
 .rep span{font-size:13px;color:var(--m)}
 .rep .tx{flex:1}
-.viewer iframe{width:100%;border:0;background:#e9ecf3;border-radius:12px;min-height:80vh}
+.viewer iframe{width:100%;border:0;background:#fff;min-height:80vh}
+#v-report main,#v-report{max-width:none}.viewer{box-shadow:none!important;padding:0!important;background:none!important}
 .share li{display:flex;justify-content:space-between;gap:8px;padding:6px 0;border-bottom:1px solid var(--l);font-size:14px}
 .share ul{list-style:none;margin:8px 0;padding:0}
 .x{background:none;border:0;color:var(--f);font:inherit;font-size:13px;cursor:pointer}
@@ -99,7 +100,7 @@ input:focus,button:focus-visible{outline:3px solid #9fd8b8;outline-offset:1px}
 
 <!-- One report -->
 <section id="v-report" class="hide">
-  <div class="row" style="margin:0 0 12px"><button class="btn alt" id="back">‹ All reports</button><span style="flex:1"></span><a class="btn" id="pdf" target="_blank" rel="noopener">Download PDF</a></div>
+  <div class="row" style="margin:0 0 12px"><button class="btn alt" id="back">‹ All reports</button><span style="flex:1"></span><a class="btn alt" id="pdf" target="_blank" rel="noopener">Print-ready PDF</a></div>
   <div class="card viewer" style="padding:10px"><iframe id="frame" title="Report" sandbox="allow-same-origin allow-popups allow-popups-to-escape-sandbox"></iframe></div>
   <div class="card share">
     <h2>Share this report</h2>
