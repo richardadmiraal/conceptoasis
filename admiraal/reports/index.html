@@ -17,6 +17,7 @@ header img.l{height:26px;filter:brightness(0) invert(1)}
 header .sp{flex:1}
 header .who{font-size:13px;opacity:.85}
 header button{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.5);border-radius:999px;padding:6px 14px;font:inherit;font-size:13px;cursor:pointer}
+body.wide main{max-width:1180px}
 main{max-width:1000px;margin:0 auto;padding:24px 16px 48px}
 .card{background:#fff;border-radius:16px;padding:22px;box-shadow:0 6px 24px rgba(22,30,74,.10);margin-bottom:18px}
 h1{font-size:28px;line-height:1.15;margin:0 0 6px}
@@ -122,7 +123,7 @@ input:focus,button:focus-visible{outline:3px solid #9fd8b8;outline-offset:1px}
   const $ = id => document.getElementById(id);
   const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   const views = ['v-signin','v-profile','v-list','v-report'];
-  const show = v => views.forEach(x => $(x).classList.toggle('hide', x !== v));
+  const show = v => { views.forEach(x => $(x).classList.toggle('hide', x !== v)); document.body.classList.toggle('wide', v === 'v-report'); };
   const say = (id, t, err) => { $(id).textContent = t; $(id).classList.toggle('err', !!err); };
   if (!C.url || !C.anonKey) { show('v-signin'); say('m-signin', 'Sign-in is being set up. Please check back soon, or call Richard at 604-701-2955.', true); }
   else {
