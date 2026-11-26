@@ -38,7 +38,7 @@
   <div class="nav"></div>
   <div class="g"><div class="ld">Loading today's listings&hellip;</div></div>
   <a class="go" href="https://www.admiraal.ca/CMAreport" target="_blank" rel="noopener">What's my home worth?</a>
-  <p class="f">Live active listings, updated on every visit. Each listing is shown with its listing brokerage. Lists are <span class="kc">K<b>ai</b>-C</span>'s picks from the listing details, not an opinion of value. MLS&reg; data from the Chilliwack and District Real Estate Board. Research by <span class="kc">K<b>ai</b>-C</span>. AI can make mistakes. Verify details important to you. Admiraal Real Estate &middot; Advantage Property Management, Real Estate Division.</p>
+  <p class="f">Live active listings, updated on every visit. Homes that leave these lists show up as off the market on your next visit. Each listing is shown with its listing brokerage. Lists are <span class="kc">K<b>ai</b>-C</span>'s picks from the listing details, not an opinion of value. MLS&reg; data from the Chilliwack and District Real Estate Board. Research by <span class="kc">K<b>ai</b>-C</span>. AI can make mistakes. Verify details important to you. Admiraal Real Estate &middot; Advantage Property Management, Real Estate Division.</p>
 </div>
 <script>
 (function(){
@@ -47,29 +47,32 @@
   var me=document.currentScript, host=me&&me.closest('[data-kaic]'), box=host&&host.querySelector('.kt10');
   if(!box) return;
   var D=host.dataset, AREA=D.area||'Fairfield Island', CITY=(D.city||'chilliwack').toLowerCase(), UNDER=+(D.under||900000);
-  var NOW=new Date().getFullYear();
+  var NOW=new Date().getFullYear(), MINSF=+(D.minSf||0), SUITE=D.suite==='1', ALLA=!D.area||/^all$/i.test(D.area);
+  var CITIES=(D.city||'chilliwack').toLowerCase().split(',').map(function(c){return c.trim()}).filter(Boolean);
+  var FORM='https://formspree.io/f/xbggejnn', KEY='kt10:'+(D.area||'all')+':'+MINSF+':'+(SUITE?1:0);
   function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
   function num(v){return +String(v||0).replace(/[^0-9.]/g,'')||0}
   function money(v){return '$'+Math.round(v).toLocaleString('en-CA')}
   function brk(s){return String(s||'').replace(/\s+(Ltd|Inc|Realty Ltd|Realty Inc)\.?\b.*$/,'')}
-  box.querySelector('.t').textContent=AREA+': Top 10 lists';
-  function page(p){
+  box.querySelector('.t').textContent=D.title||(AREA+': Top 10 lists');
+  function page(city,p){
     return fetch('/api/mls_search/812664',{method:'POST',credentials:'same-origin',
       headers:{'Content-Type':'application/x-www-form-urlencoded','X-Requested-With':'XMLHttpRequest'},
-      body:'status=A&a=*'+encodeURIComponent(CITY)+'&t=single-family-residence&i=-1&order=listdate-desc&search=1&p='+p})
+      body:'status=A&a=*'+encodeURIComponent(city)+'&t=single-family-residence&i=-1&order=listdate-desc&search=1&p='+p})
       .then(function(r){return r.json()}).then(function(j){return j.listings||j.results||j.data||(Array.isArray(j)?j:[])});
   }
-  function all(p,acc){return page(p).then(function(L){
-    if(!L||!L.length||p>40) return acc; return all(p+1,acc.concat(L));});}
-  all(1,[]).then(function(L){
+  function all(city,p,acc){return page(city,p).then(function(L){
+    if(!L||!L.length||p>60) return acc; return all(city,p+1,acc.concat(L));});}
+  Promise.all(CITIES.map(function(c){return all(c,1,[])})).then(function(R){var L=[].concat.apply([],R);
     var a=AREA.toLowerCase();
-    var H=L.filter(function(x){return String(x.subarea||'').toLowerCase()===a}).map(function(x){
+    var H=L.filter(function(x){return ALLA||String(x.subarea||'').toLowerCase()===a}).map(function(x){
       var d=String(x.description||'').toLowerCase();
       return {x:x,pr:num(x.listprice),sf:num(x.sqft),yr:num(x.year_built),bd:num(x.bedrooms),ba:num(x.bathrooms),
         suite:/\bsuite\b|in-law|inlaw|mortgage helper|second kitchen|2nd kitchen|2 kitchens/.test(d),
         isnew:/brand new|new build|new construction/.test(d)||num(x.year_built)>=NOW-1,
         reno:/renovat|fully updated|new kitchen|remodel/.test(d)};
     });
+    H=H.filter(function(h){return h.sf>=MINSF&&(!SUITE||h.suite)});
     var bySf=function(p,q){return q.sf-p.sf};
     var suites=H.filter(function(h){return h.suite}).sort(bySf);
     var big=H.filter(function(h){return !h.suite&&h.bd>=5}).sort(bySf);
@@ -86,7 +89,7 @@
         note:function(h){return h.sf?money(h.pr/h.sf)+'/sq ft':''}}
     ];
     var med=H.map(function(h){return h.pr}).sort(function(p,q){return p-q}); med=med.length?med[Math.floor((med.length-1)/2)]:0;
-    box.querySelector('.intro').textContent=H.length+' detached homes for sale in '+AREA+' today'+(med?', median list price '+money(med):'')+'. Tap a home to open the listing.';
+    box.querySelector('.intro').textContent=H.length+' detached homes for sale'+(ALLA?'':' in '+AREA)+(MINSF?', '+MINSF.toLocaleString('en-CA')+' sq ft or more':'')+(SUITE?', with a suite or second kitchen':'')+' today'+(med?', median list price '+money(med):'')+'. Tap a home to open the listing.';
     box.querySelector('.nav').innerHTML=LISTS.map(function(l){return '<a href="#'+l.id+'">'+esc(l.t.replace('Top 10 ','').replace(/^./,function(c){return c.toUpperCase()}))+'</a>'}).join('');
     box.querySelector('.g').innerHTML=LISTS.map(function(l){
       var rows=l.r.slice(0,10).map(function(h,i){var x=h.x;
@@ -97,6 +100,23 @@
           '</span></span><span class="pr">'+money(h.pr)+'</span></a></li>'}).join('');
       return '<section class="p" id="'+l.id+'"><div class="ph"><b>'+esc(l.t)+'</b><span>'+esc(l.s)+'</span></div>'+
         (rows?'<ol>'+rows+'</ol>':'<div class="none">No homes on this list today. Check back soon.</div>')+'</section>'}).join('');
+    /* keep tab: homes this visitor saw last time that are no longer for sale */
+    var shown={}; LISTS.forEach(function(l){l.r.slice(0,10).forEach(function(h){shown[h.x.mlsnumber]={a:h.x.address,p:h.pr}})});
+    var live={}; H.forEach(function(h){live[h.x.mlsnumber]=1});
+    var prev={}; try{prev=JSON.parse(localStorage.getItem(KEY)||'{}')}catch(e){}
+    var gone=Object.keys(prev).filter(function(k){return !live[k]&&!(prev[k].g&&Date.now()-prev[k].g>30*864e5)});
+    var keep={}; Object.keys(shown).forEach(function(k){keep[k]=shown[k]}); gone.forEach(function(k){keep[k]={a:prev[k].a,p:prev[k].p,g:prev[k].g||Date.now()}});
+    try{localStorage.setItem(KEY,JSON.stringify(keep))}catch(e){}
+    if(gone.length){
+      var sec=document.createElement('section'); sec.className='p'; sec.id='off-market';
+      sec.innerHTML='<div class="ph" style="background:#d61e6e"><b>Now off the market</b><span>Homes from these lists since your last visit</span></div><ol>'+gone.map(function(k){
+        return '<li><div style="padding:8px 0"><span class="ad">'+esc(prev[k].a)+'</span><span class="dt">This property is now off the market. Want us to look for a sold record for you?</span>'+
+        '<form class="sr" data-a="'+esc(prev[k].a)+'" style="display:flex;flex-wrap:wrap;gap:6px;margin-top:6px"><input name="name" required placeholder="Your name" style="flex:1;min-width:120px;font:inherit;font-size:14px;padding:7px 10px;border:1px solid #cfd6e6;border-radius:8px"><input name="email" type="email" required placeholder="Email" style="flex:1;min-width:150px;font:inherit;font-size:14px;padding:7px 10px;border:1px solid #cfd6e6;border-radius:8px"><button style="background:#12a150;color:#fff;border:0;border-radius:999px;font-weight:700;padding:7px 14px;cursor:pointer">Yes, please</button></form></div></li>'}).join('')+'</ol>';
+      box.querySelector('.g').appendChild(sec);
+      [].forEach.call(sec.querySelectorAll('form.sr'),function(f){f.addEventListener('submit',function(e){e.preventDefault();
+        var fd=new FormData(f); fd.append('_subject','Sold record request: '+f.dataset.a); fd.append('property',f.dataset.a); fd.append('source','Kai-C Top 10: '+(D.title||AREA));
+        fetch(FORM,{method:'POST',body:fd,headers:{Accept:'application/json'}}).then(function(r){f.outerHTML='<div class="dt" style="color:#0e6b3a;font-weight:700;margin-top:6px">'+(r.ok?'Thank you. Richard will look up the sold record and get back to you.':'Please call or text Richard at 604-701-2955.')+'</div>'})})});
+    }
     var h=location.hash.slice(1); if(h){var t=document.getElementById(h); if(t) t.scrollIntoView();}
   }).catch(function(){ box.querySelector('.g').innerHTML='<div class="ld">Listings are taking a moment. Please refresh.</div>'; });
 })();
