@@ -1,0 +1,95 @@
+<!-- ADMIRAAL REAL ESTATE NEWS: one block, two looks.
+     Hubs and pages:  <div data-kaic="news"></div>                 4 story cards, each opens the story on /news
+     The news page:   <div data-kaic="news" data-mode="full"></div> the full stories, with a comment form
+     Edit stories in the STORIES list below. status:'soon' shows a card without a link. Max 4 links out per block. -->
+<style>
+.akn{--n:#161e4a;--m:#5b6b85;--l:#e3e7f1;--g:#12a150;--p:#d61e6e;font-family:Inter,system-ui,-apple-system,"Segoe UI",Arial,sans-serif;color:var(--n);max-width:1150px;margin:18px auto;padding:0 4px}
+.akn *{box-sizing:border-box}
+.akn .hd{display:flex;align-items:center;gap:12px;margin:0 0 12px}
+.akn .hd img{width:42px;height:auto}
+.akn .hd h3{margin:0;font-weight:800;font-size:22px;color:var(--n)}
+.akn .hd p{margin:0;font-size:13px;color:var(--m)}
+.akn .kc b{font-weight:800;color:#161e4a}
+.akn .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:14px}
+.akn .card{display:flex;flex-direction:column;border:1px solid var(--l);border-radius:14px;overflow:hidden;background:#fff;text-decoration:none!important;color:var(--n)!important;transition:transform .15s,box-shadow .15s}
+.akn a.card:hover{transform:translateY(-3px);box-shadow:0 10px 24px rgba(22,30,74,.12)}
+.akn .art{height:120px;display:flex;align-items:flex-end;padding:12px;color:#fff;font-weight:800;font-size:15px;line-height:1.15}
+.akn .tag{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:rgba(255,255,255,.18);border-radius:999px;padding:3px 9px;margin-bottom:6px}
+.akn .body{padding:12px 14px 14px;display:flex;flex-direction:column;gap:6px;flex:1}
+.akn .body b{font-size:16px;line-height:1.25}
+.akn .body span{font-size:13.5px;color:#334155;line-height:1.45}
+.akn .body em{margin-top:auto;font-style:normal;font-weight:700;font-size:13.5px;color:var(--g)}
+.akn .soon em{color:var(--m)}
+.akn .ad{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:14px;border:1.5px solid var(--n);border-radius:999px;padding:9px 18px;background:#fff;box-shadow:3px 3px 0 var(--n);text-decoration:none!important;color:var(--n)!important;font-size:14px}
+.akn .ad small{font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--p)}
+.akn .ad b{font-weight:800}.akn .ad em{margin-left:auto;font-style:normal;font-weight:700;color:var(--g)}
+.akn .full article{border:1px solid var(--l);border-radius:16px;overflow:hidden;margin:0 0 18px;background:#fff;scroll-margin-top:110px}
+.akn .full .art{height:auto;min-height:110px;font-size:24px;padding:18px 22px}
+.akn .full .txt{padding:16px 22px 18px;font-size:16px;line-height:1.6;color:#1e293b}
+.akn .full .txt p{margin:0 0 10px}
+.akn .full .src{font-size:12.5px;color:var(--m)}
+.akn form{border:1px solid var(--l);border-radius:16px;padding:16px 20px;background:#f8fafc;margin-top:6px}
+.akn form h4{margin:0 0 6px;font-size:18px}
+.akn label{display:block;font-weight:600;font-size:14px;margin:10px 0 4px}
+.akn input,.akn select,.akn textarea{width:100%;font:inherit;font-size:16px;padding:10px 12px;border:1px solid #cfd6e6;border-radius:10px;background:#fff;color:var(--n)}
+.akn textarea{min-height:90px}
+.akn button{margin-top:12px;background:var(--g);color:#fff;border:0;border-radius:999px;font:inherit;font-weight:700;padding:11px 20px;cursor:pointer}
+.akn .ok{display:none;margin-top:10px;font-weight:700;color:#0e6b3a}
+.akn .f{font-size:12px;color:var(--m);margin:12px 0 0;line-height:1.5}
+</style>
+<div class="akn">
+  <div class="hd"><img src="https://conceptoasis.com/admiraal/kai-c.png" alt="Kai-C" width="42" height="46"><div><h3>News from Admiraal Real Estate</h3><p>Local stories, market reports and our Top 10 lists &middot; Updated November 25, 2026</p></div></div>
+  <div class="slot"></div>
+  <p class="f">Stories by Admiraal Real Estate, Advantage Property Management, Real Estate Division, with research by <span class="kc">K<b>ai</b>-C</span>. AI can make mistakes. Verify details important to you. Not meant to solicit existing agency relationships.</p>
+</div>
+<script>
+(function(){
+  var me=document.currentScript, host=me&&me.closest('[data-kaic]'), box=host&&host.querySelector('.akn'); if(!box) return;
+  var FULL=(host.dataset.mode||'')==='full', NEWS='https://www.admiraal.ca/news';
+  var STORIES=[
+    {id:'top-10-multigenerational', tag:'Top 10 list', bg:'linear-gradient(140deg,#0a1461,#13207e)', title:'The Top 10 Chilliwack multigenerational homes for sale',
+     teaser:'Room for everyone under one roof: Kai-C ranks the best 3,800+ sq ft homes with a second kitchen.',
+     link:'https://www.admiraal.ca/top-10-chilliwack-multigenerational-homes',
+     text:['More families are buying together: parents, grown kids and grandparents under one roof. So we searched every active single family home in Chilliwack and District with 3,800 sq ft or more and a second kitchen. Thirty-three homes matched on November 25, 2026.',
+           'Our research assistant, Kai-C, ranked them on four things: suite setup and separation, space for every generation, condition and age, and value for money. Number one is a brand-new Sardis home with a legal two-bedroom suite and its own entry.',
+           'A second kitchen can mean a full suite or a spice kitchen, and many suites in Chilliwack aren’t authorized, so ask us to confirm the setup and the permits before you fall in love.'],
+     cta:'See the Top 10'},
+    {id:'chilliwack-rapids', tag:'WHL hockey', bg:'linear-gradient(140deg,#0b6b8f,#0a3d62)', title:'Meet the Chilliwack Rapids',
+     teaser:'The WHL is coming home: our new team has a name, a logo and a coach.',
+     text:['Major junior hockey is coming home. On November 23, the Western Hockey League introduced its newest team at the Chilliwack Coliseum: the Chilliwack Rapids, named for the fast rivers of the Fraser Valley.',
+           'The Rapids join the WHL’s BC Division for the 2027-28 season, with Jeremy Colliton as general manager and head coach. It’s the first WHL team in town since the Bruins left in 2011, and we can’t wait to fill the Coliseum.'],
+     src:'Sources: CHL and the Chilliwack Progress, November 23, 2026. Team names belong to their teams; this story isn’t affiliated with the WHL or the Rapids.',
+     cta:'Read the story'},
+    {id:'bcrea-market-report', tag:'Market report', bg:'linear-gradient(140deg,#d61e6e,#8f1149)', title:'The BC housing market: the latest BCREA report',
+     teaser:'What the BC Real Estate Association’s newest numbers mean for Chilliwack and the Fraser Valley.', status:'soon', cta:'Coming this week'},
+    {id:'meet-kai-c', tag:'Our news', bg:'linear-gradient(140deg,#12a150,#0b6b36)', title:'Meet Kai-C: our AI assistant has a new name',
+     teaser:'Same orb, same research. Named after Richard’s dad, Casey.',
+     text:['You may have met Compas, the little orb that counts down our Top 10 lists and answers Richard’s questions about the market. Compas has a new name: Kai-C.',
+           'Kai-C is named after Richard’s dad, Casey. And Compass is the name of a large real estate brokerage, so our assistant now has a name all its own. The “ai” is in bold because that’s what Kai-C is: an AI assistant built for Admiraal Real Estate.',
+           'Same orb, same research behind our CMA Reports, Top 10 lists and market reports, and the same rule: AI can make mistakes, so Richard checks the work, and you should verify details important to you.'],
+     cta:'Read the story'}];
+  function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+  var slot=box.querySelector('.slot');
+  if(!FULL){
+    slot.innerHTML='<div class="cards">'+STORIES.map(function(s){
+      var inner='<div class="art" style="background:'+s.bg+'"><div><span class="tag">'+esc(s.tag)+'</span><br>'+esc(s.title)+'</div></div><div class="body"><span>'+esc(s.teaser)+'</span><em>'+esc(s.cta)+(s.status==='soon'?'':' ›')+'</em></div>';
+      return s.status==='soon'?'<div class="card soon">'+inner+'</div>':'<a class="card" href="'+(s.link||NEWS+'#'+s.id)+'" target="_blank" rel="noopener">'+inner+'</a>';
+    }).join('')+'</div>';
+  } else {
+    slot.innerHTML='<div class="full">'+STORIES.filter(function(s){return s.status!=='soon'}).map(function(s){
+      return '<article id="'+s.id+'"><div class="art" style="background:'+s.bg+'"><div><span class="tag">'+esc(s.tag)+'</span><br>'+esc(s.title)+'</div></div><div class="txt">'+s.text.map(function(p){return '<p>'+esc(p)+'</p>'}).join('')+
+        (s.link?'<p><a href="'+s.link+'" target="_blank" rel="noopener" style="font-weight:700;color:#12a150">'+esc(s.cta)+' ›</a></p>':'')+(s.src?'<p class="src">'+esc(s.src)+'</p>':'')+'</div></article>';
+    }).join('')+
+    '<form action="https://formspree.io/f/xbggejnn" method="POST"><h4>Comment on a story</h4><input type="hidden" name="_subject" value="Comment on admiraal.ca news"><input type="hidden" name="block" value="news">'+
+    '<label for="akn-s">Story</label><select id="akn-s" name="story">'+STORIES.filter(function(s){return s.status!=='soon'}).map(function(s){return '<option>'+esc(s.title)+'</option>'}).join('')+'<option>A story idea for us</option></select>'+
+    '<label for="akn-n">Your first name</label><input id="akn-n" name="name" required maxlength="60"><label for="akn-m">Your comment</label><textarea id="akn-m" name="comment" required maxlength="1000"></textarea>'+
+    '<button type="submit">Send my comment</button><div class="ok">Thanks! Richard reads every comment; the best ones may be shared here.</div></form></div>';
+    var f=slot.querySelector('form'); f.addEventListener('submit',function(e){e.preventDefault();var b=f.querySelector('button');b.disabled=true;
+      fetch(f.action,{method:'POST',body:new FormData(f),headers:{Accept:'application/json'}}).then(function(r){if(!r.ok)throw 0;f.querySelector('.ok').style.display='block';f.reset();}).catch(function(){b.disabled=false;b.textContent='Try again';});});
+    var h=location.hash.slice(1); if(h){var t=document.getElementById(h); if(t) setTimeout(function(){t.scrollIntoView()},300);}
+  }
+  var ad=document.createElement('a'); ad.className='ad'; ad.href='https://www.admiraal.ca/mortgagecalculator'; ad.target='_blank'; ad.rel='noopener';
+  ad.innerHTML='<small>Admiraal Real Estate advertiser &middot; RE TOOLS</small><b>New: the Admiraal Mortgage Calculator</b><span>Payments, prepayments and renewals. First-time buyer version coming soon.</span><em>Try it ›</em>';
+  if(!FULL) slot.appendChild(ad); else slot.insertBefore(ad,slot.firstChild);
+})();
+</script>
