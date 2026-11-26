@@ -87,12 +87,12 @@
     ];
     var med=H.map(function(h){return h.pr}).sort(function(p,q){return p-q}); med=med.length?med[Math.floor((med.length-1)/2)]:0;
     box.querySelector('.intro').textContent=H.length+' detached homes for sale in '+AREA+' today'+(med?', median list price '+money(med):'')+'. Tap a home to open the listing.';
-    box.querySelector('.nav').innerHTML=LISTS.map(function(l){return '<a href="#'+l.id+'">'+esc(l.t.replace('Top 10 ',''))+'</a>'}).join('');
+    box.querySelector('.nav').innerHTML=LISTS.map(function(l){return '<a href="#'+l.id+'">'+esc(l.t.replace('Top 10 ','').replace(/^./,function(c){return c.toUpperCase()}))+'</a>'}).join('');
     box.querySelector('.g').innerHTML=LISTS.map(function(l){
       var rows=l.r.slice(0,10).map(function(h,i){var x=h.x;
         return '<li><a href="'+esc(x.url)+'" target="_blank" rel="noopener"><span class="n">'+(i+1)+'.</span>'+
           (x.first_image_url?'<img class="im" loading="lazy" alt="" src="'+esc(x.first_image_url)+'">':'')+
-          '<span class="tx"><span class="ad">'+esc(x.address)+'</span><span class="dt">'+
+          '<span class="tx"><span class="ad">'+esc(String(x.address||'').replace(/\bMc([a-z])/g,function(m,c){return 'Mc'+c.toUpperCase()}))+'</span><span class="dt">'+
           esc((h.sf?h.sf.toLocaleString('en-CA')+' sq ft · ':'')+h.bd+' bd / '+h.ba+' ba · '+l.note(h)+' · '+brk(x.brokerage))+
           '</span></span><span class="pr">'+money(h.pr)+'</span></a></li>'}).join('');
       return '<section class="p" id="'+l.id+'"><div class="ph"><b>'+esc(l.t)+'</b><span>'+esc(l.s)+'</span></div>'+
