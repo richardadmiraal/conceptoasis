@@ -1,0 +1,382 @@
+<!-- Google tag (gtag.js) --> <script async src="https://www.googletagmanager.com/gtag/js?id=G-61FL8XTCSP"></script> <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-61FL8XTCSP'); </script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.js"></script>
+
+<!-- ADMIRAAL HEADER (site-wide). Plain ASCII, one block.
+     WHOLE SITE: log in at admiraal.ca/login > SETTINGS (top right) > CUSTOM CODE tab > paste into "custom header code" > save.
+     It puts itself at the very top of every page. Then log out and check a few pages.
+     EDIT the menu in MENU and TOOLS below. The pill for the page you're on lights up by itself. -->
+<script>
+(function(){
+  if(window.__admHeader) return; window.__admHeader=1;
+  var HOME='https://www.admiraal.ca/';
+  var LOGO='https://s.realtyninja.com/static/media/med/11330_f73ae7de_Admiraal_Real_Estate_-_logo.png';
+  // PAGES NOT LIVE YET: links to these stay hidden until you switch them to true.
+  var LIVE={cma:true, calc:true, walk:true, map:true, alerts:false};
+  // CMA Report link: the homepage CMA form for now; switches to the CMA Report page when LIVE.cma is true.
+  var CMAURL=LIVE.cma?'https://www.admiraal.ca/CMAreport':'https://www.admiraal.ca/#market-analysis';
+  // Full MLS(R) search (GVR, FV, Chilliwack & District). The header box sends address / MLS(R) number / street searches here.
+  var MLS=HOME+'quick-mls-search-results?';
+  // TIDY: true = hide RealtyNinja's old top bar and menu, and rebuild that menu as a Site map at the bottom of each page.
+  var TIDY=true;
+  // QUICK CONTACTS shown at the top of our header.
+  var CONTACT=[['&#9993;&#65039;','Email','mailto:richardadmiraal@gmail.com'],['&#128172;','WhatsApp','https://wa.me/16047012955'],['&#128222;','604-701-2955','tel:+16047012955'],['&#128100;','Account',HOME+'account/register']];
+  function ok(k){ return !k || LIVE[k]; }
+  // [label, link, colour class, path that lights it up, folder, live-key]
+  var MENU=[['Search Hubs',HOME,'ah-hub ah-dd','/','hubs'],['Featured Listings',HOME+'active-listings','ah-list ah-dd','/active-listings','listings'],['Open Houses',HOME+'open-houses','ah-open ah-dd','/open-houses','open'],['RE Tools','#tools','ah-tools ah-dd','','tools'],
+    ['Be Our Next Best Seller',HOME+'beournextbestseller','ah-sell ah-dd','/beournextbestseller','sell'],['CMA Report',HOME+'CMAreport','ah-cma','/cmareport','','cma'],['SRES',HOME+'seniors-real-estate-specialist','ah-sres','/seniors-real-estate-specialist'],['About',HOME+'About%20Admiraal%20Real%20Estate','ah-about ah-dd','/about','about']];
+  // FOLDERS: [icon, label, link, colour, live-key]
+  var LISTINGS=[['&#127968;','All featured listings',HOME+'active-listings','g'],['&#127969;','42 Willowbrook',HOME+'42willowbrook','t'],['&#127969;','14 Kipp Ave',HOME+'14kippave','t'],
+    ['&#127969;','7 Hazel',HOME+'7hazel','t'],['&#127969;','Velma',HOME+'velma','t'],['&#127970;','320 - 378 Esplanade',HOME+'320-378esplanade','t']];
+  var OPEN=[['&#128197;','All open houses',HOME+'open-houses','g'],['&#127968;','Chilliwack',HOME+'open-house-chilliwack','g'],['&#127968;','Sardis &amp; Promontory',HOME+'open-house-sardis','g'],
+    ['&#127968;','Rosedale &amp; Popkum',HOME+'open-house-rosedale-popkum','g'],['&#127968;','Hope',HOME+'open-house-hope','g'],['&#127968;','East Abbotsford',HOME+'open-house-east-abbotsford','g'],
+    ['&#128506;&#65039;','Abbotsford open houses map',HOME+'abbotsford-open-houses-map','t'],['&#127968;','Aldergrove',HOME+'aldergroveopenhouses','g']];
+  var SELL=[['&#11088;','Be our next best seller',HOME+'beournextbestseller','r'],['&#128203;','No-obligation CMA Report',CMAURL,'t'],['&#127968;','Book a walkthrough',HOME+'beournextbestseller#schedule-walkthrough','t','walk'],
+    ['&#127881;','9808 Chapman Rd &middot; SOLD',HOME+'9808chapmanrd','r'],['&#127881;','44465 Eena Dr &middot; SOLD',HOME+'44465-eena','r'],['&#127881;','3310 Chaplin Rd, Agassiz',HOME+'3310-chaplin-rd-for-sale-in-agassiz-bc','r'],
+    ['&#127881;','44564 McLaren &middot; SOLD',HOME+'44564mclaren','r'],['&#127881;','46693 Brice Rd &middot; SOLD',HOME+'46693-brice-rd-for-sale','r'],['&#127881;','Hope River Rd &middot; SOLD',HOME+'hoperiverrd','r'],['&#127881;','Everett',HOME+'everett','r']];
+  var ABOUT=[['&#128075;','About Admiraal Real Estate',HOME+'About%20Admiraal%20Real%20Estate','n'],['&#11088;','Testimonials',HOME+'testimonials','r'],['&#129309;','Agency &amp; the DORT',HOME+'agency','n'],
+    ['&#127793;','Seniors Real Estate Specialist',HOME+'seniors-real-estate-specialist','t'],['&#128240;','News from Admiraal Real Estate',HOME+'news','n'],['&#128187;','About our website',HOME+'website','n'],['&#9993;&#65039;','Contact',HOME+'contact','g']];
+  // RE TOOLS folder: [icon, label, link, colour].
+  var TOOLS=[['&#128270;','Search every MLS&reg; listing',MLS+'status=A&t=-1&i=-1&order=listdate-desc&view=grid&search=1','g'],['&#128203;','No-obligation CMA Report',CMAURL,'t'],['&#127968;','Book a walkthrough',HOME+'beournextbestseller#schedule-walkthrough','r','walk'],['&#129518;','Mortgage calculator',HOME+'mortgagecalculator#calc-mortgage','t','calc'],
+    ['&#128055;','Save for your home',HOME+'mortgagecalculator#calc-save','t','calc'],['&#9878;&#65039;','Rent vs buy',HOME+'mortgagecalculator#calc-rent','t','calc'],['&#128200;','Investment growth',HOME+'mortgagecalculator#calc-invest','t','calc'],
+    ['&#9203;','Cost of waiting',HOME+'mortgagecalculator#calc-waiting','t','calc'],['&#129309;','Agency &amp; the DORT',HOME+'agency','n']];
+  // SEARCH HUBS folder: every hub [name, page], by region. SEARCH = the other search pages [label, link].
+  var HUBS=[["Chilliwack & District", [["Chilliwack", "chilliwack"], ["Chilliwack Proper", "chilliwack-proper"], ["Downtown (District 1881)", "district-1881-downtown-chilliwack"], ["Chilliwack East", "chilliwack-east"], ["Eastern Hillsides", "chilliwack-eastern-hillsides"], ["Chilliwack Mountain", "chilliwack-mountain"], ["Little Mountain", "chilliwack-little-mountain"], ["Fairfield Island", "fairfield-island"], ["Lower Landing", "chilliwack-lower-landing"], ["Sardis", "sardis"], ["Sardis South", "sardissouth"], ["Promontory", "promontory"], ["Garrison Crossing", "garrisoncrossing"], ["Greendale", "greendale"], ["Ryder Lake", "ryder-lake"], ["Chilliwack River Valley", "chilliwackrivervalley"], ["Rosedale / Popkum", "rosedalepopkum"], ["Cultus Lake", "cultus-lake"], ["Yarrow / Majuba Hill", "yarrow-majubahill"], ["Towns & rural", "chilliwacktownsandruralareas"], ["Agassiz", "agassiz"], ["Harrison", "harrisonlake"], ["Harrison waterfront", "harrison-waterfront"], ["Mt Woodside / Harrison Highlands", "mount-woodside-harrison-highlands"], ["Hemlock", "hemlock"], ["Columbia Valley", "columbiavalley"]]], ["Hope & Fraser Canyon", [["Hope", "hope-bc-real-estate"], ["Hope waterfront", "hope-waterfront"], ["Kawkawa Lake", "kawkawa-lake"], ["Sunshine Valley", "sunshinevalley"], ["Laidlaw", "laidlaw"], ["Fraser Canyon", "fraser-canyon-real-estate"]]], ["Fraser Valley", [["Abbotsford East", "abbotsford-east"], ["Central Abbotsford", "central-abbotsford"], ["Abbotsford West", "abbotsford-west"], ["Sumas Prairie", "sumas-prairie-farms"], ["Bradner", "bradner"], ["Aldergrove", "aldergrove-real-estate"], ["Langley", "newest-listing-in-langley"], ["Fraser Valley waterfront", "fraservalleywaterfront"]]], ["GVRD", [["North Vancouver", "northvan"]]]];
+  var SEARCH=[['&#127968;','All search hubs',HOME],['&#128270;','Just want to search',HOME+'quick-mls-search-results'],    ['&#127942;','Top 10 executive homes',HOME+'top-10-chilliwack-executive-homes-for-sale'],['&#128273;','Abbotsford East with suites',HOME+'abbotsford-east-with-suites'],
+    ['&#127960;&#65039;','Strata communities',HOME+'browse-by-strata'],['&#128274;','Gated &amp; 55+',HOME+'chilliwack-sardis-age-55-gated-communities'],['&#127754;','Waterfront',HOME+'chilliwack-and-district-waterfront'],
+    ['&#128679;','New construction',HOME+'chilliwack-new-construction'],['&#128506;&#65039;','Map search',MLS+'status=A&t=-1&i=-1&order=listdate-desc&view=map&search=1','map'],['&#128276;','New listing alerts',HOME,'alerts']];
+  // TAGLINES: [text, link]. Each one is a link; the words float in one by one.
+  var TAGS=[['admiraal.ca: for when you just want to search real estate in the GVRD, Fraser Valley, Chilliwack and District.',HOME],
+    ['Our signature style started way back in 1992. 34 years consecutive winners of the CADREB President\u2019s Club award. Admiraal Real Estate.',HOME+'beournextbestseller'],
+    ['\u201cSignature style\u201d: the real estate agent experience you are looking for. Learn more about agency',HOME+'agency'],
+    ['Be our next best seller. I can be your agent: your real estate agent services. Learn more about agency',HOME+'agency']];
+  var CSS='.ah{max-width:1150px;margin:0 auto;padding:38px 16px 14px;font-family:Inter,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;background:#fff;position:relative;z-index:50}'+
+   '.ah *{box-sizing:border-box}.ah-top{display:flex;align-items:center;justify-content:space-between;gap:40px;margin-bottom:30px}'+
+   '.ah-tag{margin:0;min-height:2.9em;max-width:620px;font-size:12.5px;line-height:1.45;font-weight:500;color:#5b6b85;display:flex;align-items:center}'+
+   '.ah-tag a{display:block;color:#5b6b85!important;text-decoration:none!important}.ah-tag a:after{content:" \\2192";color:#d61e6e;font-weight:700;opacity:0;animation:ahw .5s ease forwards;animation-delay:var(--d)}'+
+   '.ah-tag a:hover{color:#161e4a!important}.ah-tag a:hover:after{margin-left:3px}.ah-tag i{font-style:normal;display:inline-block;opacity:0;filter:blur(4px);transform:translateY(7px);animation:ahw .55s cubic-bezier(.2,.7,.2,1) forwards}'+
+   '.ah-tag i.k{color:#d61e6e;font-weight:600}'+
+   '@keyframes ahw{to{opacity:1;filter:none;transform:none}}'+
+   '@keyframes ahin{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}'+
+   '.ah-logo{flex:0 0 auto;display:block;padding:10px 4px 10px 28px;line-height:0}.ah-logo img{height:48px;width:auto;animation:ahc 14s ease-in-out infinite;transition:transform .25s}.ah-logo:hover img{transform:scale(1.04)}'+
+   '@keyframes ahc{0%,100%{filter:none}33%{filter:hue-rotate(-38deg) saturate(1.25)}66%{filter:hue-rotate(55deg) saturate(1.2)}}'+
+   '.ah-nav{display:flex;flex-wrap:wrap;gap:8px;background:#eef1f5;border-radius:18px;padding:8px}'+
+   '.ah-nav a{display:inline-block;padding:9px 15px;border-radius:999px;background:#fff;color:#161e4a!important;text-decoration:none!important;font-size:14px;font-weight:600;box-shadow:0 1px 2px rgba(22,30,74,.08);transition:background .15s,color .15s,transform .15s;white-space:nowrap}'+
+   '.ah-nav a:hover{transform:translateY(-1px);background:#161e4a;color:#fff!important}.ah-nav a.on{background:#161e4a;color:#fff!important}'+
+   '.ah-nav a.ah-hub{background:linear-gradient(150deg,#14b05a,#12a150 55%,#0b7f3f);color:#fff!important}.ah-nav a.ah-hub:hover,.ah-nav a.ah-hub.on{background:#0b7f3f;color:#fff!important}'+
+   '.ah-nav a.ah-sell.on,.ah-nav a.ah-sell:hover,.ah-nav a.ah-hot{background:#d61e6e;color:#fff!important}'+
+   '.ah-nav a.ah-cma{background:linear-gradient(150deg,#22b8a0,#1aa38c 55%,#12806e);color:#fff!important}.ah-nav a.ah-cma:hover,.ah-nav a.ah-cma.on{background:#12806e;color:#fff!important}'+
+   '.ah-nav a.ah-buy.on,.ah-nav a.ah-buy:hover{background:#1aa38c;color:#fff!important}'+
+   '.ah-dd:after{content:" \\25BE";font-size:11px;display:inline-block;transition:transform .2s}.ah-dd.open:after{transform:rotate(180deg)}.ah-nav a.ah-tools{background:linear-gradient(135deg,#a3acba,#5d6675 50%,#2d333d);color:#fff!important}.ah-nav a.ah-tools:hover,.ah-nav a.ah-tools.open{background:linear-gradient(135deg,#7c8594,#2d333d);color:#fff!important}.ah-sub[data-p=tools] .ah-ftab{background:linear-gradient(135deg,#a3acba,#4b5361);border-color:#4b5361;color:#fff}.ah-sub[data-p=tools] .ah-ftab b{color:#dfeaff}.ah-sub[data-p=tools] .ah-ftab:after{background:radial-gradient(circle at 100% 0,transparent 13px,#4b5361 14px)}.ah-sub[data-p=tools]{border-color:#4b5361}.ah-hub.open{background:#0b7f3f!important}'+
+   '.ah-sub.ah-green{background:linear-gradient(160deg,#16b25c,#0e8c47 70%);border-color:#fff;border-width:2px;box-shadow:0 24px 60px rgba(5,40,20,.45)}.ah-sub.ah-green .ah-ftab{background:#16b25c;border-color:#0b7f3f;color:#fff}.ah-green .ah-ftab:after{background:radial-gradient(circle at 100% 0,transparent 13px,#16b25c 14px)}.ah-green .ah-ftab b{color:#e3f7ea;letter-spacing:.04em;text-transform:none;font-weight:600}'+
+   '.ah-srch{position:relative;display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}.ah-srch a{display:flex;align-items:center;gap:7px;padding:9px 14px;border-radius:12px;background:#161e4a;color:#fff!important;text-decoration:none!important;font-size:13.5px;font-weight:700;transition:transform .15s}.ah-srch a:hover{transform:translateY(-2px)}.ah-srch i{font-style:normal}'+
+   '.ah-hgs{position:relative;display:grid;gap:10px;max-height:min(58vh,520px);overflow:auto;padding-right:4px}'+
+   '.ah-hg{background:rgba(255,255,255,.13);border:1px solid rgba(255,255,255,.18);border-radius:16px;padding:9px 10px 10px}.ah-hg small{display:block;margin:0 0 7px 2px;font:700 11px Inter,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:#e3f7ea}'+
+   '.ah-hg div{display:flex;flex-wrap:wrap;gap:6px}.ah-hg a{display:inline-block;padding:6px 11px;border-radius:999px;background:#fff;color:#0b6b36!important;text-decoration:none!important;font-size:13px;font-weight:600;transition:transform .15s,background .15s}.ah-hg a:hover{transform:translateY(-1px);background:#161e4a;color:#fff!important}'+
+   '.ah-green .ah-fby{color:#e3f7ea}.ah-green .ah-fby a{color:#fff!important;font-weight:700}.ah-green .ah-fx{background:rgba(0,0,0,.15);color:#fff}'+
+   '.ah-sub{position:absolute;z-index:60;width:min(760px,calc(100% - 32px));padding:16px 16px 12px;border-radius:0 18px 18px 18px;background:linear-gradient(160deg,#2c3341,#1c212b 70%);border:1px solid #3a4253;box-shadow:0 24px 50px rgba(10,14,30,.35);transform-origin:top left;animation:ahf .22s cubic-bezier(.2,.8,.2,1) both}'+
+   '.ah-sub:before{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;background:repeating-linear-gradient(0deg,rgba(255,255,255,.035) 0 1px,transparent 1px 22px),repeating-linear-gradient(90deg,rgba(255,255,255,.035) 0 1px,transparent 1px 22px)}'+
+   '.ah-sub[hidden]{display:none!important}@keyframes ahf{from{opacity:0;transform:translateY(-8px) scale(.98)}to{opacity:1;transform:none}}'+
+   '.ah-ftab{position:absolute;left:-1px;top:-31px;height:32px;display:flex;align-items:center;gap:7px;padding:0 16px 0 12px;border-radius:12px 14px 0 0;background:#2c3341;border:1px solid #3a4253;border-bottom:0;font:700 11.5px Inter,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#cfd6e4}'+
+   '.ah-ftab:after{content:"";position:absolute;right:-14px;bottom:0;width:14px;height:14px;background:radial-gradient(circle at 100% 0,transparent 13px,#2c3341 14px)}'+
+   '.ah-ftab b{color:#66ffd1;font-weight:700}'+
+   '.ah-files{position:relative;display:grid;grid-template-columns:repeat(auto-fill,minmax(168px,1fr));gap:8px}'+
+   '.ah-files a{white-space:normal;min-width:0;display:flex;align-items:center;gap:9px;padding:11px 12px;border-radius:12px;background:#353d4c;color:#eef2f8!important;text-decoration:none!important;font-size:13.5px;font-weight:600;border:1px solid #434c5e;border-top:3px solid #6b7891;transition:transform .15s,background .15s,box-shadow .15s}'+
+   '.ah-files a i{font-style:normal;font-size:19px;line-height:1}.ah-files a:hover{transform:translateY(-2px);background:#414a5b;box-shadow:0 8px 16px rgba(0,0,0,.3)}'+
+   '.ah-files a.c-g{border-top-color:#14b05a}.ah-files a.c-t{border-top-color:#22b8a0}.ah-files a.c-r{border-top-color:#d61e6e}.ah-files a.c-n{border-top-color:#9fb0d6}'+
+   '.ah-fx{position:absolute;bottom:8px;right:10px;z-index:2;width:28px;height:28px;border:0;border-radius:50%;background:rgba(255,255,255,.08);color:#cfd6e4;font-size:16px;cursor:pointer;line-height:1}.ah-fx:hover{background:rgba(255,255,255,.18)}'+
+   '.ah-fby{position:relative;margin:12px 40px 0 2px;min-height:22px;align-items:center;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;font:500 11.5px Inter,sans-serif;color:#8f9bb3}.ah-fby em{font-style:normal;font-family:"Courier New",Courier,monospace;color:#66ffd1;font-weight:700}'+
+'@media(max-width:640px){.ah-sub{width:calc(100% - 24px);padding:14px 10px 10px}.ah-files{grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}.ah-files a{font-size:12.5px;padding:9px 8px;gap:6px;line-height:1.2}.ah-files a i{font-size:16px}.ah{padding:24px 12px 10px}.ah-top{flex-direction:column-reverse;align-items:stretch;gap:14px;margin-bottom:16px}.ah-logo{align-self:flex-end;padding:6px 2px}.ah-logo img{height:34px}.ah-tag{min-height:3.6em;font-size:12px}'+
+   '.ah-nav{flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}.ah-nav::-webkit-scrollbar{display:none}.ah-nav a{font-size:13.5px;padding:8px 13px}}'+
+'.ah-nav a.ah-list{background:#161e4a;color:#fff!important}.ah-nav a.ah-list:hover,.ah-nav a.ah-list.open{background:#0d1333}'+
+   '.ah-nav a.ah-open{background:linear-gradient(150deg,#a6e06a,#86cc4a 55%,#62ad2c);color:#161e4a!important}.ah-nav a.ah-open:hover,.ah-nav a.ah-open.open{background:#62ad2c}.ah-sub[data-p=open]{border-color:#ffb300}'+
+   '.ah-nav a.ah-about{background:#fff;border:1px solid #d5dbe6}.ah-nav a.ah-about:hover,.ah-nav a.ah-about.open{background:#161e4a;color:#fff!important;border-color:#161e4a}.ah-fby a{color:#66ffd1!important}.ah-sub[data-p=listings]{border-color:#161e4a}.ah-sub[data-p=sell]{border-color:#d61e6e}'+
+   '.ah-find{margin:10px 0 0;display:flex}.ah-find input{flex:1;min-width:0;max-width:420px;font:500 14px Inter,sans-serif;padding:10px 16px;border-radius:999px;border:1.5px solid #14b05a;background:#f3fbf6;color:#161e4a;outline:none}.ah-find input:focus{box-shadow:0 0 0 3px rgba(20,176,90,.25)}'+
+   '@media(max-width:640px){.ah-find input{max-width:none;font-size:15px}}'+
+'.ah-quick{margin:0 0 14px;display:flex;flex-wrap:wrap;justify-content:flex-end;gap:6px 10px;font:600 12.5px Inter,sans-serif;color:#9aa5b8}.ah-quick a{color:#161e4a!important;text-decoration:none!important;display:inline-flex;gap:5px;align-items:center}.ah-quick a:hover{color:#d61e6e!important}.ah-quick i{font-style:normal}'+
+   '.ah-nav a.ah-sres{background:linear-gradient(150deg,#f9e08a,#ecc04a 55%,#c9972a);color:#161e4a!important}.ah-nav a.ah-sres:hover,.ah-nav a.ah-sres.on{background:#d9a836}'+
+   '.ah-find{gap:8px;align-items:center}.ah-find button{flex:none;font:700 14px Inter,sans-serif;padding:10px 18px;border-radius:999px;border:0;background:#14b05a;color:#fff;cursor:pointer}.ah-find button:hover{background:#0b7f3f}'+
+   '.ah-find{flex-wrap:wrap}.ah-cmab{margin-left:auto;display:inline-flex;align-items:center;gap:10px;background:#161e4a;border-radius:999px;padding:8px 18px 8px 20px;box-shadow:0 6px 18px rgba(10,20,97,.22);transition:transform .15s,background .15s;text-decoration:none!important;color:#fff!important;position:relative;overflow:hidden}'+
+   '.ah-cmab:hover{transform:translateY(-1px);background:#0a1461}.ah-cmab span{display:flex;flex-direction:column;line-height:1.15}.ah-cmab em{font:600 14px Inter,sans-serif;font-style:normal}.ah-cmab b{color:#ff9cc6;font-weight:700}.ah-cmab small{font:500 11.5px Inter,sans-serif;color:#c9d0e6;margin-top:2px}.ah-cmab i{font:700 20px Inter,sans-serif;font-style:normal}'+
+   '.ah-cmab.pk{background:#d61e6e;box-shadow:0 6px 18px rgba(214,30,110,.3)}.ah-cmab.pk:hover{background:#b8165c}.ah-cmab.pk b{color:#fff}.ah-cmab.pk small{color:#ffe0ee}'+
+   '.ah-cmab.sh:after{content:"";position:absolute;top:0;left:-60%;width:40%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.28),transparent);animation:ahShine 6s ease-in-out infinite}@keyframes ahShine{0%,70%{left:-60%}100%{left:130%}}'+
+   '@media(prefers-reduced-motion:reduce){.ah-cmab.sh:after{animation:none;display:none}}'+
+   '@media(max-width:640px){.ah-cmab{margin:4px auto 0;width:100%;justify-content:center}}'+
+   '.ah-help{margin:6px 4px 0;font:500 12px/1.4 Inter,sans-serif;color:#6b7891}.ah-help b{color:#0b7f3f}'+
+   '.ah-load[hidden]{display:none!important}.ah-load{position:fixed;inset:0;z-index:9999;background:rgba(255,255,255,.92);display:flex;align-items:center;justify-content:center;text-align:center}.ah-load div{display:grid;gap:8px;justify-items:center;font-family:Inter,sans-serif;color:#161e4a}.ah-load b{font-size:18px}.ah-load small{font-size:14px;color:#5b6b85}'+
+   '.ah-orb{width:64px;height:64px;border-radius:50%;border:5px solid #dbe6ff;border-top-color:#0a3fe0;border-right-color:#14b05a;animation:ahspin 1s linear infinite}@keyframes ahspin{to{transform:rotate(360deg)}}'+
+   '@media(max-width:640px){.ah-quick{justify-content:center;font-size:12px}.ah-help{font-size:11.5px}}'+
+   '@media(prefers-reduced-motion:reduce){.ah-logo img,.ah-sub{animation:none}.ah-tag i,.ah-tag a:after{animation:none;opacity:1;filter:none;transform:none}}';
+  // No-obligation CMA Report button, on every page. Opens the homepage CMA form until the CMA Report page is live.
+  // Its look changes here and there: pink on seller pages, a soft shine on area hubs, classic navy everywhere else.
+  function cmab(){
+    var path=location.pathname.toLowerCase(), href=(!LIVE.cma&&document.getElementById('market-analysis'))?'#market-analysis':CMAURL;
+    var v=/sold|bestseller|seller|cmareport|walkthrough|agency/.test(path)?' pk':(HUBS.some(function(g){ return g[1].some(function(x){ return path==='/'+x[1].toLowerCase(); }); })?' sh':'');
+    return '<a class="ah-cmab'+v+'" href="'+href+'"><span><em>No-obligation <b>CMA Report</b></em><small>Find out what your property is worth.</small></span><i aria-hidden="true">&rsaquo;</i></a>'; }
+  function build(){
+    var fl=document.createElement('link'); fl.rel='stylesheet'; fl.href='https://fonts.googleapis.com/css2?family=Inter:wght@500;600&display=swap'; document.head.appendChild(fl);
+    var st=document.createElement('style'); st.textContent=CSS; document.head.appendChild(st);
+    var h=document.createElement('header'); h.className='ah';
+    var nav=MENU.filter(function(m){ return ok(m[5]); }).map(function(m){ return '<a class="'+m[2]+'" href="'+m[1]+'" data-m="'+m[3]+'"'+(m[4]?' data-f="'+m[4]+'" role="button" aria-expanded="false"':'')+'>'+m[0]+'</a>'; }).join('');
+    var hubs=HUBS.map(function(g){ return '<div class="ah-hg"><small>'+g[0]+'</small><div>'+g[1].map(function(x){ return '<a href="'+HOME+x[1]+'">'+x[0]+'</a>'; }).join('')+'</div></div>'; }).join('');
+    var srch=SEARCH.filter(function(x){ return ok(x[3]); }).map(function(x){ return '<a href="'+x[2]+'"><i aria-hidden="true">'+x[0]+'</i>'+x[1]+'</a>'; }).join('');
+    function files(L){ return L.filter(function(t){ return ok(t[4]); }).map(function(t){ return '<a class="c-'+t[3]+'" href="'+t[2]+'"'+(t[2].indexOf('wa.me')>0?' target="_blank" rel="noopener"':'')+'><i aria-hidden="true">'+t[0]+'</i>'+t[1]+'</a>'; }).join(''); }
+    var sub=files(TOOLS);
+    function folder(p,cls,title,note,L,foot){ return '<div class="ah-sub '+cls+'" data-p="'+p+'" hidden><span class="ah-ftab">&#128193; '+title+' <b>&middot; '+note+'</b></span><div class="ah-files">'+files(L)+'</div><p class="ah-fby"><span>'+foot+'</span></p><button type="button" class="ah-fx" aria-label="Close">&times;</button></div>'; }
+    var hubNames=[]; HUBS.forEach(function(g){ g[1].forEach(function(x){ hubNames.push(x); }); });
+    var finder='<form class="ah-find" role="search"><input type="search" aria-label="Search an area, address or MLS number" placeholder="&#128269; Search an area, street, address or MLS&reg; number" list="ah-areas" enterkeyhint="search"><button type="submit">Go &rarr;</button><datalist id="ah-areas">'+hubNames.map(function(x){ return '<option value="'+x[0]+'">'; }).join('')+'</datalist>'+cmab()+'</form>'+
+      '<p class="ah-help">Find every active MLS&reg; listing in GVR, Fraser Valley and Chilliwack &amp; District.</p>'+
+      '<div class="ah-load" hidden><div><span class="ah-orb" aria-hidden="true"></span><b>Sorting through the MLS&reg; data</b><small>to find the homes you&rsquo;re looking for&hellip;</small></div></div>';
+    var quick='<p class="ah-quick">'+CONTACT.map(function(c){ return '<a href="'+c[2]+'"'+(c[2].indexOf('http')===0&&c[2].indexOf(HOME)<0?' target="_blank" rel="noopener"':'')+'><i aria-hidden="true">'+c[0]+'</i>'+c[1]+'</a>'; }).join('<span>|</span>')+'</p>';
+    h.innerHTML=quick+'<div class="ah-top"><p class="ah-tag" aria-live="polite"></p><a class="ah-logo" href="'+HOME+'" aria-label="Admiraal Real Estate home"><img alt="ADMIRAAL" src="'+LOGO+'"></a></div>'+
+      '<nav class="ah-nav" aria-label="Main">'+nav+'</nav>'+finder+
+      folder('listings','ah-lst','Featured Listings','our listings right now',LISTINGS,'New listings launch here first &middot; <a href="'+HOME+'active-listings">see them all &rarr;</a>')+
+      folder('open','ah-opn','Open Houses','this weekend, by area',OPEN,'Can&rsquo;t make it? <a href="https://wa.me/16047012955" target="_blank" rel="noopener">Book a private showing &rarr;</a>')+
+      folder('sell','ah-sel','Be Our Next Best Seller','since 1992',SELL,'34 years of President&rsquo;s Club &middot; <a href="'+HOME+'beournextbestseller">all our best sellers &rarr;</a>')+
+      folder('about','ah-abt','About','Richard &amp; Cynthia Admiraal',ABOUT,'Advantage Property Management &ndash; Real Estate Division &middot; 604-701-2955')+
+      '<div class="ah-sub" data-p="tools" hidden><span class="ah-ftab">&#128193; RE Tools <b>&middot; admiraal.ca</b></span><div class="ah-files">'+sub+'</div><p class="ah-fby"><span><a href="https://conceptoasis.com" target="_blank" rel="noopener">workflow forms by co | co</a></span></p><button type="button" class="ah-fx" aria-label="Close">&times;</button></div>'+
+      '<div class="ah-sub ah-green" data-p="hubs" hidden><span class="ah-ftab">&#128193; Search Hubs <b>&middot; new listings, every area</b></span><div class="ah-srch">'+srch+'</div><div class="ah-hgs">'+hubs+'</div>'+
+      '<p class="ah-fby"><span>Not seeing your area? <a href="https://wa.me/16047012955" target="_blank" rel="noopener">Ask Richard on WhatsApp &rarr;</a></span></p><button type="button" class="ah-fx" aria-label="Close">&times;</button></div>';
+    return h; }
+  function wire(h){
+    var path=location.pathname.toLowerCase().replace(/\/$/,'')||'/', any=false;
+    [].forEach.call(h.querySelectorAll('.ah-nav a'),function(a){ if(a.getAttribute('data-m')&&path===a.getAttribute('data-m')){ a.classList.add('on'); any=true; } });
+    if(!any){ var b=h.querySelector('[data-m="/beournextbestseller"]'); if(b) b.classList.add('ah-hot'); }
+    var nv=h.querySelector('.ah-nav'), cur=null;
+    function pos(tb,sb){ sb.style.top=(nv.offsetTop+nv.offsetHeight+38)+'px'; var l=window.innerWidth<640?12:Math.max(16,Math.min(tb.offsetLeft+nv.offsetLeft-nv.scrollLeft,h.clientWidth-sb.offsetWidth-16)); sb.style.left=l+'px'; }
+    function close(){ if(!cur) return; cur[1].hidden=true; cur[0].classList.remove('open'); cur[0].setAttribute('aria-expanded','false'); cur=null; }
+    function open(tb){ var sb=h.querySelector('.ah-sub[data-p="'+tb.getAttribute('data-f')+'"]'); close(); sb.hidden=false; tb.classList.add('open'); tb.setAttribute('aria-expanded','true'); pos(tb,sb); cur=[tb,sb]; }
+    [].forEach.call(h.querySelectorAll('.ah-dd'),function(tb){ tb.addEventListener('click',function(e){ e.preventDefault(); e.stopPropagation(); if(cur&&cur[0]===tb) close(); else open(tb); }); });
+    [].forEach.call(h.querySelectorAll('.ah-fx'),function(x){ x.addEventListener('click',close); });
+    document.addEventListener('click',function(e){ if(cur&&!cur[1].contains(e.target)) close(); });
+    document.addEventListener('keydown',function(e){ if(e.key==='Escape'&&cur){ var t=cur[0]; close(); t.focus(); } });
+    window.addEventListener('resize',function(){ if(cur) pos(cur[0],cur[1]); });
+    var fd=h.querySelector('.ah-find'); if(fd) fd.addEventListener('submit',function(e){ e.preventDefault(); var q=fd.querySelector('input').value.trim().toLowerCase(), hit=null; if(!q){ fd.querySelector('input').focus(); return; } h.querySelector('.ah-load').hidden=false;
+      HUBS.forEach(function(g){ g[1].forEach(function(x){ if(!hit&&q&&(x[0].toLowerCase()===q||x[0].toLowerCase().indexOf(q)===0)) hit=x; }); });
+      if(!hit&&q) HUBS.forEach(function(g){ g[1].forEach(function(x){ if(!hit&&x[0].toLowerCase().indexOf(q)>=0) hit=x; }); });
+      if(hit){ location.href=HOME+hit[1]; return; }
+      location.href=MLS+'address='+encodeURIComponent(fd.querySelector('input').value.trim())+'&status=A&t=-1&i=-1&order=listdate-desc&view=grid&search=1'; });
+    // Enter key always runs the search, even when the suggestion list is open.
+    if(fd){ var fin=fd.querySelector('input'); fin.addEventListener('keydown',function(e){ if((e.key==='Enter'||e.keyCode===13)&&!e.isComposing){ e.preventDefault(); e.stopPropagation(); setTimeout(function(){ var ev=document.createEvent('Event'); ev.initEvent('submit',true,true); fd.dispatchEvent(ev); },30); } }); }
+    // Coming Back to this page: clear the 'Sorting through the MLS data' screen.
+    window.addEventListener('pageshow',function(){ var L=h.querySelector('.ah-load'); if(L) L.hidden=true; });
+    var i=0, t=h.querySelector('.ah-tag');
+    function show(n){ var g=TAGS[n], a=document.createElement('a'); a.href=g[1]; var ws=g[0].split(' '), hot=g[0].indexOf('Learn more')>=0?ws.length-4:ws.length;
+      ws.forEach(function(w,k){ var e=document.createElement('i'); e.textContent=w; if(k>=hot) e.className='k'; e.style.animationDelay=(k*0.06)+'s'; a.appendChild(e); if(k<ws.length-1) a.appendChild(document.createTextNode(' ')); });
+      a.style.setProperty('--d',(ws.length*0.06+0.1)+'s'); t.innerHTML=''; t.appendChild(a); }
+    show(0); setInterval(function(){ if(document.hidden) return; i=(i+1)%TAGS.length; show(i); },9000);
+    var on=h.querySelector('.ah-nav a.on'); if(on&&window.innerWidth<640) h.querySelector('.ah-nav').scrollLeft=on.offsetLeft-20; }
+  // Always goes to the very top of the page, whether pasted in the site-wide header box, footer box, or a page widget.
+  // Climb from a theme link to its bar, but never into anything tall (a page wrapper) or anything holding our header.
+  function up(el,stop){ var best=null; while(el&&el.parentElement&&el.parentElement!==document.body&&el.parentElement!==document.documentElement){ var p=el.parentElement; if(stop(p)) break; el=p; best=el; } return best; }
+  function tidy(h){
+    var acc=[].filter.call(document.querySelectorAll('a[href*="account/register"],a[href*="account/login"],#account_login_link'),function(a){ return !(h&&h.contains(a)); })[0];
+    var sres=[].filter.call(document.querySelectorAll('a[href*="seniors-real-estate-specialist"]'),function(a){ return !(h&&h.contains(a)) && !a.closest('footer'); })[0];
+    var main=document.querySelector('h1,main,article');
+    function bad(p){ var r=p.getBoundingClientRect(); return (h&&p.contains(h)) || (main&&p.contains(main)) || r.height>320 || /privacy policy/i.test(p.textContent) || p.tagName==='FOOTER' || p.tagName==='MAIN'; }
+    var groups=[];
+    if(sres){ var ul=sres.closest('ul'); while(ul&&ul.parentElement&&ul.parentElement.closest('ul')) ul=ul.parentElement.closest('ul');
+      if(ul) [].forEach.call(ul.children,function(li){ var a=li.querySelector('a'); if(!a) return; var kids=[].filter.call(li.querySelectorAll('ul a'),function(k){ return k!==a; }).map(function(k){ return [k.textContent.trim(),k.href]; });
+        groups.push([a.textContent.trim(),a.href,kids]); }); }
+    var feat=groups.filter(function(g){ return /featured listings/i.test(g[0]); })[0];
+    var navBox=sres?up(sres,bad):null, topBox=acc?up(acc,bad):null;
+    if(TIDY&&h){ var before=document.body.scrollHeight, hid=[];
+      // RealtyNinja's whole theme header (logo, top bar and menu) in one go, so new pages added to its menu can't make it too tall to hide.
+      var rnh=document.querySelector('section.header-section');
+      if(rnh&&!rnh.contains(h)&&!(main&&rnh.contains(main))&&rnh.getBoundingClientRect().height<=700){ rnh.style.display='none'; hid.push(rnh); }
+      [navBox,topBox].forEach(function(b){ if(b&&!b.contains(h)&&b.getBoundingClientRect().height<=320&&hid.indexOf(b)<0&&!hid.some(function(x){return x.contains(b);})){ b.style.display='none'; hid.push(b); } });
+      // Safety net: if hiding took away most of the page, put everything back.
+      if(document.body.scrollHeight<before-700) hid.forEach(function(b){ b.style.display=''; }); }
+    return {groups:groups,feat:feat};
+  }
+  function sitemap(groups){
+    if(!groups.length) return;
+    var seen={}, soc=[].filter.call(document.querySelectorAll('a[href*="facebook.com"],a[href*="instagram.com"],a[href*="youtube.com"]'),function(a){ var k=/facebook/.test(a.href)?'f':/instagram/.test(a.href)?'i':'y'; if(seen[k]) return false; seen[k]=1; return true; });
+    var d=document.createElement('section'); d.className='ah-map';
+    d.innerHTML='<style>.ah-map{max-width:1150px;margin:40px auto 0;padding:26px 16px 30px;border-top:3px solid #161e4a;font:500 13px/1.5 Inter,-apple-system,"Segoe UI",Roboto,Arial,sans-serif}.ah-map h2{font:700 15px Inter,sans-serif;letter-spacing:1.5px;text-transform:uppercase;color:#161e4a;margin:0 0 16px}.ah-map-g{columns:4 210px;column-gap:28px}.ah-map-g div{break-inside:avoid;margin:0 0 16px}.ah-map-g a{color:#3b4a66!important;text-decoration:none!important;display:block;padding:2px 0}.ah-map-g a:hover{color:#d61e6e!important}.ah-map-g a.t{font-weight:700;color:#161e4a!important}.ah-soc{margin:14px 0 0;display:flex;gap:14px;flex-wrap:wrap}.ah-soc a{font-weight:700;color:#161e4a!important}</style>'+
+      '<h2>Site map</h2><div class="ah-map-g">'+groups.map(function(g){ return '<div><a class="t" href="'+g[1]+'">'+g[0]+'</a>'+g[2].map(function(k){ return '<a href="'+k[1]+'">'+k[0]+'</a>'; }).join('')+'</div>'; }).join('')+'</div>'+
+      (soc.length?'<p class="ah-soc">Follow us: '+soc.map(function(a){ var n=/facebook/.test(a.href)?'Facebook':/instagram/.test(a.href)?'Instagram':'YouTube'; return '<a href="'+a.href+'" target="_blank" rel="noopener">'+n+'</a>'; }).join('')+'</p>':'');
+    var f=document.querySelector('footer'); if(f&&f.parentElement) f.parentElement.insertBefore(d,f); else document.body.appendChild(d);
+  }
+  function place(){
+    if(document.getElementById('ah-hdr-on')) return; var mark=document.createElement('i'); mark.id='ah-hdr-on'; mark.hidden=true; document.body.appendChild(mark);
+    if(/[?&]notidy/.test(location.search)) TIDY=false;
+    try{ var t0=tidy(null);
+      if(t0.feat&&t0.feat[2].length) LISTINGS=[['&#127968;','All featured listings',t0.feat[1],'g']].concat(t0.feat[2].map(function(k){ return ['&#127969;',k[0],k[1],'t']; })); }catch(e){ if(window.console) console.log('[admiraal header] listings',e); }
+    var h=build();
+    // Go just below RealtyNinja's hidden notice bar (it hides itself by sitting above the page top), else at the very top.
+    var nb=document.getElementById('notification'); if(nb&&nb.parentNode===document.body) document.body.insertBefore(h,nb.nextSibling); else document.body.insertBefore(h,document.body.firstChild);
+    // On the homepage, CMA links open the CMA form right there.
+    if(document.getElementById('market-analysis')) [].forEach.call(h.querySelectorAll('a[href$="#market-analysis"]'),function(a){ a.setAttribute('href','#market-analysis'); });
+    try{ wire(h); }catch(e){ if(window.console) console.log('[admiraal header] wire',e); }
+    if(TIDY){ var dup=document.querySelector('.cmab-wrap'); if(dup&&!h.contains(dup)) dup.style.display='none'; }
+    try{ var t=tidy(h); if(TIDY) sitemap(t.groups); }catch(e){ if(window.console) console.log('[admiraal header] tidy',e); } }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',place); else place();
+})();
+</script>
+
+<!-- PHOTO VIEWER: tap any photo to see it full screen. Pinch or scroll to zoom, drag to look around, swipe or arrow keys for the next one. Takes over RealtyNinja's small gallery pop-up. -->
+<style>
+.ahv{position:fixed;left:0;top:0;right:0;bottom:0;z-index:2147483000;background:rgba(8,10,20,.96);display:none;touch-action:none;-webkit-user-select:none;user-select:none}
+.ahv.on{display:block}
+.ahv img{position:absolute;left:0;top:0;max-width:none!important;max-height:none!important;transform-origin:0 0;will-change:transform;-webkit-user-drag:none;box-shadow:0 10px 40px rgba(0,0,0,.5)}
+.ahv-b{position:absolute;z-index:2;border:0;background:rgba(255,255,255,.14);color:#fff;width:48px;height:48px;border-radius:50%;font:30px/46px Arial,sans-serif;text-align:center;cursor:pointer;padding:0}
+.ahv-b:hover,.ahv-b:focus-visible{background:rgba(255,255,255,.3);outline:0}
+.ahv-x{top:14px;right:14px;top:calc(14px + env(safe-area-inset-top,0px))}
+.ahv-p{left:14px;top:50%;margin-top:-24px}
+.ahv-n{right:14px;top:50%;margin-top:-24px}
+.ahv-c{position:absolute;z-index:2;left:0;right:0;bottom:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));text-align:center;color:#d6dbe6;font:600 13px/1.4 Inter,Arial,sans-serif;pointer-events:none;text-shadow:0 1px 3px #000}
+.ahv-ld{position:absolute;left:50%;top:50%;margin:-18px 0 0 -18px;width:36px;height:36px;border:3px solid rgba(255,255,255,.25);border-top-color:#fff;border-radius:50%;animation:ahvs .8s linear infinite}
+@keyframes ahvs{to{transform:rotate(360deg)}}
+@media(max-width:640px){.ahv-p,.ahv-n{display:none}}
+img.ahv-z,.ahv-zs{cursor:zoom-in}
+</style>
+<script>
+(function(){
+  if(window.__ahv) return; window.__ahv=1;
+  var V,IM,CT,LD,list=[],idx=0,nw=1,nh=1,fit=1,z=1,tx=0,ty=0,pts={},pinch=null,drag=null,lastTap=0,pushed=false;
+  var SKIP='.ah,.ah-map,.ahv,.ag-fm,.cmab-wrap,form,nav,footer,button,[class*="ma-"]';
+  function big(img){ var best=img.currentSrc||img.src, bw=0;
+    (img.getAttribute('srcset')||'').split(',').forEach(function(p){ var a=p.trim().split(/\s+/), w=parseInt(a[1],10)||0; if(a[0]&&w>bw){ bw=w; best=a[0]; } });
+    return img.getAttribute('data-full')||img.getAttribute('data-large')||best; }
+  function ok(img){ if(!img||img.closest('a')||img.closest(SKIP)) return false; if(/logo|icon|avatar|sprite|\/map\//i.test(img.src)) return false;
+    return img.naturalWidth>=500&&img.offsetWidth>=120; }
+  function mark(){ [].forEach.call(document.images,function(i){ if(ok(i)) i.classList.add('ahv-z'); });
+    [].forEach.call(document.querySelectorAll('.carousel .item,.item.slide'),function(s){ if(/url\(/.test(s.style.backgroundImage)) s.classList.add('ahv-zs'); }); }
+  function build(){ if(V) return; V=document.createElement('div'); V.className='ahv'; V.setAttribute('role','dialog'); V.setAttribute('aria-modal','true'); V.setAttribute('aria-label','Photo viewer');
+    V.innerHTML='<div class="ahv-ld"></div><img alt=""><button type="button" class="ahv-b ahv-x" aria-label="Close">&times;</button><button type="button" class="ahv-b ahv-p" aria-label="Previous photo">&lsaquo;</button><button type="button" class="ahv-b ahv-n" aria-label="Next photo">&rsaquo;</button><div class="ahv-c"></div>';
+    document.body.appendChild(V); IM=V.querySelector('img'); CT=V.querySelector('.ahv-c'); LD=V.querySelector('.ahv-ld');
+    V.querySelector('.ahv-x').onclick=function(e){ e.stopPropagation(); close(); };
+    V.querySelector('.ahv-p').onclick=function(e){ e.stopPropagation(); go(-1); };
+    V.querySelector('.ahv-n').onclick=function(e){ e.stopPropagation(); go(1); };
+    IM.onload=function(){ LD.style.display='none'; nw=IM.naturalWidth||1; nh=IM.naturalHeight||1; reset(); IM.style.visibility='visible'; };
+    V.addEventListener('wheel',function(e){ e.preventDefault(); zoomAt(e.clientX,e.clientY,z*Math.exp(-e.deltaY*0.0022)); },{passive:false});
+    V.addEventListener('dblclick',function(e){ if(e.target===IM) zoomAt(e.clientX,e.clientY,z>1.05?1:2.5); });
+    V.addEventListener('pointerdown',down); V.addEventListener('pointermove',move); V.addEventListener('pointerup',up); V.addEventListener('pointercancel',up);
+    window.addEventListener('resize',function(){ if(V.classList.contains('on')) reset(); });
+    document.addEventListener('keydown',function(e){ if(!V.classList.contains('on')) return; if(e.key==='Escape') close(); else if(e.key==='ArrowRight') go(1); else if(e.key==='ArrowLeft') go(-1); });
+    window.addEventListener('popstate',function(){ if(V.classList.contains('on')){ pushed=false; close(); } }); }
+  function W(){ return V.clientWidth; } function H(){ return V.clientHeight; }
+  function reset(){ fit=Math.min(W()*0.96/nw,(H()-60)/nh); if(fit>2) fit=2; z=1; var s=fit; tx=(W()-nw*s)/2; ty=(H()-nh*s)/2; draw(); }
+  function clamp(){ var s=fit*z, iw=nw*s, ih=nh*s;
+    tx=iw<=W()?(W()-iw)/2:Math.min(0,Math.max(W()-iw,tx)); ty=ih<=H()?(H()-ih)/2:Math.min(0,Math.max(H()-ih,ty)); }
+  function draw(){ clamp(); IM.style.transform='translate('+tx+'px,'+ty+'px) scale('+(fit*z)+')'; IM.style.width=nw+'px'; IM.style.height=nh+'px'; }
+  function zoomAt(px,py,nz){ nz=Math.max(1,Math.min(8,nz)); var s=fit*z, ix=(px-tx)/s, iy=(py-ty)/s; z=nz; s=fit*z; tx=px-ix*s; ty=py-iy*s; draw(); }
+  function show(){ var it=list[idx]; LD.style.display='block'; IM.style.visibility='hidden'; IM.src=it;
+    CT.textContent=(list.length>1?(idx+1)+' / '+list.length+'  \u00b7  ':'')+'Pinch or scroll to zoom';
+    var multi=list.length>1; V.querySelector('.ahv-p').style.visibility=multi?'':'hidden'; V.querySelector('.ahv-n').style.visibility=multi?'':'hidden';
+    [1,-1].forEach(function(d){ if(multi){ var p=new Image(); p.src=list[(idx+d+list.length)%list.length]; } }); }
+  function go(d){ if(list.length<2) return; idx=(idx+d+list.length)%list.length; show(); }
+  function open(urls,i){ build(); var seen={}; list=urls.filter(function(u){ if(!u||seen[u]) return false; seen[u]=1; return true; }); if(!list.length) return;
+    idx=Math.max(0,Math.min(list.length-1,i||0)); V.classList.add('on'); document.documentElement.style.overflow='hidden';
+    try{ if(!pushed){ history.pushState({ahv:1},''); pushed=true; } }catch(e){}
+    show(); V.querySelector('.ahv-x').focus(); }
+  function close(){ if(!V) return; V.classList.remove('on'); document.documentElement.style.overflow=''; IM.removeAttribute('src');
+    if(pushed){ pushed=false; try{ history.back(); }catch(e){} } }
+  function down(e){ if(e.target.closest('.ahv-b')) return; pts[e.pointerId]={x:e.clientX,y:e.clientY}; try{ V.setPointerCapture(e.pointerId); }catch(er){}
+    var k=Object.keys(pts); if(k.length===2){ var a=pts[k[0]],b=pts[k[1]]; pinch={d:Math.hypot(a.x-b.x,a.y-b.y)||1,z:z,mx:(a.x+b.x)/2,my:(a.y+b.y)/2}; drag=null; }
+    else if(k.length===1){ drag={x:e.clientX,y:e.clientY,tx:tx,ty:ty,t:Date.now(),onImg:e.target===IM}; } }
+  function move(e){ if(!pts[e.pointerId]) return; pts[e.pointerId]={x:e.clientX,y:e.clientY}; var k=Object.keys(pts);
+    if(pinch&&k.length>=2){ var a=pts[k[0]],b=pts[k[1]], d=Math.hypot(a.x-b.x,a.y-b.y), mx=(a.x+b.x)/2, my=(a.y+b.y)/2;
+      tx+=mx-pinch.mx; ty+=my-pinch.my; pinch.mx=mx; pinch.my=my; zoomAt(mx,my,pinch.z*d/pinch.d); }
+    else if(drag&&z>1.01){ tx=drag.tx+(e.clientX-drag.x); ty=drag.ty+(e.clientY-drag.y); draw(); } }
+  function up(e){ var p=pts[e.pointerId]; delete pts[e.pointerId]; var left=Object.keys(pts).length;
+    if(pinch){ if(left<2) pinch=null; if(left===1){ var q=pts[Object.keys(pts)[0]]; drag={x:q.x,y:q.y,tx:tx,ty:ty,t:Date.now(),onImg:true}; } return; }
+    if(!drag||!p) return; var dx=e.clientX-drag.x, dy=e.clientY-drag.y, dt=Date.now()-drag.t, moved=Math.abs(dx)>10||Math.abs(dy)>10;
+    if(z<=1.01&&Math.abs(dx)>60&&Math.abs(dx)>Math.abs(dy)*1.3) go(dx<0?1:-1);
+    else if(!moved&&dt<350){ var now=Date.now();
+      if(e.pointerType!=='mouse'&&now-lastTap<300&&drag.onImg){ zoomAt(e.clientX,e.clientY,z>1.05?1:2.5); lastTap=0; }
+      else { lastTap=now; if(!drag.onImg&&z<=1.01) close(); } }
+    drag=null; }
+  function bgUrl(el){ var m=/url\(["']?([^"')]+)["']?\)/.exec(el.style.backgroundImage||''); if(!m) return ''; try{ return new URL(m[1],location.href).href; }catch(e){ return m[1]; } }
+  function gallery(){ return [].map.call(document.querySelectorAll('a.fancybox-thumb,a[rel^="photo-gal"]'),function(a){ return a.href; }); }
+  document.addEventListener('click',function(e){
+    if(e.defaultPrevented||e.button>0||e.ctrlKey||e.metaKey||e.shiftKey) return;
+    var t=e.target, a=t.closest&&t.closest('a');
+    if(a&&!a.closest('.ah,.ahv,.ag-fm')){
+      var isGal=a.matches('.fancybox-thumb,[rel^="photo-gal"],[data-toggle="lightbox"],[data-fancybox]'), isImg=/\.(jpe?g|png|webp|gif)(\?|#|$)/i.test(a.getAttribute('href')||'');
+      if(isGal||isImg){ e.preventDefault(); e.stopImmediatePropagation();
+        var rel=a.getAttribute('rel')||a.getAttribute('data-gallery')||a.getAttribute('data-fancybox'), group=[a];
+        if(a.matches('.fancybox-thumb')) group=[].slice.call(document.querySelectorAll('a.fancybox-thumb'));
+        else if(rel) group=[].filter.call(document.querySelectorAll('a'),function(x){ return (x.getAttribute('rel')||x.getAttribute('data-gallery')||x.getAttribute('data-fancybox'))===rel; });
+        var urls=group.map(function(x){ return x.href; }), cur=a.href;
+        var sl=document.querySelector('.carousel .item.active,.item.slide.active'); if(a.matches('.fancybox-thumb')&&sl&&bgUrl(sl)) cur=bgUrl(sl);
+        var u=urls.filter(function(v,i){ return urls.indexOf(v)===i; }); open(u,Math.max(0,u.indexOf(cur))); return; } return; }
+    var sld=t.closest&&t.closest('.ahv-zs');
+    if(sld){ var g=gallery(), su=bgUrl(sld); if(!g.length) g=[su]; e.preventDefault(); e.stopImmediatePropagation(); open(g,Math.max(0,g.indexOf(su))); return; }
+    if(t.tagName==='IMG'&&ok(t)){ e.preventDefault(); var all=[].filter.call(document.images,ok), u2=all.map(big); open(u2,all.indexOf(t)); }
+  },true);
+  function start(){ mark(); setTimeout(mark,1500); setTimeout(mark,4000); window.addEventListener('load',mark); }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',start); else start();
+})();
+</script>
+
+<!-- CONTACT POP-UP: the header's Email button (and other email links to Richard) open this short form. Sends to the Formspree inbox, so it works on any device, no mail app needed. -->
+<style>
+.acm{position:fixed;top:0;left:0;right:0;bottom:0;z-index:100001;background:rgba(6,10,30,.72);display:flex;align-items:center;justify-content:center;padding:14px;font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif}
+.acm[hidden],.acm [hidden]{display:none!important}
+.acm *{box-sizing:border-box}
+.acm-box{position:relative;width:100%;max-width:500px;max-height:94vh;overflow:auto;overflow-x:hidden;background:#fff;border-radius:6px 20px 20px 20px;padding:20px 22px 18px;box-shadow:0 20px 60px rgba(0,0,0,.35);border-top:6px solid #161e4a;color:#161e4a;text-align:left}
+.acm-tab{margin:-20px -22px 14px;padding:8px 22px 7px;background:#161e4a;color:#fff;display:flex;align-items:baseline;gap:8px;font-family:"Plus Jakarta Sans",Inter,sans-serif}
+.acm-tab b{font-weight:800;font-size:20px;letter-spacing:.06em}.acm-tab span{font-weight:700;font-size:15px;color:#b9c6ff;font-style:italic}
+.acm-x{position:absolute;top:2px;right:8px;width:36px;height:36px;border:0;border-radius:50%;background:rgba(255,255,255,.15);color:#fff;font-size:24px;line-height:1;cursor:pointer}
+.acm h2{font:800 22px/1.2 "Plus Jakarta Sans",Inter,sans-serif!important;color:#161e4a!important;margin:0 0 6px!important;letter-spacing:0!important;text-transform:none!important}
+.acm-sub{font-size:14px!important;line-height:1.5!important;color:#4a5878!important;margin:0 0 14px!important}
+.acm label{display:block;font-weight:700;font-size:14px;color:#161e4a;margin:0 0 12px}
+.acm input,.acm textarea{display:block;width:100%;margin-top:5px;padding:11px 13px!important;border:1.5px solid #cfd6e6!important;border-radius:12px!important;font:400 15px Inter,-apple-system,sans-serif!important;color:#161e4a!important;background:#fff!important;height:auto!important;box-shadow:none!important}
+.acm input:focus,.acm textarea:focus{outline:0;border-color:#d61e6e!important;box-shadow:0 0 0 3px rgba(214,30,110,.15)!important}
+.acm textarea{resize:vertical;min-height:90px}
+.acm-two{display:grid;grid-template-columns:1fr 1fr;gap:10px}.acm-two label{margin-bottom:2px}
+.acm-note{font-size:12px!important;color:#6b7891!important;margin:4px 2px 12px!important}
+.acm-hp{position:absolute!important;left:-9999px!important;width:1px!important;height:1px!important;opacity:0}
+.acm-err{color:#c0134f!important;font-weight:700;font-size:13px!important;margin:0 0 8px!important}.acm-err:empty{display:none}
+.acm-go{display:block;width:100%;border:0;border-radius:14px;background:#d61e6e;color:#fff;font:800 17px "Plus Jakarta Sans",Inter,sans-serif;padding:14px;cursor:pointer;box-shadow:0 8px 20px rgba(214,30,110,.3)}
+.acm-go:hover{background:#b8155b}.acm-go[disabled]{opacity:.6;cursor:wait}
+.acm-txt{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:12px 0 0}.acm-txt a{display:inline-flex;align-items:center;gap:6px;text-decoration:none!important;border-radius:999px;padding:9px 16px;font:800 14px "Plus Jakarta Sans",Inter,sans-serif}.acm-sms{background:#161e4a;color:#fff!important}.acm-wa{background:#25d366;color:#fff!important}.acm-txt span{font-size:13px;color:#4a5878;font-weight:700}
+.acm-alt{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:12px 0 0;font-size:13px;color:#4a5878}
+.acm-em{color:#161e4a;user-select:all;-webkit-user-select:all}
+.acm-cp{border:1px solid #cfd6e6;background:#f3f6fb;color:#161e4a;border-radius:999px;padding:4px 12px;font:700 12px Inter,sans-serif;cursor:pointer}
+.acm-fine{font-size:11px!important;line-height:1.5!important;color:#7c879c!important;margin:12px 0 0!important}
+@media(max-width:480px){.acm-box{padding:20px 15px 14px}.acm-tab{margin:-20px -15px 14px;padding-left:15px}.acm-two{grid-template-columns:1fr}}
+</style>
+<script>
+(function(){
+  if(window.__acm) return; window.__acm=1;
+  var ENDPOINT='https://formspree.io/f/xbggejnn', TO='richardadmiraal@gmail.com';
+  var HTML="<div class=\"acm-box\" role=\"dialog\" aria-modal=\"true\" aria-labelledby=\"acm-h\"><div class=\"acm-tab\"><b>MESSAGE</b><span>&middot; Richard</span></div><button type=\"button\" class=\"acm-x\" aria-label=\"Close\">&times;</button><form class=\"acm-f\" novalidate><h2 id=\"acm-h\">Send Richard a message</h2><p class=\"acm-sub\">Buying, selling, or just a question: Richard will get back to you.</p><label>Name<input name=\"name\" autocomplete=\"name\" placeholder=\"Your name\"></label><div class=\"acm-two\"><label>Phone<input name=\"phone\" type=\"tel\" autocomplete=\"tel\" placeholder=\"604-000-0000\"></label><label>Email<input name=\"email\" type=\"email\" autocomplete=\"email\" placeholder=\"you@email.com\"></label></div><p class=\"acm-note\">A phone or an email, so Richard can get back to you.</p><label>Message<textarea name=\"message\" rows=\"4\" placeholder=\"How can Richard help?\"></textarea></label><input type=\"text\" name=\"_gotcha\" tabindex=\"-1\" autocomplete=\"off\" class=\"acm-hp\" aria-hidden=\"true\"><p class=\"acm-err\" role=\"alert\"></p><button type=\"submit\" class=\"acm-go\">Send message &rarr;</button><div class=\"acm-txt\"><a class=\"acm-sms\" href=\"sms:+16047012955?&body=Hi%20Richard%2C%20\">&#128172; Text Richard</a><a class=\"acm-wa\" href=\"https://wa.me/16047012955?text=Hi%20Richard%2C%20\" target=\"_blank\" rel=\"noopener\">WhatsApp</a><span>604-701-2955</span></div><div class=\"acm-alt\"><span>Or use your own email:</span> <b class=\"acm-em\">richardadmiraal@gmail.com</b> <button type=\"button\" class=\"acm-cp\">Copy</button></div><p class=\"acm-fine\">Your details stay with Admiraal Real Estate. Richard Admiraal, REALTOR&reg;, Advantage Property Management &ndash; Real Estate Division &middot; 604-701-2955. Not intended to solicit existing agency relationships.</p><p style=\"margin:12px 0 0;text-align:center;font:500 11.5px/1.4 Inter,-apple-system,'Segoe UI',Roboto,Arial,sans-serif;letter-spacing:.02em;color:#8a94a6\"><a href=\"https://conceptoasis.com\" target=\"_blank\" rel=\"noopener\" style=\"color:#8a94a6;text-decoration:underline;text-decoration-color:rgba(138,148,166,.45);text-underline-offset:3px\">workflow forms by co | co</a></p></form><div class=\"acm-ok\" hidden><h2>Message sent. Thank you!</h2><p class=\"acm-sub\">Richard will get back to you shortly. Need him sooner? Call or text <b>604-701-2955</b>.</p><button type=\"button\" class=\"acm-go acm-done\">Close</button></div></div>";
+  function init(){
+    var m=document.getElementById('contact-richard'); if(!m){ m=document.createElement('div'); m.className='acm'; m.id='contact-richard'; m.hidden=true; m.innerHTML=HTML; document.body.appendChild(m); }
+    var f=m.querySelector('.acm-f'), ok=m.querySelector('.acm-ok'), err=m.querySelector('.acm-err'), go=m.querySelector('.acm-go'), cp=m.querySelector('.acm-cp'), last=null;
+    function v(n){ return (f.elements[n].value||'').trim(); }
+    function open(e){ if(e) e.preventDefault(); last=document.activeElement; err.textContent=''; f.hidden=false; ok.hidden=true; go.disabled=false; cp.textContent='Copy';
+      m.hidden=false; document.documentElement.style.overflow='hidden'; setTimeout(function(){ f.elements.name.focus(); },50); }
+    function close(){ m.hidden=true; document.documentElement.style.overflow=''; if(last&&last.focus) last.focus(); }
+    function check(){
+      if(!v('name')) return ['name','Please add your name.'];
+      if(!v('phone')&&!v('email')) return ['phone','Please add a phone number or an email.'];
+      if(v('email')&&!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v('email'))) return ['email','That email doesn\u2019t look quite right.'];
+      if(!v('message')) return ['message','Please add a short message.'];
+      return null; }
+    f.addEventListener('submit',function(e){ e.preventDefault();
+      var hp=v('_gotcha'); if(hp&&[v('email'),v('phone'),v('name')].indexOf(hp)<0) return;
+      var c=check(); if(c){ err.textContent=c[1]; f.elements[c[0]].focus(); return; }
+      var d={form:'Contact message',_subject:'Message from admiraal.ca: '+v('name'),name:v('name'),phone:v('phone'),email:v('email'),message:v('message'),page:location.href};
+      if(v('email')) d._replyto=v('email');
+      go.disabled=true; err.textContent='';
+      fetch(ENDPOINT,{method:'POST',headers:{'Accept':'application/json','Content-Type':'application/json'},body:JSON.stringify(d)})
+        .then(function(r){ if(!r.ok) throw new Error('send'); f.reset(); f.hidden=true; ok.hidden=false; m.querySelector('.acm-box').scrollTop=0; })
+        .catch(function(){ go.disabled=false; err.textContent='That didn\u2019t send. Please try again, or email '+TO+', or call 604-701-2955.'; }); });
+    cp.addEventListener('click',function(){
+      function done(){ cp.textContent='Copied'; }
+      function sel(){ var r=document.createRange(); r.selectNodeContents(m.querySelector('.acm-em')); var s=window.getSelection(); s.removeAllRanges(); s.addRange(r); try{ if(document.execCommand('copy')) done(); }catch(e){} }
+      if(navigator.clipboard&&navigator.clipboard.writeText) navigator.clipboard.writeText(TO).then(done,sel); else sel(); });
+    document.addEventListener('click',function(e){ var a=e.target.closest&&e.target.closest('a'); if(!a||m.contains(a)) return; var h=a.getAttribute('href')||'';
+      if(h==='#contact-richard'||(/^mailto:richardadmiraal@gmail\.com\s*$/i.test(h)&&!a.closest('.ma,.wt,.ag-fm'))) open(e); },true);
+    m.addEventListener('click',function(e){ if(e.target===m||e.target.closest('.acm-x')||e.target.closest('.acm-done')) close(); });
+    document.addEventListener('keydown',function(e){ if(e.key==='Escape'&&!m.hidden) close(); });
+    if(location.hash==='#contact-richard') open();
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',init); else init();
+})();
+</script>
