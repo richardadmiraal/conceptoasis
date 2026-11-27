@@ -1,0 +1,214 @@
+<!-- #312 - 9450 Robson St · admiraal.ca/312robson · Custom Code widget v2. Kai-C, Nov 27, 2026 -->
+<div class="rb" id="rb312">
+<style>
+.rb{--n:#161e4a;--n2:#0a1461;--g:#12a150;--g2:#0e8a44;--p:#d61e6e;--gr:#5b6b85;--bg:#f4f6fb;--l:#dfe4ef;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:#1c2440;line-height:1.65;font-size:16.5px;text-align:left;max-width:1200px;margin:0 auto 30px;padding:0 16px}
+.rb *{box-sizing:border-box}.rb a{color:var(--n)}
+.rb h1,.rb h2,.rb h3{color:var(--n);margin:0;line-height:1.15;letter-spacing:-.01em}
+.rb-wrap{border-radius:16px;overflow:hidden;background:#fff;border:1px solid var(--l);box-shadow:0 10px 30px rgba(10,20,97,.08)}
+.rb-hero{position:relative;min-height:470px;background:#161e4a center/cover no-repeat;display:flex;align-items:flex-end;color:#fff}
+.rb-hero:before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,20,97,.05) 30%,rgba(10,20,97,.86))}
+.rb-hero>*{position:relative}
+.rb-blogo{position:absolute!important;top:22px;right:22px;width:170px;border-radius:8px;box-shadow:0 4px 14px rgba(0,0,0,.25)}
+.rb-hin{padding:28px 32px 0;width:100%}
+.rb-badge{display:inline-flex;align-items:center;gap:8px;background:var(--p);border-radius:999px;padding:5px 14px;font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase}
+.rb-hero h1{color:#fff;font-size:clamp(32px,5.4vw,56px);font-weight:800;margin:12px 0 4px}
+.rb-hero p{color:#dfe4f5;font-size:18px;margin:0 0 4px;max-width:700px}
+.rb-price{font-size:32px;font-weight:800;margin:6px 0 20px}
+.rb-hud{display:grid;grid-template-columns:repeat(7,1fr);border-top:1px solid rgba(255,255,255,.2);margin:0 -32px}
+.rb-hud div{padding:13px 6px;text-align:center;border-right:1px solid rgba(255,255,255,.12)}
+.rb-hud b{display:block;font-size:20px;color:#fff}.rb-hud span{font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:#b9c1e0}
+.rb-hud .act b{color:#5fe39b}
+.rb-sec{padding:34px 32px;border-top:1px solid var(--l)}
+.rb-k{font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--p);margin-bottom:6px}
+.rb-two{display:grid;grid-template-columns:1.5fr 1fr;gap:30px}
+.rb-desc p{margin:0 0 12px}
+.rb-btns{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+.rb-btn{display:inline-block;padding:11px 18px;border-radius:999px;border:2px solid var(--n);text-decoration:none!important;font-size:15px;font-weight:700;color:var(--n)!important;background:#fff}
+.rb-btn.go{background:var(--g);border-color:var(--g);color:#fff!important}.rb-btn.go:hover{background:var(--g2);border-color:var(--g2)}
+.rb-card{background:var(--bg);border:1px solid var(--l);border-radius:12px;padding:14px 16px;margin-bottom:12px}
+.rb-card b.big{display:block;font-size:22px;color:var(--n)}
+.rb-card small{display:block;color:var(--gr);font-size:13px;line-height:1.5}
+.rb-gal{display:grid;grid-template-columns:2fr 1fr 1fr;grid-template-rows:200px 200px;gap:8px;margin-top:14px}
+.rb-gal button{border:0;padding:0;border-radius:10px;background:var(--bg) center/cover no-repeat;cursor:zoom-in;position:relative;overflow:hidden}
+.rb-gal button:first-child{grid-row:span 2}
+.rb-gal button span{position:absolute;left:8px;bottom:8px;background:rgba(10,20,97,.75);color:#fff;font-size:12px;border-radius:6px;padding:2px 8px}
+.rb-gal .more{color:#fff;font-weight:800;font-size:18px}
+.rb-gal .more:after{content:"";position:absolute;inset:0;background:rgba(10,20,97,.55)}
+.rb-gal .more em{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;z-index:2;font-style:normal}
+.rb-strip{display:flex;gap:8px;overflow-x:auto;margin-top:8px;padding-bottom:4px}
+.rb-strip button{flex:0 0 120px;height:84px;border:0;border-radius:8px;background:var(--bg) center/cover no-repeat;cursor:zoom-in}
+.rb-plan{display:grid;grid-template-columns:1fr 1.1fr;gap:28px;align-items:start}
+.rb-plan img{width:100%;border-radius:10px;border:1px solid var(--l);cursor:zoom-in}
+.rb-specs{width:100%;border-collapse:collapse;font-size:15px}
+.rb-specs td{padding:8px 6px;border-bottom:1px solid var(--l);vertical-align:top}
+.rb-specs td:first-child{color:var(--gr);width:36%;font-size:12.5px;text-transform:uppercase;letter-spacing:.05em}
+.rb-loc{display:grid;grid-template-columns:1.3fr 1fr;gap:24px;margin-top:12px}
+.rb-map{width:100%;height:330px;border:1px solid var(--l);border-radius:12px}
+.rb-cta{background:linear-gradient(135deg,#161e4a,#0a1461);color:#fff;display:grid;grid-template-columns:1.4fr 1fr;gap:20px;align-items:center}
+.rb-cta h2{color:#fff;font-size:28px}.rb-cta p{color:#cfd6f0;margin:6px 0 0}
+.rb-cta .rb-btn{border-color:#fff}
+.rb-foot{padding:20px 32px;background:var(--bg);font-size:12.5px;color:var(--gr);border-top:1px solid var(--l)}
+.rb-foot img{height:22px;vertical-align:middle;margin-right:8px}
+.rb-lb{position:fixed;inset:0;background:rgba(5,10,40,.94);z-index:99999;display:none;align-items:center;justify-content:center;flex-direction:column}
+.rb-lb.on{display:flex}
+.rb-lb img{max-width:92vw;max-height:80vh;border-radius:8px}
+.rb-lb p{color:#fff;margin:12px 0 0;font-size:15px}
+.rb-lb button{position:absolute;background:rgba(255,255,255,.12);color:#fff;border:0;border-radius:50%;width:52px;height:52px;font-size:26px;cursor:pointer}
+.rb-lb .x{top:18px;right:18px}.rb-lb .pv{left:18px;top:50%}.rb-lb .nx{right:18px;top:50%}
+.rb-bar{display:none}
+@media(max-width:820px){.rb{padding:0 8px}.rb-hero{min-height:420px}.rb-hin{padding:22px 18px 0}.rb-hud{grid-template-columns:repeat(4,1fr);margin:0 -18px}.rb-sec{padding:26px 18px}.rb-two,.rb-plan,.rb-loc,.rb-cta{grid-template-columns:1fr}.rb-gal{grid-template-columns:1fr 1fr;grid-template-rows:220px 120px 120px}.rb-gal button:first-child{grid-column:span 2;grid-row:auto}.rb-blogo{width:120px;top:14px;right:14px}.rb-foot{padding:18px}
+.rb-bar{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:9999;background:#161e4a;padding:8px;gap:8px;box-shadow:0 -4px 14px rgba(0,0,0,.2)}.rb-bar a{flex:1;text-align:center;color:#fff!important;text-decoration:none!important;font-weight:700;font-size:15px;padding:10px 0;border-radius:10px;background:rgba(255,255,255,.12)}.rb-bar a.go{background:#12a150}}
+</style>
+
+<div class="rb-wrap">
+<header class="rb-hero" id="rb-hero">
+  <div class="rb-hin">
+    <span class="rb-badge" id="rb-status">New listing · Downtown Chilliwack</span>
+    <h1>#312 – 9450 Robson St.</h1>
+    <p>The largest floor plan at The Robson: a 3rd-floor corner home with northwest mountain views and 2 side-by-side parking stalls.</p>
+    <div class="rb-price">$480,000</div>
+    <div class="rb-hud">
+      <div class="act"><b id="rb-st">NEW</b><span>status</span></div>
+      <div><b>997</b><span>sq ft</span></div>
+      <div><b>2</b><span>bedrooms</span></div>
+      <div><b>2</b><span>full baths</span></div>
+      <div><b>2</b><span>parking</span></div>
+      <div><b>2023</b><span>built</span></div>
+      <div><b id="rb-mls">soon</b><span>MLS®</span></div>
+    </div>
+  </div>
+</header>
+
+<section class="rb-sec">
+  <div class="rb-two">
+    <div class="rb-desc">
+      <div class="rb-k">01 · The home</div>
+      <h2 style="font-size:30px;margin-bottom:12px">Room to park, to host, to live, your own place.</h2>
+      <p>Claim this 3rd floor corner unit as your own at The Robson in downtown Chilliwack. #312 has the building's largest floor plan, 997 sq ft, 2 bedrooms, 2 full baths. <b>MINT, LIKE NEW CONDITION.</b></p>
+      <p>You'll appreciate the northwest mountain views through large windows and from the covered sundeck. Modern open concept with quartz island open to the dining and living areas. The two bedrooms sit on opposite sides, each with its own corner.</p>
+      <p>Park two cars side by side in secured underground stalls with a storage locker just steps away. Walk to District 1881 for coffee, dinner and shopping.</p>
+      <p>Quick possession possible, furnishings can be included, make 312 Robson your address, view today.</p>
+      <div class="rb-btns">
+        <a class="rb-btn go" href="sms:6047012955">Book a showing: text Richard</a>
+        <a class="rb-btn" href="tel:+16047012955">Call 604-701-2955</a>
+      </div>
+    </div>
+    <aside>
+      <div class="rb-card"><small>Strata fee</small><b class="big">$431.36 / month</b><small>Includes management, water, sewer, garbage, gardening and the caretaker.</small></div>
+      <div class="rb-card"><small>Parking and storage</small><b class="big">2 stalls + locker</b><small>Two side-by-side secured stalls and a storage locker, all limited common property.</small></div>
+      <div class="rb-card"><small>Peace of mind</small><b class="big">Built 2023</b><small>New home warranty in effect. Pets welcome with restrictions; rentals allowed (no short-term rentals).</small></div>
+      <div class="rb-card"><small>Run the numbers</small><b class="big"><a href="https://www.admiraal.ca/mortgagecalculator" style="text-decoration:none">Mortgage calculator »</a></b><small>See your payment at $480,000 with 5%, 10% or 20% down.</small></div>
+    </aside>
+  </div>
+</section>
+
+<section class="rb-sec">
+  <div class="rb-k">02 · Photos</div>
+  <h2 style="font-size:26px">Inside #312 <span id="rb-count" style="font-size:15px;color:#5b6b85;font-weight:600"></span></h2>
+  <div class="rb-gal" id="rb-gal"></div>
+  <div class="rb-strip" id="rb-strip"></div>
+</section>
+
+<section class="rb-sec">
+  <div class="rb-k">03 · Floor plan and details</div>
+  <h2 style="font-size:26px;margin-bottom:14px">Plan B2: the largest at The Robson</h2>
+  <div class="rb-plan">
+    <div><img id="rb-planimg" alt="Floor plan B2, #312 - 9450 Robson St"><small style="color:#5b6b85;font-size:12px">Developer's floor plan (Plan B2). Tap to enlarge. Measurements approximate; buyer to verify if important.</small></div>
+    <table class="rb-specs">
+      <tr><td>Price</td><td><b>$480,000</b></td></tr>
+      <tr><td>Type</td><td>Apartment / condo, 3rd-floor corner unit</td></tr>
+      <tr><td>Size</td><td>997 sq ft (strata plan: 90.6 m², 975 sq ft)</td></tr>
+      <tr><td>Rooms</td><td>Living 11'2 x 10' · Dining 9'6 x 10'6 · Kitchen 10' x 11'2 · Primary 10' x 12'6 · Bedroom 9'4 x 10'</td></tr>
+      <tr><td>Bathrooms</td><td>2 full (4-piece), ensuite with double vanity</td></tr>
+      <tr><td>Views</td><td>Northwest mountain views, windows on two sides</td></tr>
+      <tr><td>Outdoor</td><td>Covered sundeck, 9'5 x 6'</td></tr>
+      <tr><td>Parking</td><td>2 side-by-side secured underground stalls</td></tr>
+      <tr><td>Storage</td><td>Storage locker</td></tr>
+      <tr><td>Laundry</td><td>In suite</td></tr>
+      <tr><td>Strata fee</td><td>$431.36 / month</td></tr>
+      <tr><td>Pets / rentals</td><td>Pets with restrictions · rentals allowed, no short-term rentals</td></tr>
+      <tr><td>Possession</td><td>Quick possession possible; furnishings can be included</td></tr>
+    </table>
+  </div>
+</section>
+
+<section class="rb-sec">
+  <div class="rb-k">04 · Location</div>
+  <h2 style="font-size:26px">Downtown Chilliwack, on foot</h2>
+  <div class="rb-loc">
+    <iframe class="rb-map" loading="lazy" title="Map of 9450 Robson St, Chilliwack" src="https://www.openstreetmap.org/export/embed.html?bbox=-121.9680%2C49.1690%2C-121.9500%2C49.1790&amp;layer=mapnik&amp;marker=49.174292%2C-121.959061"></iframe>
+    <div>
+      <div class="rb-card"><b>District 1881 and Five Corners</b><small>Coffee, restaurants, shops and the big Christmas tree, a short walk away.</small></div>
+      <div class="rb-card"><b>The Robson</b><small>4 storeys, 60 homes, built 2023, on the edge of Chilliwack's historic downtown. <a href="https://www.admiraal.ca/buildings/view/36193">About the building »</a></small></div>
+      <div class="rb-card"><b>Mountain views</b><small>Northwest views from the 3rd floor, through windows on two sides.</small></div>
+      <small style="color:#5b6b85;font-size:11px">Map © OpenStreetMap contributors</small>
+    </div>
+  </div>
+</section>
+
+<section class="rb-sec rb-cta">
+  <div><h2>See #312 in person</h2><p>Vacant and easy to show. Text or call Richard and pick a time that suits you.</p></div>
+  <div class="rb-btns" style="margin:0"><a class="rb-btn go" href="sms:6047012955">Text Richard</a><a class="rb-btn" href="tel:+16047012955">604-701-2955</a><a class="rb-btn" id="rb-mlslink" href="https://www.admiraal.ca/active-listings" style="display:none">MLS® listing »</a></div>
+</section>
+
+<div class="rb-foot">
+  <img src="https://conceptoasis.com/admiraal/kai-c.png" alt="">Listed by <b>Richard Admiraal, REALTOR®</b> · 604-701-2955 · Admiraal Real Estate · Advantage Property Management, Real Estate Division · Chilliwack and District Real Estate Board (CADREB MLS®).<br>
+  Information from the seller, the strata plan and the developer's floor plan, believed reliable but not guaranteed. Buyer to verify measurements and details important to them. Page assisted by Kai-C, AI real estate assistant for Admiraal Real Estate. AI can make mistakes. Not meant to solicit existing agency relationships.
+</div>
+</div>
+
+<div class="rb-lb" id="rb-lb"><button class="x" aria-label="Close">×</button><button class="pv" aria-label="Previous">‹</button><img alt=""><p></p><button class="nx" aria-label="Next">›</button></div>
+<div class="rb-bar"><a href="tel:+16047012955">Call</a><a class="go" href="sms:6047012955">Text Richard</a></div>
+
+<script>
+(function(){
+  // ---- edit here ----
+  var MLS = "";            // e.g. "R3190000" once the Board posts it
+  var MLS_URL = "";        // the admiraal.ca MLS® listing page
+  var HERO = "https://s.realtyninja.com/static/media/med/11330_23797451_a6c5d5db-6ba4-41c2-8d4f-f1323fe41e18.jpeg";
+  var BLOGO = "https://s.realtyninja.com/static/media/med/11330_9b1ae252_The_Robson.jpeg";
+  var PLAN = "https://s.realtyninja.com/static/media/med/11330_dba257e0_Plan_B2.jpeg";
+  var M = "https://s.realtyninja.com/static/media/med/11330_";
+  var PHOTOS = [
+    ["c0634e7b_7988aeb3-4799-4995-b9d7-e58d81b26918.jpeg","Living, dining and kitchen"],
+    ["5c17199a_52a58cea-5afd-4d4d-8ff8-cef15e0d42d6.jpeg","Covered sundeck, mountain view"],
+    ["75f9d5b8_57b931c2-2e21-4f5d-8089-fa89c55ff4be001.jpeg","Quartz island"],
+    ["07cc4ac3_26c55c44-9527-4b59-a0cc-47e757cc439c.jpeg","Open plan"],
+    ["65263907_d69bce54-4088-4fde-ba3e-288d5a0ef00f.jpeg","Living room"],
+    ["07376740_16fe8225-4999-4db4-83d4-a9047f9e8fb7.jpeg","Kitchen"],
+    ["ffd5a365_527cbde3-c88a-4e8c-a137-885f57b9d61c001.jpeg","Primary bedroom"],
+    ["af909cc9_5d476357-2147-4c40-86fc-a898aa0c0836.jpeg","Primary walk-through closet"],
+    ["e1de0bfa_8b8fb7db-f120-4e0d-aaa7-42ac513e3e62001.jpeg","Ensuite, double vanity"],
+    ["16002585_f7fb9c9e-781c-46f9-9823-625f1b3c29a1.jpeg","Second bedroom"],
+    ["72da5c86_0570c6cb-9fc7-42bb-8a95-b8f73c3a3009.jpeg","Main bathroom"],
+    ["1dfbdc20_df75d4c0-3eac-438e-9cd1-fcd451ce0864.jpeg","Entry"],
+    ["5cf139bc_IMG_0809.jpeg","2 side-by-side parking stalls"],
+    ["9b9c3f45_6fa47743-c3b9-45d2-89fd-3427542ef39c.jpeg","Storage locker"],
+    ["a768ccc3_ae4a02d7-9f81-4eb4-ab1d-c8dab2dc2ff3.jpeg","Playground"],
+    ["a7e3da90_31d4f007-b1f7-4932-b391-d57c0c679b58001.jpeg","The Robson"]];
+  // -------------------
+  var r=document.getElementById('rb312'); if(!r) return;
+  var $=function(s){return r.querySelector(s)};
+  if(MLS){ $('#rb-mls').textContent=MLS; $('#rb-st').textContent='ACTIVE'; $('#rb-status').textContent='For sale · Downtown Chilliwack'; }
+  if(MLS_URL){ var b=$('#rb-mlslink'); b.href=MLS_URL; b.style.display='inline-block'; }
+  $('#rb-hero').style.backgroundImage='url('+HERO+')';
+  var lg=document.createElement('img'); lg.src=BLOGO; lg.alt='The Robson, 9450 Robson St, Chilliwack'; lg.className='rb-blogo'; $('#rb-hero').appendChild(lg);
+  var L=PHOTOS.map(function(p){return [M+p[0],p[1]]}); L.push([PLAN,'Floor plan B2']);
+  var lb=$('#rb-lb'), li=lb.querySelector('img'), lp=lb.querySelector('p'), at=0;
+  function show(i){ at=(i+L.length)%L.length; li.src=L[at][0]; lp.textContent=L[at][1]+'  ·  '+(at+1)+' / '+L.length; lb.classList.add('on'); }
+  function tile(i,cls,label){ var b=document.createElement('button'); b.type='button'; if(cls) b.className=cls; b.style.backgroundImage='url('+L[i][0]+')'; b.setAttribute('aria-label',L[i][1]); if(label) b.innerHTML=label; b.onclick=function(){show(i)}; return b; }
+  var g=$('#rb-gal'); [0,1,2,3].forEach(function(i){ g.appendChild(tile(i,'','<span>'+L[i][1]+'</span>')); });
+  g.appendChild(tile(4,'more','<em>+ '+(L.length-5)+' photos</em>'));
+  var s=$('#rb-strip'); for(var i=5;i<L.length;i++) s.appendChild(tile(i));
+  $('#rb-count').textContent='· '+PHOTOS.length+' photos and the floor plan';
+  var pi=$('#rb-planimg'); pi.src=PLAN; pi.onclick=function(){show(L.length-1)};
+  lb.querySelector('.x').onclick=function(){lb.classList.remove('on')};
+  lb.querySelector('.pv').onclick=function(e){e.stopPropagation();show(at-1)};
+  lb.querySelector('.nx').onclick=function(e){e.stopPropagation();show(at+1)};
+  lb.onclick=function(e){ if(e.target===lb) lb.classList.remove('on'); };
+  document.addEventListener('keydown',function(e){ if(!lb.classList.contains('on')) return; if(e.key==='Escape') lb.classList.remove('on'); if(e.key==='ArrowRight') show(at+1); if(e.key==='ArrowLeft') show(at-1); });
+  var x0=null; lb.addEventListener('touchstart',function(e){x0=e.touches[0].clientX},{passive:true});
+  lb.addEventListener('touchend',function(e){ if(x0===null) return; var dx=e.changedTouches[0].clientX-x0; if(Math.abs(dx)>40) show(at+(dx<0?1:-1)); x0=null; });
+})();
+</script>
+</div>
