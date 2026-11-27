@@ -192,6 +192,7 @@ var S=[
  {k:"abbotsford",h:"Abbotsford buildings",d:"Our Abbotsford directory, growing.",f:function(b){return b.ar=="Abbotsford";},hide:!SHOW_ABBY}
 ];
 var TL={condo:"Condo",town:"Townhouse",detached:"Detached / rancher",mhp:"Manufactured homes"};
+var stEl=document.getElementById('bd-stats'),fs='';
 var root=document.getElementById('bd'),secsEl=document.getElementById('bd-secs'),jump=document.getElementById('bd-jump');
 function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];});}
 function card(b){var m=[TL[b.t]];if(b.y)m.push("Built "+b.y);if(b.u)m.push(b.u+" homes");if(b.lease)m.push("Leasehold");
@@ -204,15 +205,14 @@ S.forEach(function(s){if(s.hide)return;var list=B.filter(s.f);s.list=list;
 secsEl.innerHTML=html;jump.innerHTML=jl;
 /* live photo + for-sale count from each building page */
 var live={},cache={};try{cache=JSON.parse(sessionStorage.getItem('bdLive')||'{}');}catch(e){}
-function apply(id,d){live[id]=d;[].forEach.call(root.querySelectorAll('.bd-card[data-id="'+id+'"]'),function(c){var ph=c.querySelector('.bd-ph');ph.classList.remove('ld');if(d.pic)ph.style.backgroundImage='url("'+d.pic+'")';var f=c.querySelector('.bd-for');if(d.n>0){f.textContent=d.n+' for sale';f.classList.add('on');}});stats();if(fs)run();}
+function apply(id,d){live[id]=d;[].forEach.call(root.querySelectorAll('.bd-card[data-id="'+id+'"]'),function(c){var ph=c.querySelector('.bd-ph');ph.classList.remove('ld');if(d.pic)ph.style.backgroundImage='url("'+d.pic+'")';var f=c.querySelector('.bd-for');if(d.n>0){f.textContent=d.n+' for sale';f.classList.add('on');}});if(stEl)stats();if(fs&&q)run();}
 B.forEach(function(b){if(!root.querySelector('.bd-card[data-id="'+b.id+'"]'))return;if(cache[b.id]){apply(b.id,cache[b.id]);return;}
  fetch('/buildings/view/'+b.id).then(function(r){return r.text();}).then(function(h){var m=h.match(/static\/images\/buildings\/(?:med|hd)\/[^"'()\s]+\.(?:jpe?g|png|webp)/i);var a=h.match(/(\d+)\s*Active Listing/i);var d={pic:m?'https://s.realtyninja.com/'+m[0].replace('/hd/','/med/'):'',n:a?+a[1]:0};cache[b.id]=d;try{sessionStorage.setItem('bdLive',JSON.stringify(cache));}catch(e){}apply(b.id,d);}).catch(function(){apply(b.id,{pic:'',n:0});});});
-var stEl=document.getElementById('bd-stats');
 function stats(){var vis=B.filter(function(b){return root.querySelector('.bd-card[data-id="'+b.id+'"]');});var fsN=0;vis.forEach(function(b){if(live[b.id])fsN+=live[b.id].n;});
  stEl.innerHTML='<div><b>'+vis.length+'</b><span>Buildings</span></div><div><b>'+vis.filter(function(b){return b.a55;}).length+'</b><span>Age 55+</span></div><div><b>'+vis.filter(function(b){return b.t=="town";}).length+'</b><span>Townhouse complexes</span></div><div><b>'+vis.filter(function(b){return b.t=="condo";}).length+'</b><span>Condo buildings</span></div><div class="g"><b>'+fsN+'</b><span>Homes for sale now</span></div>';}
 stats();
 /* search + filters */
-var q=document.getElementById('bd-q'),area=document.getElementById('bd-area'),fs='',none=document.getElementById('bd-none');
+var q=document.getElementById('bd-q'),area=document.getElementById('bd-area'),none=document.getElementById('bd-none');
 function ok(b){var t=q.value.trim().toLowerCase();if(t&&(b.n+' '+b.ad+' '+b.sub+' '+b.ar+' '+TL[b.t]+(b.a55?' 55+ age 55 seniors':'')).toLowerCase().indexOf(t)<0)return false;
  if(area.value&&b.ar!=area.value)return false;
  if(fs=="condo"&&b.t!="condo")return false;if(fs=="town"&&b.t!="town")return false;if(fs=="detached"&&b.t!="detached"&&b.t!="mhp")return false;
