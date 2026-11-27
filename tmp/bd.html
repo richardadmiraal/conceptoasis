@@ -1,0 +1,239 @@
+<!-- admiraal.ca · Buildings directory · Kai-C, Nov 27 2026. Custom Code widget. Building photos and "for sale" counts load live from each /buildings/view/ page. -->
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@600;800;900&display=swap" rel="stylesheet">
+<div class="bd" id="bd">
+<style>
+.bd{--k:#0b0b0b;--g:#12a150;--g2:#0e8a44;--gr:#6b6b6b;--bg:#f4f4f4;--l:#e3e3e3;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:#1a1a1a;line-height:1.6;font-size:16px;text-align:left;max-width:1200px;margin:0 auto 30px;padding:0 16px}
+.bd *{box-sizing:border-box}
+.bd h1,.bd h2,.bd h3,.bd .bd-n{font-family:"League Spartan",-apple-system,"Segoe UI",Arial,sans-serif;color:var(--k);margin:0;line-height:1.08}
+.bd-wrap{border-radius:14px;overflow:hidden;background:#fff;border:1px solid var(--l);box-shadow:0 18px 50px -24px rgba(0,0,0,.35)}
+/* hero */
+.bd-hero{position:relative;background:#0b0b0b;color:#fff;padding:54px 34px 30px;overflow:hidden}
+.bd-hero:after{content:"";position:absolute;right:-120px;top:-140px;width:520px;height:520px;border-radius:50%;border:1px solid rgba(255,255,255,.08);box-shadow:0 0 0 60px rgba(255,255,255,.025),0 0 0 140px rgba(255,255,255,.02);animation:bdPulse 9s ease-in-out infinite alternate;pointer-events:none}
+@keyframes bdPulse{to{transform:scale(1.08) translate(-20px,10px)}}
+.bd-kick{font-size:12px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:#bdbdbd}
+.bd-kick:before{content:"";display:inline-block;width:28px;height:2px;background:#fff;vertical-align:middle;margin:-2px 10px 0 0}
+.bd-hero h1{color:#fff;font-weight:900;text-transform:uppercase;font-size:clamp(34px,5.6vw,62px);margin:14px 0 10px;letter-spacing:-.005em}
+.bd-hero p{color:#d6d6d6;max-width:720px;margin:0;font-size:17px}
+.bd-stats{display:flex;flex-wrap:wrap;gap:0;margin:26px -34px -30px;border-top:1px solid rgba(255,255,255,.18)}
+.bd-stats div{flex:1 1 140px;padding:14px 10px;text-align:center;border-right:1px solid rgba(255,255,255,.12)}
+.bd-stats b{display:block;font:800 24px/1.1 "League Spartan",sans-serif;color:#fff}
+.bd-stats span{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#bdbdbd}
+.bd-stats .g b{color:#5fe39b}
+/* tools */
+.bd-tools{position:sticky;top:0;z-index:5;background:#fff;border-bottom:1px solid var(--l);padding:16px 34px;display:grid;grid-template-columns:1fr auto;gap:12px;align-items:center}
+.bd-q{width:100%;border:1.5px solid var(--k);border-radius:999px;padding:12px 18px 12px 44px;font-size:16px;background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' fill='none' stroke='%230b0b0b' stroke-width='2.2'%3E%3Ccircle cx='8' cy='8' r='6'/%3E%3Cpath d='M12.5 12.5 17 17'/%3E%3C/svg%3E") 17px 50%/18px no-repeat;outline:0}
+.bd-q:focus{box-shadow:0 0 0 4px rgba(0,0,0,.08)}
+.bd-area{border:1.5px solid var(--k);border-radius:999px;padding:11px 16px;font-size:15px;background:#fff;color:var(--k);font-weight:700}
+.bd-chips{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:8px}
+.bd-chip{border:1.5px solid var(--k);background:#fff;color:var(--k);border-radius:999px;padding:7px 14px;font-size:13.5px;font-weight:700;cursor:pointer;transition:background .2s,color .2s}
+.bd-chip:hover{background:#eee}.bd-chip.on{background:var(--k);color:#fff}
+.bd-jump{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:6px 16px;font-size:13px}
+.bd-jump a{color:var(--gr);text-decoration:none;border-bottom:1px solid transparent}.bd-jump a:hover{color:var(--k);border-color:var(--k)}
+/* sections */
+.bd-sec{padding:34px;border-top:1px solid var(--l)}
+.bd-sec.alt{background:var(--bg)}
+.bd-sh{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;margin-bottom:18px;flex-wrap:wrap}
+.bd-sh h2{font-size:clamp(24px,3vw,32px);font-weight:800}
+.bd-sh small{display:block;color:var(--gr);font-size:13.5px;margin-top:6px;max-width:640px;line-height:1.5}
+.bd-cnt{font-size:12px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--gr);white-space:nowrap}
+.bd-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:16px}
+.bd-card{display:flex;flex-direction:column;background:#fff;border:1px solid #1a1a1a;border-radius:12px;overflow:hidden;text-decoration:none!important;color:inherit!important;transition:transform .35s cubic-bezier(.2,.7,.2,1),box-shadow .35s}
+.bd-card:hover{transform:translateY(-4px);box-shadow:0 18px 36px -18px rgba(0,0,0,.45)}
+.bd-ph{position:relative;aspect-ratio:16/10;background:#e9e9e9 center/cover no-repeat;overflow:hidden}
+.bd-ph:before{content:"";position:absolute;inset:0;background:inherit;background-size:cover;transition:transform 1.2s cubic-bezier(.2,.6,.2,1)}
+.bd-card:hover .bd-ph:before{transform:scale(1.06)}
+.bd-ph.ld:after{content:"";position:absolute;inset:0;background:linear-gradient(100deg,transparent 30%,rgba(255,255,255,.55) 50%,transparent 70%);animation:bdSh 1.3s infinite}
+@keyframes bdSh{from{transform:translateX(-100%)}to{transform:translateX(100%)}}
+.bd-for{position:absolute;left:10px;top:10px;background:var(--g);color:#fff;font-size:11.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;border-radius:999px;padding:4px 10px;display:none}
+.bd-for.on{display:inline-block}
+.bd-tag55{position:absolute;right:10px;top:10px;background:#fff;color:var(--k);font:800 12px/1 "League Spartan",sans-serif;letter-spacing:.06em;border-radius:999px;padding:6px 10px}
+.bd-body{padding:14px 16px 16px;display:flex;flex-direction:column;gap:4px;flex:1}
+.bd-n{font-size:20px;font-weight:800}
+.bd-a{font-size:13px;color:var(--gr);line-height:1.4}
+.bd-meta{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.bd-meta span{font-size:11.5px;font-weight:700;letter-spacing:.04em;border:1px solid var(--l);border-radius:6px;padding:3px 7px;color:#333;background:#fafafa}
+.bd-go{margin-top:auto;padding-top:10px;font-size:13px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--k)}
+.bd-go:after{content:" \2192";transition:margin .2s}.bd-card:hover .bd-go:after{margin-left:4px}
+.bd-empty{border:1.5px dashed #9a9a9a;border-radius:12px;padding:20px;display:flex;flex-direction:column;justify-content:center;gap:6px;min-height:150px;background:transparent}
+.bd-empty b{font:800 18px/1.2 "League Spartan",sans-serif;color:var(--k)}
+.bd-empty span{font-size:13.5px;color:var(--gr)}
+.bd-empty a{font-size:13px;font-weight:800;color:var(--k);text-transform:uppercase;letter-spacing:.06em}
+.bd-none{display:none;padding:40px 34px;text-align:center;color:var(--gr)}
+/* more + form */
+.bd-more{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.bd-more a{display:block;border:1.5px solid var(--k);border-radius:12px;padding:16px;text-decoration:none!important;color:var(--k)!important;font-weight:800;transition:background .2s,color .2s}
+.bd-more a small{display:block;font-weight:500;color:var(--gr);font-size:12.5px;margin-top:4px}
+.bd-more a:hover{background:var(--k);color:#fff!important}.bd-more a:hover small{color:#ccc}
+.bd-form{display:grid;grid-template-columns:1fr 1.25fr;gap:30px;background:#0b0b0b;color:#fff}
+.bd-form h2{color:#fff;font-size:30px}
+.bd-form p{color:#cfcfcf;margin:10px 0 0}
+.bd-form ul{color:#cfcfcf;margin:12px 0 0;padding-left:18px;font-size:14.5px}
+.bd-f{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.bd-f label{display:flex;flex-direction:column;gap:4px;font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:#bdbdbd;font-weight:700}
+.bd-f .w{grid-column:1/-1}
+.bd-f input,.bd-f select,.bd-f textarea{font:inherit;font-size:15px;text-transform:none;letter-spacing:0;border:1px solid #444;background:#151515;color:#fff;border-radius:8px;padding:10px 12px;outline:0}
+.bd-f input:focus,.bd-f select:focus,.bd-f textarea:focus{border-color:#fff}
+.bd-f .ck{flex-direction:row;align-items:flex-start;gap:8px;text-transform:none;letter-spacing:0;font-weight:400;font-size:13px;color:#cfcfcf}
+.bd-f .ck input{margin-top:3px}
+.bd-f button{grid-column:1/-1;background:var(--g);color:#fff;border:0;border-radius:999px;padding:13px 20px;font-size:16px;font-weight:800;cursor:pointer}
+.bd-f button:hover{background:var(--g2)}
+.bd-ok{grid-column:1/-1;display:none;background:#12a15022;border:1px solid var(--g);border-radius:8px;padding:12px;color:#fff}
+.bd-foot{padding:18px 34px;background:var(--bg);font-size:12.5px;color:var(--gr);border-top:1px solid var(--l)}
+.bd-foot b{color:#333}
+/* reveal */
+.bd.anim .rv{opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.2,1)}
+.bd.anim .rv.in{opacity:1;transform:none}
+.bd [hidden]{display:none!important}
+@media(max-width:820px){.bd{padding:0 8px}.bd-hero{padding:40px 18px 24px}.bd-stats{margin:22px -18px -24px}.bd-stats div{flex-basis:33%}.bd-tools{padding:12px 14px;grid-template-columns:1fr}.bd-sec{padding:26px 16px}.bd-more{grid-template-columns:1fr 1fr}.bd-form{grid-template-columns:1fr}.bd-f{grid-template-columns:1fr}.bd-foot{padding:16px}}
+@media(prefers-reduced-motion:reduce){.bd-hero:after,.bd-ph.ld:after{animation:none}.bd.anim .rv{opacity:1;transform:none;transition:none}}
+</style>
+
+<div class="bd-wrap">
+ <header class="bd-hero">
+  <div class="bd-kick">Admiraal Real Estate · Buildings</div>
+  <h1>Chilliwack &amp; District buildings</h1>
+  <p>Condos, townhouse complexes and 55+ communities in Chilliwack, Sardis, Agassiz and Harrison Hot Springs: what each building is, who manages it, and what's for sale there now.</p>
+  <div class="bd-stats" id="bd-stats"></div>
+ </header>
+
+ <div class="bd-tools">
+  <input class="bd-q" id="bd-q" type="search" placeholder="Search by building name, street or neighbourhood" aria-label="Search buildings">
+  <select class="bd-area" id="bd-area" aria-label="Area">
+   <option value="">All areas</option><option>Chilliwack</option><option>Sardis</option><option>Agassiz</option><option>Harrison Hot Springs</option>
+  </select>
+  <div class="bd-chips" id="bd-chips">
+   <button class="bd-chip on" data-f="">All</button>
+   <button class="bd-chip" data-f="condo">Condos</button>
+   <button class="bd-chip" data-f="town">Townhouses</button>
+   <button class="bd-chip" data-f="detached">Detached &amp; ranchers</button>
+   <button class="bd-chip" data-f="a55">Age 55+</button>
+   <button class="bd-chip" data-f="lease">Leasehold</button>
+   <button class="bd-chip" data-f="forsale">Homes for sale now</button>
+  </div>
+  <nav class="bd-jump" id="bd-jump"></nav>
+ </div>
+
+ <div id="bd-secs"></div>
+ <div class="bd-none" id="bd-none">No buildings match that search yet. Try another name or street, or <a href="#bd-add">ask us to add a building</a>.</div>
+
+ <section class="bd-sec">
+  <div class="bd-sh"><div><h2>Search homes for sale</h2><small>Live MLS® searches on admiraal.ca.</small></div></div>
+  <div class="bd-more">
+   <a href="/chilliwack-sardis-age-55-" target="_blank" rel="noopener">Chilliwack &amp; Sardis 55+<small>Homes in age 55+ communities</small></a>
+   <a href="/chilliwack-condos" target="_blank" rel="noopener">Chilliwack condos<small>Apartments for sale</small></a>
+   <a href="/chilliwacksardistownhomes" target="_blank" rel="noopener">Chilliwack &amp; Sardis townhomes<small>Townhouses for sale</small></a>
+   <a href="/cmareport" target="_blank" rel="noopener">What's my home worth?<small>Free CMA Report</small></a>
+  </div>
+ </section>
+
+ <section class="bd-sec bd-form" id="bd-add">
+  <div>
+   <div class="bd-kick">Strata owners, councils &amp; managers</div>
+   <h2 style="margin-top:12px">Add your building</h2>
+   <p>Is your complex missing from the directory? Ask to have it added. Richard reviews every request, and pages are written about the building only.</p>
+   <ul><li>A page for your building, with its strata details, photos and documents</li><li>Homes for sale in your building, shown live</li><li>No cost to the strata</li></ul>
+  </div>
+  <form class="bd-f" id="bd-f" action="https://formspree.io/f/xbggejnn" method="POST">
+   <input type="hidden" name="_subject" value="Buildings directory: add my building">
+   <input type="hidden" name="form" value="admiraal.ca buildings directory - add my building">
+   <label>Your name<input name="name" required autocomplete="name"></label>
+   <label>Email<input name="email" type="email" required autocomplete="email"></label>
+   <label>Phone<input name="phone" type="tel" autocomplete="tel"></label>
+   <label>I am a<select name="role"><option>Owner</option><option>Strata council member</option><option>Property manager</option><option>Developer</option><option>Other</option></select></label>
+   <label class="w">Building or complex name<input name="building" required></label>
+   <label>Address<input name="address" required></label>
+   <label>Strata plan number (if known)<input name="strata_plan" placeholder="e.g. EPS1234"></label>
+   <label class="w">Anything we should know?<textarea name="message" rows="3" placeholder="Age restrictions, rentals, pets, amenities…"></textarea></label>
+   <label class="ck w"><input type="checkbox" name="consent" value="yes" required> I agree that Admiraal Real Estate may contact me about this request.</label>
+   <button type="submit">Send request</button>
+   <div class="bd-ok" id="bd-ok">Thank you! Richard will be in touch about adding your building.</div>
+  </form>
+ </section>
+
+ <div class="bd-foot"><b>How this directory is organized:</b> each building is placed by its area and sub-area (from its building page), its building type, any age restriction (55+) stated in its bylaws, and whether the land is freehold or leasehold. "For sale" counts and photos come live from each building page. Information believed reliable but not guaranteed; buyers should check the current strata documents with their REALTOR® and lawyer.<br>Richard Admiraal, REALTOR® · Admiraal Real Estate · Advantage Property Management, Real Estate Division · 604-701-2955 · Chilliwack and District Real Estate Board (CADREB MLS®). Page assisted by Kai-C, AI real estate assistant. AI can make mistakes.</div>
+</div>
+</div>
+
+<script>
+(function(){
+var SHOW_ABBY=false; /* Abbotsford directory: built, hidden until we fill it in */
+/* t: condo | town | detached | mhp ; a55: age 55+ ; lease: leasehold land */
+var B=[
+ {id:36193,n:"The Robson",ad:"9450 Robson St",sub:"Chilliwack Proper West",ar:"Chilliwack",t:"condo",y:2023,u:60},
+ {id:33417,n:"NewMark",ad:"46150 Bole Ave · 9422 Victor St · 46289 Yale Rd",sub:"Chilliwack Proper East",ar:"Chilliwack",t:"condo",y:2008,u:228},
+ {id:34377,n:"Mountainview Lane",ad:"8497 Young Rd",sub:"Chilliwack Proper South",ar:"Chilliwack",t:"condo",y:2025,u:113},
+ {id:33418,n:"Radius",ad:"45389 Chehalis Dr",sub:"Garrison Crossing",ar:"Sardis",t:"condo",y:2014},
+ {id:27410,n:"Ivy Green",ad:"45775 Spadina Ave",sub:"Chilliwack Downtown",ar:"Chilliwack",t:"condo",a55:1,u:24},
+ {id:28538,n:"Elmwood Terrace",ad:"8725 Elm Dr",sub:"Chilliwack Proper South",ar:"Chilliwack",t:"condo",a55:1,y:1986,u:42},
+ {id:30240,n:"Apple Creek – Centre Rock Farms",ad:"46360 Valleyview Rd",sub:"Promontory",ar:"Sardis",t:"town",y:2003,u:175},
+ {id:33890,n:"Cedar Park",ad:"6449 Blackwood Ln",sub:"Sardis South",ar:"Sardis",t:"town",y:2005,u:86},
+ {id:33121,n:"Hawthorn Place",ad:"9470 Hazel St",sub:"Chilliwack Proper East",ar:"Chilliwack",t:"town",y:1998,u:46},
+ {id:27248,n:"Kipp Station",ad:"45545 Kipp Ave",sub:"Chilliwack Proper West",ar:"Chilliwack",t:"town"},
+ {id:28843,n:"Ranchero Estates",ad:"46225 Ranchero Dr",sub:"Sardis East Vedder",ar:"Sardis",t:"town",lease:1,y:2007,u:33},
+ {id:31543,n:"Willow Court",ad:"46375 Cessna Dr",sub:"Chilliwack Proper South",ar:"Chilliwack",t:"town",y:1994,u:14},
+ {id:27412,n:"Sawyer's Landing",ad:"7411 Morrow Rd",sub:"Agassiz",ar:"Agassiz",t:"town",y:2014,u:24},
+ {id:35079,n:"Maplewood Village",ad:"7292 Elm Rd",sub:"Agassiz",ar:"Agassiz",t:"detached",a55:1,u:48},
+ {id:35078,n:"Magnolia Estates",ad:"1548 Mackay Cres",sub:"Agassiz",ar:"Agassiz",t:"detached",a55:1},
+ {id:27246,n:"Rainbow Estates",ad:"9055 Ashwell Rd",sub:"Chilliwack Proper West",ar:"Chilliwack",t:"mhp",lease:1},
+ {id:26456,n:"Evergreen Village",ad:"31955 Old Yale Rd",sub:"Abbotsford West",ar:"Abbotsford",t:"condo",a55:1,y:1995,u:205},
+ {id:29662,n:"Natures Gate",ad:"33318 – 33338 E Bourquin Cres",sub:"Central Abbotsford",ar:"Abbotsford",t:"condo",y:2007,u:143}
+];
+var CS=function(b){return b.ar=="Chilliwack"||b.ar=="Sardis";};
+var S=[
+ {k:"cs-condos",h:"Chilliwack & Sardis condos",d:"Apartment buildings with no age restriction.",f:function(b){return CS(b)&&b.t=="condo"&&!b.a55;}},
+ {k:"cs-condos-55",h:"Chilliwack & Sardis condos · Age 55+",d:"Apartment buildings where the bylaws set an age restriction.",f:function(b){return CS(b)&&b.t=="condo"&&b.a55;}},
+ {k:"cs-townhouses",h:"Chilliwack & Sardis townhouses",d:"Townhouse complexes with no age restriction.",f:function(b){return CS(b)&&b.t=="town"&&!b.a55;}},
+ {k:"cs-townhouses-55",h:"Chilliwack & Sardis townhouses · Age 55+",d:"Townhouse complexes where the bylaws set an age restriction.",f:function(b){return CS(b)&&b.t=="town"&&b.a55;}},
+ {k:"agassiz",h:"Agassiz buildings",d:"Condos, townhouses and 55+ communities in Agassiz.",f:function(b){return b.ar=="Agassiz";}},
+ {k:"harrison",h:"Harrison Hot Springs buildings",d:"Condos and townhouses in the village of Harrison Hot Springs.",f:function(b){return b.ar=="Harrison Hot Springs";}},
+ {k:"detached-55-freehold",h:"Detached 55+ homes · freehold strata",d:"Ranchers and detached homes in 55+ bare-land and freehold strata communities.",f:function(b){return b.t=="detached"&&b.a55&&!b.lease&&b.ar!="Abbotsford";}},
+ {k:"detached-leasehold",h:"Detached & manufactured homes · leasehold",d:"Communities on leased land (often First Nations land), with pad rent or a prepaid lease. Lease terms affect financing, so check the lease end date.",f:function(b){return (b.t=="detached"||b.t=="mhp")&&b.lease;}},
+ {k:"abbotsford",h:"Abbotsford buildings",d:"Our Abbotsford directory, growing.",f:function(b){return b.ar=="Abbotsford";},hide:!SHOW_ABBY}
+];
+var TL={condo:"Condo",town:"Townhouse",detached:"Detached / rancher",mhp:"Manufactured homes"};
+var root=document.getElementById('bd'),secsEl=document.getElementById('bd-secs'),jump=document.getElementById('bd-jump');
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];});}
+function card(b){var m=[TL[b.t]];if(b.y)m.push("Built "+b.y);if(b.u)m.push(b.u+" homes");if(b.lease)m.push("Leasehold");
+ return '<a class="bd-card rv" target="_blank" rel="noopener" href="/buildings/view/'+b.id+'" data-id="'+b.id+'"><div class="bd-ph ld"><span class="bd-for"></span>'+(b.a55?'<span class="bd-tag55">55+</span>':'')+'</div><div class="bd-body"><div class="bd-n">'+esc(b.n)+'</div><div class="bd-a">'+esc(b.ad)+'<br>'+esc(b.sub)+', '+esc(b.ar)+'</div><div class="bd-meta">'+m.map(function(x){return '<span>'+esc(x)+'</span>';}).join('')+'</div><div class="bd-go">Building page</div></div></a>';}
+function empty(s){return '<div class="bd-empty rv"><b>More coming</b><span>Own in a building that belongs in '+esc(s.h.replace(/ ·.*/,''))+'? Ask to have it added.</span><a href="#bd-add">Add a building</a></div>';}
+var html='',jl='',alt=0;
+S.forEach(function(s){if(s.hide)return;var list=B.filter(s.f);s.list=list;
+ html+='<section class="bd-sec'+(alt++%2?' alt':'')+'" id="'+s.k+'" data-k="'+s.k+'"><div class="bd-sh"><div><h2 class="rv">'+esc(s.h)+'</h2><small>'+esc(s.d)+'</small></div><span class="bd-cnt" data-c="'+s.k+'"></span></div><div class="bd-grid">'+list.map(card).join('')+empty(s)+'</div></section>';
+ jl+='<a href="#'+s.k+'">'+esc(s.h)+'</a>';});
+secsEl.innerHTML=html;jump.innerHTML=jl;
+/* live photo + for-sale count from each building page */
+var live={},cache={};try{cache=JSON.parse(sessionStorage.getItem('bdLive')||'{}');}catch(e){}
+function apply(id,d){live[id]=d;[].forEach.call(root.querySelectorAll('.bd-card[data-id="'+id+'"]'),function(c){var ph=c.querySelector('.bd-ph');ph.classList.remove('ld');if(d.pic)ph.style.backgroundImage='url("'+d.pic+'")';var f=c.querySelector('.bd-for');if(d.n>0){f.textContent=d.n+' for sale';f.classList.add('on');}});stats();if(fs)run();}
+B.forEach(function(b){if(!root.querySelector('.bd-card[data-id="'+b.id+'"]'))return;if(cache[b.id]){apply(b.id,cache[b.id]);return;}
+ fetch('/buildings/view/'+b.id).then(function(r){return r.text();}).then(function(h){var m=h.match(/static\/images\/buildings\/(?:med|hd)\/[^"'()\s]+\.(?:jpe?g|png|webp)/i);var a=h.match(/(\d+)\s*Active Listing/i);var d={pic:m?'https://s.realtyninja.com/'+m[0].replace('/hd/','/med/'):'',n:a?+a[1]:0};cache[b.id]=d;try{sessionStorage.setItem('bdLive',JSON.stringify(cache));}catch(e){}apply(b.id,d);}).catch(function(){apply(b.id,{pic:'',n:0});});});
+var stEl=document.getElementById('bd-stats');
+function stats(){var vis=B.filter(function(b){return root.querySelector('.bd-card[data-id="'+b.id+'"]');});var fsN=0;vis.forEach(function(b){if(live[b.id])fsN+=live[b.id].n;});
+ stEl.innerHTML='<div><b>'+vis.length+'</b><span>Buildings</span></div><div><b>'+vis.filter(function(b){return b.a55;}).length+'</b><span>Age 55+</span></div><div><b>'+vis.filter(function(b){return b.t=="town";}).length+'</b><span>Townhouse complexes</span></div><div><b>'+vis.filter(function(b){return b.t=="condo";}).length+'</b><span>Condo buildings</span></div><div class="g"><b>'+fsN+'</b><span>Homes for sale now</span></div>';}
+stats();
+/* search + filters */
+var q=document.getElementById('bd-q'),area=document.getElementById('bd-area'),fs='',none=document.getElementById('bd-none');
+function ok(b){var t=q.value.trim().toLowerCase();if(t&&(b.n+' '+b.ad+' '+b.sub+' '+b.ar+' '+TL[b.t]+(b.a55?' 55+ age 55 seniors':'')).toLowerCase().indexOf(t)<0)return false;
+ if(area.value&&b.ar!=area.value)return false;
+ if(fs=="condo"&&b.t!="condo")return false;if(fs=="town"&&b.t!="town")return false;if(fs=="detached"&&b.t!="detached"&&b.t!="mhp")return false;
+ if(fs=="a55"&&!b.a55)return false;if(fs=="lease"&&!b.lease)return false;if(fs=="forsale"&&!(live[b.id]&&live[b.id].n>0))return false;return true;}
+function run(){var filt=q.value.trim()||area.value||fs,any=0;
+ S.forEach(function(s){if(s.hide)return;var sec=document.getElementById(s.k),n=0;
+  [].forEach.call(sec.querySelectorAll('.bd-card'),function(c){var b=B.filter(function(x){return x.id==c.getAttribute('data-id');})[0];var v=ok(b);c.hidden=!v;if(v){n++;c.classList.add('in');}});
+  var e=sec.querySelector('.bd-empty');if(e)e.hidden=!!filt;sec.hidden=filt&&n==0;if(n)any=1;
+  sec.querySelector('.bd-cnt').textContent=n?(n+(n==1?' building':' buildings')):'';});
+ none.style.display=(filt&&!any)?'block':'none';}
+q.addEventListener('input',run);area.addEventListener('change',run);
+[].forEach.call(root.querySelectorAll('.bd-chip'),function(c){c.addEventListener('click',function(){[].forEach.call(root.querySelectorAll('.bd-chip'),function(x){x.classList.remove('on');});c.classList.add('on');fs=c.getAttribute('data-f');run();});});
+run();
+/* jump links and #hash scroll smoothly */
+root.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a[href^="#"]');if(!a)return;var t=document.getElementById(a.getAttribute('href').slice(1));if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth',block:'start'});}});
+/* owner form */
+var f=document.getElementById('bd-f');f.addEventListener('submit',function(e){e.preventDefault();var btn=f.querySelector('button');btn.disabled=true;btn.textContent='Sending…';
+ fetch(f.action,{method:'POST',body:new FormData(f),headers:{'Accept':'application/json'}}).then(function(r){if(!r.ok)throw 0;f.reset();document.getElementById('bd-ok').style.display='block';btn.textContent='Sent';}).catch(function(){btn.disabled=false;btn.textContent='Send request';var k=document.getElementById('bd-ok');k.textContent='Sorry, that did not send. Please call or text Richard at 604-701-2955.';k.style.display='block';});});
+/* fade in on scroll */
+var calm=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+if(!calm&&'IntersectionObserver' in window){root.classList.add('anim');var io=new IntersectionObserver(function(es){es.forEach(function(x){if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target);}});},{threshold:.1});
+ [].forEach.call(root.querySelectorAll('.rv'),function(el){var i=[].indexOf.call(el.parentNode.children,el);el.style.transitionDelay=Math.min(i,6)*.06+'s';io.observe(el);});}
+})();
+</script>
