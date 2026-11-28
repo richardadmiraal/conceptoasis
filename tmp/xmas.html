@@ -210,14 +210,15 @@
 var root=document.getElementById('xm');if(!root)return;
 /* ===== DATA (edit here) ===== */
 var LAST=["It's the most wonderful time of the year to buy this house","Do you see what I see","Comfort and joy","Merry &amp; bright","New Year's resolution: be a homeowner","Deck the halls and the great room too","Boxing Day special","Jingle all the way to your perfect place","All I want for Christmas is you","Sleigh your home search"];
-// [header, song, link (or ''), by ('' or first name), draft]
+// position = array index + 1; null = open spot. [header, song, link or '', by ('' or first name), draft 0/1, link label ('' = "See the home")]
 var LIST=[
- ["Jingle all the way… to 312 Robson!","Jingle Bells","/312robson","",0],
- ["Walking in a Willowbrook wonderland","Winter Wonderland","/42willowbrook","",1],
- ["Deck the halls at 14 Kipp","Deck the Halls","/14kippave","",1],
- ["I'll be home for Christmas… on Hazel","I'll Be Home for Christmas","/7hazel","",1],
- ["Have yourself a merry little Velma","Have Yourself a Merry Little Christmas","/velma","",1],
- ["Rockin' around the Esplanade","Rockin' Around the Christmas Tree","/320-378esplanade","",1]
+ ["Jingle all the way… to 312 Robson!","Jingle Bells","/312robson","",0,""],
+ ["We wish you a merry Kipp-mas","We Wish You a Merry Christmas","/14kippave","",1,""],
+ ["Deck the halls and the great room too","Deck the Halls","","",0,""],
+ null,
+ ["Have yourself a merry little Velma","Have Yourself a Merry Little Christmas","/velma","",0,""],
+ ["Rockin' around the Esplanade","Rockin' Around the Christmas Tree","/320-378esplanade","",0,""],
+ ["Walking in a Willowbrook wonderland","Winter Wonderland","/42willowbrook","",0,"Sold! Be our next best seller"]
 ];
 var TOTAL=20;
 // suggestions box: [id, header, song, by, votes, onListNumber or 0]
@@ -246,9 +247,9 @@ var store={get:function(k,d){try{var v=localStorage.getItem('xm26_'+k);return v?
 $('xm-lastlist').innerHTML=LAST.map(function(l){return '<li>'+l+'</li>';}).join('');
 /* the 2026 Top 20 */
 function drawTop(){var h='';for(var i=0;i<TOTAL;i++){var it=LIST[i];
- if(it){h+='<li><span class="n">'+(i+1)+'</span><span><span class="h">'+esc(it[0])+'</span>'+(it[4]?'<span class="tag draft">draft</span>':'')+(it[3]?'<span class="tag you">from '+esc(it[3])+'</span>':'')+'<span class="s">♪ '+esc(it[1])+(it[2]?' · <a href="'+esc(it[2])+'" target="_blank" rel="noopener">See the home →</a>':'')+'</span></span></li>';}
+ if(it){h+='<li><span class="n">'+(i+1)+'</span><span><span class="h">'+esc(it[0])+'</span>'+(it[4]?'<span class="tag draft">draft</span>':'')+(it[3]?'<span class="tag you">from '+esc(it[3])+'</span>':'')+'<span class="s">♪ '+esc(it[1])+(it[2]?' · <a href="'+esc(it[2])+'" target="_blank" rel="noopener">'+esc(it[5]||'See the home')+' →</a>':'')+'</span></span></li>';}
  else h+='<li class="open"><span class="n">'+(i+1)+'</span><span><span class="h">Open: yours could go here</span><span class="s"><a href="#xm-write">Write one →</a></span></span></li>';}
- $('xm-top').innerHTML=h;$('xm-count').textContent=LIST.length+' of '+TOTAL+' written';}
+ $('xm-top').innerHTML=h;$('xm-count').textContent=LIST.filter(function(x){return x;}).length+' of '+TOTAL+' written';}
 drawTop();
 /* my list */
 var mine=store.get('mine',[]);
