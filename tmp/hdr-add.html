@@ -1,0 +1,100 @@
+
+<!-- Kai-C Nov 27 2026: keep the RealtyNinja theme header hidden on every page (tall + short variants) -->
+<style>.header-section.section-tall-header,.header-section.section-short-header{display:none!important}</style>
+<!-- Kai-C: Search Hubs menu v2 (major hubs with dropdowns). Preview build: runs on the page it is pasted on.
+     For the site-wide version, the same HUBS2 block + CSS go into the header code after approval. -->
+<style>
+.kh-wrap{margin:4px 0 12px}
+.kh-lbl{font:800 12px/1 'Poppins',sans-serif;letter-spacing:.12em;color:#eafff2;margin:4px 2px 8px;text-transform:uppercase}
+.kh-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.kh-card{background:#fff;border-radius:14px;box-shadow:0 2px 6px rgba(0,0,0,.12);display:flex;align-items:stretch;overflow:hidden;min-height:54px}
+.kh-card a.kh-go{flex:1;display:flex;flex-direction:column;justify-content:center;padding:8px 10px;color:#161e4a;text-decoration:none}
+.kh-card a.kh-go b{font:800 14.5px/1.15 'Poppins',sans-serif}
+.kh-card a.kh-go small{font:500 11px/1.25 'Poppins',sans-serif;color:#5b6b85;margin-top:2px}
+.kh-card a.kh-go:hover b{color:#0e8a44}
+.kh-card button{border:0;background:#f1f4fa;color:#161e4a;width:38px;font-size:15px;cursor:pointer;border-left:1px solid #e3e8f2}
+.kh-card button:hover,.kh-card.on button{background:#161e4a;color:#fff}
+.kh-card.on{outline:3px solid #161e4a}
+.kh-card.new a.kh-go b:after{content:'NEW';font:800 9px/1 'Poppins',sans-serif;background:#d61e6e;color:#fff;border-radius:6px;padding:3px 5px;margin-left:6px;vertical-align:2px}
+.kh-drop{display:none;background:#fff;border-radius:14px;margin-top:8px;padding:12px 14px;box-shadow:0 4px 14px rgba(0,0,0,.18)}
+.kh-drop.on{display:block}
+.kh-drop h5{font:800 13px/1.2 'Poppins',sans-serif;color:#161e4a;margin:0 0 8px;display:flex;justify-content:space-between;align-items:center}
+.kh-drop h5 a{font:700 12px 'Poppins',sans-serif;color:#0e8a44;text-decoration:none}
+.kh-cols{display:grid;grid-template-columns:repeat(3,1fr);gap:4px 14px}
+.kh-cols>span{display:block}
+.kh-cols div{font:800 10.5px/1 'Poppins',sans-serif;letter-spacing:.1em;color:#5b6b85;text-transform:uppercase;margin:6px 0 4px}
+.kh-cols a{display:block;font:600 13px/1.25 'Poppins',sans-serif;color:#161e4a;text-decoration:none;padding:4px 0}
+.kh-cols a:hover{color:#0e8a44;text-decoration:underline}
+.kh-all{margin-top:10px}
+.kh-all>summary{cursor:pointer;font:800 12px/1 'Poppins',sans-serif;letter-spacing:.12em;color:#eafff2;text-transform:uppercase;list-style:none;padding:6px 2px}
+.kh-all>summary::-webkit-details-marker{display:none}
+.kh-all>summary:before{content:'▸ ';}
+.kh-all[open]>summary:before{content:'▾ ';}
+@media(max-width:760px){.kh-grid{grid-template-columns:repeat(2,1fr)}.kh-cols{grid-template-columns:1fr 1fr}}
+</style>
+<script>
+(function(){
+var H='https://www.admiraal.ca/';
+// [name, page, tagline, [[column title, [[label, page], ...]], ...], isNew]
+var HUBS2=[
+ ['Chilliwack','chilliwack','New listings, weather, market',[
+   ['Home types',[['Single family homes','chilliwack-single-family-homes'],['Condos','chilliwack-condos'],['Townhomes','chilliwacksardistownhomes'],['55+ & gated','chilliwack-sardis-age-55-gated-communities'],['New construction','chilliwack-new-construction'],['Waterfront','chilliwack-and-district-waterfront'],['Commercial','ChilliwackCommercialRealEstate']]],
+   ['Neighbourhoods',[['Chilliwack Proper','chilliwack-proper'],['Downtown (District 1881)','district-1881-downtown-chilliwack'],['Chilliwack East','chilliwack-east'],['Eastern Hillsides','chilliwack-eastern-hillsides'],['Chilliwack Mountain','chilliwack-mountain'],['Little Mountain','chilliwack-little-mountain'],['Fairfield Island','fairfield-island'],['Lower Landing','chilliwack-lower-landing']]],
+   ['Rural & lakes',[['Ryder Lake','ryder-lake'],['Chilliwack River Valley','chilliwackrivervalley'],['Rosedale / Popkum','rosedalepopkum'],['Cultus Lake','cultus-lake'],['Yarrow / Majuba Hill','yarrow-majubahill'],['Columbia Valley','columbiavalley'],['Towns & rural','chilliwacktownsandruralareas']]],
+   ['Lists & open houses',[['Top 10 executive homes','top-10-chilliwack-executive-homes-for-sale'],['Top 10 multigenerational','top-10-chilliwack-multigenerational-homes'],['Open houses','open-house-chilliwack']]]]],
+ ['Sardis','sardis','Garrison, Promontory, Vedder',[
+   ['Home types',[['Single family homes','sardis-single-family-homes'],['Townhomes','sardis-townhomes'],['Condos','sardis-condos'],['Manufactured homes','sardis-manufactured-homes'],['55+ & gated','chilliwack-sardis-age-55-gated-communities']]],
+   ['Neighbourhoods',[['Sardis South','sardissouth'],['Promontory','promontory'],['Garrison Crossing','garrisoncrossing'],['Greendale','greendale']]],
+   ['More',[['Open houses','open-house-sardis'],['Strata communities','browse-by-strata']]]]],
+ ['East Abbotsford','abbotsford-east','Market matrix, suites',[
+   ['Home types',[['Homes with suites','abbotsford-east-with-suites'],['Condos','abbotsford-condos'],['55+','abbotsford-age-55-'],['Gated communities','abbotsford-gated-communities'],['New construction','abbotsford-new-construction']]],
+   ['Nearby',[['Central Abbotsford','central-abbotsford'],['Abbotsford West','abbotsford-west'],['Sumas Prairie','sumas-prairie-farms'],['Bradner','bradner'],['Aldergrove','aldergrove-real-estate'],['Langley','newest-listing-in-langley']]],
+   ['Open houses',[['East Abbotsford open houses','open-house-east-abbotsford'],['Abbotsford open houses map','abbotsford-open-houses-map']]]]],
+ ['Agassiz','agassiz','Kent, farms, small-town',[
+   ['Around Agassiz',[['Harrison Hot Springs','harrisonlake'],['Mt Woodside / Harrison Highlands','mount-woodside-harrison-highlands'],['Hemlock','hemlock']]],
+   ['Strata',[['Building directory','building-directory'],['Strata communities','browse-by-strata']]],
+   ['Good to know',[['Kent zoning summary','kent-district-a-zoning-summary']]]]],
+ ['Hope','hope-bc-real-estate','Hope & the Fraser Canyon',[
+   ['Home types',[['Townhouses','hope-townhouses'],['Waterfront','hope-waterfront']]],
+   ['Areas',[['Kawkawa Lake','kawkawa-lake'],['Sunshine Valley','sunshinevalley'],['Laidlaw','laidlaw'],['Fraser Canyon','fraser-canyon-real-estate']]],
+   ['Good to know',[['Hope RS-1 zoning summary','hope-rs-1-zoning-summary'],['Open houses','open-house-hope']]]]],
+ ['Harrison Hot Springs','harrisonlake','Lake, village, highlands',[
+   ['Home types',[['Harrison waterfront','harrison-waterfront']]],
+   ['Areas',[['Mt Woodside / Harrison Highlands','mount-woodside-harrison-highlands'],['Hemlock','hemlock'],['Agassiz','agassiz']]],
+   ['Good to know',[['Kent zoning summary','kent-district-a-zoning-summary']]]]],
+ ['Chilliwack Sardis Townhomes','chilliwacksardistownhomes','Every active townhome',[
+   ['Townhomes',[['All Chilliwack & Sardis','chilliwacksardistownhomes'],['Sardis townhomes','sardis-townhomes'],['Gated townhome communities','chilliwack-sardis-gated-communities-attached'],['55+ & gated','chilliwack-sardis-age-55-gated-communities']]],
+   ['Buildings',[['Building directory','building-directory'],['Strata communities','browse-by-strata']]],
+   ['Also',[['Condos: Chilliwack','chilliwack-condos'],['Condos: Sardis','sardis-condos'],['Hope townhouses','hope-townhouses']]]]],
+ ['Buildings','building-directory','Condos, townhomes & 55+ by building',[
+   ['Browse',[['Building directory','building-directory'],['Strata communities','browse-by-strata']]],
+   ['Townhomes',[['Chilliwack & Sardis townhomes','chilliwacksardistownhomes'],['Gated townhome communities','chilliwack-sardis-gated-communities-attached'],['Hope townhouses','hope-townhouses']]],
+   ['Condos & 55+',[['Chilliwack condos','chilliwack-condos'],['Sardis condos','sardis-condos'],['55+ & gated','chilliwack-sardis-age-55-gated-communities']]]]]
+];
+function build(){
+  var sub=document.querySelector('.ah-sub.ah-green'); if(!sub||sub.querySelector('.kh-wrap'))return !!sub;
+  var w=document.createElement('div'); w.className='kh-wrap';
+  var g='<div class="kh-lbl">Major hubs</div><div class="kh-grid">';
+  HUBS2.forEach(function(h,i){ g+='<div class="kh-card'+(h[4]?' new':'')+'" data-i="'+i+'"><a class="kh-go" href="'+H+h[1]+'"><b>'+h[0]+'</b><small>'+h[2]+'</small></a><button type="button" aria-label="More in '+h[0]+'" aria-expanded="false">▾</button></div>'; });
+  g+='</div><div class="kh-drop" role="region"></div>';
+  w.innerHTML=g;
+  var hgs=sub.querySelector('.ah-hgs'), srch=sub.querySelector('.ah-srch');
+  srch?sub.insertBefore(w,srch):sub.appendChild(w);
+  if(hgs){ var d=document.createElement('details'); d.className='kh-all'; d.innerHTML='<summary>All areas A to Z</summary>'; sub.insertBefore(d,hgs); d.appendChild(hgs); }
+  var drop=w.querySelector('.kh-drop');
+  w.querySelectorAll('.kh-card button').forEach(function(b){
+    b.addEventListener('click',function(e){ e.preventDefault(); e.stopPropagation();
+      var c=b.parentNode, on=c.classList.contains('on');
+      w.querySelectorAll('.kh-card').forEach(function(x){x.classList.remove('on');x.querySelector('button').setAttribute('aria-expanded','false');});
+      if(on){drop.classList.remove('on');return;}
+      var h=HUBS2[+c.getAttribute('data-i')]; c.classList.add('on'); b.setAttribute('aria-expanded','true');
+      var s='<h5>'+h[0]+'<a href="'+H+h[1]+'">Open the '+h[0]+' hub →</a></h5><div class="kh-cols">';
+      h[3].forEach(function(col){ s+='<span><div>'+col[0]+'</div>'+col[1].map(function(l){return '<a href="'+H+l[1]+'">'+l[0]+'</a>';}).join('')+'</span>'; });
+      drop.innerHTML=s+'</div>'; drop.classList.add('on');
+    });
+  });
+  return true;
+}
+var n=0,t=setInterval(function(){ if(build()||++n>80) clearInterval(t); },150);
+})();
+</script>
