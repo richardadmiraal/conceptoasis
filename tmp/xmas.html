@@ -140,7 +140,7 @@
  <section class="xm-sec dark" id="xm-list">
   <div class="xm-k rv">The list</div>
   <h2 class="rv">Top 20 Real Estate Headers at Christmas, 2026</h2>
-  <p class="xm-sub rv">Every year we turn Christmas songs into real estate headers. This year the Nutcracker wants twenty. Some point to homes we have for sale, and some come from you.</p>
+  <p class="xm-sub rv">Every year we turn Christmas songs into real estate headers. This year the Nutcracker wants twenty. Some point to homes we have for sale, and some come from you. Our top picks will be featured in our Christmas ads.</p>
   <div class="xm-lists">
    <div class="rv">
     <div class="xm-last"><div class="xm-seal">LAST<br>YEAR'S<br>OFFICIAL</div><h3>Top Ten Real Estate Headers at Christmas</h3><div class="yr">The official list, as seen on our Christmas videos</div><ol id="xm-lastlist"></ol></div>
@@ -153,21 +153,21 @@
  <section class="xm-sec" id="xm-write">
   <div class="xm-k rv">Your turn</div>
   <h2 class="rv">Write one, vote one, keep your own list</h2>
-  <p class="xm-sub rv">Pick a Christmas song and give it a real estate twist, or ask Kai-C for one. Vote the suggestions up or down. The best ones get added to the 2026 list.</p>
+  <p class="xm-sub rv">Any real estate header at Christmas time works: buying, selling, moving, your own street, your dream home. Start from a Christmas song or ask Kai-C for one. Vote the suggestions up or down. The best ones get added to the 2026 list and featured in our ads.</p>
   <div class="xm-play">
    <div class="xm-card rv">
     <h3>Suggestions box</h3>
     <p class="lead">Tap ▲ or ▼ to vote. Tap <b>+ My list</b> to save one to your own list.</p>
     <ul class="xm-sg" id="xm-sg"></ul>
     <div class="xm-mine" id="xm-mine"><h4>My Christmas list</h4><ol id="xm-mylist"></ol><div class="none" id="xm-none">Nothing yet. Add suggestions above, or write your own.</div>
-     <div class="xm-row"><button type="button" class="xm-btn sm ghost" id="xm-copy">Copy my list</button><button type="button" class="xm-btn sm ghost" id="xm-share">Share</button><button type="button" class="xm-btn sm ghost" id="xm-clear">Clear</button></div>
+     <div class="xm-row"><button type="button" class="xm-btn sm gold" id="xm-print">Print or save as PDF</button><button type="button" class="xm-btn sm ghost" id="xm-copy">Copy my list</button><button type="button" class="xm-btn sm ghost" id="xm-share">Share</button><button type="button" class="xm-btn sm ghost" id="xm-clear">Clear</button></div>
      <div class="xm-note">Your list is saved on this device only.</div></div>
    </div>
    <form class="xm-card rv" id="xm-form" action="https://formspree.io/f/xbggejnn" method="POST">
     <input type="hidden" name="_subject" value="Christmas 2026 Top 20: header suggestion">
     <input type="hidden" name="form" value="admiraal.ca/christmas2026 - Top 20 header suggestion">
     <h3>Write a header</h3>
-    <p class="lead">Start from a Christmas song. Stuck? Ask Kai-C.</p>
+    <p class="lead">Any real estate header, any Christmas song. Stuck? Ask Kai-C.</p>
     <label for="xm-song">Christmas song</label>
     <select id="xm-song" name="song"></select>
     <label for="xm-head">Your real estate header</label>
@@ -212,11 +212,11 @@ var root=document.getElementById('xm');if(!root)return;
 var LAST=["It's the most wonderful time of the year to buy this house","Do you see what I see","Comfort and joy","Merry &amp; bright","New Year's resolution: be a homeowner","Deck the halls and the great room too","Boxing Day special","Jingle all the way to your perfect place","All I want for Christmas is you","Sleigh your home search"];
 // position = array index + 1; null = open spot. [header, song, link or '', by ('' or first name), draft 0/1, link label ('' = "See the home")]
 var LIST=[
- ["Jingle all the way… to 312 Robson!","Jingle Bells","/312robson","",0,""],
+ ["Have yourself a merry little Velma","Have Yourself a Merry Little Christmas","/velma","",0,""],
  ["We wish you a merry Kipp-mas","We Wish You a Merry Christmas","/14kippave","",1,""],
  ["Deck the halls and the great room too","Deck the Halls","","",0,""],
  null,
- ["Have yourself a merry little Velma","Have Yourself a Merry Little Christmas","/velma","",0,""],
+ ["Jingle all the way… to 312 Robson!","Jingle Bells","/312robson","",0,""],
  ["Rockin' around the Esplanade","Rockin' Around the Christmas Tree","/320-378esplanade","",0,""],
  ["Walking in a Willowbrook wonderland","Winter Wonderland","/42willowbrook","",0,"Sold! Be our next best seller"]
 ];
@@ -269,6 +269,11 @@ drawMine();drawSugg();
 $('xm-copy').onclick=function(){var t='My Christmas real estate headers (admiraal.ca/christmas2026):\n'+mine.map(function(x,i){return (i+1)+'. '+x;}).join('\n');
  if(navigator.clipboard)navigator.clipboard.writeText(t).then(function(){$('xm-copy').textContent='Copied!';setTimeout(function(){$('xm-copy').textContent='Copy my list';},1600);});};
 $('xm-share').onclick=function(){var t=mine.map(function(x,i){return (i+1)+'. '+x;}).join('\n');if(navigator.share)navigator.share({title:'My Christmas real estate headers',text:t,url:'https://www.admiraal.ca/christmas2026'}).catch(function(){});else $('xm-copy').click();};
+$('xm-print').onclick=function(){if(!mine.length){$('xm-none').textContent='Add a header or two first, then print.';return;}
+ var w=window.open('','_blank');if(!w)return;
+ var li=mine.map(function(x,i){return '<li><span>'+(i+1)+'</span>'+esc(x)+'</li>';}).join('');
+ w.document.write('<!DOCTYPE html><html><head><meta charset="utf-8"><title>My Christmas Real Estate Headers</title><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,800;1,600&family=Caveat:wght@700&display=swap" rel="stylesheet"><style>@page{size:letter;margin:0}body{margin:0;font-family:Georgia,serif;-webkit-print-color-adjust:exact;print-color-adjust:exact}.pg{width:8.5in;height:11in;box-sizing:border-box;padding:.7in .8in;background:#fbf6ea;position:relative;border:14px solid #6e1420;outline:3px solid #c9a24a;outline-offset:-22px}.k{font:700 11px/1 Arial,sans-serif;letter-spacing:.24em;text-transform:uppercase;color:#a3192b;text-align:center}h1{font:800 34px/1.1 "Playfair Display",Georgia,serif;text-align:center;margin:10px 0 4px;color:#1d1a16}h1 em{font-style:italic;font-weight:600;color:#14482f}.o{width:140px;height:12px;margin:12px auto 24px;background:radial-gradient(circle,#c9a24a 3px,transparent 4px) center/14px 12px repeat-x}ol{list-style:none;padding:0;margin:0}li{display:flex;gap:16px;align-items:baseline;border-bottom:1px dotted #d9caa4;padding:10px 0;font:700 27px/1.2 Caveat,cursive;color:#2a2418}li span{font:800 20px/1 "Playfair Display",serif;color:#c9a24a;min-width:30px;text-align:right}.f{position:absolute;left:.8in;right:.8in;bottom:.6in;text-align:center;font:12px/1.5 Arial,sans-serif;color:#6d665b}.f b{color:#1d1a16}</style></head><body><div class="pg"><div class="k">Admiraal Real Estate · Nutcracker &amp; Associates</div><h1>My Christmas <em>Real Estate Headers</em></h1><div class="o"></div><ol>'+li+'</ol><div class="f">Make your own at <b>admiraal.ca/christmas2026</b><br>Richard Admiraal, REALTOR® · Admiraal Real Estate · Advantage Property Management, Real Estate Division · 604-701-2955</div></div><script>setTimeout(function(){window.print()},700)<\/script></body></html>');
+ w.document.close();};
 $('xm-clear').onclick=function(){mine=[];store.set('mine',mine);drawMine();drawSugg();};
 /* writer */
 $('xm-song').innerHTML=SONGS.map(function(s){return '<option>'+esc(s)+'</option>';}).join('');
