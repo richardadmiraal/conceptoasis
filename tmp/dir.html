@@ -22,7 +22,7 @@
 .bd-stats .g b{color:#5fe39b}
 /* tools */
 .bd-tools{background:#fff;border-bottom:1px solid var(--l);padding:16px 34px;display:grid;grid-template-columns:1fr auto;gap:12px;align-items:center}
-.bd-sv{position:absolute;right:10px;bottom:10px;z-index:3;border:0;border-radius:999px;background:rgba(10,20,97,.88);color:#fff;font:700 12.5px/1 -apple-system,"Segoe UI",sans-serif;padding:8px 12px;cursor:pointer}
+.bd-sv{position:absolute;right:10px;top:10px;z-index:3;border:0;border-radius:999px;background:rgba(10,20,97,.88);color:#fff;font:700 12.5px/1 -apple-system,"Segoe UI",sans-serif;padding:8px 12px;cursor:pointer}
 .bd-sv:hover{background:#12a150}
 .bd-ph iframe{position:absolute;inset:0;width:100%;height:100%;border:0;z-index:4}
 .bd-lease{display:block;margin:0 0 6px;padding:14px 18px;border-radius:12px;background:#f4f6fb;border:1px solid #e1e6f2;color:#161e4a!important;text-decoration:none!important;font-weight:700}
@@ -334,7 +334,7 @@ function load(b){if(cache[b.id]&&cache[b.id].v==2){apply(b.id,cache[b.id]);retur
  fetch('/buildings/view/'+b.id).then(function(r){return r.text();}).then(function(h){var m=h.match(/static\/images\/buildings\/(?:med|hd)\/[^"'()\s]+\.(?:jpe?g|png|webp)/i);var a=h.match(/(\d+)\s*Active Listing/i);var sv=h.match(/maps\.google\.com\/maps\?layer=c[^"']+/);var d={v:2,sv:sv?sv[0].replace(/&amp;/g,'&'):'',pic:(m&&!/no_photo/i.test(m[0]))?'https://s.realtyninja.com/'+m[0].replace('/hd/','/med/'):'',n:a?+a[1]:0};cache[b.id]=d;try{sessionStorage.setItem('bdLive2',JSON.stringify(cache));}catch(e){}apply(b.id,d);}).catch(function(){apply(b.id,{pic:'',n:0});});}
 var lio=('IntersectionObserver' in window)?new IntersectionObserver(function(es){es.forEach(function(x){if(x.isIntersecting){lio.unobserve(x.target);var id=x.target.getAttribute('data-id');load(B.filter(function(b){return b.id==id;})[0]);}});},{rootMargin:'400px'}):null;
 B.forEach(function(b){var c=root.querySelector('.bd-card[data-id="'+b.id+'"]');if(!c)return;if(cache[b.id]&&cache[b.id].v==2){apply(b.id,cache[b.id]);return;}if(lio)lio.observe(c);else load(b);});
-root.addEventListener('click',function(e){var bt=e.target.closest&&e.target.closest('.bd-sv');if(!bt)return;e.preventDefault();e.stopPropagation();var c=bt.closest('.bd-card'),d=live[c.getAttribute('data-id')];if(!d||!d.sv)return;var ph=c.querySelector('.bd-ph');ph.insertAdjacentHTML('beforeend','<iframe src="'+d.sv+'" allowfullscreen loading="lazy" title="Street View"></iframe>');bt.remove();},true);
+root.addEventListener('click',function(e){var bt=e.target.closest&&e.target.closest('.bd-sv');if(!bt)return;e.preventDefault();e.stopPropagation();var c=bt.closest('.bd-card'),d=live[c.getAttribute('data-id')];if(!d||!d.sv)return;var ph=c.querySelector('.bd-ph');ph.insertAdjacentHTML('beforeend','<iframe src="https://'+d.sv+'" allowfullscreen loading="lazy" title="Street View"></iframe>');bt.remove();},true);
 function stats(){var vis=B.filter(function(b){return root.querySelector('.bd-card[data-id="'+b.id+'"]');});var fsN=0;vis.forEach(function(b){if(live[b.id])fsN+=live[b.id].n;});
  stEl.innerHTML='<div><b>'+vis.length+'</b><span>Buildings</span></div><div><b>'+vis.filter(function(b){return b.a55;}).length+'</b><span>Age 55+</span></div><div><b>'+vis.filter(function(b){return b.t=="town";}).length+'</b><span>Townhouse complexes</span></div><div><b>'+vis.filter(function(b){return b.t=="condo";}).length+'</b><span>Condo buildings</span></div><div class="g"><b>'+fsN+'</b><span>Homes for sale now</span></div>';}
 stats();
