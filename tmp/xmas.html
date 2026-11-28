@@ -76,6 +76,7 @@
 .xm-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
 .xm-ok{display:none;margin-top:12px;background:#eaf3ec;border:1px solid var(--ev2);border-radius:10px;padding:12px;font-size:14.5px}
 .xm-note{font-size:12px;color:var(--gr);margin-top:10px}
+.xm-askk{display:flex;gap:14px;align-items:flex-start;margin-bottom:4px}.xm-askk img{border-radius:50%;flex:none;box-shadow:0 6px 16px -6px rgba(0,0,0,.4)}
 .xm-preview{margin-top:14px;background:var(--cream);border:1px dashed var(--gold);border-radius:10px;padding:12px 14px;font:700 22px/1.2 "Caveat",cursive;color:#2a2418;min-height:52px;position:relative}
 .xm-preview small{display:block;font:700 10.5px/1 -apple-system,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:var(--gr);margin-bottom:6px}
 .xm-stamp{position:absolute;right:10px;top:-16px;width:66px;height:66px;border-radius:50%;background:radial-gradient(circle,#f3d277,#c08f22);border:3px solid #8e6a17;display:flex;align-items:center;justify-content:center;transform:rotate(-14deg);font:900 9.5px/1 "League Spartan",sans-serif;color:#6e1420;letter-spacing:.04em}
@@ -139,14 +140,14 @@
 
  <section class="xm-sec dark" id="xm-list">
   <div class="xm-k rv">The list</div>
-  <h2 class="rv">Top 20 Real Estate Headers at Christmas, 2026</h2>
-  <p class="xm-sub rv">Every year we turn Christmas songs into real estate headers. This year the Nutcracker wants twenty. Some point to homes we have for sale, and some come from you. Our top picks will be featured in our Christmas ads.</p>
+  <h2 class="rv">The Top 20 in contention</h2>
+  <p class="xm-sub rv">Every year we turn Christmas songs into real estate headers. This year the Nutcracker is looking for 20 suggestions to form the new Top Ten, to be featured in our newspaper ads. Some point to homes we have for sale, and some come from you.</p>
   <div class="xm-lists">
    <div class="rv">
-    <div class="xm-last"><div class="xm-seal">LAST<br>YEAR'S<br>OFFICIAL</div><h3>Top Ten Real Estate Headers at Christmas</h3><div class="yr">The official list, as seen on our Christmas videos</div><ol id="xm-lastlist"></ol></div>
-    <p class="xm-brag">Yes, we really wrote these. <a href="https://www.youtube.com/watch?v=ZNdggdX7Xhc" target="_blank" rel="noopener">Watch the official list video</a>.</p>
+    <div class="xm-last"><div class="xm-seal">OFFICIAL<br>2024</div><h3>Top Ten Real Estate Headers at Christmas</h3><div class="yr">Christmas 2024</div><ol id="xm-lastlist"></ol></div>
+    <p class="xm-brag"><a href="https://www.youtube.com/watch?v=ZNdggdX7Xhc" target="_blank" rel="noopener">Our Top Ten List from 2024</a></p>
    </div>
-   <div class="xm-top rv"><h3>The 2026 Top 20</h3><div class="yr">IN PROGRESS · <span id="xm-count"></span></div><ol id="xm-top"></ol></div>
+   <div class="xm-top rv"><h3>Real Estate Headers at Christmas, 2026</h3><div class="yr">IN CONTENTION · <span id="xm-count"></span> · THE BEST TEN MAKE THE NEWSPAPER</div><ol id="xm-top"></ol></div>
   </div>
  </section>
 
@@ -166,13 +167,17 @@
    <form class="xm-card rv" id="xm-form" action="https://formspree.io/f/xbggejnn" method="POST">
     <input type="hidden" name="_subject" value="Christmas 2026 Top 20: header suggestion">
     <input type="hidden" name="form" value="admiraal.ca/christmas2026 - Top 20 header suggestion">
-    <h3>Write a header</h3>
-    <p class="lead">Any real estate header, any Christmas song. Stuck? Ask Kai-C.</p>
+    <div class="xm-askk"><img src="https://conceptoasis.com/admiraal/kai-c.png" alt="Kai-C" width="58" height="58"><div><h3>Ask Kai-C to make you one</h3><p class="lead">Tell Kai-C your street or a favourite feature of your home, and Kai-C will turn it into a Christmas header. Or write your own: any real estate header, any Christmas song.</p></div></div>
+    <div class="xm-two">
+     <div><label for="xm-st">Your street name</label><input id="xm-st" placeholder="e.g. Robson Street" autocomplete="off"></div>
+     <div><label for="xm-ft">A feature of your home</label><select id="xm-ft"><option value="">Pick one (optional)</option><option>two-car garage</option><option>gas fireplace</option><option>mountain view</option><option>suite downstairs</option><option>big backyard</option><option>new kitchen</option><option>great room</option><option>walk-in closet</option><option>covered patio</option><option>hot tub</option><option>RV parking</option><option>quiet cul-de-sac</option></select></div>
+    </div>
+    <div class="xm-note" style="margin-top:6px">No house number needed. Your street stays on this device unless you send your header.</div>
     <label for="xm-song">Christmas song</label>
     <select id="xm-song" name="song"></select>
     <label for="xm-head">Your real estate header</label>
     <input id="xm-head" name="header" maxlength="70" required placeholder="e.g. Let it snow, we've got a garage">
-    <div class="xm-row"><button type="button" class="xm-btn sm gold" id="xm-kai">✨ Ask Kai-C for one</button><button type="button" class="xm-btn sm ghost" id="xm-keep">+ My list</button></div>
+    <div class="xm-row"><button type="button" class="xm-btn sm gold" id="xm-kai">✨ Kai-C, make me one</button><button type="button" class="xm-btn sm ghost" id="xm-keep">+ My list</button></div>
     <div class="xm-preview" id="xm-pv"><small>On the Nutcracker's scroll</small><span id="xm-pvt">Your header goes here</span><div class="xm-stamp" id="xm-stamp" hidden>APPROVED</div></div>
     <div class="xm-two">
      <div><label for="xm-name">First name (optional)</label><input id="xm-name" name="name" autocomplete="given-name"></div>
@@ -280,7 +285,17 @@ $('xm-song').innerHTML=SONGS.map(function(s){return '<option>'+esc(s)+'</option>
 var head=$('xm-head'),pvt=$('xm-pvt'),stamp=$('xm-stamp'),shown=false;
 function upd(){var t=head.value.trim();pvt.textContent=t||'Your header goes here';if(t.length>=12&&!shown){stamp.hidden=false;stamp.classList.remove('pop');void stamp.offsetWidth;stamp.classList.add('pop');shown=true;}if(t.length<12){stamp.hidden=true;shown=false;}}
 head.addEventListener('input',upd);
-var k=-1;$('xm-kai').onclick=function(){var n;do{n=Math.floor(Math.random()*KAI.length);}while(n===k&&KAI.length>1);k=n;head.value=KAI[n][0];var sel=$('xm-song');for(var i=0;i<sel.options.length;i++)if(sel.options[i].text===KAI[n][1])sel.selectedIndex=i;shown=false;upd();};
+var ST=[["Walking in a {S} wonderland","Winter Wonderland"],["We wish you a merry {W}-mas","We Wish You a Merry Christmas"],["I'll be home for Christmas… on {S}","I'll Be Home for Christmas"],["Have yourself a merry little {S}","Have Yourself a Merry Little Christmas"],["Jingle all the way to {S}","Jingle Bells"],["Dashing through the snow… down {S}","Jingle Bells"],["Silent night, holy night, all is calm on {S}","Silent Night"],["It's beginning to look a lot like {S}","It's Beginning to Look a Lot Like Christmas"],["Here comes Santa Claus, right down {S}","Here Comes Santa Claus"],["Rockin' around {S}","Rockin' Around the Christmas Tree"],["Have a holly jolly {S}","A Holly Jolly Christmas"]];
+var FT=[["All I want for Christmas is a {F}","All I Want for Christmas Is You"],["Deck the halls and the {F} too","Deck the Halls"],["Let it snow, we've got a {F}","Let It Snow"],["Rockin' around the {F}","Rockin' Around the Christmas Tree"],["O Christmas tree, O {F}","O Christmas Tree"],["Joy to the world, the {F} has come","Joy to the World"],["Chestnuts roasting by the {F}","The Christmas Song"]];
+var SF=[["{F} and a merry Christmas on {S}","We Wish You a Merry Christmas"],["I'll be home for Christmas: {S}, with a {F}","I'll Be Home for Christmas"],["Walking in a {S} wonderland, {F} included","Winter Wonderland"]];
+function street(v){v=v.replace(/^[#\s\d\-–]+/,'').replace(/\s+/g,' ').trim();return v.replace(/\b\w/g,function(c){return c.toUpperCase();});}
+function word(v){var w=v.split(' ')[0]||v;return w;}
+var k='';$('xm-kai').onclick=function(){var S=street($('xm-st').value),F=$('xm-ft').value,pool=[];
+ if(S)pool=pool.concat(ST);if(F)pool=pool.concat(FT);if(S&&F)pool=pool.concat(SF,SF);if(!pool.length)pool=KAI;
+ var n,t,tries=0;do{n=pool[Math.floor(Math.random()*pool.length)];t=n[0].replace(/\{S\}/g,S).replace(/\{W\}/g,word(S)).replace(/\{F\}/g,F);t=t.charAt(0).toUpperCase()+t.slice(1);tries++;}while(t===k&&tries<8);k=t;
+ head.value=t.slice(0,70);var sel=$('xm-song'),found=false;for(var i=0;i<sel.options.length;i++)if(sel.options[i].text===n[1]){sel.selectedIndex=i;found=true;}if(!found){var o=document.createElement('option');o.text=n[1];sel.add(o,sel.options.length-1);sel.value=n[1];}
+ shown=false;upd();};
+$('xm-st').addEventListener('keydown',function(e){if(e.key==='Enter'){e.preventDefault();$('xm-kai').click();}});
 $('xm-keep').onclick=function(){var t=head.value.trim();if(t){if(mine.indexOf(t)<0)toggleMine(t);$('xm-keep').textContent='✓ Added';setTimeout(function(){$('xm-keep').textContent='+ My list';},1400);}else head.focus();};
 var f=$('xm-form');f.addEventListener('submit',function(e){e.preventDefault();var btn=$('xm-send');btn.disabled=true;btn.textContent='Sending…';
  fetch(f.action,{method:'POST',body:new FormData(f),headers:{'Accept':'application/json'}}).then(function(r){if(!r.ok)throw 0;btn.textContent='Sent!';$('xm-ok').style.display='block';}).catch(function(){btn.disabled=false;btn.textContent='Send it to the Nutcracker';var o=$('xm-ok');o.textContent='Sorry, that did not send. Please call or text Richard at 604-701-2955.';o.style.display='block';});});
