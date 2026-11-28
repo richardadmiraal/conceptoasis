@@ -22,6 +22,11 @@
 .bd-stats .g b{color:#5fe39b}
 /* tools */
 .bd-tools{background:#fff;border-bottom:1px solid var(--l);padding:16px 34px;display:grid;grid-template-columns:1fr auto;gap:12px;align-items:center}
+.bd-sv{position:absolute;right:10px;bottom:10px;z-index:3;border:0;border-radius:999px;background:rgba(10,20,97,.88);color:#fff;font:700 12.5px/1 -apple-system,"Segoe UI",sans-serif;padding:8px 12px;cursor:pointer}
+.bd-sv:hover{background:#12a150}
+.bd-ph iframe{position:absolute;inset:0;width:100%;height:100%;border:0;z-index:4}
+.bd-lease{display:block;margin:0 0 6px;padding:14px 18px;border-radius:12px;background:#f4f6fb;border:1px solid #e1e6f2;color:#161e4a!important;text-decoration:none!important;font-weight:700}
+.bd-lease b{color:#0e8a44}
 .bd-ph.np{background:radial-gradient(120% 90% at 85% 10%,#2a4a9a 0%,#161e4a 45%,#0a1461 100%)!important;position:relative}
 .bd-ph.np:after{content:attr(data-s);position:absolute;left:16px;right:16px;bottom:14px;font:800 12px/1.2 "League Spartan",sans-serif;letter-spacing:.16em;text-transform:uppercase;color:#c9d4f2}
 .bd-ph.np:before{content:"";position:absolute;right:16px;bottom:12px;width:44px;height:3px;background:#12a150;border-radius:2px}
@@ -111,10 +116,11 @@
    <button class="bd-chip" data-f="town">Townhouses</button>
    <button class="bd-chip" data-f="detached">Detached &amp; ranchers</button>
    <button class="bd-chip" data-f="a55">Age 55+</button>
-   <button class="bd-chip" data-f="lease">Leasehold</button>
+   
    <button class="bd-chip" data-f="forsale">Homes for sale now</button>
   </div>
   <nav class="bd-jump" id="bd-jump"></nav>
+  <a class="bd-lease" id="bd-lease" href="/leasehold">Looking for leasehold? <b>See leasehold condos, townhomes and manufactured homes on leased land →</b></a>
  </div>
 
  <div id="bd-secs"></div>
@@ -233,10 +239,65 @@ var B=[
  {id:36249,n:"Townsend Terrace",ad:"45085 Wolfe Rd",sub:"Chilliwack Proper West",ar:"Chilliwack",t:"town",y:2010},
  {id:36250,n:"Maple Hills",ad:"8590 Sunrise Dr",sub:"Chilliwack Mountain",ar:"Chilliwack",t:"town",y:2004,u:142},
  {id:36251,n:"Eagles Perch",ad:"43610 Chilliwack Mountain Rd",sub:"Chilliwack Mountain",ar:"Chilliwack",t:"town",y:2022},
+ {id:36253,n:"McIntosh Manor",ad:"45598 Mcintosh Dr",sub:"Chilliwack Proper South",ar:"Chilliwack",t:"condo",y:1981,u:72},
+ {id:36254,n:"The Hartford",ad:"45595 Tamihi Way",sub:"Garrison Crossing",ar:"Sardis",t:"condo",y:2008,u:116},
+ {id:36255,n:"The Vibe",ad:"45555 Yale Rd · 45559 Yale Rd · 45567 Yale Rd · 45561 Yale Rd",sub:"Chilliwack Proper South",ar:"Chilliwack",t:"condo",y:2009,u:220},
+ {id:36256,n:"Creekside",ad:"7694 Evans Rd",sub:"Sardis West Vedder",ar:"Sardis",t:"condo",y:1994,u:88},
+ {id:36257,n:"The Willows",ad:"45893 Chesterfield Ave",sub:"Chilliwack Downtown",ar:"Chilliwack",t:"condo",y:2009,u:55},
+ {id:36258,n:"The York Residences",ad:"45497 Campus Dr · 45511 Campus Dr · 45505 Campus Dr",sub:"Garrison Crossing",ar:"Sardis",t:"condo",y:2025,u:256},
+ {id:36259,n:"Windsor Pines",ad:"9477 Cook St",sub:"Chilliwack Proper West",ar:"Chilliwack",t:"condo",y:1976,u:35},
+ {id:36260,n:"Patricia Place",ad:"8934 Mary St",sub:"Chilliwack Proper West",ar:"Chilliwack",t:"condo",y:1994,u:24},
+ {id:36261,n:"Westgate",ad:"8955 Edward St",sub:"Chilliwack Proper West",ar:"Chilliwack",t:"condo",y:2005,u:62},
+ {id:36262,n:"Carrington Court",ad:"8985 Mary St",sub:"Chilliwack Proper West",ar:"Chilliwack",t:"condo",a55:1,y:1991,u:40},
+ {id:36263,n:"The Boardwalk",ad:"5384 Tyee Lane · 5380 Tyee Lane",sub:"Garrison Crossing",ar:"Sardis",t:"condo",y:2020},
+ {id:36264,n:"Mountview Apartments",ad:"46374 Margaret Ave",sub:"Chilliwack Proper East",ar:"Chilliwack",t:"condo",a55:1,y:1979,u:27},
+ {id:36265,n:"McIntosh Place",ad:"45655 Mcintosh Dr",sub:"Chilliwack Proper South",ar:"Chilliwack",t:"condo",y:1994,u:47},
+ {id:36266,n:"Rosewood Gardens",ad:"9186 Edward St",sub:"Chilliwack Proper West",ar:"Chilliwack",t:"condo",a55:1,y:1990},
+ {id:36267,n:"Capri",ad:"46210 Margaret Ave",sub:"Chilliwack Proper East",ar:"Chilliwack",t:"condo",y:1985,u:26},
+ {id:36268,n:"The Wellington",ad:"9400 Cook St",sub:"Chilliwack Downtown",ar:"Chilliwack",t:"condo",a55:1,y:1993,u:18},
+ {id:36269,n:"Royal Tudor",ad:"9516 Rotary St",sub:"Chilliwack Proper East",ar:"Chilliwack",t:"condo",y:1976,u:8},
+ {id:36270,n:"McIntosh Village",ad:"45669 Mcintosh Dr",sub:"Chilliwack Proper South",ar:"Chilliwack",t:"condo",y:1993,u:45},
+ {id:36271,n:"The Summit",ad:"46262 First Ave",sub:"Chilliwack Proper East",ar:"Chilliwack",t:"condo",y:2009},
+ {id:36272,n:"Sapphire",ad:"7685 Amber Dr",sub:"Sardis West Vedder",ar:"Sardis",t:"condo",a55:1,y:1992},
+ {id:36273,n:"King Edward",ad:"8933 Edward St",sub:"Chilliwack Proper West",ar:"Chilliwack",t:"condo",y:2007,u:41},
+ {id:36274,n:"Novea",ad:"45766 Henderson Ave",sub:"Chilliwack Proper West",ar:"Chilliwack",t:"condo",y:1994},
+ {id:36275,n:"The Royal Oak",ad:"45734 Patten Ave",sub:"Chilliwack Downtown",ar:"Chilliwack",t:"condo",a55:1,y:1994,u:16},
+ {id:36276,n:"Birch Street Properties",ad:"9000 Birch St",sub:"Chilliwack Downtown",ar:"Chilliwack",t:"condo",y:2006,u:58},
+ {id:36277,n:"Park Ridge",ad:"45761 Stevenson Rd",sub:"Sardis East Vedder",ar:"Sardis",t:"condo",y:2016,u:60},
+ {id:36278,n:"The Charleston",ad:"46021 Second Ave",sub:"Chilliwack Downtown",ar:"Chilliwack",t:"condo",y:2008,u:40},
+ {id:36279,n:"The Elliot",ad:"45562 Airport Rd",sub:"Chilliwack Proper South",ar:"Chilliwack",t:"condo",y:2021},
+ {id:36280,n:"The Auburn Retirement Residences",ad:"8531 Young Rd",sub:"Chilliwack Proper South",ar:"Chilliwack",t:"condo",a55:1,y:2010,u:68},
+ {id:36281,n:"Chilliwack Gardens",ad:"45749 Spadina Ave",sub:"Chilliwack Downtown",ar:"Chilliwack",t:"condo",y:1980},
+ {id:36282,n:"Hawthorn Park",ad:"45604 Brett Ave",sub:"Chilliwack Proper West",ar:"Chilliwack",t:"condo",y:1989},
+ {id:36283,n:"Lombardy Lane",ad:"9175 Edward St",sub:"Chilliwack Proper West",ar:"Chilliwack",t:"condo",a55:1,y:1987},
+ {id:36284,n:"Sandstone",ad:"46351 Yale Rd",sub:"Chilliwack Proper East",ar:"Chilliwack",t:"condo",y:1990},
+ {id:36285,n:"Spadina Regency",ad:"45765 Spadina Ave",sub:"Chilliwack Downtown",ar:"Chilliwack",t:"condo",a55:1,y:1989,u:26},
+ {id:36286,n:"Knight Lodge",ad:"45660 Knight Rd",sub:"Sardis West Vedder",ar:"Sardis",t:"condo",a55:1,y:1989,u:30},
+ {id:36287,n:"Eagle Ridge",ad:"45729 Gaetz St",sub:"Sardis East Vedder",ar:"Sardis",t:"condo",y:1992,u:14},
+ {id:36288,n:"Princess Towers",ad:"45745 Princess Ave",sub:"Chilliwack Proper West",ar:"Chilliwack",t:"condo",y:1994},
+ {id:36289,n:"Mountain View Estates",ad:"46966 Yale Rd",sub:"Chilliwack Proper East",ar:"Chilliwack",t:"condo",a55:1,y:1989,u:22},
+ {id:36290,n:"Cedarwood Estates",ad:"46210 Chilliwack Central Rd",sub:"Chilliwack Proper South",ar:"Chilliwack",t:"condo",y:1977,u:38},
+ {id:36291,n:"Edward Place",ad:"9006 Edward St",sub:"Chilliwack Proper West",ar:"Chilliwack",t:"condo",y:1991,u:11},
+ {id:36292,n:"Hodgins Manor",ad:"9080 Mary St",sub:"Chilliwack Proper West",ar:"Chilliwack",t:"condo",a55:1,y:1982,u:21},
+ {id:36293,n:"First Park Avenue",ad:"46000 First Ave",sub:"Chilliwack Downtown",ar:"Chilliwack",t:"condo",y:1992,u:20},
+ {id:36294,n:"The Tuscany",ad:"46053 Chilliwack Central Rd",sub:"Chilliwack Proper South",ar:"Chilliwack",t:"condo",y:2008},
+ {id:36295,n:"Morningside",ad:"45520 Knight Rd",sub:"Sardis West Vedder",ar:"Sardis",t:"condo",y:1995},
+ {id:36296,n:"Cambridge",ad:"9165 Broadway St",sub:"Chilliwack Proper East",ar:"Chilliwack",t:"condo",y:1995},
+ {id:36297,n:"Melrose",ad:"5915 Vedder Rd",sub:"Garrison Crossing",ar:"Sardis",t:"condo",y:1996},
+ {id:36298,n:"The Devonshire",ad:"45700 Wellington Ave",sub:"Chilliwack Proper West",ar:"Chilliwack",t:"condo",y:1995},
+ {id:36299,n:"Park Place 2",ad:"45753 Stevenson Rd",sub:"Sardis East Vedder",ar:"Sardis",t:"condo",y:2008},
+ {id:36300,n:"The Regent",ad:"45615 Brett Ave",sub:"Chilliwack Proper West",ar:"Chilliwack",t:"condo",y:2007},
+ {id:36301,n:"Edenbank",ad:"7001 Eden Dr",sub:"Sardis West Vedder",ar:"Sardis",t:"condo",a55:1,y:1984},
+ {id:36302,n:"Andmar",ad:"46185 Thomas Rd · 46187 Thomas Rd",sub:"Vedder Crossing",ar:"Sardis",t:"condo",lease:1,y:2026,u:48},
+ {id:36303,n:"Skynest",ad:"45745 Watson Rd",sub:"Sardis South",ar:"Sardis",t:"condo",lease:1,y:2023,u:48},
+ {id:36304,n:"Englewood Courtyard",ad:"45746 Keith Wilson Rd · 45750 Keith Wilson Rd · 45754 Keith Wilson Rd",sub:"Vedder Crossing",ar:"Sardis",t:"condo",a55:1,lease:1,y:2019},
+ {id:36305,n:"The Yearling",ad:"6045 Chilliwack River Rd",sub:"Sardis South",ar:"Sardis",t:"condo",lease:1,y:2024},
  {id:27246,n:"Rainbow Estates",ad:"9055 Ashwell Rd",sub:"Chilliwack Proper West",ar:"Chilliwack",t:"mhp",lease:1},
  {id:26456,n:"Evergreen Village",ad:"31955 Old Yale Rd",sub:"Abbotsford West",ar:"Abbotsford",t:"condo",a55:1,y:1995,u:205},
  {id:29662,n:"Natures Gate",ad:"33318 – 33338 E Bourquin Cres",sub:"Central Abbotsford",ar:"Abbotsford",t:"condo",y:2007,u:143}
 ];
+var MODE=(location.pathname.toLowerCase().indexOf('leasehold')>-1)?'lease':'main';
+B=B.filter(function(b){return MODE=='lease'?!!b.lease:!b.lease;});
 var CS=function(b){return b.ar=="Chilliwack"||b.ar=="Sardis";};
 var S=[
  {k:"cs-condos",h:"Chilliwack & Sardis condos",d:"Apartment buildings with no age restriction.",f:function(b){return CS(b)&&b.t=="condo"&&!b.a55;}},
@@ -246,26 +307,34 @@ var S=[
  {k:"agassiz",h:"Agassiz buildings",d:"Condos, townhouses and 55+ communities in Agassiz.",f:function(b){return b.ar=="Agassiz";}},
  {k:"harrison",h:"Harrison Hot Springs buildings",d:"Condos and townhouses in the village of Harrison Hot Springs.",f:function(b){return b.ar=="Harrison Hot Springs";}},
  {k:"detached-55-freehold",h:"Detached 55+ homes · freehold strata",d:"Ranchers and detached homes in 55+ bare-land and freehold strata communities.",f:function(b){return b.t=="detached"&&b.a55&&!b.lease&&b.ar!="Abbotsford";}},
- {k:"detached-leasehold",h:"Detached & manufactured homes · leasehold",d:"Communities on leased land (often First Nations land), with pad rent or a prepaid lease. Lease terms affect financing, so check the lease end date.",f:function(b){return (b.t=="detached"||b.t=="mhp")&&b.lease;}},
+ {k:"detached-leasehold",h:"Detached & manufactured homes · leasehold",hide:MODE!="lease",d:"Communities on leased land (often First Nations land), with pad rent or a prepaid lease. Lease terms affect financing, so check the lease end date.",f:function(b){return (b.t=="detached"||b.t=="mhp")&&b.lease;}},
  {k:"abbotsford",h:"Abbotsford buildings",d:"Our Abbotsford directory, growing.",f:function(b){return b.ar=="Abbotsford";},hide:!SHOW_ABBY}
 ];
+if(MODE=='lease'){S=[
+ {k:"lease-condos",h:"Leasehold condos",d:"Condo buildings on leased land, most on First Nations land in Sardis and Chilliwack.",f:function(b){return b.t=="condo";}},
+ {k:"lease-town",h:"Leasehold townhomes",d:"Townhome complexes on leased land.",f:function(b){return b.t=="town";}},
+ {k:"lease-detached",h:"Detached & manufactured homes on leased land",d:"Parks and communities with pad rent or a prepaid lease.",f:function(b){return b.t=="detached"||b.t=="mhp";}}];}
 var TL={condo:"Condo",town:"Townhouse",detached:"Detached / rancher",mhp:"Manufactured homes"};
 var stEl=document.getElementById('bd-stats'),fs='';
 var root=document.getElementById('bd'),secsEl=document.getElementById('bd-secs'),jump=document.getElementById('bd-jump');
 function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];});}
 function card(b){var m=[TL[b.t]];if(b.y)m.push("Built "+b.y);if(b.u)m.push(b.u+" homes");if(b.lease)m.push("Leasehold");
- return '<a class="bd-card rv" target="_blank" rel="noopener" href="/buildings/view/'+b.id+'" data-id="'+b.id+'"><div class="bd-ph ld" data-n="'+esc(b.n)+'" data-s="'+esc(b.sub)+'"><span class="bd-for"></span>'+(b.a55?'<span class="bd-tag55">55+</span>':'')+'</div><div class="bd-body"><div class="bd-n">'+esc(b.n)+'</div><div class="bd-a">'+esc(b.ad)+'<br>'+esc(b.sub)+', '+esc(b.ar)+'</div><div class="bd-meta">'+m.map(function(x){return '<span>'+esc(x)+'</span>';}).join('')+'</div><div class="bd-go">Building page</div></div></a>';}
+ return '<a class="bd-card rv" target="_blank" rel="noopener" href="/buildings/view/'+b.id+'" data-id="'+b.id+'"><div class="bd-ph ld" data-n="'+esc(b.n)+'" data-s="'+esc(b.sub)+'"><span class="bd-for"></span><button type="button" class="bd-sv" hidden aria-label="Look around in Street View">&#128065; Street View</button>'+(b.a55?'<span class="bd-tag55">55+</span>':'')+'</div><div class="bd-body"><div class="bd-n">'+esc(b.n)+'</div><div class="bd-a">'+esc(b.ad)+'<br>'+esc(b.sub)+', '+esc(b.ar)+'</div><div class="bd-meta">'+m.map(function(x){return '<span>'+esc(x)+'</span>';}).join('')+'</div><div class="bd-go">Building page</div></div></a>';}
 function empty(s){return '<div class="bd-empty rv"><b>More coming</b><span>Own in a building that belongs in '+esc(s.h.replace(/ ·.*/,''))+'? Ask to have it added.</span><a href="#bd-add">Add a building</a></div>';}
 var html='',jl='',alt=0;
 S.forEach(function(s){if(s.hide)return;var list=B.filter(s.f);s.list=list;
  html+='<section class="bd-sec'+(alt++%2?' alt':'')+'" id="'+s.k+'" data-k="'+s.k+'"><div class="bd-sh"><div><h2 class="rv">'+esc(s.h)+'</h2><small>'+esc(s.d)+'</small></div><span class="bd-cnt" data-c="'+s.k+'"></span></div><div class="bd-grid">'+list.map(card).join('')+empty(s)+'</div></section>';
  jl+='<a href="#'+s.k+'">'+esc(s.h)+'</a>';});
 secsEl.innerHTML=html;jump.innerHTML=jl;
+if(MODE=='lease'){var hk=root.querySelector('.bd-hero h1');if(hk)hk.textContent='Leasehold homes in Chilliwack & District';var hp=root.querySelector('.bd-hero p');if(hp)hp.textContent='Condos, townhomes and manufactured homes on leased land, much of it First Nations land in Sardis and Chilliwack. Leasehold homes often cost less, but the lease term, pad rent or prepaid lease, and financing rules matter. Ask us before you buy.';var bl=document.getElementById('bd-lease');if(bl){bl.href='/building-directory';bl.innerHTML='Looking for freehold strata? <b>Back to the full building directory →</b>';}}
 /* live photo + for-sale count from each building page */
-var live={},cache={};try{cache=JSON.parse(sessionStorage.getItem('bdLive')||'{}');}catch(e){}
-function apply(id,d){live[id]=d;[].forEach.call(root.querySelectorAll('.bd-card[data-id="'+id+'"]'),function(c){var ph=c.querySelector('.bd-ph');ph.classList.remove('ld');if(d.pic)ph.style.backgroundImage='url("'+d.pic+'")';else ph.classList.add('np');var f=c.querySelector('.bd-for');if(d.n>0){f.textContent=d.n+' for sale';f.classList.add('on');}});if(stEl)stats();if(fs&&q)run();}
-B.forEach(function(b){if(!root.querySelector('.bd-card[data-id="'+b.id+'"]'))return;if(cache[b.id]){apply(b.id,cache[b.id]);return;}
- fetch('/buildings/view/'+b.id).then(function(r){return r.text();}).then(function(h){var m=h.match(/static\/images\/buildings\/(?:med|hd)\/[^"'()\s]+\.(?:jpe?g|png|webp)/i);var a=h.match(/(\d+)\s*Active Listing/i);var d={pic:(m&&!/no_photo/i.test(m[0]))?'https://s.realtyninja.com/'+m[0].replace('/hd/','/med/'):'',n:a?+a[1]:0};cache[b.id]=d;try{sessionStorage.setItem('bdLive',JSON.stringify(cache));}catch(e){}apply(b.id,d);}).catch(function(){apply(b.id,{pic:'',n:0});});});
+var live={},cache={};try{cache=JSON.parse(sessionStorage.getItem('bdLive2')||'{}');}catch(e){}
+function apply(id,d){live[id]=d;[].forEach.call(root.querySelectorAll('.bd-card[data-id="'+id+'"]'),function(c){var ph=c.querySelector('.bd-ph');ph.classList.remove('ld');if(d.pic)ph.style.backgroundImage='url("'+d.pic+'")';else ph.classList.add('np');var f=c.querySelector('.bd-for');if(d.n>0){f.textContent=d.n+' for sale';f.classList.add('on');}var sb=c.querySelector('.bd-sv');if(sb&&d.sv)sb.hidden=false;});if(stEl)stats();if(fs&&q)run();}
+function load(b){if(cache[b.id]&&cache[b.id].v==2){apply(b.id,cache[b.id]);return;}
+ fetch('/buildings/view/'+b.id).then(function(r){return r.text();}).then(function(h){var m=h.match(/static\/images\/buildings\/(?:med|hd)\/[^"'()\s]+\.(?:jpe?g|png|webp)/i);var a=h.match(/(\d+)\s*Active Listing/i);var sv=h.match(/maps\.google\.com\/maps\?layer=c[^"']+/);var d={v:2,sv:sv?sv[0].replace(/&amp;/g,'&'):'',pic:(m&&!/no_photo/i.test(m[0]))?'https://s.realtyninja.com/'+m[0].replace('/hd/','/med/'):'',n:a?+a[1]:0};cache[b.id]=d;try{sessionStorage.setItem('bdLive2',JSON.stringify(cache));}catch(e){}apply(b.id,d);}).catch(function(){apply(b.id,{pic:'',n:0});});}
+var lio=('IntersectionObserver' in window)?new IntersectionObserver(function(es){es.forEach(function(x){if(x.isIntersecting){lio.unobserve(x.target);var id=x.target.getAttribute('data-id');load(B.filter(function(b){return b.id==id;})[0]);}});},{rootMargin:'400px'}):null;
+B.forEach(function(b){var c=root.querySelector('.bd-card[data-id="'+b.id+'"]');if(!c)return;if(cache[b.id]&&cache[b.id].v==2){apply(b.id,cache[b.id]);return;}if(lio)lio.observe(c);else load(b);});
+root.addEventListener('click',function(e){var bt=e.target.closest&&e.target.closest('.bd-sv');if(!bt)return;e.preventDefault();e.stopPropagation();var c=bt.closest('.bd-card'),d=live[c.getAttribute('data-id')];if(!d||!d.sv)return;var ph=c.querySelector('.bd-ph');ph.insertAdjacentHTML('beforeend','<iframe src="'+d.sv+'" allowfullscreen loading="lazy" title="Street View"></iframe>');bt.remove();},true);
 function stats(){var vis=B.filter(function(b){return root.querySelector('.bd-card[data-id="'+b.id+'"]');});var fsN=0;vis.forEach(function(b){if(live[b.id])fsN+=live[b.id].n;});
  stEl.innerHTML='<div><b>'+vis.length+'</b><span>Buildings</span></div><div><b>'+vis.filter(function(b){return b.a55;}).length+'</b><span>Age 55+</span></div><div><b>'+vis.filter(function(b){return b.t=="town";}).length+'</b><span>Townhouse complexes</span></div><div><b>'+vis.filter(function(b){return b.t=="condo";}).length+'</b><span>Condo buildings</span></div><div class="g"><b>'+fsN+'</b><span>Homes for sale now</span></div>';}
 stats();
