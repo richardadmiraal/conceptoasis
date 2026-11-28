@@ -1,0 +1,290 @@
+<!-- admiraal.ca/christmas2026 · Nutcracker & Associates · Kai-C, v2 Nov 27 2026. Custom Code widget.
+     Edit the data at the top of the script: LAST (official list), LIST (2026 Top 20), SUGG (suggestions box), ADS (newspaper ads). -->
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,800;0,900;1,600&family=League+Spartan:wght@600;800;900&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+<div class="xm" id="xm">
+<style>
+.xm{--bur:#6e1420;--r:#a3192b;--ev:#0f3324;--ev2:#14482f;--gold:#c9a24a;--gold2:#e8cf8a;--cream:#fbf6ea;--ink:#1d1a16;--mid:#0d1a2b;--gr:#6d665b;--l:#e7dcc4;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:var(--ink);line-height:1.6;font-size:16px;text-align:left;max-width:1200px;margin:0 auto 30px;padding:0 16px}
+.xm *{box-sizing:border-box}
+.xm h1,.xm h2,.xm h3{font-family:"Playfair Display",Georgia,serif;margin:0;line-height:1.08;color:var(--ink);font-weight:800}
+.xm a{color:inherit}
+.xm-wrap{border-radius:16px;overflow:hidden;background:var(--cream);border:1px solid var(--l);box-shadow:0 24px 60px -28px rgba(0,0,0,.45)}
+/* hero */
+.xm-hero{position:relative;background:radial-gradient(120% 140% at 15% 0%,#a3192b 0%,#6e1420 42%,#0f3324 100%);color:#fff;padding:62px 38px 54px;overflow:hidden}
+.xm-hero:after{content:"";position:absolute;left:38px;right:38px;bottom:22px;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+.xm-snow{position:absolute;inset:0;pointer-events:none}
+.xm-snow i{position:absolute;top:-10px;border-radius:50%;background:#fff;opacity:.8;animation:xmFall linear infinite}
+@keyframes xmFall{to{transform:translate(30px,620px)}}
+.xm-kick{position:relative;font-size:12px;font-weight:800;letter-spacing:.24em;text-transform:uppercase;color:var(--gold2)}
+.xm-hero h1{position:relative;color:#fff;font-weight:900;font-size:clamp(38px,6.4vw,76px);margin:14px 0 12px;letter-spacing:-.01em}
+.xm-hero h1 em{font-style:italic;font-weight:600;color:var(--gold2)}
+.xm-hero p{position:relative;max-width:680px;margin:0;font-size:18px;color:#f6e9e0}
+.xm-jump{position:relative;display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
+.xm-jump a{border:1px solid rgba(232,207,138,.7);color:var(--gold2)!important;text-decoration:none!important;border-radius:999px;padding:9px 16px;font-weight:700;font-size:14px;letter-spacing:.02em;background:rgba(0,0,0,.12)}
+.xm-jump a:hover{background:var(--gold);color:#2a1a08!important}
+/* sections */
+.xm-sec{padding:44px 38px;border-top:1px solid var(--l)}
+.xm-sec.dark{background:linear-gradient(170deg,#0d1a2b,#0f3324);color:#efe6d2;border-top:0}
+.xm-sec.dark h2,.xm-sec.dark h3{color:#fff}
+.xm-k{font-size:12px;font-weight:800;letter-spacing:.22em;text-transform:uppercase;color:var(--r);margin-bottom:8px}
+.xm-sec.dark .xm-k{color:var(--gold2)}
+.xm-sec h2{font-size:clamp(28px,3.6vw,42px)}
+.xm-sub{color:var(--gr);margin:10px 0 24px;max-width:780px}
+.xm-sec.dark .xm-sub{color:#cfc5ad}
+.xm-orn{display:block;width:120px;height:14px;margin:10px 0 0;background:radial-gradient(circle,var(--gold) 3px,transparent 4px) center/14px 14px repeat-x;opacity:.8}
+/* the list section */
+.xm-lists{display:grid;grid-template-columns:300px 1fr;gap:28px;align-items:start}
+.xm-last{position:relative;background:#f7ecd2;color:#2a2418;border-radius:6px;padding:22px 18px 18px;box-shadow:inset 0 0 30px rgba(160,120,50,.28),0 14px 30px -18px rgba(0,0,0,.7);transform:rotate(-1.5deg)}
+.xm-last:before,.xm-last:after{content:"";position:absolute;left:-6px;right:-6px;height:14px;border-radius:7px;background:linear-gradient(#caa063,#9c7438)}
+.xm-last:before{top:-7px}.xm-last:after{bottom:-7px}
+.xm-last h3{font:800 13px/1.25 "League Spartan",sans-serif;letter-spacing:.06em;color:var(--r)!important;text-align:center;text-transform:uppercase}
+.xm-last .yr{text-align:center;color:#8a7a5a;font-size:11.5px;margin:2px 0 8px}
+.xm-last ol{margin:0;padding-left:20px;font:700 17px/1.28 "Caveat",cursive}
+.xm-last li{margin:1px 0}
+.xm-seal{position:absolute;right:-14px;top:-18px;width:78px;height:78px;border-radius:50%;background:radial-gradient(circle,#f3d277,#c08f22);border:4px solid #8e6a17;display:flex;align-items:center;justify-content:center;transform:rotate(12deg);font:900 11px/1 "League Spartan",sans-serif;color:#6e1420;letter-spacing:.06em;box-shadow:0 6px 14px rgba(0,0,0,.35);text-align:center}
+.xm-brag{margin-top:16px;font-size:13.5px;color:#cfc5ad;font-style:italic}
+.xm-brag a{color:var(--gold2)}
+.xm-top{background:var(--cream);color:var(--ink);border-radius:14px;padding:26px 26px 18px;border:1px solid var(--gold);box-shadow:0 0 0 6px rgba(201,162,74,.18),0 20px 40px -20px rgba(0,0,0,.6)}
+.xm-top h3{font-size:26px;text-align:center}
+.xm-top .yr{text-align:center;color:var(--gr);font-size:13px;margin:4px 0 14px;letter-spacing:.06em}
+.xm-top ol{list-style:none;margin:0;padding:0;columns:2;column-gap:26px}
+.xm-top li{break-inside:avoid;display:flex;gap:10px;align-items:baseline;padding:8px 0;border-bottom:1px dotted #d9caa4}
+.xm-top .n{font:800 18px/1 "Playfair Display",serif;color:var(--gold);min-width:26px;text-align:right}
+.xm-top .h{font:700 21px/1.2 "Caveat",cursive;color:#2a2418}
+.xm-top .s{display:block;font:600 11px/1.3 -apple-system,"Segoe UI",sans-serif;letter-spacing:.06em;text-transform:uppercase;color:var(--gr);margin-top:2px}
+.xm-top .s a{color:var(--r);text-decoration:none;font-weight:800;letter-spacing:.02em;text-transform:none;font-size:12.5px}
+.xm-top .s a:hover{text-decoration:underline}
+.xm-top .tag{display:inline-block;font:800 9.5px/1 -apple-system,sans-serif;letter-spacing:.08em;text-transform:uppercase;border-radius:6px;padding:3px 6px;margin-left:6px;vertical-align:2px}
+.xm-top .tag.you{background:#e6f2ea;color:#14482f}
+.xm-top .tag.draft{background:#fde7e9;color:var(--r)}
+.xm-top li.open .h{color:#b7a77f;font-weight:600}
+/* interactive row */
+.xm-play{display:grid;grid-template-columns:1.1fr .9fr;gap:24px;align-items:start}
+.xm-card{background:#fff;border:1px solid var(--l);border-radius:14px;padding:22px;box-shadow:0 14px 30px -22px rgba(0,0,0,.35)}
+.xm-card h3{font-size:24px}
+.xm-card p.lead{color:var(--gr);font-size:14.5px;margin:6px 0 14px}
+.xm-card label{display:block;font-size:11.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#4a443a;margin:12px 0 5px}
+.xm-card select,.xm-card input{width:100%;font:inherit;font-size:15.5px;border:1.5px solid #d8cdb5;border-radius:10px;padding:11px 12px;outline:0;background:#fff}
+.xm-card select:focus,.xm-card input:focus{border-color:var(--ev)}
+.xm-two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.xm-btn{display:inline-block;border:0;border-radius:999px;padding:12px 18px;font-size:15px;font-weight:800;cursor:pointer;background:var(--ev);color:#fff}
+.xm-btn:hover{background:var(--ev2)}
+.xm-btn.gold{background:var(--gold);color:#2a1a08}
+.xm-btn.gold:hover{background:#b48f3c}
+.xm-btn.ghost{background:transparent;border:1.5px solid var(--ev);color:var(--ev)}
+.xm-btn.sm{padding:7px 12px;font-size:13px}
+.xm-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.xm-ok{display:none;margin-top:12px;background:#eaf3ec;border:1px solid var(--ev2);border-radius:10px;padding:12px;font-size:14.5px}
+.xm-note{font-size:12px;color:var(--gr);margin-top:10px}
+.xm-preview{margin-top:14px;background:var(--cream);border:1px dashed var(--gold);border-radius:10px;padding:12px 14px;font:700 22px/1.2 "Caveat",cursive;color:#2a2418;min-height:52px;position:relative}
+.xm-preview small{display:block;font:700 10.5px/1 -apple-system,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:var(--gr);margin-bottom:6px}
+.xm-stamp{position:absolute;right:10px;top:-16px;width:66px;height:66px;border-radius:50%;background:radial-gradient(circle,#f3d277,#c08f22);border:3px solid #8e6a17;display:flex;align-items:center;justify-content:center;transform:rotate(-14deg);font:900 9.5px/1 "League Spartan",sans-serif;color:#6e1420;letter-spacing:.04em}
+.xm-stamp.pop{animation:xmStamp .45s cubic-bezier(.2,1.6,.4,1)}
+@keyframes xmStamp{from{transform:rotate(-14deg) scale(2.2);opacity:0}to{transform:rotate(-14deg) scale(1);opacity:1}}
+/* suggestions */
+.xm-sg{list-style:none;margin:0;padding:0}
+.xm-sg li{display:flex;gap:12px;align-items:center;padding:10px 0;border-bottom:1px solid #efe6d2}
+.xm-vote{display:flex;flex-direction:column;align-items:center;min-width:40px}
+.xm-vote button{border:0;background:none;cursor:pointer;font-size:15px;line-height:1;color:#a79c86;padding:2px 6px}
+.xm-vote button.on{color:var(--r)}
+.xm-vote b{font:800 15px/1.2 "League Spartan",sans-serif;color:var(--ink)}
+.xm-sg .t{flex:1;font:700 20px/1.15 "Caveat",cursive;color:#2a2418}
+.xm-sg .t small{display:block;font:600 11px/1.3 -apple-system,sans-serif;letter-spacing:.05em;text-transform:uppercase;color:var(--gr)}
+.xm-sg .added{font:800 10px/1 -apple-system,sans-serif;letter-spacing:.08em;text-transform:uppercase;background:var(--gold);color:#2a1a08;border-radius:6px;padding:5px 7px;white-space:nowrap}
+.xm-add{border:1px solid var(--l);background:#fff;border-radius:999px;padding:5px 10px;font-size:12.5px;font-weight:700;cursor:pointer;color:var(--ev);white-space:nowrap}
+.xm-add.in{background:var(--ev);color:#fff;border-color:var(--ev)}
+/* my list */
+.xm-mine{margin-top:22px;background:var(--cream);border:1px solid var(--gold);border-radius:14px;padding:18px 20px}
+.xm-mine h4{margin:0;font:800 19px/1.2 "Playfair Display",serif}
+.xm-mine ol{margin:10px 0 0;padding-left:24px;font:700 20px/1.3 "Caveat",cursive}
+.xm-mine li button{border:0;background:none;color:#b0a384;cursor:pointer;font-size:14px;margin-left:6px}
+.xm-mine .none{color:var(--gr);font-size:14px;margin-top:8px}
+/* archive */
+.xm-yr{margin-top:26px}
+.xm-yr h3{font-size:24px;margin-bottom:12px}
+.xm-arch{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:14px}
+.xm-v{display:block;text-decoration:none!important;color:inherit!important;background:#fff;border:1px solid var(--l);border-radius:12px;overflow:hidden;transition:transform .3s,box-shadow .3s}
+.xm-v:hover{transform:translateY(-3px);box-shadow:0 14px 28px -16px rgba(0,0,0,.45)}
+.xm-th{position:relative;aspect-ratio:16/10;background:#111 center/cover no-repeat}
+.xm-th:after{content:"\25B6";position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:46px;height:46px;border-radius:50%;background:rgba(110,20,32,.92);color:#fff;font-size:17px;display:flex;align-items:center;justify-content:center;padding-left:3px;border:2px solid var(--gold2)}
+.xm-v b{display:block;padding:10px 12px 2px;font:800 15px/1.25 "Playfair Display",serif}
+.xm-v small{display:block;padding:0 12px 12px;color:var(--gr);font-size:12.5px}
+.xm-ads{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:16px}
+.xm-ads figure{margin:0;background:#fff;border:1px solid var(--l);padding:10px;border-radius:10px}
+.xm-ads img{width:100%;display:block;filter:sepia(.15)}
+.xm-ads figcaption{font-size:13px;color:var(--gr);margin-top:6px}
+.xm-shorts{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.xm-short{background:#000;border-radius:14px;overflow:hidden;position:relative;aspect-ratio:9/16;box-shadow:0 14px 30px -18px rgba(0,0,0,.6);border:1px solid rgba(201,162,74,.5)}
+.xm-short iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.xm-cap{margin-top:8px;font:800 15px/1.2 "Playfair Display",serif}
+.xm-cap small{display:block;font:600 12px/1.4 -apple-system,"Segoe UI",sans-serif;color:var(--gr);margin-top:2px}
+.xm-pl{margin-top:18px;display:inline-block;background:var(--bur);color:#fff!important;text-decoration:none!important;font-weight:800;border-radius:999px;padding:11px 18px}
+.xm-foot{padding:18px 38px;background:#f3ead6;font-size:12.5px;color:var(--gr);border-top:1px solid var(--l)}
+.xm-foot b{color:#333}
+.xm.anim .rv{opacity:0;transform:translateY(20px);transition:opacity .7s,transform .7s cubic-bezier(.2,.7,.2,1)}
+.xm.anim .rv.in{opacity:1;transform:none}
+@media(max-width:980px){.xm-lists{grid-template-columns:1fr}.xm-last{max-width:360px}.xm-play{grid-template-columns:1fr}.xm-shorts{grid-template-columns:1fr 1fr}}
+@media(max-width:640px){.xm{padding:0 8px}.xm-hero{padding:44px 20px 40px}.xm-sec{padding:30px 16px}.xm-top{padding:20px 14px}.xm-top ol{columns:1}.xm-two{grid-template-columns:1fr}.xm-foot{padding:16px}}
+@media(prefers-reduced-motion:reduce){.xm-snow{display:none}.xm.anim .rv{opacity:1;transform:none;transition:none}}
+</style>
+
+<div class="xm-wrap">
+ <header class="xm-hero">
+  <div class="xm-snow" id="xm-snow"></div>
+  <div class="xm-kick">Admiraal Real Estate · Nutcracker &amp; Associates</div>
+  <h1>Christmas 2026 <em>in Chilliwack</em></h1>
+  <p>The Nutcracker has taken over admiraal.ca again. Help us write this year's Top 20 Real Estate Headers at Christmas, vote for your favourites, and watch the new series with Kai-C.</p>
+  <div class="xm-jump"><a href="#xm-list">The 2026 list</a><a href="#xm-write">Write a header</a><a href="#xm-series">Watch the series</a><a href="#xm-archive">Christmas past</a></div>
+ </header>
+
+ <section class="xm-sec dark" id="xm-list">
+  <div class="xm-k rv">The list</div>
+  <h2 class="rv">Top 20 Real Estate Headers at Christmas, 2026</h2>
+  <p class="xm-sub rv">Every year we turn Christmas songs into real estate headers. This year the Nutcracker wants twenty. Some point to homes we have for sale, and some come from you.</p>
+  <div class="xm-lists">
+   <div class="rv">
+    <div class="xm-last"><div class="xm-seal">LAST<br>YEAR'S<br>OFFICIAL</div><h3>Top Ten Real Estate Headers at Christmas</h3><div class="yr">The official list, as seen on our Christmas videos</div><ol id="xm-lastlist"></ol></div>
+    <p class="xm-brag">Yes, we really wrote these. <a href="https://www.youtube.com/watch?v=ZNdggdX7Xhc" target="_blank" rel="noopener">Watch the official list video</a>.</p>
+   </div>
+   <div class="xm-top rv"><h3>The 2026 Top 20</h3><div class="yr">IN PROGRESS · <span id="xm-count"></span></div><ol id="xm-top"></ol></div>
+  </div>
+ </section>
+
+ <section class="xm-sec" id="xm-write">
+  <div class="xm-k rv">Your turn</div>
+  <h2 class="rv">Write one, vote one, keep your own list</h2>
+  <p class="xm-sub rv">Pick a Christmas song and give it a real estate twist, or ask Kai-C for one. Vote the suggestions up or down. The best ones get added to the 2026 list.</p>
+  <div class="xm-play">
+   <div class="xm-card rv">
+    <h3>Suggestions box</h3>
+    <p class="lead">Tap ▲ or ▼ to vote. Tap <b>+ My list</b> to save one to your own list.</p>
+    <ul class="xm-sg" id="xm-sg"></ul>
+    <div class="xm-mine" id="xm-mine"><h4>My Christmas list</h4><ol id="xm-mylist"></ol><div class="none" id="xm-none">Nothing yet. Add suggestions above, or write your own.</div>
+     <div class="xm-row"><button type="button" class="xm-btn sm ghost" id="xm-copy">Copy my list</button><button type="button" class="xm-btn sm ghost" id="xm-share">Share</button><button type="button" class="xm-btn sm ghost" id="xm-clear">Clear</button></div>
+     <div class="xm-note">Your list is saved on this device only.</div></div>
+   </div>
+   <form class="xm-card rv" id="xm-form" action="https://formspree.io/f/xbggejnn" method="POST">
+    <input type="hidden" name="_subject" value="Christmas 2026 Top 20: header suggestion">
+    <input type="hidden" name="form" value="admiraal.ca/christmas2026 - Top 20 header suggestion">
+    <h3>Write a header</h3>
+    <p class="lead">Start from a Christmas song. Stuck? Ask Kai-C.</p>
+    <label for="xm-song">Christmas song</label>
+    <select id="xm-song" name="song"></select>
+    <label for="xm-head">Your real estate header</label>
+    <input id="xm-head" name="header" maxlength="70" required placeholder="e.g. Let it snow, we've got a garage">
+    <div class="xm-row"><button type="button" class="xm-btn sm gold" id="xm-kai">✨ Ask Kai-C for one</button><button type="button" class="xm-btn sm ghost" id="xm-keep">+ My list</button></div>
+    <div class="xm-preview" id="xm-pv"><small>On the Nutcracker's scroll</small><span id="xm-pvt">Your header goes here</span><div class="xm-stamp" id="xm-stamp" hidden>APPROVED</div></div>
+    <div class="xm-two">
+     <div><label for="xm-name">First name (optional)</label><input id="xm-name" name="name" autocomplete="given-name"></div>
+     <div><label for="xm-email">Email (optional)</label><input id="xm-email" name="email" type="email" autocomplete="email"></div>
+    </div>
+    <div class="xm-row"><button class="xm-btn" type="submit" id="xm-send">Send it to the Nutcracker</button></div>
+    <div class="xm-ok" id="xm-ok">Ho ho ho! Your header is on its way. If it makes the list, you'll see it here with your first name.</div>
+    <div class="xm-note">We may feature your header with your first name, if you give one. Email is only used to tell you if it made the list.</div>
+   </form>
+  </div>
+ </section>
+
+ <section class="xm-sec" id="xm-series" style="background:#f3ead6">
+  <div class="xm-k rv">New this year</div>
+  <h2 class="rv">Nutcracker &amp; Associates: the 2026 series</h2>
+  <p class="xm-sub rv">Four short episodes, best watched in order. The Nutcracker takes over admiraal.ca, meets Kai-C, and helps introduce a new listing downtown.</p>
+  <div class="xm-shorts" id="xm-shorts"></div>
+  <a class="xm-pl rv" href="https://www.youtube.com/@RichardAdmiraal/shorts" target="_blank" rel="noopener">See all our Shorts on YouTube</a>
+ </section>
+
+ <section class="xm-sec" id="xm-archive">
+  <div class="xm-k rv">From the archive</div>
+  <h2 class="rv">Christmas past at Admiraal Real Estate</h2>
+  <p class="xm-sub rv">The Nutcracker has been with us since 2023. Here's where it started.</p>
+  <div id="xm-arch"></div>
+  <div id="xm-adwrap" hidden><div class="xm-yr"><h3 class="rv">Our Christmas newspaper ads</h3><div class="xm-ads" id="xm-ads"></div></div></div>
+ </section>
+
+ <div class="xm-foot"><b>Richard Admiraal, REALTOR®</b> · Admiraal Real Estate · Advantage Property Management, Real Estate Division · 604-701-2955 · Listing data: Chilliwack and District Real Estate Board (CADREB MLS®). Videos and Kai-C's headers made with AI by Kai-C, real estate assistant for Admiraal Real Estate. AI can make mistakes.</div>
+</div>
+</div>
+
+<script>
+(function(){
+var root=document.getElementById('xm');if(!root)return;
+/* ===== DATA (edit here) ===== */
+var LAST=["It's the most wonderful time of the year to buy this house","Do you see what I see","Comfort and joy","Merry &amp; bright","New Year's resolution: be a homeowner","Deck the halls and the great room too","Boxing Day special","Jingle all the way to your perfect place","All I want for Christmas is you","Sleigh your home search"];
+// [header, song, link (or ''), by ('' or first name), draft]
+var LIST=[
+ ["Jingle all the way… to 312 Robson!","Jingle Bells","/312robson","",0],
+ ["Walking in a Willowbrook wonderland","Winter Wonderland","/42willowbrook","",1],
+ ["Deck the halls at 14 Kipp","Deck the Halls","/14kippave","",1],
+ ["I'll be home for Christmas… on Hazel","I'll Be Home for Christmas","/7hazel","",1],
+ ["Have yourself a merry little Velma","Have Yourself a Merry Little Christmas","/velma","",1],
+ ["Rockin' around the Esplanade","Rockin' Around the Christmas Tree","/320-378esplanade","",1]
+];
+var TOTAL=20;
+// suggestions box: [id, header, song, by, votes, onListNumber or 0]
+var SUGG=[
+ ['s1',"Let it snow, we've got a garage","Let It Snow","Kai-C",0,0],
+ ['s2',"Joy to the SOLD sign","Joy to the World","Kai-C",0,0],
+ ['s3',"Rockin' around the open house","Rockin' Around the Christmas Tree","Kai-C",0,0],
+ ['s4',"It's beginning to look a lot like SOLD","It's Beginning to Look a Lot Like Christmas","Kai-C",0,0],
+ ['s5',"Chestnuts roasting by your new gas fireplace","The Christmas Song","Kai-C",0,0],
+ ['s6',"Have a holly jolly closing","A Holly Jolly Christmas","Kai-C",0,0]
+];
+var SONGS=["Jingle Bells","Let It Snow","Deck the Halls","Winter Wonderland","Rudolph the Red-Nosed Reindeer","Frosty the Snowman","I'll Be Home for Christmas","Rockin' Around the Christmas Tree","It's Beginning to Look a Lot Like Christmas","A Holly Jolly Christmas","The Christmas Song","Silent Night","Joy to the World","O Christmas Tree","Here Comes Santa Claus","The Twelve Days of Christmas","Have Yourself a Merry Little Christmas","Santa Baby","Feliz Navidad","All I Want for Christmas Is You","Another song"];
+var KAI=[["Let it snow, we've got a heated garage","Let It Snow"],["Dashing through the open house","Jingle Bells"],["Walking in a walk-in-closet wonderland","Winter Wonderland"],["All I want for Christmas is a fenced backyard","All I Want for Christmas Is You"],["I'll be home for Christmas: quick possession","I'll Be Home for Christmas"],["Silent night, quiet cul-de-sac","Silent Night"],["O come, all ye first-time buyers","O Come, All Ye Faithful"],["Here comes Santa Claus, right down the new driveway","Here Comes Santa Claus"],["Santa baby, slip a pre-approval under the tree","Santa Baby"],["Feliz Navidad, and a mountain view","Feliz Navidad"],["O Christmas tree, O vaulted ceilings","O Christmas Tree"],["Rudolph the red-nosed home inspector","Rudolph the Red-Nosed Reindeer"],["Frosty the snow-free carport","Frosty the Snowman"],["On the twelfth day of Christmas, my REALTOR gave to me: twelve showings","The Twelve Days of Christmas"],["Deck the halls, and the suite downstairs","Deck the Halls"],["It's the most wonderful time of the year to list","It's the Most Wonderful Time of the Year"]];
+var ADS=[]; // newspaper ads: ['image url','caption']
+var SERIES=[['AKO1LZeUDSw','Part 1 · The Takeover','The Nutcracker takes over admiraal.ca'],['fvQpFrceQ5s','Part 2 · Parade Route','Nutcracker approved'],['AfrYdmHOdZE','Part 3 · Kai-C Imagines','A flight into District 1881'],['5dUTqbYWQFc','Part 4 · New Listing','#312 – 9450 Robson St']];
+var ARCH=[
+ ['Last Christmas · 2025',[['aOHhNd2MJQs','Market stats, but the Nutcracker wants Christmas','Dec 9, 2025'],['8ir1tPiLJuc','CADREB Christmas Lights Drive-By lists','Dec 20, 2025']]],
+ ['Christmas 2024',[['ZNdggdX7Xhc','Top Ten Real Estate Headers at Christmas','Dec 18, 2024 · the OFFICIAL list']]],
+ ['Christmas 2023',[['tr9b7CAcEdk','Top Ten Real Estate Headers at Christmas · Nutcracker & Associates','Dec 22, 2023 · where it began'],['TOCsTqZTqhg','Top Ten Real Estate Headers at Christmas','Dec 22, 2023'],['mRa8Z5WSAvk','The Rotary Christmas Parade in downtown Chilliwack','Dec 4, 2023'],['19y78iUQEz0','Newspaper Ad at Christmas','Dec 20, 2023'],['ODWlicrzGIQ','Happy New Year from Admiraal Real Estate','Jan 1, 2024']]]
+];
+/* ===== end data ===== */
+function $(id){return document.getElementById(id);}
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];});}
+var store={get:function(k,d){try{var v=localStorage.getItem('xm26_'+k);return v?JSON.parse(v):d;}catch(e){return d;}},set:function(k,v){try{localStorage.setItem('xm26_'+k,JSON.stringify(v));}catch(e){}}};
+/* last year's list */
+$('xm-lastlist').innerHTML=LAST.map(function(l){return '<li>'+l+'</li>';}).join('');
+/* the 2026 Top 20 */
+function drawTop(){var h='';for(var i=0;i<TOTAL;i++){var it=LIST[i];
+ if(it){h+='<li><span class="n">'+(i+1)+'</span><span><span class="h">'+esc(it[0])+'</span>'+(it[4]?'<span class="tag draft">draft</span>':'')+(it[3]?'<span class="tag you">from '+esc(it[3])+'</span>':'')+'<span class="s">♪ '+esc(it[1])+(it[2]?' · <a href="'+esc(it[2])+'" target="_blank" rel="noopener">See the home →</a>':'')+'</span></span></li>';}
+ else h+='<li class="open"><span class="n">'+(i+1)+'</span><span><span class="h">Open: yours could go here</span><span class="s"><a href="#xm-write">Write one →</a></span></span></li>';}
+ $('xm-top').innerHTML=h;$('xm-count').textContent=LIST.length+' of '+TOTAL+' written';}
+drawTop();
+/* my list */
+var mine=store.get('mine',[]);
+function drawMine(){$('xm-mylist').innerHTML=mine.map(function(t,i){return '<li>'+esc(t)+'<button type="button" data-i="'+i+'" aria-label="Remove">✕</button></li>';}).join('');$('xm-none').style.display=mine.length?'none':'block';
+ [].forEach.call(root.querySelectorAll('#xm-mylist button'),function(b){b.onclick=function(){mine.splice(+b.getAttribute('data-i'),1);store.set('mine',mine);drawMine();drawSugg();};});}
+function toggleMine(t){var i=mine.indexOf(t);if(i>=0)mine.splice(i,1);else if(mine.length<20)mine.push(t);store.set('mine',mine);drawMine();drawSugg();}
+/* suggestions + votes (votes are kept on this device) */
+var votes=store.get('votes',{});
+function drawSugg(){var s=SUGG.slice().sort(function(a,b){return (b[4]+(votes[b[0]]||0))-(a[4]+(votes[a[0]]||0));});
+ $('xm-sg').innerHTML=s.map(function(x){var v=votes[x[0]]||0,inMine=mine.indexOf(x[1])>=0;
+  return '<li><div class="xm-vote"><button type="button" class="'+(v>0?'on':'')+'" data-id="'+x[0]+'" data-d="1" aria-label="Vote up">▲</button><b>'+(x[4]+v)+'</b><button type="button" class="'+(v<0?'on':'')+'" data-id="'+x[0]+'" data-d="-1" aria-label="Vote down">▼</button></div>'+
+  '<div class="t">'+esc(x[1])+'<small>♪ '+esc(x[2])+' · by '+esc(x[3])+'</small></div>'+
+  (x[5]?'<span class="added">On the list · #'+x[5]+'</span>':'<button type="button" class="xm-add'+(inMine?' in':'')+'" data-t="'+esc(x[1])+'">'+(inMine?'✓ My list':'+ My list')+'</button>')+'</li>';}).join('');
+ [].forEach.call(root.querySelectorAll('#xm-sg .xm-vote button'),function(b){b.onclick=function(){var id=b.getAttribute('data-id'),d=+b.getAttribute('data-d');votes[id]=(votes[id]===d)?0:d;store.set('votes',votes);drawSugg();};});
+ [].forEach.call(root.querySelectorAll('#xm-sg .xm-add'),function(b){b.onclick=function(){toggleMine(b.getAttribute('data-t'));};});}
+drawMine();drawSugg();
+$('xm-copy').onclick=function(){var t='My Christmas real estate headers (admiraal.ca/christmas2026):\n'+mine.map(function(x,i){return (i+1)+'. '+x;}).join('\n');
+ if(navigator.clipboard)navigator.clipboard.writeText(t).then(function(){$('xm-copy').textContent='Copied!';setTimeout(function(){$('xm-copy').textContent='Copy my list';},1600);});};
+$('xm-share').onclick=function(){var t=mine.map(function(x,i){return (i+1)+'. '+x;}).join('\n');if(navigator.share)navigator.share({title:'My Christmas real estate headers',text:t,url:'https://www.admiraal.ca/christmas2026'}).catch(function(){});else $('xm-copy').click();};
+$('xm-clear').onclick=function(){mine=[];store.set('mine',mine);drawMine();drawSugg();};
+/* writer */
+$('xm-song').innerHTML=SONGS.map(function(s){return '<option>'+esc(s)+'</option>';}).join('');
+var head=$('xm-head'),pvt=$('xm-pvt'),stamp=$('xm-stamp'),shown=false;
+function upd(){var t=head.value.trim();pvt.textContent=t||'Your header goes here';if(t.length>=12&&!shown){stamp.hidden=false;stamp.classList.remove('pop');void stamp.offsetWidth;stamp.classList.add('pop');shown=true;}if(t.length<12){stamp.hidden=true;shown=false;}}
+head.addEventListener('input',upd);
+var k=-1;$('xm-kai').onclick=function(){var n;do{n=Math.floor(Math.random()*KAI.length);}while(n===k&&KAI.length>1);k=n;head.value=KAI[n][0];var sel=$('xm-song');for(var i=0;i<sel.options.length;i++)if(sel.options[i].text===KAI[n][1])sel.selectedIndex=i;shown=false;upd();};
+$('xm-keep').onclick=function(){var t=head.value.trim();if(t){if(mine.indexOf(t)<0)toggleMine(t);$('xm-keep').textContent='✓ Added';setTimeout(function(){$('xm-keep').textContent='+ My list';},1400);}else head.focus();};
+var f=$('xm-form');f.addEventListener('submit',function(e){e.preventDefault();var btn=$('xm-send');btn.disabled=true;btn.textContent='Sending…';
+ fetch(f.action,{method:'POST',body:new FormData(f),headers:{'Accept':'application/json'}}).then(function(r){if(!r.ok)throw 0;btn.textContent='Sent!';$('xm-ok').style.display='block';}).catch(function(){btn.disabled=false;btn.textContent='Send it to the Nutcracker';var o=$('xm-ok');o.textContent='Sorry, that did not send. Please call or text Richard at 604-701-2955.';o.style.display='block';});});
+/* videos, archive, ads */
+$('xm-shorts').innerHTML=SERIES.map(function(s){return '<div class="rv"><div class="xm-short"><iframe loading="lazy" src="https://www.youtube.com/embed/'+s[0]+'?rel=0" title="'+esc(s[1])+'" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div><div class="xm-cap">'+esc(s[1])+'<small>'+esc(s[2])+'</small></div></div>';}).join('');
+$('xm-arch').innerHTML=ARCH.map(function(y){return '<div class="xm-yr"><h3 class="rv">'+esc(y[0])+'</h3><div class="xm-arch">'+y[1].map(function(v){return '<a class="xm-v rv" target="_blank" rel="noopener" href="https://www.youtube.com/watch?v='+v[0]+'"><div class="xm-th" style="background-image:url(https://i.ytimg.com/vi/'+v[0]+'/hqdefault.jpg)"></div><b>'+esc(v[1])+'</b><small>'+esc(v[2])+'</small></a>';}).join('')+'</div></div>';}).join('');
+if(ADS.length){$('xm-adwrap').hidden=false;$('xm-ads').innerHTML=ADS.map(function(a){return '<figure class="rv"><img loading="lazy" src="'+esc(a[0])+'" alt="'+esc(a[1])+'"><figcaption>'+esc(a[1])+'</figcaption></figure>';}).join('');}
+/* snow */
+var sn=$('xm-snow');for(var i=0;i<46;i++){var e=document.createElement('i');e.style.left=(Math.random()*100)+'%';e.style.animationDuration=(7+Math.random()*9)+'s';e.style.animationDelay=(-Math.random()*14)+'s';var s=2+Math.random()*5;e.style.width=e.style.height=s+'px';e.style.opacity=.4+Math.random()*.5;sn.appendChild(e);}
+/* fade in */
+if(!(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches)&&'IntersectionObserver' in window){root.classList.add('anim');var io=new IntersectionObserver(function(es){es.forEach(function(x){if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target);}});},{threshold:.08});[].forEach.call(root.querySelectorAll('.rv'),function(el){io.observe(el);});}
+})();
+</script>
