@@ -1,0 +1,185 @@
+<!-- admiraal.ca/christmas2026 · Nutcracker & Associates · Kai-C, Nov 27 2026. Custom Code widget. -->
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@600;800;900&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+<div class="xm" id="xm">
+<style>
+.xm{--r:#c81e2d;--g:#12823c;--gold:#d4a528;--k:#0b0b0b;--n:#161e4a;--gr:#6b6b6b;--bg:#f7f4ee;--l:#e6e1d6;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:#1a1a1a;line-height:1.6;font-size:16px;text-align:left;max-width:1200px;margin:0 auto 30px;padding:0 16px}
+.xm *{box-sizing:border-box}
+.xm h1,.xm h2,.xm h3{font-family:"League Spartan",-apple-system,"Segoe UI",Arial,sans-serif;margin:0;line-height:1.05;color:var(--k)}
+.xm-wrap{border-radius:14px;overflow:hidden;background:#fff;border:1px solid var(--l);box-shadow:0 18px 50px -24px rgba(0,0,0,.35)}
+/* hero */
+.xm-hero{position:relative;background:linear-gradient(160deg,#7d0f1a,#c81e2d 45%,#0f5e2c);color:#fff;padding:56px 34px 40px;overflow:hidden}
+.xm-snow{position:absolute;inset:0;pointer-events:none}
+.xm-snow i{position:absolute;top:-10px;width:7px;height:7px;border-radius:50%;background:#fff;opacity:.85;animation:xmFall linear infinite}
+@keyframes xmFall{to{transform:translate(30px,560px)}}
+.xm-kick{position:relative;font-size:12px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:#ffe9a8}
+.xm-hero h1{position:relative;color:#fff;font-weight:900;text-transform:uppercase;font-size:clamp(36px,6.4vw,72px);margin:12px 0 10px}
+.xm-hero p{position:relative;max-width:700px;margin:0;font-size:17.5px;color:#fde8e8}
+.xm-par{position:relative;display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:26px}
+.xm-par div{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);border-radius:12px;padding:12px 14px}
+.xm-par b{display:block;font:800 20px/1.1 "League Spartan",sans-serif;color:#fff}
+.xm-par span{font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:#ffe9a8}
+.xm-par a{color:#fff}
+/* sections */
+.xm-sec{padding:38px 34px;border-top:1px solid var(--l)}
+.xm-sec.alt{background:var(--bg)}
+.xm-k{font-size:12px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--r);margin-bottom:8px}
+.xm-sec h2{font-size:clamp(26px,3.4vw,38px);font-weight:900}
+.xm-sub{color:var(--gr);margin:8px 0 22px;max-width:760px}
+.xm-shorts{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.xm-short{background:#000;border-radius:14px;overflow:hidden;position:relative;aspect-ratio:9/16;box-shadow:0 14px 30px -18px rgba(0,0,0,.6)}
+.xm-short iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.xm-cap{margin-top:8px;font:800 15px/1.2 "League Spartan",sans-serif}
+.xm-cap small{display:block;font:600 12px/1.4 -apple-system,"Segoe UI",sans-serif;color:var(--gr);margin-top:2px}
+.xm-pl{margin-top:18px;display:inline-block;background:var(--r);color:#fff!important;text-decoration:none!important;font-weight:800;border-radius:999px;padding:11px 18px}
+/* top ten */
+.xm-tt{display:grid;grid-template-columns:1fr 1fr;gap:26px;align-items:start}
+.xm-scroll{position:relative;background:#fbf1d9;border-radius:6px;padding:34px 30px 30px;box-shadow:inset 0 0 40px rgba(160,120,50,.25),0 14px 30px -18px rgba(0,0,0,.5)}
+.xm-scroll:before,.xm-scroll:after{content:"";position:absolute;left:-8px;right:-8px;height:22px;border-radius:11px;background:linear-gradient(#caa063,#9c7438)}
+.xm-scroll:before{top:-11px}.xm-scroll:after{bottom:-11px}
+.xm-scroll h3{font-size:22px;color:var(--r);text-align:center;letter-spacing:.02em}
+.xm-scroll .yr{text-align:center;color:#8a7a5a;font-size:13px;margin:2px 0 14px}
+.xm-scroll ol{margin:0;padding-left:24px;font:700 22px/1.35 "Caveat",cursive;color:#2a2418}
+.xm-scroll li{margin:2px 0}
+.xm-scroll li.mine{color:var(--g)}
+.xm-scroll li.empty{color:#b5a684}
+.xm-stamp{position:absolute;right:14px;bottom:26px;width:118px;height:118px;border-radius:50%;background:radial-gradient(circle,#f3d277,#c89a2a);border:5px solid #a77d1c;display:flex;align-items:center;justify-content:center;transform:rotate(-14deg);font:900 18px/1 "League Spartan",sans-serif;color:#7d0f1a;letter-spacing:.04em;box-shadow:0 6px 14px rgba(0,0,0,.25)}
+.xm-stamp.pop{animation:xmStamp .45s cubic-bezier(.2,1.6,.4,1)}
+@keyframes xmStamp{from{transform:rotate(-14deg) scale(2.2);opacity:0}to{transform:rotate(-14deg) scale(1);opacity:1}}
+/* suggestion maker */
+.xm-make{background:#fff;border:1.5px solid var(--k);border-radius:14px;padding:22px}
+.xm-make h3{font-size:24px}
+.xm-make p{color:var(--gr);font-size:14.5px;margin:6px 0 14px}
+.xm-make label{display:block;font-size:11.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#444;margin:12px 0 5px}
+.xm-make select,.xm-make input,.xm-make textarea{width:100%;font:inherit;font-size:15.5px;border:1.5px solid #cfcfcf;border-radius:10px;padding:11px 12px;outline:0;background:#fff}
+.xm-make select:focus,.xm-make input:focus,.xm-make textarea:focus{border-color:var(--k)}
+.xm-chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.xm-chips button{border:1px dashed #bbb;background:#fafafa;border-radius:999px;padding:5px 11px;font-size:13px;cursor:pointer}
+.xm-chips button:hover{border-color:var(--g);color:var(--g)}
+.xm-two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.xm-send{margin-top:14px;width:100%;background:var(--g);color:#fff;border:0;border-radius:999px;padding:13px;font-size:16px;font-weight:800;cursor:pointer}
+.xm-send:hover{background:#0e6b31}
+.xm-ok{display:none;margin-top:12px;background:#eaf6ee;border:1px solid var(--g);border-radius:10px;padding:12px;font-size:14.5px}
+.xm-note{font-size:12px;color:var(--gr);margin-top:10px}
+/* archive */
+.xm-yr{margin-top:26px}
+.xm-yr h3{font-size:22px;margin-bottom:12px}
+.xm-yr h3 span{font:700 12px/1 -apple-system,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--r);margin-left:8px}
+.xm-arch{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:14px}
+.xm-v{display:block;text-decoration:none!important;color:inherit!important;background:#fff;border:1px solid var(--l);border-radius:12px;overflow:hidden;transition:transform .3s,box-shadow .3s}
+.xm-v:hover{transform:translateY(-3px);box-shadow:0 14px 28px -16px rgba(0,0,0,.45)}
+.xm-th{position:relative;aspect-ratio:16/10;background:#111 center/cover no-repeat}
+.xm-th:after{content:"\25B6";position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:46px;height:46px;border-radius:50%;background:rgba(200,30,45,.92);color:#fff;font-size:17px;display:flex;align-items:center;justify-content:center;padding-left:3px}
+.xm-v b{display:block;padding:10px 12px 2px;font:800 15px/1.25 "League Spartan",sans-serif}
+.xm-v small{display:block;padding:0 12px 12px;color:var(--gr);font-size:12.5px}
+.xm-foot{padding:18px 34px;background:var(--bg);font-size:12.5px;color:var(--gr);border-top:1px solid var(--l)}
+.xm-foot b{color:#333}
+.xm.anim .rv{opacity:0;transform:translateY(20px);transition:opacity .7s,transform .7s cubic-bezier(.2,.7,.2,1)}
+.xm.anim .rv.in{opacity:1;transform:none}
+@media(max-width:900px){.xm-shorts{grid-template-columns:1fr 1fr}.xm-tt{grid-template-columns:1fr}.xm-par{grid-template-columns:1fr 1fr}}
+@media(max-width:600px){.xm{padding:0 8px}.xm-hero{padding:40px 18px 28px}.xm-sec{padding:28px 16px}.xm-two{grid-template-columns:1fr}.xm-foot{padding:16px}}
+@media(prefers-reduced-motion:reduce){.xm-snow{display:none}.xm.anim .rv{opacity:1;transform:none;transition:none}}
+</style>
+
+<div class="xm-wrap">
+ <header class="xm-hero">
+  <div class="xm-snow" id="xm-snow"></div>
+  <div class="xm-kick">Admiraal Real Estate · Nutcracker &amp; Associates</div>
+  <h1>Christmas 2026 in Chilliwack</h1>
+  <p>The Nutcracker has taken over admiraal.ca again. Watch the new 4-part series with Kai-C, map the Chilliwack Christmas Parade, and help us write this year's Top Ten Real Estate Headers at Christmas.</p>
+  <div class="xm-par">
+   <div><b>Sat, Nov 28</b><span>Chilliwack Christmas Parade</span></div>
+   <div><b>5:30 PM</b><span>Starts at Chilliwack Secondary</span></div>
+   <div><b>3:30–8 PM</b><span>Downtown road closures</span></div>
+   <div><b><a href="/chilliwack" target="_blank" rel="noopener">Weather &#8599;</a></b><span>admiraal.ca/chilliwack</span></div>
+  </div>
+ </header>
+
+ <section class="xm-sec">
+  <div class="xm-k rv">New this year</div>
+  <h2 class="rv">Nutcracker &amp; Associates: the 2026 series</h2>
+  <p class="xm-sub rv">Four short episodes, best watched in order. The Nutcracker takes over, Kai-C maps the parade route, flies into District 1881, and introduces a new listing three blocks from the route.</p>
+  <div class="xm-shorts" id="xm-shorts"></div>
+  <a class="xm-pl rv" href="https://www.youtube.com/@RichardAdmiraal/shorts" target="_blank" rel="noopener">See all our Shorts on YouTube</a>
+ </section>
+
+ <section class="xm-sec alt" id="topten">
+  <div class="xm-k rv">Your turn</div>
+  <h2 class="rv">Help write the 2026 Top Ten Real Estate Headers at Christmas</h2>
+  <p class="xm-sub rv">Every year the Nutcracker makes a list of real estate headers inspired by Christmas songs. He has number one already. Pick a song, add your real estate twist, and watch it land on his scroll. Our favourites make the official 2026 list.</p>
+  <div class="xm-tt">
+   <div class="xm-scroll rv">
+    <h3>TOP TEN REAL ESTATE HEADERS AT CHRISTMAS</h3>
+    <div class="yr">2026 · in progress</div>
+    <ol id="xm-list">
+     <li>Jingle all the way… to 312 Robson!</li>
+     <li class="mine" id="xm-yours">Your header goes here</li>
+     <li class="empty">…</li><li class="empty">…</li><li class="empty">…</li><li class="empty">…</li><li class="empty">…</li><li class="empty">…</li><li class="empty">…</li><li class="empty">…</li>
+    </ol>
+    <div class="xm-stamp" id="xm-stamp" hidden>APPROVED</div>
+   </div>
+   <form class="xm-make rv" id="xm-form" action="https://formspree.io/f/xbggejnn" method="POST">
+    <input type="hidden" name="_subject" value="Christmas 2026 Top Ten: header suggestion">
+    <input type="hidden" name="form" value="admiraal.ca/christmas2026 - Top Ten header suggestion">
+    <h3>Write a header</h3>
+    <p>Start from a Christmas song, or tap one of Kai-C's starters.</p>
+    <label for="xm-song">Christmas song</label>
+    <select id="xm-song" name="song">
+     <option>Jingle Bells</option><option>Let It Snow</option><option>Deck the Halls</option><option>Winter Wonderland</option><option>Rudolph the Red-Nosed Reindeer</option><option>Frosty the Snowman</option><option>I'll Be Home for Christmas</option><option>Rockin' Around the Christmas Tree</option><option>Silent Night</option><option>Joy to the World</option><option>O Christmas Tree</option><option>Here Comes Santa Claus</option><option>The Twelve Days of Christmas</option><option>Have Yourself a Merry Little Christmas</option><option>Feliz Navidad</option><option>Another song</option>
+    </select>
+    <label for="xm-head">Your real estate header</label>
+    <input id="xm-head" name="header" maxlength="70" required placeholder="e.g. Let it snow, we've got a garage">
+    <div class="xm-chips" id="xm-chips">
+     <button type="button">Let it snow, we've got a garage</button>
+     <button type="button">I'll be home for Christmas: possession Dec 20</button>
+     <button type="button">Deck the halls of your new home</button>
+     <button type="button">Rockin' around the open house</button>
+     <button type="button">Joy to the sold sign</button>
+    </div>
+    <div class="xm-two">
+     <div><label for="xm-name">First name (optional)</label><input id="xm-name" name="name" autocomplete="given-name"></div>
+     <div><label for="xm-email">Email (optional)</label><input id="xm-email" name="email" type="email" autocomplete="email"></div>
+    </div>
+    <button class="xm-send" type="submit">Send it to the Nutcracker</button>
+    <div class="xm-ok" id="xm-ok">Ho ho ho! Your header is on its way to the Nutcracker. If it makes the 2026 list, we'll feature it here.</div>
+    <div class="xm-note">We may feature your header (first name only, if you give one). Email is only used to tell you if it made the list.</div>
+   </form>
+  </div>
+ </section>
+
+ <section class="xm-sec" id="archive">
+  <div class="xm-k rv">From the archive</div>
+  <h2 class="rv">Christmas past at Admiraal Real Estate</h2>
+  <p class="xm-sub rv">The Nutcracker has been with us since 2023. Here's where it started.</p>
+  <div id="xm-arch"></div>
+ </section>
+
+ <div class="xm-foot"><b>Richard Admiraal, REALTOR®</b> · Admiraal Real Estate · Advantage Property Management, Real Estate Division · 604-701-2955 · Chilliwack and District Real Estate Board (CADREB MLS®). Parade details from chilliwackchristmasparade.ca; check there for changes. Videos made with AI by Kai-C, real estate assistant for Admiraal Real Estate. AI can make mistakes.</div>
+</div>
+</div>
+
+<script>
+(function(){
+var root=document.getElementById('xm');if(!root)return;
+var SERIES=[['AKO1LZeUDSw','Part 1 · The Takeover','The Nutcracker takes over admiraal.ca'],['fvQpFrceQ5s','Part 2 · Parade Route','Nutcracker approved'],['AfrYdmHOdZE','Part 3 · Kai-C Imagines','A flight into District 1881'],['5dUTqbYWQFc','Part 4 · New Listing','#312 – 9450 Robson St']];
+var ARCH=[
+ ['Last Christmas · 2025',[['aOHhNd2MJQs','Market stats, but the Nutcracker wants Christmas','Dec 9, 2025'],['8ir1tPiLJuc','CADREB Christmas Lights Drive-By lists','Dec 20, 2025']]],
+ ['Christmas 2024',[['ZNdggdX7Xhc','Top Ten Real Estate Headers at Christmas','Dec 18, 2024 · the OFFICIAL list']]],
+ ['Christmas 2023',[['tr9b7CAcEdk','Top Ten Real Estate Headers at Christmas · Nutcracker & Associates','Dec 22, 2023 · where it began'],['TOCsTqZTqhg','Top Ten Real Estate Headers at Christmas','Dec 22, 2023'],['mRa8Z5WSAvk','The Rotary Christmas Parade in downtown Chilliwack','Dec 4, 2023'],['19y78iUQEz0','Newspaper Ad at Christmas','Dec 20, 2023'],['ODWlicrzGIQ','Happy New Year from Admiraal Real Estate','Jan 1, 2024']]]
+];
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];});}
+document.getElementById('xm-shorts').innerHTML=SERIES.map(function(s){return '<div class="rv"><div class="xm-short"><iframe loading="lazy" src="https://www.youtube.com/embed/'+s[0]+'?rel=0" title="'+esc(s[1])+'" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div><div class="xm-cap">'+esc(s[1])+'<small>'+esc(s[2])+'</small></div></div>';}).join('');
+document.getElementById('xm-arch').innerHTML=ARCH.map(function(y){return '<div class="xm-yr"><h3 class="rv">'+esc(y[0])+'</h3><div class="xm-arch">'+y[1].map(function(v){return '<a class="xm-v rv" target="_blank" rel="noopener" href="https://www.youtube.com/watch?v='+v[0]+'"><div class="xm-th" style="background-image:url(https://i.ytimg.com/vi/'+v[0]+'/hqdefault.jpg)"></div><b>'+esc(v[1])+'</b><small>'+esc(v[2])+'</small></a>';}).join('')+'</div></div>';}).join('');
+/* snow */
+var sn=document.getElementById('xm-snow');for(var i=0;i<40;i++){var e=document.createElement('i');e.style.left=(Math.random()*100)+'%';e.style.animationDuration=(6+Math.random()*8)+'s';e.style.animationDelay=(-Math.random()*12)+'s';var s=3+Math.random()*6;e.style.width=e.style.height=s+'px';sn.appendChild(e);}
+/* live preview on the Nutcracker's scroll */
+var head=document.getElementById('xm-head'),yours=document.getElementById('xm-yours'),stamp=document.getElementById('xm-stamp'),shown=false;
+function upd(){var t=head.value.trim();yours.textContent=t||'Your header goes here';if(t.length>=12&&!shown){stamp.hidden=false;stamp.classList.remove('pop');void stamp.offsetWidth;stamp.classList.add('pop');shown=true;}if(t.length<12){stamp.hidden=true;shown=false;}}
+head.addEventListener('input',upd);
+[].forEach.call(root.querySelectorAll('#xm-chips button'),function(b){b.addEventListener('click',function(){head.value=b.textContent;upd();head.focus();});});
+var f=document.getElementById('xm-form');f.addEventListener('submit',function(e){e.preventDefault();var btn=f.querySelector('.xm-send');btn.disabled=true;btn.textContent='Sending…';
+ fetch(f.action,{method:'POST',body:new FormData(f),headers:{'Accept':'application/json'}}).then(function(r){if(!r.ok)throw 0;btn.textContent='Sent!';document.getElementById('xm-ok').style.display='block';}).catch(function(){btn.disabled=false;btn.textContent='Send it to the Nutcracker';var k=document.getElementById('xm-ok');k.textContent='Sorry, that did not send. Please call or text Richard at 604-701-2955.';k.style.display='block';});});
+/* fade in */
+if(!(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches)&&'IntersectionObserver' in window){root.classList.add('anim');var io=new IntersectionObserver(function(es){es.forEach(function(x){if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target);}});},{threshold:.1});[].forEach.call(root.querySelectorAll('.rv'),function(el){io.observe(el);});}
+})();
+</script>
