@@ -1,12 +1,12 @@
 <div style="max-width:880px;margin:30px auto;padding:22px 26px;border-radius:18px;background:#161e4a;color:#fff;font-family:Poppins,sans-serif">
 <div style="font-weight:800;letter-spacing:.12em;font-size:12px;color:#5fe39b">PRIVATE PREVIEW · KAI-C</div>
 <h1 style="font-size:28px;margin:6px 0 8px;color:#fff">New Search Hubs menu</h1>
-<p style="margin:0;font-size:15px;line-height:1.5;color:#dfe6f5">The Search Hubs menu on this page is opened for you. Click a hub name to go to that hub, or the ▾ beside it for its home types and neighbourhoods. The full A to Z list of areas is still there, folded at the bottom. This change only shows on this page until Richard approves it.</p>
+<p style="margin:0;font-size:15px;line-height:1.5;color:#dfe6f5">Click <b>Search Hubs</b> above to open it. Click a hub name to go to that hub, or the ▾ beside it for its home types and neighbourhoods. The full A to Z list of areas is still there, folded at the bottom. This change only shows on this page until Richard approves it.</p>
 </div>
 <!-- Kai-C: Search Hubs menu v2 (major hubs with dropdowns). Preview build: runs on the page it is pasted on.
      For the site-wide version, the same HUBS2 block + CSS go into the header code after approval. -->
 <style>
-.kh-wrap{margin:10px 0 6px}
+.kh-wrap{margin:4px 0 12px}
 .kh-lbl{font:800 12px/1 'Poppins',sans-serif;letter-spacing:.12em;color:#eafff2;margin:4px 2px 8px;text-transform:uppercase}
 .kh-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
 .kh-card{background:#fff;border-radius:14px;box-shadow:0 2px 6px rgba(0,0,0,.12);display:flex;align-items:stretch;overflow:hidden;min-height:54px}
@@ -42,7 +42,8 @@ var HUBS2=[
  ['Chilliwack','chilliwack','New listings, weather, market',[
    ['Home types',[['Single family homes','chilliwack-single-family-homes'],['Condos','chilliwack-condos'],['Townhomes','chilliwacksardistownhomes'],['55+ & gated','chilliwack-sardis-age-55-gated-communities'],['New construction','chilliwack-new-construction'],['Waterfront','chilliwack-and-district-waterfront'],['Commercial','ChilliwackCommercialRealEstate']]],
    ['Neighbourhoods',[['Chilliwack Proper','chilliwack-proper'],['Downtown (District 1881)','district-1881-downtown-chilliwack'],['Chilliwack East','chilliwack-east'],['Eastern Hillsides','chilliwack-eastern-hillsides'],['Chilliwack Mountain','chilliwack-mountain'],['Little Mountain','chilliwack-little-mountain'],['Fairfield Island','fairfield-island'],['Lower Landing','chilliwack-lower-landing']]],
-   ['Rural & lakes',[['Ryder Lake','ryder-lake'],['Chilliwack River Valley','chilliwackrivervalley'],['Rosedale / Popkum','rosedalepopkum'],['Cultus Lake','cultus-lake'],['Yarrow / Majuba Hill','yarrow-majubahill'],['Columbia Valley','columbiavalley'],['Towns & rural','chilliwacktownsandruralareas'],['Top 10 executive homes','top-10-chilliwack-executive-homes-for-sale'],['Top 10 multigenerational','top-10-chilliwack-multigenerational-homes'],['Open houses','open-house-chilliwack']]]]],
+   ['Rural & lakes',[['Ryder Lake','ryder-lake'],['Chilliwack River Valley','chilliwackrivervalley'],['Rosedale / Popkum','rosedalepopkum'],['Cultus Lake','cultus-lake'],['Yarrow / Majuba Hill','yarrow-majubahill'],['Columbia Valley','columbiavalley'],['Towns & rural','chilliwacktownsandruralareas']]],
+   ['Lists & open houses',[['Top 10 executive homes','top-10-chilliwack-executive-homes-for-sale'],['Top 10 multigenerational','top-10-chilliwack-multigenerational-homes'],['Open houses','open-house-chilliwack']]]]],
  ['Sardis','sardis','Garrison, Promontory, Vedder',[
    ['Home types',[['Single family homes','sardis-single-family-homes'],['Townhomes','sardis-townhomes'],['Condos','sardis-condos'],['Manufactured homes','sardis-manufactured-homes'],['55+ & gated','chilliwack-sardis-age-55-gated-communities']]],
    ['Neighbourhoods',[['Sardis South','sardissouth'],['Promontory','promontory'],['Garrison Crossing','garrisoncrossing'],['Greendale','greendale']]],
@@ -78,7 +79,7 @@ function build(){
   g+='</div><div class="kh-drop" role="region"></div>';
   w.innerHTML=g;
   var hgs=sub.querySelector('.ah-hgs'), srch=sub.querySelector('.ah-srch');
-  (srch&&srch.nextSibling)?sub.insertBefore(w,srch.nextSibling):sub.appendChild(w);
+  srch?sub.insertBefore(w,srch):sub.appendChild(w);
   if(hgs){ var d=document.createElement('details'); d.className='kh-all'; d.innerHTML='<summary>All areas A to Z</summary>'; sub.insertBefore(d,hgs); d.appendChild(hgs); }
   var drop=w.querySelector('.kh-drop');
   w.querySelectorAll('.kh-card button').forEach(function(b){
@@ -97,4 +98,3 @@ function build(){
 var n=0,t=setInterval(function(){ if(build()||++n>40) clearInterval(t); },150);
 })();
 </script>
-<script>setTimeout(function(){var b=document.querySelector('a.ah-hub.ah-dd');if(b&&!b.classList.contains('open'))b.click();},1200);</script>
